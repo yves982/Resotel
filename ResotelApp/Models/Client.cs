@@ -1,0 +1,15 @@
+﻿using System.Collections.Generic;
+
+namespace ResotelApp.Models
+{
+    class Client
+    {
+        public int ClientId { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string City { get; set; }
+        public int ZipCode { get; set; }
+        public string Address { get; set; }
+        public List<Booking> Bookings { get; set; }
+    }
+}
