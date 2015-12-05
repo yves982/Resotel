@@ -5,66 +5,35 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResotelApp"
         mc:Ignorable="d"
-        Title="AIFONE**" Height="380" Width="525" MinWidth="460" MinHeight="380">
+        xmlns:uc="clr-namespace:ResotelApp.Views"
+        Title="AIFONE**" Height="520" Width="550" MinHeight="520" MinWidth="550"
+        Background="{StaticResource MainWindowBackground}"
+>
+    <Window.Icon>/Resources/app-icon.png</Window.Icon>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="22px" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <DockPanel Grid.Row="0" Grid.Column="0">
-            <Menu DockPanel.Dock="Top" Name="MainMenu">
-                <MenuItem Header="_Fichier..." Name="FileMenu" />
-                <MenuItem Header="_Edition..." Name="EditMenu" />
-                <MenuItem Header="_Aide..." Name="HelpMenu">
-                    <MenuItem Header="A _Propos" Name="HelpAboutItem" Command="{Binding Path=AboutCommand}" />
-                </MenuItem>
-            </Menu>
-        </DockPanel>
-        <StackPanel Grid.Row="1" Grid.Column="0" Width="440" VerticalAlignment="Center">
-            <StackPanel.Resources>
-                <Style TargetType="{x:Type Label}">
-                    <Setter Property="Margin" Value="0,5,0,5" />
-                </Style>
-                <Style TargetType="{x:Type TextBox}">
-                    <Setter Property="Margin" Value="0,5,0,5" />
-                </Style>
-            </StackPanel.Resources>
+        <!--<uc:RibbonMenu Grid.Row="0" Grid.Column="0" />-->
+        <Grid Grid.Row="1" Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <TabControl Name="MainTabCtrl" Grid.Row="0" Grid.Column="0" Style="{StaticResource CustomTabControlStyle}" ItemContainerStyle="{StaticResource CustomTabItemStyle}">
+                <TabItem Header="Test" />
+                <TabItem Header="Tutu" />
+            </TabControl>
             
-            <Border BorderBrush="Black" BorderThickness="1" Padding="0,0,0,20">
-                <Grid VerticalAlignment="Center">
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="50" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="40" />
-                        <RowDefinition Height="40" />
-                    </Grid.RowDefinitions>
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="100" />
-                        <ColumnDefinition Width="300" />
-                    </Grid.ColumnDefinitions>
-
-
-                    <Label HorizontalAlignment="Center" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="18">
-                        <TextBlock TextDecorations="Underline">Fiche Client</TextBlock>
-                    </Label>
-                    <Label Grid.Row="1" Grid.Column="0">Nom</Label>
-                    <Label Grid.Row="2" Grid.Column="0">Prénom</Label>
-                    <Label Grid.Row="3" Grid.Column="0">Ville</Label>
-                    <Label Grid.Row="4" Grid.Column="0">Code Postal</Label>
-                    <Label Grid.Row="5" Grid.Column="0">Addresse</Label>
-                    <TextBox Grid.Row="1" Grid.Column="1" />
-                    <TextBox Grid.Row="2" Grid.Column="1" />
-                    <TextBox Grid.Row="3" Grid.Column="1" />
-                    <TextBox Grid.Row="4" Grid.Column="1" />
-                    <TextBox Grid.Row="5" Grid.Column="1" />
-                    
-                </Grid>
-            </Border>
-        </StackPanel>
+            <uc:StartPage Grid.Row="1" Grid.Column="0" />
+        </Grid>
     </Grid>
 </Window>
