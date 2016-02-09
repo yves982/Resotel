@@ -3,6 +3,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResotelApp.Models
 {
@@ -16,5 +17,8 @@ namespace ResotelApp.Models
         public int Size { get; set; }
         public List<Option> Options { get; set; }
         public Booking Booking { get; set; }
+        [Required]
+        [DefaultValue(false)]
+        public bool IsCleaned { get; set; }
     }
 }

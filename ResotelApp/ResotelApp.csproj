@@ -68,6 +68,14 @@
     <Compile Include="Migrations\201602092041564_Initial.Designer.cs">
       <DependentUpon>201602092041564_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201602092107453_AddBookingToRoom.cs" />
+    <Compile Include="Migrations\201602092107453_AddBookingToRoom.Designer.cs">
+      <DependentUpon>201602092107453_AddBookingToRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201602092133501_AddRoomCleanedState.cs" />
+    <Compile Include="Migrations\201602092133501_AddRoomCleanedState.Designer.cs">
+      <DependentUpon>201602092133501_AddRoomCleanedState.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Room.cs" />
     <Compile Include="Views\RibbonMenu.xaml.cs">
       <SubType>Code</SubType>
@@ -130,6 +138,12 @@
     </Compile>
     <EmbeddedResource Include="Migrations\201602092041564_Initial.resx">
       <DependentUpon>201602092041564_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602092107453_AddBookingToRoom.resx">
+      <DependentUpon>201602092107453_AddBookingToRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201602092133501_AddRoomCleanedState.resx">
+      <DependentUpon>201602092133501_AddRoomCleanedState.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
