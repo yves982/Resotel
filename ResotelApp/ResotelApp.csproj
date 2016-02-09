@@ -64,6 +64,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Migrations\201602092041564_Initial.cs" />
+    <Compile Include="Migrations\201602092041564_Initial.Designer.cs">
+      <DependentUpon>201602092041564_Initial.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Room.cs" />
     <Compile Include="Views\RibbonMenu.xaml.cs">
       <SubType>Code</SubType>
@@ -83,14 +87,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Migrations\201511281434170_InitialCreate.cs" />
-    <Compile Include="Migrations\201511281434170_InitialCreate.Designer.cs">
-      <DependentUpon>201511281434170_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201511291005027_RequiredFields.cs" />
-    <Compile Include="Migrations\201511291005027_RequiredFields.Designer.cs">
-      <DependentUpon>201511291005027_RequiredFields.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\Resotel.cs" />
@@ -132,11 +128,8 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\201511281434170_InitialCreate.resx">
-      <DependentUpon>201511281434170_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201511291005027_RequiredFields.resx">
-      <DependentUpon>201511291005027_RequiredFields.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201602092041564_Initial.resx">
+      <DependentUpon>201602092041564_Initial.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
