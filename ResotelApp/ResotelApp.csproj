@@ -64,18 +64,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Migrations\201602091738388_Adding Rooms to Option.cs" />
-    <Compile Include="Migrations\201602091738388_Adding Rooms to Option.Designer.cs">
-      <DependentUpon>201602091738388_Adding Rooms to Option.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602091754023_AddRoomsToOptions.cs" />
-    <Compile Include="Migrations\201602091754023_AddRoomsToOptions.Designer.cs">
-      <DependentUpon>201602091754023_AddRoomsToOptions.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201602091825479_AddRoomToOptions2.cs" />
-    <Compile Include="Migrations\201602091825479_AddRoomToOptions2.Designer.cs">
-      <DependentUpon>201602091825479_AddRoomToOptions2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Models\Room.cs" />
     <Compile Include="Views\RibbonMenu.xaml.cs">
       <SubType>Code</SubType>
@@ -149,15 +137,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201511291005027_RequiredFields.resx">
       <DependentUpon>201511291005027_RequiredFields.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602091738388_Adding Rooms to Option.resx">
-      <DependentUpon>201602091738388_Adding Rooms to Option.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602091754023_AddRoomsToOptions.resx">
-      <DependentUpon>201602091754023_AddRoomsToOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201602091825479_AddRoomToOptions2.resx">
-      <DependentUpon>201602091825479_AddRoomToOptions2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
