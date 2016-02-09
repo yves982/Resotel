@@ -1,10 +1,6 @@
-﻿using ResotelApp.Models;
-using ResotelApp.Models.Context;
-using ResotelApp.ViewModels;
+﻿using ResotelApp.ViewModels;
 using ResotelApp.Views;
-using System.Collections.Generic;
 using System.Windows;
-using System.Windows.Navigation;
 
 namespace ResotelApp
 {

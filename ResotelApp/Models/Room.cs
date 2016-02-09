@@ -15,5 +15,6 @@ namespace ResotelApp.Models
         [DefaultValue(1)]
         public int Size { get; set; }
         public List<Option> Options { get; set; }
+        public Booking Booking { get; set; }
     }
 }
