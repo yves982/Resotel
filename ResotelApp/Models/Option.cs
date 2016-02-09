@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
 namespace ResotelApp.Models
@@ -8,9 +8,7 @@ namespace ResotelApp.Models
         public int OptionId { get; set; }
         [Required]
         public string Label { get; set; }
-        [Required]
-        [DefaultValue(false)]
-        public bool IsRoomRelated { get; set; }
+        public List<Room> Rooms;
         [Required]
         public int BasePrice { get; set; }
     }
