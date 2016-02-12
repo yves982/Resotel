@@ -22,18 +22,43 @@
         <Grid Grid.Row="1" Grid.Column="0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
+            <!--
             <TabControl Name="MainTabCtrl" Grid.Row="0" Grid.Column="0" Style="{StaticResource CustomTabControlStyle}" ItemContainerStyle="{StaticResource CustomTabItemStyle}">
                 <TabItem Header="Test" />
                 <TabItem Header="Tutu" />
             </TabControl>
-            
-            <uc:StartPage Grid.Row="1" Grid.Column="0" />
+            -->
+            <Menu Name="mainMenu" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+                <MenuItem Name="fileMenu" Header="_Fichier">
+                    
+                </MenuItem>
+                <MenuItem Name="editMenu" Header="_Editer">
+                    
+                </MenuItem>
+                <MenuItem Name="helpMenuItem" Header="_Aide">
+                    <MenuItem Name="aboutMenuItem" Header="a _propos..." Command="{Binding Path=AboutCommand}" />
+                </MenuItem>
+            </Menu>
+            <uc:StartPage Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="startPage" />
+            <Button Grid.Row="2" Grid.Column="0" Name="prevBtn"
+                    HorizontalAlignment="Center" Margin="0,15" Content="Prev" 
+                    Style="{StaticResource CustomButtonStyle}" Command="{Binding Path=PrevCommand}"
+                    IsEnabled="{Binding Path=HasPrev}"
+            />
+            <Button Grid.Row="2" Grid.Column="1" Name="nextBtn" 
+                    HorizontalAlignment="Center" Margin="0,15" Content="Next" 
+                    Style="{StaticResource CustomButtonStyle}" Command="{Binding Path=NextCommand}"
+                    IsEnabled="{Binding Path=HasNext}"
+            />
         </Grid>
     </Grid>
 </Window>

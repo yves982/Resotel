@@ -77,6 +77,10 @@
       <DependentUpon>201602092133501_AddRoomCleanedState.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Room.cs" />
+    <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
+    <Compile Include="ViewModels\StartPageModel.cs" />
+    <Compile Include="ViewModels\Utils\RequiredFieldsFontWeightValueConverter.cs" />
+    <Compile Include="ViewModels\Utils\RequiredFieldsContentValueConverter.cs" />
     <Compile Include="Views\RibbonMenu.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>RibbonMenu.xaml</DependentUpon>

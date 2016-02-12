@@ -5,14 +5,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:ResotelApp.Views"
              mc:Ignorable="d" 
-             d:DesignHeight="380" d:DesignWidth="460">
-    <Grid MinWidth="460" MinHeight="380">
+             xmlns:mu="clr-namespace:ResotelApp.ViewModels.Utils"
+             d:DesignHeight="380" d:DesignWidth="460"
+>
+    <Grid MinWidth="460">
         <StackPanel Grid.Row="1" Grid.Column="0" Width="440" VerticalAlignment="Center" Style="{StaticResource CustomStackPanelStyle}">
             <Border Style="{StaticResource CustomPageBorderStyle}"  Padding="0,0,0,20">
                 <Grid VerticalAlignment="Center">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="50" />
-                        <RowDefinition Height="40" />
                         <RowDefinition Height="40" />
                         <RowDefinition Height="40" />
                         <RowDefinition Height="40" />
@@ -30,33 +31,51 @@
                     </Label>
 
                     <StackPanel Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-                        <Label>Nom</Label>
+                        <Label 
+                            FontWeight="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsFontWeightValueConverter}, ConverterParameter=Nom}"
+                            Content="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsContentValueConverter}, ConverterParameter=Nom}"
+                        ></Label>
                         <TextBox />
                     </StackPanel>
 
                     <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                        <Label>Prénom</Label>
+                        <Label 
+                            FontWeight="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsFontWeightValueConverter}, ConverterParameter=Prenom}"
+                            Content="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsContentValueConverter}, ConverterParameter=Prenom}"
+                        ></Label>
                         <TextBox />
                     </StackPanel>
 
                     <StackPanel Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2">
-                        <Label>Ville</Label>
+                        <Label 
+                            FontWeight="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsFontWeightValueConverter}, ConverterParameter=Ville}"
+                            Content="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsContentValueConverter}, ConverterParameter=Ville}"
+                        ></Label>
                         <TextBox />
                     </StackPanel>
 
                     <StackPanel Grid.Row="4" Grid.Column="0" Grid.ColumnSpan="2">
-                        <Label>Code Postal</Label>
+                        <Label 
+                            FontWeight="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsFontWeightValueConverter}, ConverterParameter=CodePostal}"
+                            Content="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsContentValueConverter}, ConverterParameter=CodePostal}"
+                       ></Label>
                         <TextBox />
                     </StackPanel>
 
                     <StackPanel Grid.Row="5" Grid.Column="0" Grid.ColumnSpan="2">
-                        <Label>Addresse</Label>
+                        <Label 
+                            FontWeight="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsFontWeightValueConverter}, ConverterParameter=Address}"
+                            Content="{Binding Path=RequiredFields, Converter={mu:RequiredFieldsContentValueConverter}, ConverterParameter=Address}"
+                        ></Label>
                         <TextBox />
                     </StackPanel>
                     
+                    <!--
                     <Button Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" HorizontalAlignment="Center" Margin="0,15,0,15" Style="{StaticResource CustomButtonStyle}">
                         <AccessText>_Ok</AccessText>
                     </Button>
+                    -->
+                    
                 </Grid>
             </Border>
         </StackPanel>

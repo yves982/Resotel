@@ -1,6 +1,7 @@
 ﻿using ResotelApp.ViewModels;
 using ResotelApp.Views;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace ResotelApp
 {
@@ -15,6 +16,9 @@ namespace ResotelApp
             MainWindowModel mainModel = new MainWindowModel();
             mainModel.CreateCommands();
             mainWindow.DataContext = mainModel;
+
+            (mainWindow.FindName("startPage") as UserControl).DataContext = new StartPageModel();
+
             mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             mainWindow.Show();
         }

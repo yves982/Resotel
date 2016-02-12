@@ -197,6 +197,7 @@
             <Style TargetType="StackPanel">
                 <Setter Property="Orientation" Value="Horizontal" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
+                <Setter Property="Margin" Value="0,8,0,0" />
             </Style>
         </Style.Resources>
     </Style>
@@ -209,7 +210,10 @@
         UserControl's Border
     -->
     <Style TargetType="{x:Type Border}" x:Key="CustomPageBorderStyle">
-        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderThickness" Value="0.4" />
+        <Setter Property="CornerRadius" Value="4" />
+        <Setter Property="BorderBrush" Value="WhiteSmoke" />
+        <Setter Property="Margin" Value="0,4,0,0" />
     </Style>
     <LinearGradientBrush x:Key="PressedBrush" StartPoint="0,0" EndPoint="0,1">
         <GradientBrush.GradientStops>
@@ -238,6 +242,7 @@
         <Setter Property="Background" Value="#FFC2D3E9" />
         <Setter Property="MinHeight" Value="30" />
         <Setter Property="MinWidth" Value="70" />
+        <Setter Property="IsEnabled" Value="True" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -257,5 +262,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="LightGray" />
+            </Trigger>
+        </Style.Triggers>
     </Style>
 </ResourceDictionary>

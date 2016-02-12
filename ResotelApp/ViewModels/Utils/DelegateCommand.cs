@@ -20,6 +20,11 @@ namespace ResotelApp.ViewModels.Utils
         {
             _execute = execute;
             _canExecute = canExecute;
+            if(CanExecuteChanged != null)
+            {
+                EventArgs e = canExecute as Object as EventArgs;
+                CanExecuteChanged(this, e);
+            }
         }
 
        public bool CanExecute(object parameter)
