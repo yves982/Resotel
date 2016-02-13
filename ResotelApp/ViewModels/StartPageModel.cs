@@ -10,16 +10,6 @@ namespace ResotelApp.ViewModels
 {
     class StartPageModel
     {
-        public List<String> RequiredFields { get; private set; }
-        public MarkupExtension FontWeightConverter { get; set; }
-
-        public StartPageModel()
-        {
-            RequiredFields = new List<string> {
-                    "Nom", "Prenom"
-            };
-            
-        }
 
         
     }

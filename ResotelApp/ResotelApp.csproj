@@ -79,8 +79,6 @@
     <Compile Include="Models\Room.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
     <Compile Include="ViewModels\StartPageModel.cs" />
-    <Compile Include="ViewModels\Utils\RequiredFieldsFontWeightValueConverter.cs" />
-    <Compile Include="ViewModels\Utils\RequiredFieldsContentValueConverter.cs" />
     <Compile Include="Views\Controls\FormTextField.xaml.cs">
       <DependentUpon>FormTextField.xaml</DependentUpon>
     </Compile>
