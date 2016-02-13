@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResotelApp"
+        xmlns:vu="clr-namespace:ResotelApp.Views.Utils"
         mc:Ignorable="d"
         xmlns:uc="clr-namespace:ResotelApp.Views.Controls"
         Title="AIFONE**" Height="520" Width="550" MinHeight="520" MinWidth="550"
@@ -45,10 +46,12 @@
                     
                 </MenuItem>
                 <MenuItem Name="helpMenuItem" Header="_Aide">
-                    <MenuItem Name="aboutMenuItem" Header="a _propos..." Command="{Binding Path=AboutCommand}" />
+                    <MenuItem Name="aboutMenuItem" Header="a _propos..." Command="{Binding Path=uc:AboutCommand}" />
                 </MenuItem>
             </Menu>
-            <uc:StartPage Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" x:Name="startPage" />
+            
+            <ContentControl Name="mainComponent" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Path=CurrentControlName, Converter={vu:UserControlLoader}}" />
+            
             <Button Grid.Row="2" Grid.Column="0" Name="prevBtn"
                     HorizontalAlignment="Center" Margin="0,15" Content="Prev" 
                     Style="{StaticResource CustomButtonStyle}" Command="{Binding Path=PrevCommand}"

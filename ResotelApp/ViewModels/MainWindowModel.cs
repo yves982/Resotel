@@ -1,16 +1,16 @@
 ﻿using ResotelApp.ViewModels.Utils;
 using System.Windows;
 using System.Windows.Input;
-using System;
 using System.Collections.Generic;
+using ResotelApp.Utils;
 using System.ComponentModel;
-using System.Runtime.CompilerServices;
 
 namespace ResotelApp.ViewModels
 {
     class MainWindowModel : NotifyPropertyChangedSupport
     {
         private List<string> _userControls;
+        private BiDirectionalIterator<string> _userControlsIterator;
         
 
         public ICommand AboutCommand { get; private set; }
@@ -27,13 +27,10 @@ namespace ResotelApp.ViewModels
             set
             {
                 SetField(ref _currentControlName, value);
-                HasNext = _currentControlName != "LastPage";
-                HasPrev = _currentControlName != "StartPage";
             }
         }
 
-
-
+        
         public bool HasPrev
         {
             get { return _hasPrev; }
@@ -63,27 +60,35 @@ namespace ResotelApp.ViewModels
 
         public MainWindowModel()
         {
-            _userControls = new List<string> { "StartPage" };
-            _currentControlName = "StartPage";
-            _hasNext = true;
-            _hasPrev = false;
+            _userControls = new List<string> {
+                "ClientInfos", "OptionsChoices"
+            };
+            _userControlsIterator = new BiDirectionalIterator<string>(_userControls);
+            HasNext = _userControlsIterator.HasNext;
+            HasPrev = _userControlsIterator.HasPrev;
+            CurrentControlName = _userControlsIterator.Current;
         }
 
 
-        private void _aboutClicked(object obj)
+        private void _aboutClicked(object sender)
         {
             MessageBox.Show("AIFONE est une application de gestion d'hotel de démonstration", "AIFONE**", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void _nextClicked(object obj)
+        private void _nextClicked(object sender)
         {
-            CurrentControlName = "Tutu";
-            //throw new NotImplementedException();
+            _userControlsIterator.MoveNext();
+            CurrentControlName = _userControlsIterator.Current;
+            HasNext = _userControlsIterator.HasNext;
+            HasPrev = _userControlsIterator.HasPrev;
         }
 
-        private void _prevClicked(object obj)
+        private void _prevClicked(object sender)
         {
-            CurrentControlName = "StartPage";
+            _userControlsIterator.MovePrev();
+            CurrentControlName = _userControlsIterator.Current;
+            HasNext = _userControlsIterator.HasNext;
+            HasPrev = _userControlsIterator.HasPrev;
         }
 
         

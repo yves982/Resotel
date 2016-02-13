@@ -5,9 +5,9 @@ namespace ResotelApp.Views.Controls
     /// <summary>
     /// Logique d'interaction pour StartPage.xaml
     /// </summary>
-    public partial class StartPage : UserControl
+    public partial class ClientInfos : UserControl
     {
-        public StartPage()
+        public ClientInfos()
         {
             InitializeComponent();
         }

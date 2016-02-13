@@ -79,6 +79,7 @@
     <Compile Include="Models\Room.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
     <Compile Include="ViewModels\StartPageModel.cs" />
+    <Compile Include="Utils\BiDirectionalIterator.cs" />
     <Compile Include="Views\Controls\FormTextField.xaml.cs">
       <DependentUpon>FormTextField.xaml</DependentUpon>
     </Compile>
@@ -89,6 +90,7 @@
     <Compile Include="Views\Controls\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Utils\UserControlLoader.cs" />
     <Page Include="Styles\BlendTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

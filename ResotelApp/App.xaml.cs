@@ -17,8 +17,6 @@ namespace ResotelApp
             mainModel.CreateCommands();
             mainWindow.DataContext = mainModel;
 
-            (mainWindow.FindName("startPage") as UserControl).DataContext = new StartPageModel();
-
             mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             mainWindow.Show();
         }
