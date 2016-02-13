@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResotelApp"
         mc:Ignorable="d"
-        xmlns:uc="clr-namespace:ResotelApp.Views"
+        xmlns:uc="clr-namespace:ResotelApp.Views.Controls"
         Title="AIFONE**" Height="520" Width="550" MinHeight="520" MinWidth="550"
         Background="{StaticResource MainWindowBackground}"
 >

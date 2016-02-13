@@ -81,14 +81,21 @@
     <Compile Include="ViewModels\StartPageModel.cs" />
     <Compile Include="ViewModels\Utils\RequiredFieldsFontWeightValueConverter.cs" />
     <Compile Include="ViewModels\Utils\RequiredFieldsContentValueConverter.cs" />
+    <Compile Include="Views\Controls\FormTextField.xaml.cs">
+      <DependentUpon>FormTextField.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RibbonMenu.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>RibbonMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\StartPage.xaml.cs">
+    <Compile Include="Views\Controls\StartPage.xaml.cs">
       <DependentUpon>StartPage.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\BlendTheme.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\FormTextField.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -112,7 +119,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\StartPage.xaml">
+    <Page Include="Views\Controls\StartPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

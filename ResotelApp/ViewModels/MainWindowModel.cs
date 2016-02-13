@@ -26,7 +26,6 @@ namespace ResotelApp.ViewModels
             get { return _currentControlName; }
             set
             {
-                _currentControlName = value;
                 SetField(ref _currentControlName, value);
                 HasNext = _currentControlName != "LastPage";
                 HasPrev = _currentControlName != "StartPage";

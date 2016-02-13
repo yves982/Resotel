@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace ResotelApp.Views
+namespace ResotelApp.Views.Controls
 {
     /// <summary>
     /// Logique d'interaction pour StartPage.xaml
