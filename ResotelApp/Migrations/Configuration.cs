@@ -2,7 +2,7 @@ namespace ResotelApp.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ResotelApp.Models.Context.Resotel>
+    internal sealed class Configuration : DbMigrationsConfiguration<ResotelApp.Models.Context.ResotelContext>
     {
         public Configuration()
         {
@@ -10,7 +10,7 @@ namespace ResotelApp.Migrations
             ContextKey = "ResotelApp.Models.Context.Resotel";
         }
 
-        protected override void Seed(ResotelApp.Models.Context.Resotel context)
+        protected override void Seed(ResotelApp.Models.Context.ResotelContext context)
         {
             //  This method will be called after migrating to the latest version.
 

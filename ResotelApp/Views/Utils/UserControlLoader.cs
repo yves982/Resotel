@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ResotelApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -10,7 +11,7 @@ using System.Windows.Markup;
 
 namespace ResotelApp.Views.Utils
 {
-    [ValueConversion(typeof(string), typeof(UserControl))]
+    [ValueConversion(typeof(string), typeof(UserControl), ParameterType = typeof(IMessageChannel))]
     public class UserControlLoader : MarkupExtension, IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
@@ -26,12 +27,16 @@ namespace ResotelApp.Views.Utils
                     control = (UserControl)Activator.CreateInstance(controlType.Assembly.FullName, controlType.FullName).Unwrap();
                 }
 
-                if (controlModelType != null)
+                if (controlModelType != null && control != null)
                 {
-                    object model = Activator.CreateInstance(controlModelType.Assembly.FullName, controlModelType.FullName).Unwrap();
+                    IMessageHandler model = Activator.CreateInstance(controlModelType.Assembly.FullName, controlModelType.FullName).Unwrap() as IMessageHandler;
+                    IMessageChannel messageChannel = parameter as IMessageChannel;
                     control.DataContext = model;
+                    messageChannel.MessageReceived += model.HandleMessage;
                 }
             }
+
+            
             return control;
         }
 

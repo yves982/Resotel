@@ -30,15 +30,15 @@
                         <TextBlock Style="{StaticResource CustomTextStyle}">Fiche Client</TextBlock>
                     </Label>
 
-                    <local:FormTextField Grid.Row="1" Grid.Column="0" FieldContent="Nom" Required="True" />
-                    <local:FormTextField Grid.Row="2" Grid.Column="0" FieldContent="Prenom" Required="True" />
-                    <local:FormTextField Grid.Row="3" Grid.Column="0" FieldContent="Ville" />
+                    <local:FormTextField Grid.Row="1" Grid.Column="0" FieldLabel="Nom" FieldValue="{Binding Path=Client.LastName}" Required="True" />
+                    <local:FormTextField Grid.Row="2" Grid.Column="0" FieldLabel="Prenom" FieldValue="{Binding Path=Client.FirstName}" Required="True" />
+                    <local:FormTextField Grid.Row="3" Grid.Column="0" FieldLabel="Ville" FieldValue="{Binding Path=Client.City}" />
 
 
-                    <local:FormTextField Grid.Row="4" Grid.Column="0" FieldContent="Code Postal" />
+                    <local:FormTextField Grid.Row="4" Grid.Column="0" FieldLabel="Code Postal" FieldValue="{Binding Path=Client.ZipCode}" />
 
 
-                    <local:FormTextField Grid.Row="5" Grid.Column="0" FieldContent="Addresse" />
+                    <local:FormTextField Grid.Row="5" Grid.Column="0" FieldLabel="Addresse" FieldValue="{Binding Path=Client.Address}" />
 
 
                     <!--
