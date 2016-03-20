@@ -13,9 +13,6 @@ namespace ResotelApp
         protected override void OnStartup(StartupEventArgs e)
         {
             Window mainWindow = new MainWindow();
-            MainWindowModel mainModel = new MainWindowModel();
-            mainModel.CreateCommands();
-            mainWindow.DataContext = mainModel;
 
             mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             mainWindow.Show();

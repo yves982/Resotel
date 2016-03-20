@@ -3,65 +3,10 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:ResotelApp"
-        xmlns:vu="clr-namespace:ResotelApp.Views.Utils"
+        xmlns:local="clr-namespace:ResotelApp.Views"
         mc:Ignorable="d"
-        xmlns:uc="clr-namespace:ResotelApp.Views.Controls"
-        Title="AIFONE**" Height="520" Width="550" MinHeight="520" MinWidth="550"
-        Background="{StaticResource MainWindowBackground}"
->
-    <Window.Icon>/Resources/app-icon.png</Window.Icon>
+        Title="MainWindow" Height="300" Width="300">
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <!--<uc:RibbonMenu Grid.Row="0" Grid.Column="0" />-->
-        <Grid Grid.Row="1" Grid.Column="0">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="auto" />
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-
-            <!--
-            <TabControl Name="MainTabCtrl" Grid.Row="0" Grid.Column="0" Style="{StaticResource CustomTabControlStyle}" ItemContainerStyle="{StaticResource CustomTabItemStyle}">
-                <TabItem Header="Test" />
-                <TabItem Header="Tutu" />
-            </TabControl>
-            -->
-            <Menu Name="mainMenu" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
-                <MenuItem Name="fileMenu" Header="_Fichier">
-                    
-                </MenuItem>
-                <MenuItem Name="editMenu" Header="_Editer">
-                    
-                </MenuItem>
-                <MenuItem Name="helpMenuItem" Header="_Aide">
-                    <MenuItem Name="aboutMenuItem" Header="a _propos..." Command="{Binding Path=uc:AboutCommand}" />
-                </MenuItem>
-            </Menu>
-            
-            <ContentControl Name="mainComponent" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Content="{Binding Path=CurrentControlName, Converter={vu:UserControlLoader}}" />
-            
-            <Button Grid.Row="2" Grid.Column="0" Name="prevBtn"
-                    HorizontalAlignment="Center" Margin="0,15" Content="Prev" 
-                    Style="{StaticResource CustomButtonStyle}" Command="{Binding Path=PrevCommand}"
-                    IsEnabled="{Binding Path=HasPrev}"
-            />
-            <Button Grid.Row="2" Grid.Column="1" Name="nextBtn" 
-                    HorizontalAlignment="Center" Margin="0,15" Content="Next" 
-                    Style="{StaticResource CustomButtonStyle}" Command="{Binding Path=NextCommand}"
-                    IsEnabled="{Binding Path=HasNext}"
-            />
-        </Grid>
+        
     </Grid>
 </Window>
