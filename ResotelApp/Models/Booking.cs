@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ResotelApp.Models
 {
-    public class Booking
+    class Booking
     {
         public int BookingId { get; set; }
         [Required]

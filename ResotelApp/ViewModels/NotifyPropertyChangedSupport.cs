@@ -4,7 +4,7 @@ using System.Runtime.CompilerServices;
 
 namespace ResotelApp.ViewModels
 {
-    public class NotifyPropertyChangedSupport : INotifyPropertyChanged
+    class NotifyPropertyChangedSupport : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
