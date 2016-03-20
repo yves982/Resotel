@@ -97,6 +97,7 @@
     <Compile Include="ViewModels\IMessageHandler.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
 <<<<<<< HEAD
+<<<<<<< HEAD
     <Compile Include="ViewModels\StartPageModel.cs" />
     <Compile Include="Utils\BiDirectionalIterator.cs" />
     <Compile Include="ViewModels\Utils\MessageTypes.cs" />
@@ -110,6 +111,8 @@
     <Compile Include="Views\Controls\ClientInfos.xaml.cs">
       <DependentUpon>ClientInfos.xaml</DependentUpon>
 =======
+=======
+>>>>>>> baab572... Restored classes access as internal (package internal)
     <Compile Include="ViewModels\PeopleViewModel.cs" />
     <Compile Include="ViewModels\PlanningViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
