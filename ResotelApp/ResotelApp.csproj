@@ -83,7 +83,6 @@
     <Compile Include="Migrations\201603201305379_AddRommsToBooking.cs" />
     <Compile Include="Migrations\201603201305379_AddRommsToBooking.Designer.cs">
       <DependentUpon>201603201305379_AddRommsToBooking.cs</DependentUpon>
-<<<<<<< HEAD
     </Compile>
     <Compile Include="Migrations\201603201317358_AddDateRangeToBooking.cs" />
     <Compile Include="Migrations\201603201317358_AddDateRangeToBooking.Designer.cs">
@@ -94,45 +93,11 @@
       <DependentUpon>201603201529490_AddClientMailAndPhone.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Room.cs" />
-    <Compile Include="ViewModels\IMessageChannel.cs" />
-    <Compile Include="ViewModels\IMessageHandler.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <Compile Include="ViewModels\StartPageModel.cs" />
-    <Compile Include="Utils\BiDirectionalIterator.cs" />
-    <Compile Include="ViewModels\Utils\MessageTypes.cs" />
-    <Compile Include="Views\Controls\FormTextField.xaml.cs">
-      <DependentUpon>FormTextField.xaml</DependentUpon>
-=======
->>>>>>> NavigationModel
-    </Compile>
-    <Compile Include="Migrations\201603201317358_AddDateRangeToBooking.cs" />
-    <Compile Include="Migrations\201603201317358_AddDateRangeToBooking.Designer.cs">
-      <DependentUpon>201603201317358_AddDateRangeToBooking.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201603201529490_AddClientMailAndPhone.cs" />
-    <Compile Include="Migrations\201603201529490_AddClientMailAndPhone.Designer.cs">
-      <DependentUpon>201603201529490_AddClientMailAndPhone.cs</DependentUpon>
-    </Compile>
-<<<<<<< HEAD
-    <Compile Include="Views\Controls\ClientInfos.xaml.cs">
-      <DependentUpon>ClientInfos.xaml</DependentUpon>
-=======
-=======
->>>>>>> baab572... Restored classes access as internal (package internal)
-=======
-    <Compile Include="Models\Room.cs" />
-    <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
->>>>>>> NavigationModel
     <Compile Include="ViewModels\PeopleViewModel.cs" />
     <Compile Include="ViewModels\PlanningViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
-<<<<<<< HEAD
->>>>>>> baab572... Restored classes access as internal (package internal)
-=======
->>>>>>> NavigationModel
     </Compile>
     <Page Include="Styles\BlendTheme.xaml">
       <SubType>Designer</SubType>
