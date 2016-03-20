@@ -94,8 +94,6 @@
     </Compile>
     <Compile Include="Models\Room.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
-    <Compile Include="ViewModels\PeopleViewModel.cs" />
-    <Compile Include="ViewModels\PlanningViewModel.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
