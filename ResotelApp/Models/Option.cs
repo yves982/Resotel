@@ -11,5 +11,6 @@ namespace ResotelApp.Models
         public List<Room> Rooms { get; set; }
         [Required]
         public int BasePrice { get; set; }
+        public Discount CurrentDiscount { get; set; }
     }
 }
