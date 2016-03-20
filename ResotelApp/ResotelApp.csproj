@@ -81,34 +81,14 @@
       <DependentUpon>201603201011139_AddCurrentDiscountToOption.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Room.cs" />
-    <Compile Include="ViewModels\IMessageChannel.cs" />
-    <Compile Include="ViewModels\IMessageHandler.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
-    <Compile Include="ViewModels\StartPageModel.cs" />
     <Compile Include="Utils\BiDirectionalIterator.cs" />
-    <Compile Include="ViewModels\Utils\MessageTypes.cs" />
-    <Compile Include="Views\Controls\FormTextField.xaml.cs">
-      <DependentUpon>FormTextField.xaml</DependentUpon>
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RibbonMenu.xaml.cs">
-      <SubType>Code</SubType>
-      <DependentUpon>RibbonMenu.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\ClientInfos.xaml.cs">
-      <DependentUpon>ClientInfos.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Utils\UserControlLoader.cs" />
     <Page Include="Styles\BlendTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\FormTextField.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -116,21 +96,8 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\ResotelContext.cs" />
-    <Compile Include="ViewModels\MainWindowModel.cs" />
     <Compile Include="ViewModels\Utils\DelegateCommand.cs" />
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Page Include="Views\RibbonMenu.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Controls\ClientInfos.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RibbonAppMenuStyle.xaml">
+    <Page Include="Views\MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -183,6 +150,7 @@
   <ItemGroup>
     <Resource Include="Resources\app-icon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
