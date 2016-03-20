@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels.Utils
 {
-    public class DelegateCommand : ICommand
+    class DelegateCommand : ICommand
     {
         private readonly Predicate<object> _canExecute;
         private readonly Action<object> _execute;

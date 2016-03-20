@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ResotelApp.Models
 {
-    public class Client
+    class Client
     {
         public int ClientId { get; set; }
         [Required]
@@ -14,5 +14,7 @@ namespace ResotelApp.Models
         public int ZipCode { get; set; }
         public string Address { get; set; }
         public List<Booking> Bookings { get; set; }
+        public string Email { get; set; }
+        public string Phone { get; set; }
     }
 }

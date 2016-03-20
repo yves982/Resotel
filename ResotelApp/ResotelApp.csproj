@@ -88,10 +88,15 @@
     <Compile Include="Migrations\201603201317358_AddDateRangeToBooking.Designer.cs">
       <DependentUpon>201603201317358_AddDateRangeToBooking.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603201529490_AddClientMailAndPhone.cs" />
+    <Compile Include="Migrations\201603201529490_AddClientMailAndPhone.Designer.cs">
+      <DependentUpon>201603201529490_AddClientMailAndPhone.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Room.cs" />
     <Compile Include="ViewModels\IMessageChannel.cs" />
     <Compile Include="ViewModels\IMessageHandler.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
+<<<<<<< HEAD
     <Compile Include="ViewModels\StartPageModel.cs" />
     <Compile Include="Utils\BiDirectionalIterator.cs" />
     <Compile Include="ViewModels\Utils\MessageTypes.cs" />
@@ -104,6 +109,12 @@
     </Compile>
     <Compile Include="Views\Controls\ClientInfos.xaml.cs">
       <DependentUpon>ClientInfos.xaml</DependentUpon>
+=======
+    <Compile Include="ViewModels\PeopleViewModel.cs" />
+    <Compile Include="ViewModels\PlanningViewModel.cs" />
+    <Compile Include="Views\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+>>>>>>> baab572... Restored classes access as internal (package internal)
     </Compile>
     <Compile Include="Views\Utils\UserControlLoader.cs" />
     <Page Include="Styles\BlendTheme.xaml">
@@ -179,6 +190,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603201317358_AddDateRangeToBooking.resx">
       <DependentUpon>201603201317358_AddDateRangeToBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603201529490_AddClientMailAndPhone.resx">
+      <DependentUpon>201603201529490_AddClientMailAndPhone.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

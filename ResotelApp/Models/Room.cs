@@ -7,7 +7,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResotelApp.Models
 {
-    public class Room
+    class Room
     {
         public int RoomId { get; set; }
         [Required]
