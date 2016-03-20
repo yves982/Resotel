@@ -3,15 +3,17 @@ using System.Windows;
 using System.Windows.Input;
 using System.Collections.Generic;
 using ResotelApp.Utils;
-using System.ComponentModel;
+using System;
 
 namespace ResotelApp.ViewModels
 {
-    class MainWindowModel : NotifyPropertyChangedSupport
+    public class MainWindowModel : NotifyPropertyChangedSupport, IMessageChannel
     {
         private List<string> _userControls;
         private BiDirectionalIterator<string> _userControlsIterator;
-        
+
+
+        public event Action<IMessageChannel, MessageTypes, Object> MessageReceived;
 
         public ICommand AboutCommand { get; private set; }
         public ICommand NextCommand { get; private set; }
@@ -77,6 +79,11 @@ namespace ResotelApp.ViewModels
 
         private void _nextClicked(object sender)
         {
+            if(MessageReceived != null)
+            {
+                MessageReceived(this, MessageTypes.Navigation, "Next");
+            }
+
             _userControlsIterator.MoveNext();
             CurrentControlName = _userControlsIterator.Current;
             HasNext = _userControlsIterator.HasNext;
@@ -85,6 +92,11 @@ namespace ResotelApp.ViewModels
 
         private void _prevClicked(object sender)
         {
+            if (MessageReceived != null)
+            {
+                MessageReceived(this, MessageTypes.Navigation, "Previous");
+            }
+
             _userControlsIterator.MovePrev();
             CurrentControlName = _userControlsIterator.Current;
             HasNext = _userControlsIterator.HasNext;

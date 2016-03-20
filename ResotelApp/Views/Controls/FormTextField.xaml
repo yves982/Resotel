@@ -34,8 +34,10 @@
         </Grid.ColumnDefinitions>
         <Label Style="{StaticResource fieldStyle}"
                Content="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=1}, 
-               Path=FieldContent}"
+               Path=FieldLabel}"
                Grid.Row="0" Grid.Column="0" />
-        <TextBox Grid.Row="0" Grid.Column="1" />
+        <TextBox Grid.Row="0" Grid.Column="1" 
+                 Text="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type UserControl}, AncestorLevel=1}, Path=FieldValue, Mode=TwoWay}"
+        />
     </Grid>
 </UserControl>

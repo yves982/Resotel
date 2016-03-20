@@ -76,10 +76,17 @@
     <Compile Include="Migrations\201602092133501_AddRoomCleanedState.Designer.cs">
       <DependentUpon>201602092133501_AddRoomCleanedState.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603201011139_AddCurrentDiscountToOption.cs" />
+    <Compile Include="Migrations\201603201011139_AddCurrentDiscountToOption.Designer.cs">
+      <DependentUpon>201603201011139_AddCurrentDiscountToOption.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Room.cs" />
+    <Compile Include="ViewModels\IMessageChannel.cs" />
+    <Compile Include="ViewModels\IMessageHandler.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
     <Compile Include="ViewModels\StartPageModel.cs" />
     <Compile Include="Utils\BiDirectionalIterator.cs" />
+    <Compile Include="ViewModels\Utils\MessageTypes.cs" />
     <Compile Include="Views\Controls\FormTextField.xaml.cs">
       <DependentUpon>FormTextField.xaml</DependentUpon>
     </Compile>
@@ -87,8 +94,8 @@
       <SubType>Code</SubType>
       <DependentUpon>RibbonMenu.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\StartPage.xaml.cs">
-      <DependentUpon>StartPage.xaml</DependentUpon>
+    <Compile Include="Views\Controls\ClientInfos.xaml.cs">
+      <DependentUpon>ClientInfos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Utils\UserControlLoader.cs" />
     <Page Include="Styles\BlendTheme.xaml">
@@ -108,7 +115,7 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Context\Resotel.cs" />
+    <Compile Include="Models\Context\ResotelContext.cs" />
     <Compile Include="ViewModels\MainWindowModel.cs" />
     <Compile Include="ViewModels\Utils\DelegateCommand.cs" />
     <Compile Include="Views\MainWindow.xaml.cs">
@@ -119,7 +126,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\StartPage.xaml">
+    <Page Include="Views\Controls\ClientInfos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -155,6 +162,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201602092133501_AddRoomCleanedState.resx">
       <DependentUpon>201602092133501_AddRoomCleanedState.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603201011139_AddCurrentDiscountToOption.resx">
+      <DependentUpon>201603201011139_AddCurrentDiscountToOption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
