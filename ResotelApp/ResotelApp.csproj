@@ -92,12 +92,37 @@
     <Compile Include="Migrations\201603201529490_AddClientMailAndPhone.Designer.cs">
       <DependentUpon>201603201529490_AddClientMailAndPhone.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603201956270_AddBedKingToRoom.cs" />
+    <Compile Include="Migrations\201603201956270_AddBedKingToRoom.Designer.cs">
+      <DependentUpon>201603201956270_AddBedKingToRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BedKing.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="ViewModels\ClientInfosViewModel.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
+    <Compile Include="ViewModels\OptionViewModel.cs" />
     <Compile Include="ViewModels\PeopleViewModel.cs" />
     <Compile Include="ViewModels\PlanningViewModel.cs" />
+    <Compile Include="ViewModels\RoomChoiceViewModel.cs" />
+    <Compile Include="ViewModels\BookingDetailsViewModel.cs" />
+    <Compile Include="ViewModels\CompanyViewModel.cs" />
+    <Compile Include="Views\ClientInfosView.xaml.cs">
+      <DependentUpon>ClientInfosView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OptionsView.xaml.cs">
+      <DependentUpon>OptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PlanningView.xaml.cs">
+      <DependentUpon>PlanningView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomsView.xaml.cs">
+      <DependentUpon>RoomsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SumUpView.xaml.cs">
+      <DependentUpon>SumUpView.xaml</DependentUpon>
     </Compile>
     <Page Include="Styles\BlendTheme.xaml">
       <SubType>Designer</SubType>
@@ -110,7 +135,27 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\ResotelContext.cs" />
     <Compile Include="ViewModels\Utils\DelegateCommand.cs" />
+    <Page Include="Views\ClientInfosView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\MainWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PlanningView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RoomsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SumUpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,6 +199,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201603201529490_AddClientMailAndPhone.resx">
       <DependentUpon>201603201529490_AddClientMailAndPhone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603201956270_AddBedKingToRoom.resx">
+      <DependentUpon>201603201956270_AddBedKingToRoom.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

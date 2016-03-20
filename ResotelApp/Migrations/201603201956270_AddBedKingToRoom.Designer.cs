@@ -6,13 +6,13 @@ namespace ResotelApp.Migrations
     using System.Resources;
 
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class AddClientMailAndPhone : IMigrationMetadata
+    public sealed partial class AddBedKingToRoom : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddClientMailAndPhone));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddBedKingToRoom));
         
         string IMigrationMetadata.Id
         {
-            get { return "201603201529490_AddClientMailAndPhone"; }
+            get { return "201603201956270_AddBedKingToRoom"; }
         }
         
         string IMigrationMetadata.Source

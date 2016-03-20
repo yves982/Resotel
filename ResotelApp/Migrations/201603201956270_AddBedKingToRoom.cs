@@ -2,16 +2,16 @@ namespace ResotelApp.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    public partial class AddRoomCleanedState : DbMigration
+    public partial class AddBedKingToRoom : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Rooms", "IsCleaned", c => c.Boolean(nullable: false));
+            AddColumn("dbo.Rooms", "BedKind", c => c.Int(nullable: false));
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Rooms", "IsCleaned");
+            DropColumn("dbo.Rooms", "BedKind");
         }
     }
 }

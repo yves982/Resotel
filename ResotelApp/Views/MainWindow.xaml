@@ -4,9 +4,46 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResotelApp.Views"
+        xmlns:vm="clr-namespace:ResotelApp.ViewModels"
         mc:Ignorable="d"
         Title="MainWindow" Height="300" Width="300">
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Menu Grid.Row="0" Grid.Column="0">
+            <MenuItem Header="Fichier">
+                <MenuItem Header="Quitter"></MenuItem>
+            </MenuItem>
+            <MenuItem Header="Edition"></MenuItem>
+            <MenuItem Header="Aide">
+                <MenuItem Header="a propos..."></MenuItem>
+            </MenuItem>
+        </Menu>
+        <Frame Grid.Row="0" Grid.Column="0" />
+        <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" >
+            <StackPanel.Resources>
+                <Style TargetType="{x:Type Button}">
+                    <Setter Property="MinWidth" Value="70" />
+                    <Setter Property="Margin" Value="0,0,10,0" />
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="Button">
+                                <Border CornerRadius="4" Background="#F2F2F2" BorderThickness="1" Padding="2" BorderBrush="LightBlue">
+                                    <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </StackPanel.Resources>
+            <Button Content="Précédent"></Button>
+            <Button Content="Suivant"></Button>
+        </StackPanel>
     </Grid>
 </Window>

@@ -3,7 +3,6 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ResotelApp.Models
 {
@@ -20,5 +19,6 @@ namespace ResotelApp.Models
         [Required]
         [DefaultValue(false)]
         public bool IsCleaned { get; set; }
+        public BedKing BedKind { get; set; }
     }
 }

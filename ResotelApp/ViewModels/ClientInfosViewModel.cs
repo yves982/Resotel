@@ -1,6 +1,6 @@
 ﻿namespace ResotelApp.ViewModels
 {
-    class PeopleViewModel
+    class ClientInfosViewModel
     {
     }
 }
