@@ -106,12 +106,18 @@
     <Compile Include="ViewModels\RoomChoiceViewModel.cs" />
     <Compile Include="ViewModels\BookingDetailsViewModel.cs" />
     <Compile Include="ViewModels\CompanyViewModel.cs" />
+    <Compile Include="ViewModels\Utils\INavigationEventArgs.cs" />
+    <Compile Include="ViewModels\Utils\INavigationFailedEventArgs.cs" />
+    <Compile Include="ViewModels\Utils\INavigationService.cs" />
     <Compile Include="Views\ClientInfosView.xaml.cs">
       <DependentUpon>ClientInfosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Utils\NavigationEventArgsImp.cs" />
+    <Compile Include="Views\Utils\NavigationFailedEventArgsImp.cs" />
+    <Compile Include="Views\Utils\NavigationServiceImp.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
@@ -124,10 +130,6 @@
     <Compile Include="Views\SumUpView.xaml.cs">
       <DependentUpon>SumUpView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Styles\BlendTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -152,6 +154,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RoomsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\LightTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
