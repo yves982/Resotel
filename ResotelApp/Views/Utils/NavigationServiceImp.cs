@@ -1,32 +1,28 @@
 ﻿using ResotelApp.ViewModels.Utils;
-using ResotelApp.Views.Utils;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
-namespace ResotelApp.Views
+namespace ResotelApp.Views.Utils
 {
-    class NavigationServiceImp : INavigationService
+    public class NavigationServiceImp : INavigationService
     {
-        private Frame _frame;
+        private NavigationService _navService;
 
         public bool CanGoBack
         {
-            get { return _frame.NavigationService.CanGoBack; }
+            get { return _navService.CanGoBack; }
         }
 
         public bool CanGoForward
         {
-            get { return _frame.NavigationService.CanGoForward; ; }
+            get { return _navService.CanGoForward; ; }
         }
 
         public Uri Source
         {
-            get { return _frame.NavigationService.Source; }
+            get { return _navService.Source; }
         }
 
         public event Action<object, INavigationEventArgs> LoadCompleted;
@@ -59,42 +55,62 @@ namespace ResotelApp.Views
             }
         }
 
-        public NavigationServiceImp(Frame frame)
+        public NavigationServiceImp(Page page)
         {
-            _frame = frame;
-            _frame.NavigationService.LoadCompleted += frameLoaded;
-            _frame.NavigationService.NavigationFailed += navigationFailed;
-            _frame.NavigationService.NavigationStopped += navigationStopped;
+            page.Loaded += _pageLoaded;
+            page.Unloaded += _pageUnloaded;
+        }
+
+        private void _pageLoaded(object sender, RoutedEventArgs e)
+        {
+            _navService = (sender as Page).NavigationService;
+            if (_navService == null)
+            {
+                throw new ArgumentException("L'argument doit être un NavigationHost.", "page");
+            }
+            _navService.LoadCompleted += frameLoaded;
+            _navService.NavigationFailed += navigationFailed;
+            _navService.NavigationStopped += navigationStopped;
+        }
+
+        private void _pageUnloaded(object sender, RoutedEventArgs e)
+        {
+            if(sender as Page != null)
+            {
+                Page p = sender as Page;
+                p.Loaded -= _pageLoaded;
+                p.Unloaded -= _pageUnloaded;
+            }
         }
 
         public void GoBack()
         {
-            _frame.NavigationService.GoBack();
+            _navService.GoBack();
         }
 
         public void GoForward()
         {
-            _frame.NavigationService.GoForward();
+            _navService.GoForward();
         }
 
         public void Navigate(Uri uri)
         {
-            _frame.NavigationService.Navigate(uri);
+            _navService.Navigate(uri);
         }
 
         public void Navigate(Uri uri, object data)
         {
-            _frame.NavigationService.Navigate(uri, data);
+            _navService.Navigate(uri, data);
         }
 
         public void Refresh()
         {
-            _frame.NavigationService.Refresh();
+            _navService.Refresh();
         }
 
         public void StopLoading()
         {
-            _frame.NavigationService.StopLoading();
+            _navService.StopLoading();
         }
     }
 }

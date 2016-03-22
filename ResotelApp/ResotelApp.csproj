@@ -48,6 +48,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Controls.Ribbon" />
+    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -117,6 +118,7 @@
     </Compile>
     <Compile Include="Views\Utils\NavigationEventArgsImp.cs" />
     <Compile Include="Views\Utils\NavigationFailedEventArgsImp.cs" />
+    <Compile Include="Views\Utils\NavigationServiceConverter.cs" />
     <Compile Include="Views\Utils\NavigationServiceImp.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>

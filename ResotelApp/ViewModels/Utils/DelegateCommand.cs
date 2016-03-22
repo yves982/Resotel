@@ -3,20 +3,20 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels.Utils
 {
-    class DelegateCommand : ICommand
+    class DelegateCommand<T> : ICommand where T : class
     {
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
+        private readonly Predicate<T> _canExecute;
+        private readonly Action<T> _execute;
 
         public event EventHandler CanExecuteChanged;
 
-        public DelegateCommand(Action<object> execute)
+        public DelegateCommand(Action<T> execute)
                        : this(execute, null)
         {
         }
 
-        public DelegateCommand(Action<object> execute,
-                       Predicate<object> canExecute)
+        public DelegateCommand(Action<T> execute,
+                       Predicate<T> canExecute)
         {
             _execute = execute;
             _canExecute = canExecute;
@@ -34,12 +34,12 @@ namespace ResotelApp.ViewModels.Utils
                 return true;
             }
 
-            return _canExecute(parameter);
+            return _canExecute((T)parameter);
         }
 
         public void Execute(object parameter)
         {
-            _execute(parameter);
+            _execute((T)parameter);
         }
     }
 }

@@ -12,5 +12,10 @@ namespace ResotelApp.Views
         {
             InitializeComponent();
         }
+
+        private void PageFunction_Loaded(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }
