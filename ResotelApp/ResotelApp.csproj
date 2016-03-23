@@ -118,7 +118,7 @@
     </Compile>
     <Compile Include="Views\Utils\NavigationEventArgsImp.cs" />
     <Compile Include="Views\Utils\NavigationFailedEventArgsImp.cs" />
-    <Compile Include="Views\Utils\NavigationServiceConverter.cs" />
+    <Compile Include="Views\Utils\PageToNavigationServiceConverter.cs" />
     <Compile Include="Views\Utils\NavigationServiceImp.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
