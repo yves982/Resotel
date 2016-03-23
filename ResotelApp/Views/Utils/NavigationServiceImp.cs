@@ -61,6 +61,45 @@ namespace ResotelApp.Views.Utils
             page.Unloaded += _pageUnloaded;
         }
 
+
+        public void GoBack()
+        {
+            _checkInit();
+            _navService.GoBack();
+        }
+
+        
+
+        public void GoForward()
+        {
+            _checkInit();
+            _navService.GoForward();
+        }
+
+        public void Navigate(Uri uri)
+        {
+            _checkInit();
+            _navService.Navigate(uri);
+        }
+
+        public void Navigate(Uri uri, object data)
+        {
+            _checkInit();
+            _navService.Navigate(uri, data);
+        }
+
+        public void Refresh()
+        {
+            _checkInit();
+            _navService.Refresh();
+        }
+
+        public void StopLoading()
+        {
+            _checkInit();
+            _navService.StopLoading();
+        }
+
         private void _pageLoaded(object sender, RoutedEventArgs e)
         {
             _navService = (sender as Page).NavigationService;
@@ -75,7 +114,7 @@ namespace ResotelApp.Views.Utils
 
         private void _pageUnloaded(object sender, RoutedEventArgs e)
         {
-            if(sender as Page != null)
+            if (sender as Page != null)
             {
                 Page p = sender as Page;
                 p.Loaded -= _pageLoaded;
@@ -83,34 +122,12 @@ namespace ResotelApp.Views.Utils
             }
         }
 
-        public void GoBack()
+        private void _checkInit()
         {
-            _navService.GoBack();
-        }
-
-        public void GoForward()
-        {
-            _navService.GoForward();
-        }
-
-        public void Navigate(Uri uri)
-        {
-            _navService.Navigate(uri);
-        }
-
-        public void Navigate(Uri uri, object data)
-        {
-            _navService.Navigate(uri, data);
-        }
-
-        public void Refresh()
-        {
-            _navService.Refresh();
-        }
-
-        public void StopLoading()
-        {
-            _navService.StopLoading();
+            if(_navService == null)
+            {
+                throw new InvalidOperationException(String.Format("Please, ensure the page's been loaded before using an instance of {0}.", nameof(NavigationServiceImp)));
+            }
         }
     }
 }
