@@ -12,7 +12,9 @@ namespace ResotelApp.Models
         public List<Option> Options { get; set; }
         public DateTime Date { get; set; }
         public Discount CurrentDiscount { get; set; }
-        public List<Room> Rooms { get; set; }  
+        public List<Room> Rooms { get; set; }
         public DateRange Dates { get; set; }
+        public int AdultsCount { get;set; }
+        public int BabiesCount { get; set; }
     }
 }

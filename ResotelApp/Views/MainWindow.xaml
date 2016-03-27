@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ResotelApp.Views"
         xmlns:vm="clr-namespace:ResotelApp.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="300" Width="300">
+        Title="MainWindow" Height="330" Width="300">
     <Window.Resources>
         <ResourceDictionary Source="/Views/Styles/LightTheme.xaml" />
     </Window.Resources>
@@ -28,6 +28,6 @@
                 <MenuItem Header="a propos..."></MenuItem>
             </MenuItem>
         </Menu>
-        <Frame Grid.Row="1" Grid.Column="0" Source="PlanningView.xaml" />
+        <Frame Grid.Row="1" Grid.Column="0" Source="BookingParametersView.xaml" />
     </Grid>
 </Window>

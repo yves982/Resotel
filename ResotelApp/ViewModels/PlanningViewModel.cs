@@ -1,25 +1,20 @@
-﻿using ResotelApp.ViewModels.Utils;
+﻿using ResotelApp.Models;
+using ResotelApp.ViewModels.Utils;
+using System.ComponentModel;
+using System.Resources;
 
 namespace ResotelApp.ViewModels
 {
     class PlanningViewModel
     {
-        private INavigationService _nav;
-        public INavigationService Nav
-        {
-            get { return _nav; } 
-        }
 
-        public DelegateCommand<INavigationService> OnLoadCommand { get; }
+        
+        public string Title { get; private set; }
+        public DateRange TimeFrame { get; set; }
 
         public PlanningViewModel()
         {
-            OnLoadCommand = new DelegateCommand<INavigationService>(_onLoad);
-        }
-
-        private void _onLoad(INavigationService navService)
-        {
-            _nav = navService;
+            Title = TranslationHandler.GetString("PlanningTitle");
         }
     }
 }

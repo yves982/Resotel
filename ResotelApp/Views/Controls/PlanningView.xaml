@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="ResotelApp.Views.Controls.PlanningView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ResotelApp.Views.Controls"
+             xmlns:vu="clr-namespace:ResotelApp.Views.Utils"
+             xmlns:vm="clr-namespace:ResotelApp.ViewModels"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <UserControl.DataContext>
+        <vm:PlanningViewModel />
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Views/Styles/LightTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <HeaderedContentControl Header="{Binding Path=Title}" Grid.Row="0" Grid.Column="0">
+            <Calendar DisplayMode="Month" SelectionMode="SingleRange" DisplayDateStart="{Binding Path=TimeFrame.Start}" DisplayDateEnd="{Binding Path=TimeFrame.End}" />
+        </HeaderedContentControl>
+    </Grid>
+</UserControl>

@@ -2,32 +2,31 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:sys="clr-namespace:System;assembly=mscorlib" 
-    x:Class="ResotelApp.Views.PlanningView"
+    x:Class="ResotelApp.Views.BookingParametersView"
     x:TypeArguments="sys:String"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:local="clr-namespace:ResotelApp.Views"
     xmlns:vm="clr-namespace:ResotelApp.ViewModels"
-    xmlns:vutils="clr-namespace:ResotelApp.Views.Utils"
-    xmlns:nav="clr-namespace:System.Windows.Navigation;assembly=PresentationFramework"
+    xmlns:vw="clr-namespace:ResotelApp.Views"
+    xmlns:vu="clr-namespace:ResotelApp.Views.Utils"
+    xmlns:vwc="clr-namespace:ResotelApp.Views.Controls"
     xmlns:ia="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     mc:Ignorable="d"
     d:DesignHeight="300" d:DesignWidth="300"
-    Title="PlanningView"
+    Title="BookingParametersView"
     x:Name="thisPage"
     >
     <Page.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Views/Styles/LightTheme.xaml" />
                 <ResourceDictionary>
-                    <vutils:PageToNavigationServiceConverter x:Key="PageToNavigationServiceConverter" />
+                    <vu:PageToNavigationServiceConverter x:Key="PageToNavigationServiceConverter" />
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Page.Resources>
     <Page.DataContext>
-        <vm:PlanningViewModel />
+        <vm:BookingParametersViewModel />
     </Page.DataContext>
     <ia:Interaction.Triggers>
         <ia:EventTrigger EventName="Loaded">
@@ -35,13 +34,14 @@
         </ia:EventTrigger>
     </ia:Interaction.Triggers>
     <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto "/>
+            <RowDefinition Height="* "/>
+        </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <HeaderedContentControl Header="Dates" Grid.Row="0" Grid.Column="0" />
+        <vwc:PlanningView Grid.Row="0" Grid.Column="0" />
+        <vwc:PeopleView Grid.Row="1" Grid.Column="0" />
     </Grid>
 </PageFunction>

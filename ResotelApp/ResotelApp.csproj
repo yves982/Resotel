@@ -97,8 +97,23 @@
     <Compile Include="Migrations\201603201956270_AddBedKingToRoom.Designer.cs">
       <DependentUpon>201603201956270_AddBedKingToRoom.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201603271455394_AddedPersonsCountToBooking.cs" />
+    <Compile Include="Migrations\201603271455394_AddedPersonsCountToBooking.Designer.cs">
+      <DependentUpon>201603271455394_AddedPersonsCountToBooking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\BedKing.cs" />
     <Compile Include="Models\Room.cs" />
+    <Compile Include="Properties\Resources.en-US.Designer.cs">
+      <DependentUpon>Resources.en-US.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="Properties\Resources.fr-FR.Designer.cs">
+      <DependentUpon>Resources.fr-FR.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="ViewModels\BookingParametersViewModel.cs" />
     <Compile Include="ViewModels\ClientInfosViewModel.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
     <Compile Include="ViewModels\OptionViewModel.cs" />
@@ -110,11 +125,21 @@
     <Compile Include="ViewModels\Utils\INavigationEventArgs.cs" />
     <Compile Include="ViewModels\Utils\INavigationFailedEventArgs.cs" />
     <Compile Include="ViewModels\Utils\INavigationService.cs" />
+    <Compile Include="ViewModels\Utils\TranslationHandler.cs" />
+    <Compile Include="Views\BookingParametersView.xaml.cs">
+      <DependentUpon>BookingParametersView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\ClientInfosView.xaml.cs">
       <DependentUpon>ClientInfosView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PeopleView.xaml.cs">
+      <DependentUpon>PeopleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\PlanningView.xaml.cs">
+      <DependentUpon>PlanningView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Utils\NavigationEventArgsImp.cs" />
     <Compile Include="Views\Utils\NavigationFailedEventArgsImp.cs" />
@@ -122,9 +147,6 @@
     <Compile Include="Views\Utils\NavigationServiceImp.cs" />
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\PlanningView.xaml.cs">
-      <DependentUpon>PlanningView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RoomsView.xaml.cs">
       <DependentUpon>RoomsView.xaml</DependentUpon>
@@ -139,6 +161,10 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\ResotelContext.cs" />
     <Compile Include="ViewModels\Utils\DelegateCommand.cs" />
+    <Page Include="Views\BookingParametersView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\ClientInfosView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,7 +177,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\PlanningView.xaml">
+    <Page Include="Views\Controls\PeopleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\PlanningView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -211,6 +241,18 @@
     <EmbeddedResource Include="Migrations\201603201956270_AddBedKingToRoom.resx">
       <DependentUpon>201603201956270_AddBedKingToRoom.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201603271455394_AddedPersonsCountToBooking.resx">
+      <DependentUpon>201603271455394_AddedPersonsCountToBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.en-US.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.fr-FR.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.fr-FR.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -224,9 +266,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Resources\app-icon.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
