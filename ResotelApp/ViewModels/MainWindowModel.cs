@@ -1,9 +1,9 @@
-﻿using ResotelApp.ViewModels.Utils;
+﻿using ResotelApp.Utils;
+using ResotelApp.ViewModels.Utils;
+using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Input;
-using System.Collections.Generic;
-using ResotelApp.Utils;
-using System;
 
 namespace ResotelApp.ViewModels
 {

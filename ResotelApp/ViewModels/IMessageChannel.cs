@@ -1,5 +1,5 @@
-﻿using System;
-using ResotelApp.ViewModels.Utils;
+﻿using ResotelApp.ViewModels.Utils;
+using System;
 
 namespace ResotelApp.ViewModels
 {

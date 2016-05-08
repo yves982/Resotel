@@ -1,7 +1,6 @@
 ﻿using ResotelApp.ViewModels;
 using ResotelApp.Views;
 using System.Windows;
-using System.Windows.Controls;
 
 namespace ResotelApp
 {

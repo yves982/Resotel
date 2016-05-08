@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
-using ResotelApp.Models;
-using System.ComponentModel;
+using System;
 using System.Collections;
-using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 
 namespace ResotelApp.ViewModels
 {
