@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ResotelApp.Models
 {
-    class Client
+    public class Client
     {
         public int ClientId { get; set; }
         [Required]

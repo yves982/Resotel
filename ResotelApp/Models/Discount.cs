@@ -2,7 +2,7 @@
 
 namespace ResotelApp.Models
 {
-    class Discount
+    public class Discount
     {
         public int DiscountId { get; set; }
         [Required]

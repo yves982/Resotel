@@ -14,12 +14,23 @@ namespace ResotelApp.ViewModels
         {
             get { return _nav; }
         }
-
+        
         public DelegateCommand<INavigationService> OnLoadCommand { get; }
+        public DelegateCommand<object> NextCommand { get; }
+        public string NextTitle
+        {
+            get { return TranslationHandler.GetString("NextTitle"); }
+        }
 
         public BookingParametersViewModel()
         {
             OnLoadCommand = new DelegateCommand<INavigationService>(_onLoad);
+            NextCommand = new DelegateCommand<object>(_next);
+        }
+
+        private void _next(object empty)
+        {
+           _nav.Navigate(new Uri("../Views/RoomsView.xaml", UriKind.Relative));
         }
 
         private void _onLoad(INavigationService navService)

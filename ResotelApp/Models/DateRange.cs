@@ -2,7 +2,7 @@
 
 namespace ResotelApp.Models
 {
-    class DateRange
+    public class DateRange
     {
         public int DateRangeId { get; set; }
         public DateTime Start { get; set; }

@@ -6,15 +6,16 @@
         xmlns:local="clr-namespace:ResotelApp.Views"
         xmlns:vm="clr-namespace:ResotelApp.ViewModels"
         mc:Ignorable="d"
-        Title="MainWindow" Height="330" Width="300">
+        Height="400"
+        Width="300"
+        Title="MainWindow">
     <Window.Resources>
         <ResourceDictionary Source="/Views/Styles/LightTheme.xaml" />
     </Window.Resources>
     <Grid>
-        
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />

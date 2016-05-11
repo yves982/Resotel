@@ -9,7 +9,7 @@ namespace ResotelApp.ViewModels.Utils
 
         static TranslationHandler()
         {
-            _res = new ResourceManager("translations", typeof(TranslationHandler).Assembly);
+            _res = new ResourceManager("Resources", typeof(TranslationHandler).Assembly);
         }
 
         public static string GetString(string msgKey)

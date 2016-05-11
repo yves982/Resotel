@@ -65,6 +65,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DAL\BookingDAL.cs" />
     <Compile Include="Migrations\201602092041564_Initial.cs" />
     <Compile Include="Migrations\201602092041564_Initial.Designer.cs">
       <DependentUpon>201602092041564_Initial.cs</DependentUpon>
@@ -101,7 +102,7 @@
     <Compile Include="Migrations\201603271455394_AddedPersonsCountToBooking.Designer.cs">
       <DependentUpon>201603271455394_AddedPersonsCountToBooking.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\BedKing.cs" />
+    <Compile Include="Models\BedKind.cs" />
     <Compile Include="Models\Room.cs" />
     <Compile Include="Properties\Resources.en-US.Designer.cs">
       <DependentUpon>Resources.en-US.resx</DependentUpon>
@@ -113,6 +114,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ViewModels\BedKindChoice.cs" />
+    <Compile Include="ViewModels\Utils\DelegateCommandAsync.cs" />
+    <Compile Include="ViewModels\Utils\IAsyncCommand.cs" />
+    <Compile Include="ViewModels\Utils\ThirdParties\AsyncEx\Internal\TaskShims.cs" />
+    <Compile Include="ViewModels\Utils\ThirdParties\AsyncEx\NotifyTaskCompletion.cs" />
+    <Compile Include="ViewModels\Utils\ThirdParties\AsyncEx\TaskConstants.cs" />
+    <Compile Include="Views\Utils\BlackoutDatesCalendarAdapter.cs" />
     <Compile Include="ViewModels\BookingParametersViewModel.cs" />
     <Compile Include="ViewModels\ClientInfosViewModel.cs" />
     <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />

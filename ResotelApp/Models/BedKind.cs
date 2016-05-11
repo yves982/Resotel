@@ -1,6 +1,6 @@
 ﻿namespace ResotelApp.Models
 {
-    enum BedKing
+    public enum BedKind
     {
         Simple,
         Double,

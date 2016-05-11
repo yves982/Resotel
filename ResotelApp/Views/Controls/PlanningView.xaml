@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:ResotelApp.Views.Controls"
              xmlns:vu="clr-namespace:ResotelApp.Views.Utils"
              xmlns:vm="clr-namespace:ResotelApp.ViewModels"
+             xmlns:ia="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <UserControl.DataContext>
@@ -18,6 +19,11 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
+    <ia:Interaction.Triggers>
+        <ia:EventTrigger EventName="Loaded">
+            <ia:InvokeCommandAction Command="{Binding Path=OnLoadCommand}" />
+        </ia:EventTrigger>
+    </ia:Interaction.Triggers>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -27,7 +33,12 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <HeaderedContentControl Header="{Binding Path=Title}" Grid.Row="0" Grid.Column="0">
-            <Calendar DisplayMode="Month" SelectionMode="SingleRange" DisplayDateStart="{Binding Path=TimeFrame.Start}" DisplayDateEnd="{Binding Path=TimeFrame.End}" />
+            <Calendar DisplayMode="Month" 
+                      SelectionMode="SingleRange" 
+                      DisplayDateStart="{Binding Path=TimeFrame.Start}" 
+                      DisplayDateEnd="{Binding Path=TimeFrame.End}"
+                      vu:BlackoutDatesCalendarAdapter.BlackOutDates="{Binding BlackoutDates}">
+            </Calendar>
         </HeaderedContentControl>
     </Grid>
 </UserControl>

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ResotelApp.Models
 {
-    class Room
+    public class Room
     {
         public int RoomId { get; set; }
         [Required]
@@ -19,6 +19,6 @@ namespace ResotelApp.Models
         [Required]
         [DefaultValue(false)]
         public bool IsCleaned { get; set; }
-        public BedKing BedKind { get; set; }
+        public BedKind BedKind { get; set; }
     }
 }
