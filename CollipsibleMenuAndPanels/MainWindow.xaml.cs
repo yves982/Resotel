@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace ResotelApp.Views
+namespace CollipsibleMenuAndPanels
 {
     /// <summary>
-    /// Logique d'interaction pour OptionsView.xaml
+    /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class OptionsView : UserControl
+    public partial class MainWindow : Window
     {
-        public OptionsView()
+        public MainWindow()
         {
             InitializeComponent();
         }

@@ -9,26 +9,97 @@
         Height="400"
         Width="300"
         Title="MainWindow">
+    <Window.DataContext>
+        <vm:MainWindowViewModel />
+    </Window.DataContext>
     <Window.Resources>
-        <ResourceDictionary Source="/Views/Styles/LightTheme.xaml" />
+        <ResourceDictionary>
+            <!--
+            <DataTemplate DataType="MyViewModel">
+                <local:MyView />
+            </DataTemplate>
+            -->
+        </ResourceDictionary>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="45px" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
-        <Menu Grid.Row="0" Grid.Column="0">
-            <MenuItem Header="Fichier">
-                <MenuItem Header="Quitter"></MenuItem>
-            </MenuItem>
-            <MenuItem Header="Edition"></MenuItem>
-            <MenuItem Header="Aide">
-                <MenuItem Header="a propos..."></MenuItem>
-            </MenuItem>
-        </Menu>
-        <Frame Grid.Row="1" Grid.Column="0" Source="BookingParametersView.xaml" />
+        <Grid.Triggers>
+            <EventTrigger RoutedEvent="ToggleButton.Checked" SourceName="toggleBtn">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation
+                            Storyboard.TargetName="slideBorder"
+                            Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                            To="-45"
+                            Duration="0:0:1"
+                            DecelerationRatio="0.6"
+                            >
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+            <EventTrigger RoutedEvent="ToggleButton.Unchecked" SourceName="toggleBtn">
+                <BeginStoryboard>
+                    <Storyboard>
+                        <DoubleAnimation
+                            Storyboard.TargetName="slideBorder"
+                            Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
+                            To="0"
+                            Duration="0:0:1"
+                            AccelerationRatio="0.6"
+                            >
+                        </DoubleAnimation>
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger>
+        </Grid.Triggers>
+        <ToggleButton
+            Name="toggleBtn"
+            Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+            Height="32px" Width="32px"
+            Padding="0 2"
+            VerticalAlignment="Top"
+            Panel.ZIndex="2"
+            BorderThickness="0"
+            Background="Transparent" Style="{DynamicResource ToggleButtonStyle}">
+            <StaticResource ResourceKey="PlaceHolderImage"></StaticResource>
+        </ToggleButton>
+        <Border 
+            Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
+            Name="slideBorder"
+            BorderThickness="0,0,2,0" BorderBrush="LightGray"  
+            Margin="0,40,0,0"
+            VerticalAlignment="Stretch">
+            <Border.RenderTransform>
+                <TranslateTransform X="0"></TranslateTransform>
+            </Border.RenderTransform>
+            <StackPanel>
+                <StackPanel.Resources>
+                    <Style TargetType="Button">
+                        <Setter Property="Margin" Value="0px,0px,0px,4px"></Setter>
+                    </Style>
+                </StackPanel.Resources>
+                <Button 
+                    Background="{StaticResource AddBtnImage}" 
+                    Height="28px" Width="28px" 
+                    ToolTip="Add a new reservation" 
+                    Command="{Binding AddBookingCommand}"/>
+                <Button 
+                    Height="28px" Width="28px" 
+                    Command="{Binding AddClient}">New Client</Button>
+            </StackPanel>
+        </Border>
+        <TabControl 
+            Grid.Row="1" Grid.Column="1" 
+            ItemsSource="{Binding Path=CurrentBookings}" 
+            SelectedIndex="{Binding SelectedInd}">
+        </TabControl>
     </Grid>
 </Window>

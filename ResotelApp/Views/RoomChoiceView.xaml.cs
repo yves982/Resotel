@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ResotelApp.Views
 {
     /// <summary>
-    /// Logique d'interaction pour OptionsView.xaml
+    /// Logique d'interaction pour RoomChoiceView.xaml
     /// </summary>
-    public partial class OptionsView : UserControl
+    public partial class RoomChoiceView : UserControl
     {
-        public OptionsView()
+        public RoomChoiceView()
         {
             InitializeComponent();
         }

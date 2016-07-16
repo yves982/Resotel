@@ -1,49 +1,45 @@
-﻿<PageFunction
-    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:sys="clr-namespace:System;assembly=mscorlib" 
-    x:Class="ResotelApp.Views.BookingParametersView"
-    x:TypeArguments="sys:String"
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:vm="clr-namespace:ResotelApp.ViewModels"
-    xmlns:vw="clr-namespace:ResotelApp.Views"
-    xmlns:vu="clr-namespace:ResotelApp.Views.Utils"
-    xmlns:vwc="clr-namespace:ResotelApp.Views.Controls"
-    xmlns:ia="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
-    mc:Ignorable="d"
-    d:DesignHeight="300" d:DesignWidth="300"
-    Title="BookingParametersView"
-    x:Name="thisPage"
-    >
-    <Page.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary>
-                    <vu:PageToNavigationServiceConverter x:Key="PageToNavigationServiceConverter" />
-                </ResourceDictionary>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Page.Resources>
-    <Page.DataContext>
-        <vm:BookingParametersViewModel />
-    </Page.DataContext>
-    <ia:Interaction.Triggers>
-        <ia:EventTrigger EventName="Loaded">
-            <ia:InvokeCommandAction Command="{Binding Path=OnLoadCommand}" CommandParameter="{Binding ElementName=thisPage, Converter={StaticResource PageToNavigationServiceConverter}}" />
-        </ia:EventTrigger>
-    </ia:Interaction.Triggers>
-    <Grid Margin="0,10,0,10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto "/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*" />
-        </Grid.ColumnDefinitions>
-        <vwc:PlanningView Grid.Row="0" Grid.Column="0" />
-        <vwc:PeopleView Grid.Row="1" Grid.Column="0" />
-        <Button HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0" Command="{Binding Path=NextCommand}" Content="{Binding Path=NextTitle}"></Button>
-    </Grid>
-</PageFunction>
+﻿<UserControl x:Class="ResotelApp.Views.BookingParametersView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ResotelApp.Views"
+             xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <GroupBox Header="Paramètres" VerticalAlignment="Top" Margin="4 0">
+        <StackPanel>
+            <Expander Header="Dates">
+                <Calendar></Calendar>
+            </Expander>
+            <Expander Header="Occupants">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.Resources>
+                        <Style TargetType="xctk:IntegerUpDown">
+                            <Setter Property="Margin" Value="4 0 0 4"></Setter>
+                            <Setter Property="Width" Value="60px"></Setter>
+                        </Style>
+                        <Style TargetType="Label">
+                            <Setter Property="Margin" Value="4 0 0 4"></Setter>
+                        </Style>
+                    </Grid.Resources>
+                    <Label Grid.Column="0" Grid.Row="0">Nombre Enfants</Label>
+                    <xctk:IntegerUpDown
+                        Grid.Column="1" Grid.Row="0"></xctk:IntegerUpDown>
+                    <Label Grid.Column="0" Grid.Row="1">Nombre Adultes</Label>
+                    <xctk:IntegerUpDown
+                        Grid.Column="1" Grid.Row="1"
+                        ></xctk:IntegerUpDown>
+                </Grid>
+            </Expander>
+        </StackPanel>
+    </GroupBox>
+</UserControl>

@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace ResotelApp.Views
 {
     /// <summary>
-    /// Logique d'interaction pour OptionsView.xaml
+    /// Logique d'interaction pour BookingView.xaml
     /// </summary>
-    public partial class OptionsView : UserControl
+    public partial class BookingView : UserControl
     {
-        public OptionsView()
+        public BookingView()
         {
             InitializeComponent();
         }

@@ -14,6 +14,21 @@
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publier\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -59,13 +74,37 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="Xceed.Wpf.AvalonDock, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperJMN.Extended.Wpf.Toolkit.2.6.1\lib\net45\Xceed.Wpf.AvalonDock.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Aero, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperJMN.Extended.Wpf.Toolkit.2.6.1\lib\net45\Xceed.Wpf.AvalonDock.Themes.Aero.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.Metro, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperJMN.Extended.Wpf.Toolkit.2.6.1\lib\net45\Xceed.Wpf.AvalonDock.Themes.Metro.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.AvalonDock.Themes.VS2010, Version=2.6.0.0, Culture=neutral, PublicKeyToken=3e4669d2f30244f4, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperJMN.Extended.Wpf.Toolkit.2.6.1\lib\net45\Xceed.Wpf.AvalonDock.Themes.VS2010.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.DataGrid, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperJMN.Extended.Wpf.Toolkit.2.6.1\lib\net45\Xceed.Wpf.DataGrid.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Xceed.Wpf.Toolkit, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SuperJMN.Extended.Wpf.Toolkit.2.6.1\lib\net45\Xceed.Wpf.Toolkit.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DAL\BookingDAL.cs" />
+    <Compile Include="Repositories\BookingDAL.cs" />
     <Compile Include="Migrations\201602092041564_Initial.cs" />
     <Compile Include="Migrations\201602092041564_Initial.Designer.cs">
       <DependentUpon>201602092041564_Initial.cs</DependentUpon>
@@ -114,53 +153,23 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ViewModels\BedKindChoice.cs" />
+    <Compile Include="ViewModels\IViewModel.cs" />
+    <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\Utils\DataBindingDebugConverter.cs" />
+    <Compile Include="ViewModels\Utils\DelegateCommand.cs" />
     <Compile Include="ViewModels\Utils\DelegateCommandAsync.cs" />
-    <Compile Include="ViewModels\Utils\IAsyncCommand.cs" />
-    <Compile Include="ViewModels\Utils\ThirdParties\AsyncEx\Internal\TaskShims.cs" />
-    <Compile Include="ViewModels\Utils\ThirdParties\AsyncEx\NotifyTaskCompletion.cs" />
-    <Compile Include="ViewModels\Utils\ThirdParties\AsyncEx\TaskConstants.cs" />
-    <Compile Include="Views\Utils\BlackoutDatesCalendarAdapter.cs" />
-    <Compile Include="ViewModels\BookingParametersViewModel.cs" />
-    <Compile Include="ViewModels\ClientInfosViewModel.cs" />
-    <Compile Include="ViewModels\NotifyPropertyChangedSupport.cs" />
-    <Compile Include="ViewModels\OptionViewModel.cs" />
-    <Compile Include="ViewModels\PeopleViewModel.cs" />
-    <Compile Include="ViewModels\PlanningViewModel.cs" />
-    <Compile Include="ViewModels\RoomChoiceViewModel.cs" />
-    <Compile Include="ViewModels\BookingDetailsViewModel.cs" />
-    <Compile Include="ViewModels\CompanyViewModel.cs" />
-    <Compile Include="ViewModels\Utils\INavigationEventArgs.cs" />
-    <Compile Include="ViewModels\Utils\INavigationFailedEventArgs.cs" />
-    <Compile Include="ViewModels\Utils\INavigationService.cs" />
-    <Compile Include="ViewModels\Utils\TranslationHandler.cs" />
+    <Compile Include="ViewModels\Utils\EMessage.cs" />
+    <Compile Include="ViewModels\Utils\Message.cs" />
+    <Compile Include="ViewModels\Utils\Messaging.cs" />
+    <Compile Include="ViewModels\Utils\PropertyChangeSupport.cs" />
     <Compile Include="Views\BookingParametersView.xaml.cs">
       <DependentUpon>BookingParametersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ClientInfosView.xaml.cs">
-      <DependentUpon>ClientInfosView.xaml</DependentUpon>
+    <Compile Include="Views\BookingView.xaml.cs">
+      <DependentUpon>BookingView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\PeopleView.xaml.cs">
-      <DependentUpon>PeopleView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Controls\PlanningView.xaml.cs">
-      <DependentUpon>PlanningView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Utils\NavigationEventArgsImp.cs" />
-    <Compile Include="Views\Utils\NavigationFailedEventArgsImp.cs" />
-    <Compile Include="Views\Utils\PageToNavigationServiceConverter.cs" />
-    <Compile Include="Views\Utils\NavigationServiceImp.cs" />
-    <Compile Include="Views\OptionsView.xaml.cs">
-      <DependentUpon>OptionsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\RoomsView.xaml.cs">
-      <DependentUpon>RoomsView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\SumUpView.xaml.cs">
-      <DependentUpon>SumUpView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -168,12 +177,20 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\ResotelContext.cs" />
-    <Compile Include="ViewModels\Utils\DelegateCommand.cs" />
+    <Compile Include="Views\OptionsView.xaml.cs">
+      <DependentUpon>OptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomChoiceView.xaml.cs">
+      <DependentUpon>RoomChoiceView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoomsChoiceView.xaml.cs">
+      <DependentUpon>RoomsChoiceView.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\BookingParametersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ClientInfosView.xaml">
+    <Page Include="Views\BookingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -185,15 +202,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\PeopleView.xaml">
+    <Page Include="Views\RoomChoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\PlanningView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\RoomsView.xaml">
+    <Page Include="Views\RoomsChoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -201,9 +214,9 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\SumUpView.xaml">
-      <SubType>Designer</SubType>
+    <Page Include="Views\Styles\Theme.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -275,7 +288,31 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="AddBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\Controls\" />
+    <Folder Include="Views\Utils\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AddBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResotelAppIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

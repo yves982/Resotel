@@ -18,7 +18,7 @@ namespace ResotelApp.Views
     /// <summary>
     /// Logique d'interaction pour BookingParametersView.xaml
     /// </summary>
-    public partial class BookingParametersView : PageFunction<String>
+    public partial class BookingParametersView : UserControl
     {
         public BookingParametersView()
         {

@@ -5,41 +5,41 @@ namespace ResotelApp.ViewModels.Utils
 {
     class DelegateCommand<T> : ICommand where T : class
     {
-        private readonly Predicate<T> _canExecute;
-        private readonly Action<T> _execute;
+        private Action<T> _execute;
+        private bool _canExecute;
+
 
         public event EventHandler CanExecuteChanged;
 
-        public DelegateCommand(Action<T> execute)
-                       : this(execute, null)
-        {
-        }
 
-        public DelegateCommand(Action<T> execute,
-                       Predicate<T> canExecute)
+        public DelegateCommand(Action<T> execute, bool canExecute = true)
         {
             _execute = execute;
             _canExecute = canExecute;
-            if(CanExecuteChanged != null)
+        }
+
+        public void ChangeCanExecute()
+        {
+            _canExecute = !_canExecute;
+            if (CanExecuteChanged != null)
             {
-                EventArgs e = canExecute as Object as EventArgs;
-                CanExecuteChanged(this, e);
+                CanExecuteChanged(this, new EventArgs());
             }
         }
 
-       public bool CanExecute(object parameter)
+        public bool CanExecute(object parameter)
         {
-            if (_canExecute == null)
-            {
-                return true;
-            }
-
-            return _canExecute((T)parameter);
+            return _canExecute;
         }
 
         public void Execute(object parameter)
         {
-            _execute((T)parameter);
+            Execute((T)parameter);
+        }
+
+        public void Execute(T parameter)
+        {
+            _execute(parameter);
         }
     }
 }
