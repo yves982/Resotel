@@ -1,4 +1,5 @@
-﻿using ResotelApp.Views;
+﻿using ResotelApp.ViewModels.Utils;
+using ResotelApp.Views;
 using System.Windows;
 
 namespace ResotelApp
@@ -10,8 +11,10 @@ namespace ResotelApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            Window mainWindow = new MainWindow();
+            ViewDriver viewDriver = new ViewDriver();
+            ViewDriverProvider.ViewDriver = viewDriver;
 
+            Window mainWindow = new MainWindow();
             mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             mainWindow.Show();
         }

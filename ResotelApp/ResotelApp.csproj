@@ -104,6 +104,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviours\CloseBehaviour.cs" />
     <Compile Include="Repositories\BookingDAL.cs" />
     <Compile Include="Migrations\201602092041564_Initial.cs" />
     <Compile Include="Migrations\201602092041564_Initial.Designer.cs">
@@ -153,8 +154,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="ViewModels\BookingParametersViewModel.cs" />
+    <Compile Include="ViewModels\IViewDriver.cs" />
     <Compile Include="ViewModels\IViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
+    <Compile Include="ViewModels\OptionsViewModel.cs" />
+    <Compile Include="ViewModels\PromptViewModel.cs" />
+    <Compile Include="ViewModels\RoomsChoiceViewModel.cs" />
     <Compile Include="ViewModels\Utils\DataBindingDebugConverter.cs" />
     <Compile Include="ViewModels\Utils\DelegateCommand.cs" />
     <Compile Include="ViewModels\Utils\DelegateCommandAsync.cs" />
@@ -162,6 +168,9 @@
     <Compile Include="ViewModels\Utils\Message.cs" />
     <Compile Include="ViewModels\Utils\Messaging.cs" />
     <Compile Include="ViewModels\Utils\PropertyChangeSupport.cs" />
+    <Compile Include="ViewModels\Utils\ViewDriverProvider.cs" />
+    <Compile Include="ViewModels\Events\PromptClosedEventArgs.cs" />
+    <Compile Include="ViewModels\Events\PromptClosedEventHandler.cs" />
     <Compile Include="Views\BookingParametersView.xaml.cs">
       <DependentUpon>BookingParametersView.xaml</DependentUpon>
     </Compile>
@@ -180,12 +189,16 @@
     <Compile Include="Views\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\PromptView.xaml.cs">
+      <DependentUpon>PromptView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\RoomChoiceView.xaml.cs">
       <DependentUpon>RoomChoiceView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RoomsChoiceView.xaml.cs">
       <DependentUpon>RoomsChoiceView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\ViewDriver.cs" />
     <Page Include="Views\BookingParametersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -199,6 +212,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\OptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PromptView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

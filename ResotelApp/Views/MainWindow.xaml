@@ -98,8 +98,19 @@
         </Border>
         <TabControl 
             Grid.Row="1" Grid.Column="1" 
-            ItemsSource="{Binding Path=CurrentBookings}" 
-            SelectedIndex="{Binding SelectedInd}">
+            ItemsSource="{Binding Path=CurrentBookings}">
+            <TabControl.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Text="{Binding NewBookingTitle}" />
+                        <Button Grid.Column="1" Command="{Binding Path=CloseBookingCommand}">X</Button>
+                    </Grid>
+                </DataTemplate>
+            </TabControl.ItemTemplate>
         </TabControl>
     </Grid>
 </Window>

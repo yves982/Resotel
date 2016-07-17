@@ -3,6 +3,7 @@
     enum EMessage
     {
         LoadMenu,
-        LoadDetails
+        LoadDetails,
+        StartPrompt
     }
 }
