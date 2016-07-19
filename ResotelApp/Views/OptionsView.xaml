@@ -9,43 +9,45 @@
              xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
-    <Expander Header="Options" VerticalAlignment="Top">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"></ColumnDefinition>
-                <ColumnDefinition Width="80px"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="60px"></RowDefinition>
-                <RowDefinition></RowDefinition>
-            </Grid.RowDefinitions>
-            <Grid.Resources>
-                <Style TargetType="CheckBox">
-                    <Setter Property="ContentTemplate">
-                        <Setter.Value>
-                            <DataTemplate>
-                                <TextBlock>Non Prise</TextBlock>
-                            </DataTemplate>
-                        </Setter.Value>
-                    </Setter>
-                    <Style.Triggers>
-                        <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="ContentTemplate">
-                                <Setter.Value>
-                                    <DataTemplate>
-                                        <TextBlock>Prise</TextBlock>
-                                    </DataTemplate>
-                                </Setter.Value>
-                            </Setter>
-                        </Trigger>
-                    </Style.Triggers>
-                </Style>
-            </Grid.Resources>
-            <Image 
+    <GroupBox Header="Options" VerticalAlignment="Top">
+        <Expander Header="Options" VerticalAlignment="Top">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="80px"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60px"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid.Resources>
+                    <Style TargetType="CheckBox">
+                        <Setter Property="ContentTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <TextBlock>Non Prise</TextBlock>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="ContentTemplate">
+                                    <Setter.Value>
+                                        <DataTemplate>
+                                            <TextBlock>Prise</TextBlock>
+                                        </DataTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </Grid.Resources>
+                <Image 
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                 Source="/Resources/AddBtn.png" Width="{StaticResource bookingImagesSize}" Height="{StaticResource bookingImagesSize}"></Image>
-            <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top">Description</Label>
-            <CheckBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0 6 0 0">Non Prise</CheckBox>
-        </Grid>
-    </Expander>
+                <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top">Description</Label>
+                <CheckBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0 6 0 0">Non Prise</CheckBox>
+            </Grid>
+        </Expander>
+    </GroupBox>
 </UserControl>

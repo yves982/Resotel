@@ -5,29 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ResotelApp.Views"
         xmlns:vm="clr-namespace:ResotelApp.ViewModels"
+        xmlns:vme="clr-namespace:ResotelApp.ViewModels.Entities"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Height="400"
         Width="300"
-        Title="MainWindow">
+        Title="MainWindow"
+        Name="thisWindow">
     <Window.DataContext>
         <vm:MainWindowViewModel />
     </Window.DataContext>
-    <Window.Resources>
-        <ResourceDictionary>
-            <!--
-            <DataTemplate DataType="MyViewModel">
-                <local:MyView />
-            </DataTemplate>
-            -->
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="40px" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="45px" />
             <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
         <Grid.Triggers>
@@ -35,82 +29,123 @@
                 <BeginStoryboard>
                     <Storyboard>
                         <DoubleAnimation
-                            Storyboard.TargetName="slideBorder"
+                            Storyboard.TargetName="slidePanel"
                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
-                            To="-45"
+                            To="-34"
                             Duration="0:0:1"
-                            DecelerationRatio="0.6"
+                            DecelerationRatio="0.9"
                             >
                         </DoubleAnimation>
+                        <ThicknessAnimation
+                            Storyboard.TargetName="slideTabControl"
+                            Storyboard.TargetProperty="Margin"
+                            To="2"
+                            Duration="0:0:1"
+                            AccelerationRatio="0.6">
+
+                        </ThicknessAnimation>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
             <EventTrigger RoutedEvent="ToggleButton.Unchecked" SourceName="toggleBtn">
                 <BeginStoryboard>
                     <Storyboard>
+                        <ThicknessAnimation
+                            Storyboard.TargetName="slideTabControl"
+                            Storyboard.TargetProperty="Margin"
+                            To="38,0,4,4"
+                            Duration="0:0:0.600"
+                            AccelerationRatio="0.2">
+                        </ThicknessAnimation>
                         <DoubleAnimation
-                            Storyboard.TargetName="slideBorder"
+                            Storyboard.TargetName="slidePanel"
                             Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)"
                             To="0"
-                            Duration="0:0:1"
-                            AccelerationRatio="0.6"
-                            >
+                            Duration="0:0:1.4"
+                            DecelerationRatio="0.9">
                         </DoubleAnimation>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
         </Grid.Triggers>
         <ToggleButton
-            Name="toggleBtn"
-            Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
-            Height="32px" Width="32px"
-            Padding="0 2"
-            VerticalAlignment="Top"
-            Panel.ZIndex="2"
-            BorderThickness="0"
-            Background="Transparent" Style="{DynamicResource ToggleButtonStyle}">
+                Grid.Row="0" Grid.Column="0"
+                    Name="toggleBtn"
+                    Height="32px" Width="32px"
+                    Margin="0,2,0,0"
+                    VerticalAlignment="Top"
+                    HorizontalAlignment="Left"
+                    Panel.ZIndex="4"
+                    BorderThickness="0"
+                    Background="Transparent"
+                    Style="{StaticResource ToggleButtonStyle}">
             <StaticResource ResourceKey="PlaceHolderImage"></StaticResource>
         </ToggleButton>
-        <Border 
-            Grid.Row="0" Grid.Column="0" Grid.RowSpan="2"
-            Name="slideBorder"
-            BorderThickness="0,0,2,0" BorderBrush="LightGray"  
-            Margin="0,40,0,0"
-            VerticalAlignment="Stretch">
-            <Border.RenderTransform>
-                <TranslateTransform X="0"></TranslateTransform>
-            </Border.RenderTransform>
-            <StackPanel>
-                <StackPanel.Resources>
-                    <Style TargetType="Button">
-                        <Setter Property="Margin" Value="0px,0px,0px,4px"></Setter>
-                    </Style>
-                </StackPanel.Resources>
-                <Button 
-                    Background="{StaticResource AddBtnImage}" 
-                    Height="28px" Width="28px" 
-                    ToolTip="Add a new reservation" 
-                    Command="{Binding AddBookingCommand}"/>
-                <Button 
-                    Height="28px" Width="28px" 
-                    Command="{Binding AddClient}">New Client</Button>
-            </StackPanel>
-        </Border>
-        <TabControl 
-            Grid.Row="1" Grid.Column="1" 
-            ItemsSource="{Binding Path=CurrentBookings}">
-            <TabControl.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" />
-                        </Grid.ColumnDefinitions>
-                        <TextBlock Grid.Column="0" Text="{Binding NewBookingTitle}" />
-                        <Button Grid.Column="1" Command="{Binding Path=CloseBookingCommand}">X</Button>
-                    </Grid>
-                </DataTemplate>
-            </TabControl.ItemTemplate>
-        </TabControl>
+        <DockPanel
+            Grid.Row="1" Grid.Column="0">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <StackPanel Name="slidePanel"
+                        Grid.Row="0" Grid.Column="0"
+                        DockPanel.Dock="Left">
+                    <StackPanel.Resources>
+                        <Style TargetType="Button" BasedOn="{StaticResource ImageButtonStyle}">
+                            <Setter Property="Margin" Value="2,0,4,4"></Setter>
+                            <Setter Property="BorderThickness" Value="0"></Setter>
+                            <Setter Property="HorizontalAlignment" Value="Left"></Setter>
+                        </Style>
+                    </StackPanel.Resources>
+                    <StackPanel.RenderTransform>
+                        <TranslateTransform X="0"></TranslateTransform>
+                    </StackPanel.RenderTransform>
+                    <Button
+                        Background="{StaticResource AddBtnImage}"
+                        Height="28px" Width="28px" 
+                        ToolTip="Add a new reservation" 
+                        Command="{Binding AddBookingCommand}"
+                        Margin="2,40,4,4"/>
+                    <Button 
+                        Height="28px" Width="28px" 
+                        Command="{Binding AddClientCommand}">New Client</Button>
+                </StackPanel>
+                <TabControl
+                        Name="slideTabControl"
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Margin="38,0,4,4"
+                        ItemsSource="{Binding CurrentEntitiesView}"
+                        IsSynchronizedWithCurrentItem="True">
+                    <TabControl.Resources>
+                        <ResourceDictionary>
+                            <DataTemplate DataType="{x:Type vme:BookingEntity}">
+                                <ScrollViewer>
+                                    <local:BookingView />
+                                </ScrollViewer>
+                            </DataTemplate>
+                        </ResourceDictionary>
+                    </TabControl.Resources>
+                    <TabControl.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock Grid.Column="0" Text="{Binding Title}" />
+                                <Button 
+                                    Grid.Column="1"
+                                    Margin="4,0,0,0"
+                                    Command="{Binding Path=DataContext.CloseBookingCommand, ElementName=thisWindow}" CommandParameter="{Binding}">X</Button>
+                            </Grid>
+                        </DataTemplate>
+                    </TabControl.ItemTemplate>
+                </TabControl>
+            </Grid>
+        </DockPanel>
     </Grid>
 </Window>

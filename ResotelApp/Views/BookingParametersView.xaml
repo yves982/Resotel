@@ -10,7 +10,24 @@
     <GroupBox Header="Paramètres" VerticalAlignment="Top" Margin="4 0">
         <StackPanel>
             <Expander Header="Dates">
-                <Calendar></Calendar>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition></RowDefinition>
+                        <RowDefinition></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" Grid.Row="0" Margin="0,0,0,4"
+                        Target="startDatePicker">Date de début</Label>
+                    <DatePicker Grid.Column="1" Grid.Row="0"  Margin="0,0,0,4"
+                        Name="startDatePicker" SelectedDate="{Binding Booking.Dates.Start}"></DatePicker>
+                    <Label Grid.Column="0" Grid.Row="1"  Margin="0,0,0,4"
+                        Target="endDatePicker">Date de fin</Label>
+                    <DatePicker Grid.Column="1" Grid.Row="1"  Margin="0,0,0,4"
+                        Name="endDatePicker" SelectedDate="{Binding Booking.Dates.End}"></DatePicker>
+                </Grid>
             </Expander>
             <Expander Header="Occupants">
                 <Grid>
@@ -33,10 +50,11 @@
                     </Grid.Resources>
                     <Label Grid.Column="0" Grid.Row="0">Nombre Enfants</Label>
                     <xctk:IntegerUpDown
-                        Grid.Column="1" Grid.Row="0"></xctk:IntegerUpDown>
+                        Grid.Column="1" Grid.Row="0" Value="{Binding Booking.BabiesCount}"></xctk:IntegerUpDown>
                     <Label Grid.Column="0" Grid.Row="1">Nombre Adultes</Label>
                     <xctk:IntegerUpDown
                         Grid.Column="1" Grid.Row="1"
+                        Value="{Binding Booking.AdultsCount}"
                         ></xctk:IntegerUpDown>
                 </Grid>
             </Expander>

@@ -6,33 +6,35 @@
         xmlns:local="clr-namespace:ResotelApp.Views"
         xmlns:bh="clr-namespace:ResotelApp.Behaviours"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="300" Width="300"
+        Title="{Binding Title}" Height="120" Width="350"
         bh:CloseBehaviour.ShouldClose="{Binding ShouldClose}">
-    <Grid VerticalAlignment="Top">
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="100"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40px"></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+
         <TextBlock 
             Grid.Row="0" Grid.Column="0" 
-            VerticalAlignment="Center" HorizontalAlignment="Left"
-            Text="{Binding Message}"></TextBlock>
+            VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,8,0" Width="90"
+            FontWeight="Bold"
+            Text="{Binding Message, StringFormat={}{0}:}"></TextBlock>
         <TextBox 
-            Grid.Row="0" Grid.Column="1" 
+            Grid.Row="0" Grid.Column="1"
             VerticalAlignment="Center"
             Width="80px"
             Text="{Binding Result}"></TextBox>
         <Button 
             Grid.Row="1" Grid.Column="0" 
-            VerticalAlignment="Top" HorizontalAlignment="Center" 
+            VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,4,0" Width="40"
             Command="{Binding OkCommand}">Ok</Button>
         <Button 
             Grid.Row="1" Grid.Column="1" 
-            VerticalAlignment="Top" HorizontalAlignment="Center" 
+            VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,0" Width="40"
             Command="{Binding CancelCommand}">Cancel</Button>
     </Grid>
 </Window>

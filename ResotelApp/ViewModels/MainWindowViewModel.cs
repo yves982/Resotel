@@ -6,18 +6,24 @@ using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Input;
 using ResotelApp.ViewModels.Events;
+using ResotelApp.ViewModels.Entities;
 
 namespace ResotelApp.ViewModels
 {
-    class MainWindowViewModel : IViewModel, INotifyPropertyChanged
+    class MainWindowViewModel : INotifyPropertyChanged
     {
-        private ICollectionView _currentBookingsView;
-        private ObservableCollection<Booking> _currentBookings;
-        private string _choosenNewBookingTitle;
+        private ICollectionView _currentEntitiesView;
+        private ObservableCollection<IEntity> _currentEntities;
         private DelegateCommand<object> _addBookingCommand;
-        private DelegateCommand<object> _closeBookingCommand;
+        private DelegateCommand<BookingEntity> _closeBookingCommand;
+        private DelegateCommand<object> _addClientCommand;
+        private PropertyChangeSupport _pcs;
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add { _pcs.Handler += value; }
+            remove { _pcs.Handler -= value; }
+        }
 
         public ICommand AddBookingCommand
         {
@@ -37,76 +43,90 @@ namespace ResotelApp.ViewModels
             {
                 if(_closeBookingCommand == null)
                 {
-                    _closeBookingCommand = new DelegateCommand<object>(_closeBooking);
+                    _closeBookingCommand = new DelegateCommand<BookingEntity>(_closeBooking);
                 }
                 return _closeBookingCommand;
             }
         }
 
-        public ICollectionView CurrentBookings
+        public ICommand AddClientCommand
         {
             get
             {
-                if(_currentBookingsView == null)
+                if(_addClientCommand == null)
                 {
-                    _currentBookingsView = CollectionViewSource.GetDefaultView(_currentBookings);
+                    _addClientCommand = new DelegateCommand<object>(_addClient);
                 }
-                return _currentBookingsView;
+                return _addClientCommand;
             }
         }
 
-        public string ChoosenNewBookingTitle
-        {
-            get { return _choosenNewBookingTitle; }
-            set
-            {
-                _choosenNewBookingTitle = value;
-                PropertyChangeSupport.NotifyChange(this, PropertyChanged, nameof(ChoosenNewBookingTitle));
-            }
-        }
-
-        public string NewBookingTitle
+        public ICollectionView CurrentEntitiesView
         {
             get
             {
-                string newBookingTitle = DateTime.Now.ToString("HH mm ss");
-                if(_choosenNewBookingTitle != null)
+                if(_currentEntitiesView == null)
                 {
-                    newBookingTitle = _choosenNewBookingTitle;
+                    _currentEntitiesView = CollectionViewSource.GetDefaultView(_currentEntities);
                 }
-                PropertyChangeSupport.NotifyChange(this, PropertyChanged, nameof(NewBookingTitle));
-                return newBookingTitle;
+                return _currentEntitiesView;
             }
         }
 
         public MainWindowViewModel()
         {
-            _currentBookings = new ObservableCollection<Booking>();
+            _pcs = new PropertyChangeSupport(this);
+            _currentEntities = new ObservableCollection<IEntity>();
         }
 
         private void _addBooking(object ignore)
         {
-            // show prompt view
-            PromptViewModel promptVM = new PromptViewModel("Question", "Nom d'Onglet");
+            PromptViewModel promptVM = new PromptViewModel("Nom du nouvel onglet", "Nom d'Onglet");
             promptVM.PromptClosed += _promptClosed;
             ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(promptVM);
 
-            Booking booking = new Booking();
-            _currentBookings.Add(booking);
-
         }
 
-        private void _closeBooking(object ignore)
+        private void _addClient(object ignore)
         {
-            _currentBookings.RemoveAt(_currentBookingsView.CurrentPosition);
+            
+        }
+
+        private void _closeBooking(BookingEntity booking)
+        {
+            _currentEntities.Remove(booking);
         }
 
         private void _promptClosed(PromptClosedEventArgs pcea)
         {
-            if (pcea.PromptResult != null)
+            string title = _computeTitle(pcea.PromptResult);
+
+            _addBookingToCollection();
+
+            _updateTitle(title);
+        }
+
+        private static string _computeTitle(string promptResult)
+        {
+            if (promptResult == null)
             {
-                _choosenNewBookingTitle = pcea.PromptResult;
+                promptResult = DateTime.Now.ToString("HH mm ss");
             }
+
+            return promptResult;
+        }
+
+        private void _addBookingToCollection()
+        {
+            BookingEntity booking = new BookingEntity(new Booking());
+            _currentEntities.Add(booking);
+            _currentEntitiesView.MoveCurrentToPosition(_currentEntities.Count - 1);
+        }
+
+        private void _updateTitle(string title)
+        {
+            BookingEntity currentBooking = (BookingEntity)_currentEntities[_currentEntitiesView.CurrentPosition];
+            currentBooking.Title = title;
         }
     }
 

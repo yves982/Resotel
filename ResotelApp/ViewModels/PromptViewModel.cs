@@ -4,18 +4,52 @@ using System.ComponentModel;
 
 namespace ResotelApp.ViewModels
 {
-    class PromptViewModel : IViewModel, INotifyPropertyChanged
+    class PromptViewModel : INotifyPropertyChanged
     {
         private DelegateCommand<object> _okCommand;
         private DelegateCommand<object> _cancelCommand;
+        private PropertyChangeSupport _pcs;
+        private string _result;
+        private string _message;
+        private string _title;
 
         public event PromptClosedEventHandler PromptClosed;
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add { _pcs.Handler += value; }
+            remove { _pcs.Handler -= value; }
+        }
 
         public bool? ShouldClose { get; set; }
-        public string Result { get; set; }
-        public string Message { get; set; }
-        public string Title { get; set; }
+        public string Result
+        {
+            get { return _result; }
+            set
+            {
+                _result = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                _message = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        public string Title
+        {
+            get { return _title; }
+            set
+            {
+                _title = value;
+                _pcs.NotifyChange();
+            }
+        }
 
         public DelegateCommand<object> OkCommand
         {
@@ -43,6 +77,7 @@ namespace ResotelApp.ViewModels
 
         public PromptViewModel(string title, string message)
         {
+            _pcs = new PropertyChangeSupport(this);
             Title = title;
             Message = message;
         }
@@ -50,7 +85,7 @@ namespace ResotelApp.ViewModels
         private void _ok(object ignore)
         {
             ShouldClose = true;
-            PropertyChangeSupport.NotifyChange(this, PropertyChanged, nameof(ShouldClose));
+            _pcs.NotifyChange(nameof(ShouldClose));
             OnPromptClosed(new PromptClosedEventArgs(Result));
         }
 
@@ -58,7 +93,7 @@ namespace ResotelApp.ViewModels
         {
             Result = null;
             ShouldClose = true;
-            PropertyChangeSupport.NotifyChange(this, PropertyChanged, nameof(ShouldClose));
+            _pcs.NotifyChange(nameof(ShouldClose));
             OnPromptClosed(new PromptClosedEventArgs(Result));
         }
 

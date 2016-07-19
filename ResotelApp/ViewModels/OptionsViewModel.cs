@@ -3,11 +3,19 @@ using ResotelApp.ViewModels.Utils;
 
 namespace ResotelApp.ViewModels
 {
-    class OptionsViewModel : IViewModel, INotifyPropertyChanged
+    class OptionsViewModel : INotifyPropertyChanged
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        private PropertyChangeSupport _pcs;
+        public event PropertyChangedEventHandler PropertyChanged
+        {
+            add { _pcs.Handler += value; }
+            remove { _pcs.Handler -= value; }
+        }
 
 
-        
+        public OptionsViewModel()
+        {
+            _pcs = new Utils.PropertyChangeSupport(this);
+        }
     }
 }
