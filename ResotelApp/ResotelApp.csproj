@@ -63,7 +63,7 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Controls.Ribbon" />
-    <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -71,6 +71,7 @@
     <Reference Include="System.Xaml">
       <RequiredTargetFramework>4.0</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -104,8 +105,27 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Behaviours\BindPasswordBehaviour.cs" />
     <Compile Include="Behaviours\CloseBehaviour.cs" />
-    <Compile Include="Repositories\BookingDAL.cs" />
+    <Compile Include="Migrations\201607241326326_AddedUsers.cs" />
+    <Compile Include="Migrations\201607241326326_AddedUsers.Designer.cs">
+      <DependentUpon>201607241326326_AddedUsers.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201607241456206_ChangedOptionBasePriceToDouble.cs" />
+    <Compile Include="Migrations\201607241456206_ChangedOptionBasePriceToDouble.Designer.cs">
+      <DependentUpon>201607241456206_ChangedOptionBasePriceToDouble.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608061452517_AddedManyBookingsToRoom.cs" />
+    <Compile Include="Migrations\201608061452517_AddedManyBookingsToRoom.Designer.cs">
+      <DependentUpon>201608061452517_AddedManyBookingsToRoom.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608070606355_RenamedBookingDateToCreationDate.cs" />
+    <Compile Include="Migrations\201608070606355_RenamedBookingDateToCreationDate.Designer.cs">
+      <DependentUpon>201608070606355_RenamedBookingDateToCreationDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs" />
+    <Compile Include="Models\UserRights.cs" />
+    <Compile Include="Repositories\BookingRepository.cs" />
     <Compile Include="Migrations\201602092041564_Initial.cs" />
     <Compile Include="Migrations\201602092041564_Initial.Designer.cs">
       <DependentUpon>201602092041564_Initial.cs</DependentUpon>
@@ -154,10 +174,27 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Repositories\RoomRepository.cs" />
+    <Compile Include="Utils\IEnumerable.cs" />
+    <Compile Include="Utils\PredicateExpressionExtensions.cs" />
+    <Compile Include="Repositories\OptionRepository.cs" />
+    <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="Utils\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="Utils\HashManager.cs" />
+    <Compile Include="Utils\SecureStringUtil.cs" />
+    <Compile Include="Utils\SubstituteParametersVisitor.cs" />
     <Compile Include="ViewModels\BookingParametersViewModel.cs" />
-    <Compile Include="ViewModels\Entities\BookingEntity.cs" />
-    <Compile Include="ViewModels\IViewDriver.cs" />
+    <Compile Include="ViewModels\BookingViewModel.cs" />
+    <Compile Include="ViewModels\ClientViewModel.cs" />
+    <Compile Include="ViewModels\Entities\ClientEntity.cs" />
+    <Compile Include="ViewModels\Entities\OptionEntity.cs" />
+    <Compile Include="ViewModels\Entities\RoomChoiceEntity.cs" />
+    <Compile Include="ViewModels\INavigableViewModel.cs" />
+    <Compile Include="ViewModels\Utils\CollectionViewProvider.cs" />
+    <Compile Include="ViewModels\Utils\IUITimer.cs" />
+    <Compile Include="ViewModels\Utils\IViewDriver.cs" />
     <Compile Include="ViewModels\Entities\IEntity.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MainWindowViewModel.cs" />
     <Compile Include="ViewModels\OptionsViewModel.cs" />
     <Compile Include="ViewModels\PromptViewModel.cs" />
@@ -172,14 +209,23 @@
     <Compile Include="ViewModels\Utils\ViewDriverProvider.cs" />
     <Compile Include="ViewModels\Events\PromptClosedEventArgs.cs" />
     <Compile Include="ViewModels\Events\PromptClosedEventHandler.cs" />
-    <Compile Include="Views\BookingParametersView.xaml.cs">
+    <Compile Include="Views\Controls\BookingParametersView.xaml.cs">
       <DependentUpon>BookingParametersView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\BookingView.xaml.cs">
+    <Compile Include="Views\Controls\BookingView.xaml.cs">
       <DependentUpon>BookingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Views\Controls\ClientView.xaml.cs">
+      <DependentUpon>ClientView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\OptionsView.xaml.cs">
+      <DependentUpon>OptionsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginView.xaml.cs">
+      <DependentUpon>LoginView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainWindowView.xaml.cs">
+      <DependentUpon>MainWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
@@ -187,32 +233,129 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context\ResotelContext.cs" />
-    <Compile Include="Views\OptionsView.xaml.cs">
-      <DependentUpon>OptionsView.xaml</DependentUpon>
+    <Compile Include="Views\Controls\OptionView.xaml.cs">
+      <DependentUpon>OptionView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PromptView.xaml.cs">
       <DependentUpon>PromptView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RoomChoiceView.xaml.cs">
+    <Compile Include="Views\Controls\RoomChoiceView.xaml.cs">
       <DependentUpon>RoomChoiceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RoomsChoiceView.xaml.cs">
+    <Compile Include="Views\Controls\RoomsChoiceView.xaml.cs">
       <DependentUpon>RoomsChoiceView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ViewDriver.cs" />
-    <Page Include="Views\BookingParametersView.xaml">
+    <Compile Include="Views\Utils\UITimer.cs" />
+    <Compile Include="Views\Utils\ViewDriver.cs" />
+    <Page Include="Resources\Themes\BubbleCreme\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\BureauBlack\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\BureauBlue\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\DavesGlossyControls\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\ExpressionDark\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\ExpressionLight\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\RainierOrange\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\RainierPurple\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\RainierRadialBlue\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\ShinyBlue\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\ShinyDarkGreen\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\ShinyDarkPurple\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\ClientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\BookingView.xaml">
+    <Page Include="Views\Controls\OptionsView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MainWindow.xaml">
+    <Page Include="Views\Styles\ShinyDarkTeal\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\ShinyRed\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\TwilightBlue\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\UXMusingsBubblyBlue\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\UXMusingsGreen\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\UXMusingsRed\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\UXMusingsRoughGreen\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\UXMusingsRoughRed\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Resources\Themes\WhistlerBlue\Theme.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Controls\BookingParametersView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OptionsView.xaml">
+    <Page Include="Views\Controls\BookingView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MainWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\OptionView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -220,11 +363,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RoomChoiceView.xaml">
+    <Page Include="Views\Controls\RoomChoiceView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RoomsChoiceView.xaml">
+    <Page Include="Views\Controls\RoomsChoiceView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Styles\CustomTheme.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -283,6 +430,18 @@
     <EmbeddedResource Include="Migrations\201603271455394_AddedPersonsCountToBooking.resx">
       <DependentUpon>201603271455394_AddedPersonsCountToBooking.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607241326326_AddedUsers.resx">
+      <DependentUpon>201607241326326_AddedUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201607241456206_ChangedOptionBasePriceToDouble.resx">
+      <DependentUpon>201607241456206_ChangedOptionBasePriceToDouble.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608061452517_AddedManyBookingsToRoom.resx">
+      <DependentUpon>201608061452517_AddedManyBookingsToRoom.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608070606355_RenamedBookingDateToCreationDate.resx">
+      <DependentUpon>201608070606355_RenamedBookingDateToCreationDate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
@@ -307,11 +466,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="AddBtn.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Controls\" />
-    <Folder Include="Views\Utils\" />
+    <Folder Include="Resources\Themes\Properties\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\AddBtn.png" />
@@ -330,6 +485,32 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="InitialData\Rooms.xml">
+      <SubType>Designer</SubType>
+    </Resource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="InitialData\Clients.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="InitialData\Users.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\toggle_menu_checked2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\toggle_menu_unchecked2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\searchBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\clientAdd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bookingIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

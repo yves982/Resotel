@@ -4,7 +4,7 @@ namespace ResotelApp.Models
 {
     public class Discount
     {
-        public int DiscountId { get; set; }
+        public int Id { get; set; }
         [Required]
         public double ReduceByPercent { get; set; }
         public int ApplicableQuantity { get; set; }

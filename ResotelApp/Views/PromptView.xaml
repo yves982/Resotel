@@ -6,35 +6,40 @@
         xmlns:local="clr-namespace:ResotelApp.Views"
         xmlns:bh="clr-namespace:ResotelApp.Behaviours"
         mc:Ignorable="d"
-        Title="{Binding Title}" Height="120" Width="350"
+        ResizeMode="CanMinimize"
+        Title="{Binding Title}" Height="112" Width="350"
         bh:CloseBehaviour.ShouldClose="{Binding ShouldClose}">
-    <Grid VerticalAlignment="Top" HorizontalAlignment="Center">
+    <Grid VerticalAlignment="Top" HorizontalAlignment="Center"
+          FocusManager.FocusedElement="{Binding ElementName=PromptTxt}">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="100"></ColumnDefinition>
-            <ColumnDefinition Width="100"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="160"></ColumnDefinition>
+            <ColumnDefinition Width="160"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40px"></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
         <TextBlock 
-            Grid.Row="0" Grid.Column="0" 
-            VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,8,0" Width="90"
+            Grid.Row="0" Grid.Column="1" 
+            VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,8,0" Width="150"
             FontWeight="Bold"
             Text="{Binding Message, StringFormat={}{0}:}"></TextBlock>
         <TextBox 
-            Grid.Row="0" Grid.Column="1"
+            Grid.Row="0" Grid.Column="2"
             VerticalAlignment="Center"
             Width="80px"
+            Name="PromptTxt"
             Text="{Binding Result}"></TextBox>
         <Button 
-            Grid.Row="1" Grid.Column="0" 
-            VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,4,0" Width="40"
+            Grid.Row="1" Grid.Column="1" 
+            VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,4,0" Width="80"
             Command="{Binding OkCommand}">Ok</Button>
         <Button 
-            Grid.Row="1" Grid.Column="1" 
-            VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,0" Width="40"
+            Grid.Row="1" Grid.Column="2" 
+            VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,0" Width="80"
             Command="{Binding CancelCommand}">Cancel</Button>
     </Grid>
 </Window>

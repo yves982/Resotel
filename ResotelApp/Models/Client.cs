@@ -5,7 +5,7 @@ namespace ResotelApp.Models
 {
     public class Client
     {
-        public int ClientId { get; set; }
+        public int Id { get; set; }
         [Required]
         public string FirstName { get; set; }
         [Required]
@@ -16,5 +16,10 @@ namespace ResotelApp.Models
         public List<Booking> Bookings { get; set; }
         public string Email { get; set; }
         public string Phone { get; set; }
+
+        public Client()
+        {
+            Bookings = new List<Booking>();
+        }
     }
 }
