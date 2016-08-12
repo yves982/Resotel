@@ -18,9 +18,6 @@
         Title="{Binding Title}"
         Icon="/Resources/ResotelAppIcon.png"
         Name="thisWindow">
-    <Window.DataContext>
-        <vm:MainWindowViewModel />
-    </Window.DataContext>
     <i:Interaction.Triggers>
         <i:EventTrigger EventName="Loaded">
             <i:InvokeCommandAction Command="{Binding LoadCommand}"></i:InvokeCommandAction>
@@ -127,7 +124,7 @@
                     </StackPanel.RenderTransform>
                     <Button
                         Height="28" Width="52"
-                        ToolTip="Search client"
+                        ToolTip="recherche de client"
                         Margin="2,40,4,4">
                         <Image Source="/Resources/SearchBtn.png"></Image> 
                     </Button>
@@ -139,7 +136,7 @@
                     </Button>
                     <Button 
                         Height="28" Width="52" 
-                        ToolTip="Add New Client"
+                        ToolTip="Nouveau Client"
                         Command="{Binding AddClientCommand}">
                         <Image Source="/Resources/clientAdd.png"></Image>
                     </Button>

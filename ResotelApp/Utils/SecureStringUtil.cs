@@ -8,6 +8,10 @@ namespace ResotelApp.Utils
     {
         public static string Read(SecureString secureString)
         {
+            if(secureString == null)
+            {
+                return null;
+            }
             IntPtr valuePtr = IntPtr.Zero;
             try
             {

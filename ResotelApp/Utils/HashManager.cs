@@ -8,6 +8,10 @@ namespace ResotelApp.Utils
     {
         public static string SHA256(string entry)
         {
+            if(entry == null)
+            {
+                return null;
+            }
            SHA256Managed sha256 = new SHA256Managed();
            byte[] hash = sha256.ComputeHash(UTF8.GetBytes(entry));
            StringBuilder sb = new StringBuilder();

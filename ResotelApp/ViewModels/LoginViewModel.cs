@@ -1,6 +1,7 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.Repositories;
 using ResotelApp.Utils;
+using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.ComponentModel;
@@ -10,7 +11,7 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
-    class LoginViewModel : INotifyPropertyChanged
+    class LoginViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;
         private string _login;
@@ -99,6 +100,35 @@ namespace ResotelApp.ViewModels
             }
         }
 
+        public string Error
+        {
+            get { return null; }
+        }
+
+        public string this[string columnName]
+        {
+            get
+            {
+                string error = null;
+                switch (columnName)
+                {
+                    case nameof(SecurePassword):
+                        if(_securePassword == null || _securePassword.Length == 0)
+                        {
+                            error = @"Le champ ""Mot de passe"" est requis.";
+                        }
+                        break;
+                    case nameof(Login):
+                        if(_login == null || _login.Length == 0)
+                        {
+                            error = @"Le champ ""Login"" est requis.";
+                        }
+                        break;
+                }
+                return error;
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add { _pcs.Handler += value; }
@@ -153,8 +183,8 @@ namespace ResotelApp.ViewModels
 
         private void _showMainView(object sender, EventArgs e)
         {
-            MainWindowViewModel mainViewModel = new MainWindowViewModel();
-            mainViewModel.User = _user;
+            UserEntity userEntity = new UserEntity(_user);
+            MainWindowViewModel mainViewModel = new MainWindowViewModel(userEntity);
             ViewDriverProvider.ViewDriver.CloseAndShowNewMainWindow<MainWindowViewModel>(mainViewModel);
             _timer.IsEnabled = false;
         }

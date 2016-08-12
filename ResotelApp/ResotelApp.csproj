@@ -189,6 +189,7 @@
     <Compile Include="ViewModels\Entities\ClientEntity.cs" />
     <Compile Include="ViewModels\Entities\OptionEntity.cs" />
     <Compile Include="ViewModels\Entities\RoomChoiceEntity.cs" />
+    <Compile Include="ViewModels\Entities\UserEntity.cs" />
     <Compile Include="ViewModels\INavigableViewModel.cs" />
     <Compile Include="ViewModels\Utils\CollectionViewProvider.cs" />
     <Compile Include="ViewModels\Utils\IUITimer.cs" />
@@ -511,6 +512,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\bookingIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\errorIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

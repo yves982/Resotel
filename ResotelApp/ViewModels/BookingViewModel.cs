@@ -66,9 +66,9 @@ namespace ResotelApp.ViewModels
             }
         }
 
-        public Booking Booking
+        public ClientEntity Client
         {
-            get { return _booking; }
+            get { return _clientEntity; }
         }
 
         public string Title
@@ -118,18 +118,19 @@ namespace ResotelApp.ViewModels
             _roomsChoices = new RoomsChoiceViewModel(availableRoomChoices);
             _booking = booking;
             _clientEntity = new ClientEntity(booking.Client);
-            _computeTitle(booking.Client);
+            _clientEntity.Bookings.Add(booking);
+            _computeTitle(_clientEntity);
             _clientEntity.PropertyChanged += _clientChanged;
             _navigation = navigation;
             _navigation.AddLast(this);
         }
 
-        private void _computeTitle(Client client)
+        private void _computeTitle(ClientEntity clientEntity)
         {
             string clientDesc = null;
-            if (client.FirstName != null || client.LastName != null)
+            if (clientEntity.FirstName != null || clientEntity.LastName != null)
             {
-                clientDesc = string.Format("{0} {1}", client.FirstName, client.LastName);
+                clientDesc = string.Format("{0} {1}", clientEntity.FirstName, clientEntity.LastName);
             }
             _title = string.Format("Réservation: {0}{1:HH mm ss}", clientDesc, clientDesc == null ? (DateTime?)_booking.CreationDate : null);
         }
@@ -140,15 +141,14 @@ namespace ResotelApp.ViewModels
             {
                 return;
             }
-            _computeTitle(_booking.Client);
+            _computeTitle(_clientEntity);
             _pcs.NotifyChange("Title");
         }
 
         private async Task _newClient(BookingViewModel bookingVM)
         {
-            Client newClient = new Client();
-            ClientViewModel clientVM = new ClientViewModel(_navigation, newClient);
-            await _roomsChoices.AssignRoomsCommand.ExecuteAsync(bookingVM.Booking);
+            ClientViewModel clientVM = new ClientViewModel(_navigation, _clientEntity);
+            await _roomsChoices.AssignRoomsCommand.ExecuteAsync(_booking);
             if(NextCalled != null)
             {
                 NextCalled(this, bookingVM);

@@ -1,8 +1,10 @@
 ﻿using ResotelApp.Utils;
+using System.ComponentModel;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interactivity;
+using System;
 
 namespace ResotelApp.Behaviours
 {
@@ -12,7 +14,6 @@ namespace ResotelApp.Behaviours
             DependencyProperty.Register("BoundPassword", typeof(SecureString), typeof(BindPasswordBehaviour),
                 new FrameworkPropertyMetadata(null, FrameworkPropertyMetadataOptions.BindsTwoWayByDefault, _onPasswordChanged));
 
-        
 
         public SecureString BoundPassword
         {

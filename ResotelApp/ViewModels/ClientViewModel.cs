@@ -75,10 +75,10 @@ namespace ResotelApp.ViewModels
             }
         }
 
-        public ClientViewModel(LinkedList<INavigableViewModel> navigation, Client client)
+        public ClientViewModel(LinkedList<INavigableViewModel> navigation, ClientEntity clientEntity)
         {
             _pcs = new PropertyChangeSupport(this);
-            _clientEntity = new ClientEntity(client);
+            _clientEntity = clientEntity;
             _clientEntity.PropertyChanged += _clientChanged;
             _navigation = navigation;
             _navigation.AddLast(this);
@@ -86,7 +86,7 @@ namespace ResotelApp.ViewModels
 
         public object Clone()
         {
-            ClientViewModel clientViewModel = new ClientViewModel(_navigation, _clientEntity.Client);
+            ClientViewModel clientViewModel = new ClientViewModel(_navigation, _clientEntity);
             return clientViewModel;
         }
 

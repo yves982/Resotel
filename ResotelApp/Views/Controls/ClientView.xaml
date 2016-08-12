@@ -32,11 +32,11 @@
         <TextBlock Grid.Row="0" Grid.Column="0"
             Name="LastNameTbl" Text="Nom"></TextBlock>
         <TextBox Grid.Row="0" Grid.Column="1"
-            Name="LastNameTxt" Text="{Binding Client.LastName}"></TextBox>
+            Name="LastNameTxt" Text="{Binding Client.LastName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <TextBlock Grid.Row="1" Grid.Column="0"
             Name="FirstNameTbl" Text="Prenom"></TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1"
-                 Name="FirstNameTxt" Text="{Binding Client.FirstName}"></TextBox>
+                 Name="FirstNameTxt" Text="{Binding Client.FirstName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
         <TextBlock Grid.Row="2" Grid.Column="0"
             Name="CityTbl" Text="Ville"></TextBlock>
         <TextBox Grid.Row="2" Grid.Column="1"
@@ -59,9 +59,9 @@
                  Name="PhoneTxt" Text="{Binding Client.Phone}"></TextBox>
         <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" 
                     Orientation="Horizontal">
-            <Button Width="74"
+            <Button Width="78"
                 Content="Précédent" Command="{Binding BookingCommand}" CommandParameter="{Binding}"></Button>
-            <Button Margin="8,0,0,0" Width="74" 
+            <Button Margin="8,0,0,0" Width="78" 
                 Content="Suivant" Command="{Binding SumUpCommand}" CommandParameter="{Binding}"></Button>
         </StackPanel>
     </Grid> 

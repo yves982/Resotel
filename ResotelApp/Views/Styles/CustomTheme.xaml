@@ -55,4 +55,23 @@
     <Style TargetType="TabControl">
         <Setter Property="Background" Value="{StaticResource BgBrush}"></Setter>
     </Style>
+    
+    <!-- Error Template -->
+    <Style x:Key="validatedTemplate">
+        <Setter Property="Validation.ErrorTemplate">
+            <Setter.Value>
+                <ControlTemplate>
+                    <DockPanel LastChildFill="True">
+                        <Image DockPanel.Dock="Right"
+                            Margin="-22,0,0,0"
+                            Source="/Resources/errorIcon.png" Width="16" Height="16"
+                               ToolTip="{Binding AdornedElement.(Validation.Errors).CurrentItem.ErrorContent, ElementName=adornedControl}"></Image>
+                        <Border BorderBrush="Red" BorderThickness="1" CornerRadius="3">
+                            <AdornedElementPlaceholder x:Name="adornedControl" />
+                        </Border>
+                    </DockPanel>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 </ResourceDictionary>

@@ -68,7 +68,7 @@
         </Grid.Resources>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="94"></ColumnDefinition>
+            <ColumnDefinition Width="144"></ColumnDefinition>
             <ColumnDefinition Width="Auto"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -83,13 +83,16 @@
         <Label Grid.Row="1" Grid.Column="1" VerticalAlignment="Center"
             Content="_Login" Name="LoginTbl" Target="{Binding ElementName=LoginTxt}"></Label>
         <TextBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Top"
-            Text="{Binding Login}" Name="LoginTxt" MaxLength="50" Width="70"></TextBox>
+            Text="{Binding Login, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Name="LoginTxt" MaxLength="50" Width="70"
+            Style="{StaticResource validatedTemplate}"></TextBox>
         <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"
-            Content="_Password" Name="PasswordTbl" Target="{Binding ElementName=PasswordPwdb}"></Label>
+            Content="_Mot de passe" Name="PasswordTbl" Target="{Binding ElementName=PasswordPwdb}"></Label>
         <PasswordBox  Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"
-            Name="PasswordPwdb" MaxLength="50" Width="70">
+            Name="PasswordPwdb" MaxLength="50" Width="70"
+            Style="{StaticResource validatedTemplate}"
+            Tag="{Binding SecurePassword, ValidatesOnDataErrors=True}">
             <i:Interaction.Behaviors>
-                <bh:BindPasswordBehaviour BoundPassword="{Binding SecurePassword}"></bh:BindPasswordBehaviour>
+                <bh:BindPasswordBehaviour BoundPassword="{Binding SecurePassword, UpdateSourceTrigger=PropertyChanged}"></bh:BindPasswordBehaviour>
             </i:Interaction.Behaviors>
         </PasswordBox>
         <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"

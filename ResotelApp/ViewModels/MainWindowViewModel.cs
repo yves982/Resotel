@@ -20,7 +20,7 @@ namespace ResotelApp.ViewModels
         private List<RoomChoiceEntity> _defaultAvailableRoomChoices;
         private PropertyChangeSupport _pcs;
         private string _title;
-        private User _user;
+        private UserEntity _user;
         private LinkedList<INavigableViewModel> _navigation;
 
 
@@ -131,25 +131,16 @@ namespace ResotelApp.ViewModels
             }
         }
 
-        public User User
-        {
-            get { return _user; }
-            set
-            {
-                _user = value;
-                _pcs.NotifyChange();
-            }
-        }
-
 
         public LinkedList<INavigableViewModel> Navigation
         {
             get { return _navigation; }
         }
         
-            public MainWindowViewModel()
+            public MainWindowViewModel(UserEntity user)
         {
             _pcs = new PropertyChangeSupport(this);
+            _user = user;
             _currentEntities = new ObservableCollection<INavigableViewModel>();
             _title = "Resotel - Facturation";
             _availableOptions = new List<OptionEntity>();
