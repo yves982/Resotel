@@ -5,12 +5,16 @@ using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
-    class RoomChoiceEntity : IEntity, INotifyPropertyChanged, ICloneable
+    class RoomChoiceEntity : IEntity, INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;
         private int _count;
         private string _imageFullPath;
         private BedKind _bedKind;
+        private RoomKind _roomKind;
+        private int _capacity;
+        private int _maxAvailable;
+        private string _maxTooltip;
 
         public int Count
         {
@@ -20,6 +24,28 @@ namespace ResotelApp.ViewModels.Entities
             {
                 _count = value;
                 _pcs.NotifyChange();
+            }
+        }
+
+        public int MaxAvailable
+        {
+            get { return _maxAvailable; }
+            set
+            {
+                _maxAvailable = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        public string MaxTooltip
+        {
+            get
+            {
+                if(_maxTooltip == null)
+                {
+                    _maxTooltip = string.Format("Le maximum possible est de {0}", _maxAvailable);
+                }
+                return _maxTooltip;
             }
         }
 
@@ -45,6 +71,26 @@ namespace ResotelApp.ViewModels.Entities
             }
         }
 
+        public RoomKind RoomKind
+        {
+            get { return _roomKind; }
+            set
+            {
+                _roomKind = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        public int Capacity
+        {
+            get { return _capacity; }
+            set
+            {
+                _capacity = value;
+                _pcs.NotifyChange();
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add { _pcs.Handler += value; }
@@ -53,18 +99,13 @@ namespace ResotelApp.ViewModels.Entities
 
 
 
-        public RoomChoiceEntity(string imageFullPath, BedKind bedKind, int count=0)
+        public RoomChoiceEntity(RoomKind kind, int count=0)
         {
             _pcs = new PropertyChangeSupport(this);
-            _imageFullPath = imageFullPath;
-            _bedKind = bedKind;
+            _imageFullPath = string.Format("/Resources/room_{0}.png", kind.ToString());
+            _bedKind = kind.ToBedKind();
+            _roomKind = kind;
             _count = count;
-        }
-
-        public object Clone()
-        {
-            RoomChoiceEntity roomChoice = new RoomChoiceEntity(_imageFullPath, _bedKind, _count);
-            return roomChoice;
         }
     }
 }

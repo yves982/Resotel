@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
-    class ClientEntity : IEntity, INotifyPropertyChanged
+    class ClientEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;
         private Client _client;
@@ -108,6 +108,22 @@ namespace ResotelApp.ViewModels.Entities
             {
                 _client.Phone = value;
                 _pcs.NotifyChange();
+            }
+        }
+
+        string IDataErrorInfo.Error
+        {
+            get
+            {
+                return ((IDataErrorInfo)_client).Error;
+            }
+        }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                return ((IDataErrorInfo)_client)[columnName];
             }
         }
 

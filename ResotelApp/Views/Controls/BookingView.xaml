@@ -20,8 +20,8 @@
             </DataTemplate>
         </StackPanel.Resources>
         <ContentControl Content="{Binding Parameters}"></ContentControl>
-        <ContentControl Content="{Binding Options}"></ContentControl>
-        <ContentControl Content="{Binding RoomsChoices}"></ContentControl>
+        <ContentControl Content="{Binding Options}" IsEnabled="{Binding ParametersValidated}"></ContentControl>
+        <ContentControl Content="{Binding RoomsChoices}" IsEnabled="{Binding ParametersValidated}"></ContentControl>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,0">
             <Button HorizontalAlignment="Center" Margin="0,0,4,0"
                     Command="{Binding SearchClientCommand}" CommandParameter="{Binding}"

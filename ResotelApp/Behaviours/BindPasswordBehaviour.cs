@@ -1,10 +1,8 @@
 ﻿using ResotelApp.Utils;
-using System.ComponentModel;
 using System.Security;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interactivity;
-using System;
 
 namespace ResotelApp.Behaviours
 {
@@ -47,7 +45,7 @@ namespace ResotelApp.Behaviours
                 return;
             }
 
-            if(SecureStringUtil.Read((SecureString)dpcea.NewValue) != behaviour.AssociatedObject.Password)
+            if(behaviour.AssociatedObject != null && SecureStringUtil.Read((SecureString)dpcea.NewValue) != behaviour.AssociatedObject.Password)
             {
                 behaviour.AssociatedObject.Password = SecureStringUtil.Read((SecureString)dpcea.NewValue);
             }

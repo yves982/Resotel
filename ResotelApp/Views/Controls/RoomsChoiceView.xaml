@@ -7,7 +7,8 @@
              xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
              xmlns:sys="clr-namespace:System;assembly=mscorlib"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="300" d:DesignWidth="300"
+             Background="{StaticResource BgBrush}">
     <GroupBox Header="Chambres">
         <Expander Header="Types de chambres" VerticalAlignment="Top" IsExpanded="True">
             <ItemsControl ItemsSource="{Binding AvailableRoomsChoicesView}">
@@ -18,7 +19,7 @@
                 </ItemsControl.ItemsPanel>
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <local:RoomChoiceView></local:RoomChoiceView>
+                        <local:RoomChoiceView Margin="4,0,4,0"></local:RoomChoiceView>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

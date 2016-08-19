@@ -12,5 +12,6 @@ namespace ResotelApp.ViewModels
         LinkedList<INavigableViewModel> Navigation { get; }
         event EventHandler<INavigableViewModel> NextCalled;
         event EventHandler<INavigableViewModel> PreviousCalled;
+        event EventHandler<INavigableViewModel> Shutdown;
     }
 }

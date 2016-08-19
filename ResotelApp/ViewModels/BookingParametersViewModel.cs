@@ -1,6 +1,8 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
+using System;
 using System.ComponentModel;
+using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
@@ -11,11 +13,15 @@ namespace ResotelApp.ViewModels
         private int _babiesCount;
         private int _adultsCount;
 
+        private DelegateCommand<object> _validateCommand;
+
         public event PropertyChangedEventHandler PropertyChanged
         {
             add { _pcs.Handler += value; }
             remove { _pcs.Handler -= value; }
         }
+
+        public event EventHandler<BookingParametersViewModel> Defined;
 
         public DateRange DateRange
         {
@@ -34,6 +40,10 @@ namespace ResotelApp.ViewModels
             set
             {
                 _babiesCount = value;
+                if (!_validateCommand.CanExecute(null))
+                {
+                    _validateCommand.ChangeCanExecute();
+                }
                 _pcs.NotifyChange();
             }
         }
@@ -45,7 +55,23 @@ namespace ResotelApp.ViewModels
             set
             {
                 _adultsCount = value;
+                if(!_validateCommand.CanExecute(null))
+                {
+                    _validateCommand.ChangeCanExecute();
+                }
                 _pcs.NotifyChange();
+            }
+        }
+
+        public ICommand ValidateCommand
+        {
+            get
+            {
+                if(_validateCommand == null)
+                {
+                    _validateCommand = new DelegateCommand<object>(_validate);
+                }
+                return _validateCommand;
             }
         }
 
@@ -55,6 +81,15 @@ namespace ResotelApp.ViewModels
             _dateRange = booking.Dates;
             _adultsCount = booking.AdultsCount;
             _babiesCount = booking.BabiesCount;
+        }
+
+        private void _validate(object ignore)
+        {
+            _validateCommand.ChangeCanExecute();
+            if(Defined != null)
+            {
+                Defined(null, this);
+            }
         }
     }
 }

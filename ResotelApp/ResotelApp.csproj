@@ -123,6 +123,23 @@
     <Compile Include="Migrations\201608070606355_RenamedBookingDateToCreationDate.Designer.cs">
       <DependentUpon>201608070606355_RenamedBookingDateToCreationDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608171524195_RenamedRoomSizeToCapacity.cs" />
+    <Compile Include="Migrations\201608171524195_RenamedRoomSizeToCapacity.Designer.cs">
+      <DependentUpon>201608171524195_RenamedRoomSizeToCapacity.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608182153322_ReplacedBookingCurrDiscountWithRoomAndOptionDiscount.cs" />
+    <Compile Include="Migrations\201608182153322_ReplacedBookingCurrDiscountWithRoomAndOptionDiscount.Designer.cs">
+      <DependentUpon>201608182153322_ReplacedBookingCurrDiscountWithRoomAndOptionDiscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608190944016_AddedOptionChoices.cs" />
+    <Compile Include="Migrations\201608190944016_AddedOptionChoices.Designer.cs">
+      <DependentUpon>201608190944016_AddedOptionChoices.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\BookingState.cs" />
+    <Compile Include="Models\IValidable.cs" />
+    <Compile Include="Models\OptionChoice.cs" />
+    <Compile Include="Models\RoomKind.cs" />
+    <Compile Include="Models\RoomKindExtensions.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserRights.cs" />
     <Compile Include="Repositories\BookingRepository.cs" />
@@ -187,7 +204,7 @@
     <Compile Include="ViewModels\BookingViewModel.cs" />
     <Compile Include="ViewModels\ClientViewModel.cs" />
     <Compile Include="ViewModels\Entities\ClientEntity.cs" />
-    <Compile Include="ViewModels\Entities\OptionEntity.cs" />
+    <Compile Include="ViewModels\Entities\OptionChoiceEntity.cs" />
     <Compile Include="ViewModels\Entities\RoomChoiceEntity.cs" />
     <Compile Include="ViewModels\Entities\UserEntity.cs" />
     <Compile Include="ViewModels\INavigableViewModel.cs" />
@@ -443,6 +460,15 @@
     <EmbeddedResource Include="Migrations\201608070606355_RenamedBookingDateToCreationDate.resx">
       <DependentUpon>201608070606355_RenamedBookingDateToCreationDate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608171524195_RenamedRoomSizeToCapacity.resx">
+      <DependentUpon>201608171524195_RenamedRoomSizeToCapacity.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608182153322_ReplacedBookingCurrDiscountWithRoomAndOptionDiscount.resx">
+      <DependentUpon>201608182153322_ReplacedBookingCurrDiscountWithRoomAndOptionDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608190944016_AddedOptionChoices.resx">
+      <DependentUpon>201608190944016_AddedOptionChoices.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
@@ -456,6 +482,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Models\ModelDiagram.cd" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

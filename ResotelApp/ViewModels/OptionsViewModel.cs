@@ -12,7 +12,7 @@ namespace ResotelApp.ViewModels
     {
         private PropertyChangeSupport _pcs;
         private ICollectionView _availableOptionsView;
-        private ObservableCollection<OptionEntity> _availableOptions;
+        private ObservableCollection<OptionChoiceEntity> _availableOptions;
         private Booking _booking;
 
         public event PropertyChangedEventHandler PropertyChanged
@@ -36,10 +36,10 @@ namespace ResotelApp.ViewModels
         }
         
 
-        public OptionsViewModel(Booking booking, IEnumerable<OptionEntity> options)
+        public OptionsViewModel(Booking booking, IEnumerable<OptionChoiceEntity> options)
         {
             _pcs = new PropertyChangeSupport(this);
-            _availableOptions = new ObservableCollection<OptionEntity>(options);
+            _availableOptions = new ObservableCollection<OptionChoiceEntity>(options);
             _availableOptionsView = CollectionViewProvider.Provider(_availableOptions);
             _booking = booking;
             _availableOptionsView.CollectionChanged += _optionChanged;
@@ -47,12 +47,12 @@ namespace ResotelApp.ViewModels
 
         private void _optionChanged(object sender, NotifyCollectionChangedEventArgs nccea)
         {
-            _booking.Options.Clear();
-            foreach(OptionEntity option in _availableOptions)
+            _booking.OptionChoices.Clear();
+            foreach(OptionChoiceEntity optChoiceEntity in _availableOptions)
             {
-                if(option.Taken)
+                if(optChoiceEntity.Taken)
                 {
-                    _booking.Options.Add(option.Option);
+                    _booking.OptionChoices.Add(optChoiceEntity.OptionChoice);
                 }
             }
         }

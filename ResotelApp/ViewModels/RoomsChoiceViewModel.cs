@@ -54,7 +54,8 @@ namespace ResotelApp.ViewModels
 
         private async Task _assignRooms(Booking booking)
         {
-            List<Room> matchingRooms = await RoomRepository.GetMatchingRoomsBetween(booking.Options, booking.Dates);
+            List<Option> choosenOptions = booking.OptionChoices.ConvertAll(optChoice => optChoice.Option);
+            List<Room> matchingRooms = await RoomRepository.GetMatchingRoomsBetween(choosenOptions, booking.Dates);
             foreach(RoomChoiceEntity roomChoice in _availableRoomsChoices)
             {
                 if(roomChoice.Count>0)

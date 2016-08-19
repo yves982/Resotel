@@ -52,6 +52,9 @@
     <Style TargetType="Grid">
         <Setter Property="Background" Value="{StaticResource BgBrush}"></Setter>
     </Style>
+    <Style TargetType="ItemsControl">
+        <Setter Property="Background" Value="{StaticResource BgBrush}"></Setter>
+    </Style>
     <Style TargetType="TabControl">
         <Setter Property="Background" Value="{StaticResource BgBrush}"></Setter>
     </Style>

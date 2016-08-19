@@ -9,6 +9,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <StackPanel>
         <Image Source="{Binding ImageFullPath}" Width="{StaticResource bookingImagesSize}" Height="{StaticResource bookingImagesSize}" />
-        <xctk:IntegerUpDown Margin="0 4 0 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" Value="{Binding Count}"></xctk:IntegerUpDown>
+        <xctk:IntegerUpDown Margin="0 4 0 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
+               Value="{Binding Count}" Maximum="{Binding MaxAvailable}" ToolTip="{Binding MaxTooltip}"></xctk:IntegerUpDown>
     </StackPanel>
 </UserControl>

@@ -4,7 +4,7 @@ using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
-    class UserEntity : IEntity, INotifyPropertyChanged
+    class UserEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private User _user;
         private PropertyChangeSupport _pcs;
@@ -111,6 +111,22 @@ namespace ResotelApp.ViewModels.Entities
             {
                 _user.Rights = value;
                 _pcs.NotifyChange();
+            }
+        }
+
+        string IDataErrorInfo.Error
+        {
+            get
+            {
+                return ((IDataErrorInfo)_user).Error;
+            }
+        }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                return ((IDataErrorInfo)_user)[columnName];
             }
         }
 

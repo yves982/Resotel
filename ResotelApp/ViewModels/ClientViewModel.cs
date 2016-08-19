@@ -1,5 +1,4 @@
-﻿using ResotelApp.Models;
-using ResotelApp.ViewModels.Entities;
+﻿using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
@@ -7,7 +6,7 @@ using System.ComponentModel;
 
 namespace ResotelApp.ViewModels
 {
-    class ClientViewModel : INavigableViewModel, INotifyPropertyChanged, ICloneable
+    class ClientViewModel : INavigableViewModel, INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;
         private ClientEntity _clientEntity;
@@ -25,6 +24,7 @@ namespace ResotelApp.ViewModels
 
         public event EventHandler<INavigableViewModel> NextCalled;
         public event EventHandler<INavigableViewModel> PreviousCalled;
+        public event EventHandler<INavigableViewModel> Shutdown;
 
         public ClientEntity Client
         {
@@ -84,10 +84,13 @@ namespace ResotelApp.ViewModels
             _navigation.AddLast(this);
         }
 
-        public object Clone()
+        ~ClientViewModel()
         {
-            ClientViewModel clientViewModel = new ClientViewModel(_navigation, _clientEntity);
-            return clientViewModel;
+            _clientEntity.PropertyChanged -= _clientChanged;
+            if(Shutdown != null)
+            {
+                Shutdown(this, this);
+            }
         }
 
         private void _clientChanged(object sender, PropertyChangedEventArgs pcea)

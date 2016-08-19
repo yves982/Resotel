@@ -1,4 +1,5 @@
 ﻿using ResotelApp.Models;
+using ResotelApp.Repositories;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
@@ -22,6 +23,7 @@ namespace ResotelApp.ViewModels
 
         private DelegateCommandAsync<BookingViewModel> _newClientCommand;
         private DelegateCommandAsync<BookingViewModel> _searchClientCommand;
+        private bool _parametersValidated;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -30,8 +32,8 @@ namespace ResotelApp.ViewModels
         }
 
         public event EventHandler<INavigableViewModel> NextCalled;
-
         public event EventHandler<INavigableViewModel> PreviousCalled;
+        public event EventHandler<INavigableViewModel> Shutdown;
 
         public BookingParametersViewModel Parameters
         {
@@ -81,6 +83,16 @@ namespace ResotelApp.ViewModels
             }
         }
 
+        public bool ParametersValidated
+        {
+            get { return _parametersValidated; }
+            set
+            {
+                _parametersValidated = value;
+                _pcs.NotifyChange();
+            }
+        }
+
         public LinkedList<INavigableViewModel> Navigation
         {
             get { return _navigation; }
@@ -92,7 +104,7 @@ namespace ResotelApp.ViewModels
             {
                 if(_newClientCommand == null)
                 {
-                    _newClientCommand = new DelegateCommandAsync<BookingViewModel>(_newClient);
+                    _newClientCommand = new DelegateCommandAsync<BookingViewModel>(_newClient, _parametersValidated);
                 }
                 return _newClientCommand;
             }
@@ -104,18 +116,19 @@ namespace ResotelApp.ViewModels
             {
                 if(_searchClientCommand == null)
                 {
-                    _searchClientCommand = new DelegateCommandAsync<BookingViewModel>(_searchClient);
+                    _searchClientCommand = new DelegateCommandAsync<BookingViewModel>(_searchClient, _parametersValidated);
                 }
                 return _searchClientCommand;
             }
         }
 
-        public BookingViewModel(LinkedList<INavigableViewModel> navigation, Booking booking, List<OptionEntity> availableOptions, List<RoomChoiceEntity> availableRoomChoices)
+        public BookingViewModel(LinkedList<INavigableViewModel> navigation, Booking booking)
         {
             _pcs = new PropertyChangeSupport(this);
             _parameters = new BookingParametersViewModel(booking);
-            _options = new OptionsViewModel(booking, availableOptions);
-            _roomsChoices = new RoomsChoiceViewModel(availableRoomChoices);
+            _parameters.Defined += _parameters_defined;
+            _parameters.PropertyChanged += _parametersChanged;
+            _parametersValidated = false;
             _booking = booking;
             _clientEntity = new ClientEntity(booking.Client);
             _clientEntity.Bookings.Add(booking);
@@ -123,6 +136,81 @@ namespace ResotelApp.ViewModels
             _clientEntity.PropertyChanged += _clientChanged;
             _navigation = navigation;
             _navigation.AddLast(this);
+        }
+
+        ~BookingViewModel()
+        {
+            _parameters.Defined -= _parameters_defined;
+            _parameters.PropertyChanged -= _parametersChanged;
+            _clientEntity.PropertyChanged -= _clientChanged;
+            if(Shutdown != null)
+            {
+                Shutdown(this, this);
+            }
+        }
+
+        private async void _parameters_defined(object sender, BookingParametersViewModel bookingParametersVM)
+        {
+            ParametersValidated = true;
+            _newClientCommand.ChangeCanExecute();
+            _searchClientCommand.ChangeCanExecute();
+            List<Option> availableOptions = await OptionRepository.GetAvailablesBetweenAsync(bookingParametersVM.DateRange);
+            List<Room> availableRooms = await RoomRepository.GetAvailablesBetweenAsync(bookingParametersVM.DateRange);
+
+            List<OptionChoiceEntity> availableOptionEntities = new List<OptionChoiceEntity>();
+            List<RoomChoiceEntity> availableRoomChoiceEntities = new List<RoomChoiceEntity>();
+            Dictionary<RoomKind, int> availableRoomKinds = new Dictionary<RoomKind, int>();
+            foreach(Option opt in availableOptions)
+            {
+                OptionChoice optChoice = new OptionChoice {
+                    Option = opt,
+                    TakenDates = (DateRange)((ICloneable)bookingParametersVM.DateRange).Clone()
+                };
+                OptionChoiceEntity optionEntity = new OptionChoiceEntity(optChoice);
+                availableOptionEntities.Add(optionEntity);
+            }
+
+            foreach(Room room in availableRooms)
+            {
+                if(!availableRoomKinds.ContainsKey(room.Kind))
+                {
+                    availableRoomKinds.Add(room.Kind, 1);
+                    RoomChoiceEntity roomChoice = new RoomChoiceEntity(room.Kind, 0);
+                    availableRoomChoiceEntities.Add(roomChoice);
+                } else
+                {
+                    availableRoomKinds[room.Kind]++;
+                }
+            }
+
+            foreach(RoomChoiceEntity roomChoice in availableRoomChoiceEntities)
+            {
+                roomChoice.MaxAvailable = availableRoomKinds[roomChoice.RoomKind];
+            }
+
+            Options = new OptionsViewModel(_booking, availableOptionEntities);
+            RoomsChoices = new RoomsChoiceViewModel(availableRoomChoiceEntities);
+            RoomsChoices.AvailableRoomsChoicesView.Filter = _mustShowRoomChoice;
+        }
+
+        private bool _mustShowRoomChoice(object item)
+        {
+            if(! (item is RoomChoiceEntity) )
+            {
+                throw new InvalidOperationException("On ne peut pas filtrer la liste des choix de chambre. Cette exception est critique");
+            }
+            RoomChoiceEntity roomChoice = (RoomChoiceEntity)item;
+            return !roomChoice.RoomKind.Equals(RoomKind.DoubleWithBaby) || _parameters.BabiesCount > 0;
+        }
+
+        private void _parametersChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (_newClientCommand.CanExecute(null))
+            {
+                ParametersValidated = false;
+                _newClientCommand.ChangeCanExecute();
+                _searchClientCommand.ChangeCanExecute();
+            }
         }
 
         private void _computeTitle(ClientEntity clientEntity)

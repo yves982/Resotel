@@ -58,6 +58,7 @@
                         ></xctk:IntegerUpDown>
                 </Grid>
             </Expander>
+            <Button HorizontalAlignment="Center" Command="{Binding ValidateCommand}">Valider</Button>
         </StackPanel>
     </GroupBox>
 </UserControl>

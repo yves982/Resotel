@@ -10,7 +10,7 @@
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
         <Grid.Resources>
-            <DataTemplate DataType="{x:Type vme:OptionEntity}">
+            <DataTemplate DataType="{x:Type vme:OptionChoiceEntity}">
                 <local:OptionView></local:OptionView>
             </DataTemplate>
         </Grid.Resources>

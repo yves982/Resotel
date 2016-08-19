@@ -6,10 +6,10 @@ using System.Text;
 
 namespace ResotelApp.ViewModels.Entities
 {
-    class OptionEntity : IEntity, INotifyPropertyChanged, ICloneable
+    class OptionChoiceEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;
-        private Option _option;
+        private OptionChoice _optionChoice;
         private string _description;
         private string _imageFullPath;
         private bool _taken;
@@ -20,9 +20,9 @@ namespace ResotelApp.ViewModels.Entities
             remove { _pcs.Handler -= value; }
         }
 
-        public Option Option
+        public OptionChoice OptionChoice
         {
-            get { return _option; }
+            get { return _optionChoice; }
         }
 
         public string Description
@@ -58,14 +58,41 @@ namespace ResotelApp.ViewModels.Entities
             }
         }
 
-        public OptionEntity(Option option)
+        public DateRange TakenDates
+        {
+            get { return _optionChoice.TakenDates; }
+            set
+            {
+                _optionChoice.TakenDates = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        string IDataErrorInfo.Error
+        {
+            get
+            {
+                return ((IDataErrorInfo)_optionChoice).Error;
+            }
+        }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                return ((IDataErrorInfo)_optionChoice)[columnName];
+            }
+        }
+
+        public OptionChoiceEntity(OptionChoice optionChoice)
         {
             _pcs = new PropertyChangeSupport(this);
-            _option = option;
-            _description = option.Label;
+            _optionChoice = optionChoice;
+            _description = optionChoice.Option.Label;
+            
             string cleanedLabel;
             
-            cleanedLabel = _cleanLabel(option.Label);
+            cleanedLabel = _cleanLabel(optionChoice.Option.Label);
             _imageFullPath = string.Format("/Resources/{0}.png", cleanedLabel);
             _taken = false;
         }
@@ -94,19 +121,13 @@ namespace ResotelApp.ViewModels.Entities
             return cleanedLabel;
         }
 
-        private OptionEntity(string description, string imageFullName, Option option, bool taken = false)
+        private OptionChoiceEntity(string description, string imageFullName, OptionChoice option, bool taken = false)
         {
             _pcs = new PropertyChangeSupport(this);
-            _option = option;
+            _optionChoice = option;
             _description = description;
             _imageFullPath = imageFullName;
             _taken = taken;
-        }
-
-        public object Clone()
-        {
-            OptionEntity option = new OptionEntity(_description, _imageFullPath, _option, _taken);
-            return option;
         }
     }
 }

@@ -3,6 +3,7 @@ namespace ResotelApp.Migrations
     using Models;
     using System;
     using System.Collections.Generic;
+    using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Globalization;
     using System.IO;
@@ -67,15 +68,10 @@ namespace ResotelApp.Migrations
                     option.Rooms.AddRange(roomIds.Select(id => uniqueRooms[id]));
                 }
 
-                context.Set<Room>().AddOrUpdate(room => room.Id, uniqueRooms.Values.ToArray());
-                context.Set<Option>().AddOrUpdate(opt => opt.Id, uniqueRooms.Values.Select(room => room.Options)
-                    .Aggregate((optsRoom1, optsRoom2) =>
-                    {
-                        List<Option> opts = new List<Option>();
-                        opts.AddRange(optsRoom1);
-                        opts.AddRange(optsRoom2);
-                        return opts;
-                    }).ToArray());
+                context.Rooms.Include(room => room.Options).Load();
+                context.Options.Include(opt => opt.Rooms).Load();
+                context.Rooms.AddOrUpdate(room => room.Id, uniqueRooms.Values.ToArray());
+                context.Options.AddOrUpdate(opt => opt.Id, uniqueOptions.Values.ToArray());
                 
             }
 
@@ -97,7 +93,7 @@ namespace ResotelApp.Migrations
             {
                 Id = int.Parse(e.Element("Id").Value),
                 BedKind = (BedKind)Enum.Parse(typeof(BedKind), e.Element("BedKind").Value),
-                Size = int.Parse(e.Element("Size").Value),
+                Capacity = int.Parse(e.Element("Capacity").Value),
                 Stage = int.Parse(e.Element("Stage").Value),
                 Options = new List<Models.Option>(),
                 IsCleaned = e.Element("IsCleaned").Value == "" ? false : bool.Parse(e.Element("IsCleaned").Value)

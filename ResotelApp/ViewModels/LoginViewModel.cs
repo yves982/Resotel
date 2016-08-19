@@ -32,6 +32,7 @@ namespace ResotelApp.ViewModels
             set
             {
                 _login = value;
+                _unlockLoginIfNeeded();
                 _pcs.NotifyChange();
             }
         }
@@ -62,6 +63,7 @@ namespace ResotelApp.ViewModels
             set
             {
                 _securePassword = value;
+                _unlockLoginIfNeeded();
                 _pcs.NotifyChange();
             }
         }
@@ -82,7 +84,7 @@ namespace ResotelApp.ViewModels
             {
                 if (_loginCommand == null)
                 {
-                    _loginCommand = new DelegateCommandAsync<object>(_onLogin);
+                    _loginCommand = new DelegateCommandAsync<object>(_onLogin, false);
                 }
                 return _loginCommand;
             }
@@ -102,7 +104,25 @@ namespace ResotelApp.ViewModels
 
         public string Error
         {
-            get { return null; }
+            get
+            {
+                string error = null;
+                string pwdError = this[nameof(SecurePassword)];
+                string loginError = this[nameof(Login)];
+                if(pwdError != null && loginError != null)
+                {
+                    error = string.Format("{0};{1}", pwdError, loginError); 
+                } else if(pwdError != null)
+                {
+                    error = pwdError;
+                } else if(loginError != null)
+                {
+                    error = loginError;
+                }
+
+
+                return error;
+            }
         }
 
         public string this[string columnName]
@@ -119,7 +139,7 @@ namespace ResotelApp.ViewModels
                         }
                         break;
                     case nameof(Login):
-                        if(_login == null || _login.Length == 0)
+                        if(_login == null || _login.Length == 0 )
                         {
                             error = @"Le champ ""Login"" est requis.";
                         }
@@ -141,6 +161,24 @@ namespace ResotelApp.ViewModels
             _loginResult = "";
             _resultReady = false;
             _title = "Resotel - Login";
+        }
+
+        private void _unlockLoginIfNeeded()
+        {
+            if (_login != null && _login.Length > 0
+                    && _securePassword != null && SecureStringUtil.Read(_securePassword).Length > 0
+                    && !_loginCommand.CanExecute(null))
+            {
+                _loginCommand.ChangeCanExecute();
+            }
+            else if( (
+                        _login == null || _login.Length == 0
+                        || _securePassword == null || SecureStringUtil.Read(_securePassword).Length == 0
+                     ) && _loginCommand.CanExecute(null)
+            )
+            {
+                _loginCommand.ChangeCanExecute();
+            }
         }
 
         private void _onLoad(IUITimer timer)

@@ -1,12 +1,10 @@
 ﻿using ResotelApp.Models;
-using ResotelApp.Repositories;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -16,8 +14,6 @@ namespace ResotelApp.ViewModels
     {
         private ICollectionView _currentEntitiesView;
         private ObservableCollection<INavigableViewModel> _currentEntities;
-        private List<OptionEntity> _availableOptions;
-        private List<RoomChoiceEntity> _defaultAvailableRoomChoices;
         private PropertyChangeSupport _pcs;
         private string _title;
         private UserEntity _user;
@@ -27,7 +23,6 @@ namespace ResotelApp.ViewModels
         private DelegateCommand<object> _addBookingCommand;
         private DelegateCommand<IEntity> _closeBookingCommand;
         private DelegateCommand<object> _addClientCommand;
-        private DelegateCommandAsync<object> _loadCommand;
         private DelegateCommand<BookingViewModel> _nextCommand;
         private DelegateCommand<BookingViewModel> _prevCommand;
 
@@ -70,18 +65,6 @@ namespace ResotelApp.ViewModels
                     _addClientCommand = new DelegateCommand<object>(_addClient);
                 }
                 return _addClientCommand;
-            }
-        }
-
-        public ICommand LoadCommand
-        {
-            get
-            {
-                if(_loadCommand == null)
-                {
-                    _loadCommand = new DelegateCommandAsync<object>(_load);
-                }
-                return _loadCommand;
             }
         }
 
@@ -143,8 +126,6 @@ namespace ResotelApp.ViewModels
             _user = user;
             _currentEntities = new ObservableCollection<INavigableViewModel>();
             _title = "Resotel - Facturation";
-            _availableOptions = new List<OptionEntity>();
-            _defaultAvailableRoomChoices = new List<RoomChoiceEntity>();
             _navigation = new LinkedList<INavigableViewModel>();
         }
 
@@ -154,9 +135,7 @@ namespace ResotelApp.ViewModels
             booking.CreationDate = DateTime.Now;
             booking.Dates.Start = DateTime.Now;
             booking.Dates.End = DateTime.Now.AddDays(1.0);
-            List<OptionEntity> availableOptions = _cloneOptions();
-            List<RoomChoiceEntity> availableRoomsChoices = _cloneRoomsChoices();
-            BookingViewModel bookingVM = new BookingViewModel(_navigation, booking, availableOptions, availableRoomsChoices);
+            BookingViewModel bookingVM = new BookingViewModel(_navigation, booking);
             _navigation = bookingVM.Navigation;
             _currentEntities.Add(bookingVM);
             _currentEntitiesView.MoveCurrentToPosition(_currentEntities.Count - 1);
@@ -166,7 +145,10 @@ namespace ResotelApp.ViewModels
 
         private void _addClient(object ignore)
         {
-            
+            Client newClient = new Client();
+            ClientEntity newClientEntity = new ClientEntity(newClient);
+            ClientViewModel clientVM = new ClientViewModel(_navigation, newClientEntity);
+            _currentEntities.Add(clientVM);
         }
 
         private void _closeBooking(IEntity closedEntity)
@@ -188,56 +170,6 @@ namespace ResotelApp.ViewModels
             }
         }
 
-        private List<OptionEntity> _cloneOptions()
-        {
-            List<OptionEntity> options = new List<OptionEntity>();
-            foreach(OptionEntity opt in _availableOptions)
-            {
-                options.Add((OptionEntity)((ICloneable)opt).Clone());
-            }
-            return options;
-        }
-
-        private List<RoomChoiceEntity> _cloneRoomsChoices()
-        {
-            List<RoomChoiceEntity> roomsChoices = new List<RoomChoiceEntity>();
-            foreach(RoomChoiceEntity roomChoice in _defaultAvailableRoomChoices)
-            {
-                roomsChoices.Add((RoomChoiceEntity)((ICloneable)roomChoice).Clone());
-            }
-            return roomsChoices;
-        }
-
-        private async Task _load(object ignore)
-        {
-            
-            DateRange defaultBookingDates = new DateRange
-            {
-                Start = DateTime.Now,
-                End = DateTime.Now.AddDays(1.0)
-            };
-
-            List<Option> availableOptions = await OptionRepository.GetAvailablesBetweenAsync(defaultBookingDates);
-            List<Room> defaultAvailableRooms = await RoomRepository.GetAvailablesBetweenAsync(defaultBookingDates);
-
-            foreach(Option opt in availableOptions)
-            {
-                _availableOptions.Add(new OptionEntity(opt));
-            }
-
-            HashSet<BedKind> bedKinds = new HashSet<BedKind>();
-            foreach(Room room in defaultAvailableRooms)
-            {
-                if(!bedKinds.Contains(room.BedKind))
-                {
-                    bedKinds.Add(room.BedKind);
-                    string imageFullPath = string.Format("/Resources/BedKind_{0}.png", room.BedKind.ToString());
-                    RoomChoiceEntity roomChoice = new RoomChoiceEntity(imageFullPath, room.BedKind);
-                    _defaultAvailableRoomChoices.Add(roomChoice);
-                }
-            }
-        }
-
 
         private void _nextCalled(object sender, INavigableViewModel navigableVM)
         {
@@ -249,6 +181,11 @@ namespace ResotelApp.ViewModels
             _prev(navigableVM);
         }
 
+        private void _nodeShutdown(object sender, INavigableViewModel navigableVM)
+        {
+            _node_shutdown(navigableVM);
+        }
+
         private void _next(INavigableViewModel navigableVM)
         {
             LinkedListNode<INavigableViewModel> currentNode = _navigation.Find(navigableVM);
@@ -258,6 +195,7 @@ namespace ResotelApp.ViewModels
                 _currentEntities[_currentEntitiesView.CurrentPosition] = currentNode.Value;
                 currentNode.Value.NextCalled += _nextCalled;
                 currentNode.Value.PreviousCalled += _prevCalled;
+                currentNode.Value.Shutdown += _nodeShutdown;
             }
         }
 
@@ -268,6 +206,16 @@ namespace ResotelApp.ViewModels
             {
                 currentNode = currentNode.Previous;
                 _currentEntities[_currentEntitiesView.CurrentPosition] = currentNode.Value;
+            }
+        }
+
+        private void _node_shutdown(INavigableViewModel navigableVM)
+        {
+            if (navigableVM != null)
+            {
+                navigableVM.NextCalled -= _nextCalled;
+                navigableVM.PreviousCalled -= _prevCalled;
+                navigableVM.Shutdown -= _nodeShutdown;
             }
         }
     }

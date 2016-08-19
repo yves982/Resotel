@@ -10,40 +10,52 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300">
     <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="80px"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="60px"></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-                <Grid.Resources>
-                    <Style TargetType="CheckBox">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140"></ColumnDefinition>
+            <ColumnDefinition Width="80px"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60px"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="CheckBox">
+                <Setter Property="ContentTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <TextBlock>Non Prise</TextBlock>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Style.Triggers>
+                    <Trigger Property="IsChecked" Value="True">
                         <Setter Property="ContentTemplate">
                             <Setter.Value>
                                 <DataTemplate>
-                                    <TextBlock>Non Prise</TextBlock>
+                                    <TextBlock>Prise</TextBlock>
                                 </DataTemplate>
                             </Setter.Value>
                         </Setter>
-                        <Style.Triggers>
-                            <Trigger Property="IsChecked" Value="True">
-                                <Setter Property="ContentTemplate">
-                                    <Setter.Value>
-                                        <DataTemplate>
-                                            <TextBlock>Prise</TextBlock>
-                                        </DataTemplate>
-                                    </Setter.Value>
-                                </Setter>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </Grid.Resources>
-                <Image 
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Resources>
+        <Image 
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
                 Source="{Binding ImageFullPath}" Width="{StaticResource bookingImagesSize}" Height="{StaticResource bookingImagesSize}"></Image>
         <Label Grid.Row="1" Grid.Column="0" VerticalAlignment="Top" Content="{Binding Description}"></Label>
-                <CheckBox Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0 6 0 0" IsChecked="{Binding Taken}">Non Prise</CheckBox>
-            </Grid>
+        <CheckBox Name="TakenChxBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0 6 0 0" IsChecked="{Binding Taken}">Non Prise</CheckBox>
+        <TextBlock Grid.Row="2" Grid.Column="0"       
+            Text="Date de début"></TextBlock>
+        <DatePicker Grid.Row="2" Grid.Column="1" 
+            Name="StartDate" SelectedDate="{Binding TakenDates.Start}"
+            IsEnabled="{Binding ElementName=TakenChxBox, Path=IsChecked}"></DatePicker>
+        <TextBlock Grid.Row="3" Grid.Column="0"
+            Text="Date de fin"></TextBlock>
+        <DatePicker Grid.Row="3" Grid.Column="1"
+            Name="EndDate" SelectedDate="{Binding TakenDates.End}"
+            IsEnabled="{Binding ElementName=TakenChxBox, Path=IsChecked}"></DatePicker>
+    </Grid>
 </UserControl>

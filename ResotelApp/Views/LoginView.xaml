@@ -90,9 +90,9 @@
         <PasswordBox  Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"
             Name="PasswordPwdb" MaxLength="50" Width="70"
             Style="{StaticResource validatedTemplate}"
-            Tag="{Binding SecurePassword, ValidatesOnDataErrors=True}">
+            Tag="{Binding SecurePassword, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
             <i:Interaction.Behaviors>
-                <bh:BindPasswordBehaviour BoundPassword="{Binding SecurePassword, UpdateSourceTrigger=PropertyChanged}"></bh:BindPasswordBehaviour>
+                <bh:BindPasswordBehaviour BoundPassword="{Binding SecurePassword}"></bh:BindPasswordBehaviour>
             </i:Interaction.Behaviors>
         </PasswordBox>
         <Button Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
