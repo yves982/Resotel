@@ -35,9 +35,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>2</Id>
@@ -74,9 +96,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>3</Id>
@@ -113,9 +157,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>4</Id>
@@ -152,9 +218,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>5</Id>
@@ -191,9 +279,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>6</Id>
@@ -230,9 +340,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>7</Id>
@@ -269,9 +401,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>8</Id>
@@ -308,9 +462,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>9</Id>
@@ -347,9 +523,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>10</Id>
@@ -386,9 +584,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>11</Id>
@@ -425,9 +645,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>12</Id>
@@ -464,9 +706,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>13</Id>
@@ -503,9 +767,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>14</Id>
@@ -542,9 +828,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>15</Id>
@@ -581,9 +889,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>16</Id>
@@ -620,9 +950,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>17</Id>
@@ -659,9 +1011,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>18</Id>
@@ -698,9 +1072,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>19</Id>
@@ -737,9 +1133,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>20</Id>
@@ -776,9 +1194,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>21</Id>
@@ -815,9 +1255,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>22</Id>
@@ -854,9 +1316,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>1</Id>
+        <PackPrice>49</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>2</Id>
+        <PackPrice>229</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>3</Id>
+        <PackPrice>399</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>23</Id>
@@ -893,9 +1377,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>24</Id>
@@ -932,9 +1438,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>25</Id>
@@ -971,9 +1499,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>26</Id>
@@ -1010,9 +1560,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>27</Id>
@@ -1049,9 +1621,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>28</Id>
@@ -1088,9 +1682,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>29</Id>
@@ -1127,9 +1743,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>30</Id>
@@ -1166,9 +1804,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>31</Id>
@@ -1210,9 +1870,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>32</Id>
@@ -1254,9 +1936,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>33</Id>
@@ -1298,9 +2002,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>34</Id>
@@ -1342,9 +2068,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>35</Id>
@@ -1386,9 +2134,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>36</Id>
@@ -1430,9 +2200,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>37</Id>
@@ -1474,9 +2266,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>38</Id>
@@ -1518,9 +2332,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>4</Id>
+        <PackPrice>89</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>5</Id>
+        <PackPrice>429</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>6</Id>
+        <PackPrice>799</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>39</Id>
@@ -1557,9 +2393,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>7</Id>
+        <PackPrice>260</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>8</Id>
+        <PackPrice>1279</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>9</Id>
+        <PackPrice>2490</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>40</Id>
@@ -1596,9 +2454,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>7</Id>
+        <PackPrice>260</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>8</Id>
+        <PackPrice>1279</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>9</Id>
+        <PackPrice>2490</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>41</Id>
@@ -1635,9 +2515,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>10</Id>
+        <PackPrice>179</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>11</Id>
+        <PackPrice>879</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>12</Id>
+        <PackPrice>1689</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>42</Id>
@@ -1674,9 +2576,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>10</Id>
+        <PackPrice>179</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>11</Id>
+        <PackPrice>879</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>12</Id>
+        <PackPrice>1689</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>43</Id>
@@ -1713,9 +2637,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>10</Id>
+        <PackPrice>179</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>11</Id>
+        <PackPrice>879</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>12</Id>
+        <PackPrice>1689</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>44</Id>
@@ -1752,9 +2698,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>13</Id>
+        <PackPrice>139</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>14</Id>
+        <PackPrice>669</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>15</Id>
+        <PackPrice>1289</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>45</Id>
@@ -1791,9 +2759,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>13</Id>
+        <PackPrice>139</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>14</Id>
+        <PackPrice>669</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>15</Id>
+        <PackPrice>1289</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>46</Id>
@@ -1830,9 +2820,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>13</Id>
+        <PackPrice>139</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>14</Id>
+        <PackPrice>669</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>15</Id>
+        <PackPrice>1289</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>47</Id>
@@ -1869,9 +2881,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>13</Id>
+        <PackPrice>139</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>14</Id>
+        <PackPrice>669</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>15</Id>
+        <PackPrice>1289</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>48</Id>
@@ -1908,9 +2942,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>13</Id>
+        <PackPrice>139</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>14</Id>
+        <PackPrice>669</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>15</Id>
+        <PackPrice>1289</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>49</Id>
@@ -1947,9 +3003,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>13</Id>
+        <PackPrice>139</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>14</Id>
+        <PackPrice>669</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>15</Id>
+        <PackPrice>1289</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>50</Id>
@@ -1986,9 +3064,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>13</Id>
+        <PackPrice>139</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>14</Id>
+        <PackPrice>669</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>15</Id>
+        <PackPrice>1289</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>51</Id>
@@ -2025,9 +3125,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>13</Id>
+        <PackPrice>139</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>14</Id>
+        <PackPrice>669</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>15</Id>
+        <PackPrice>1289</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>52</Id>
@@ -2064,9 +3186,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>16</Id>
+        <PackPrice>99</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>17</Id>
+        <PackPrice>439</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>18</Id>
+        <PackPrice>809</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>53</Id>
@@ -2103,9 +3247,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>16</Id>
+        <PackPrice>99</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>17</Id>
+        <PackPrice>439</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>18</Id>
+        <PackPrice>809</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>54</Id>
@@ -2142,9 +3308,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>16</Id>
+        <PackPrice>99</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>17</Id>
+        <PackPrice>439</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>18</Id>
+        <PackPrice>809</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>55</Id>
@@ -2181,9 +3369,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>16</Id>
+        <PackPrice>99</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>17</Id>
+        <PackPrice>439</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>18</Id>
+        <PackPrice>809</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>56</Id>
@@ -2220,9 +3430,31 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>16</Id>
+        <PackPrice>99</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>17</Id>
+        <PackPrice>439</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>18</Id>
+        <PackPrice>809</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
   <Room>
     <Id>57</Id>
@@ -2259,8 +3491,30 @@
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
       </Option>
+      <Option>
+        <Id>8</Id>
+        <Label>Restauration</Label>
+        <BasePrice>30.00</BasePrice>
+      </Option>
     </Options>
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
+    <AvailablePacks>
+      <Discount>
+        <Id>16</Id>
+        <PackPrice>99</PackPrice>
+        <PackQuantity>1</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>17</Id>
+        <PackPrice>439</PackPrice>
+        <PackQuantity>5</PackQuantity>
+      </Discount>
+      <Discount>
+        <Id>18</Id>
+        <PackPrice>809</PackPrice>
+        <PackQuantity>10</PackQuantity>
+      </Discount>
+    </AvailablePacks>
   </Room>
 </Rooms>

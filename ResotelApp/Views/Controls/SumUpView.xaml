@@ -1,0 +1,145 @@
+﻿<UserControl x:Class="ResotelApp.Views.Controls.SumUpView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ResotelApp.Views.Controls"
+             xmlns:vme="clr-namespace:ResotelApp.ViewModels.Entities"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <FlowDocumentScrollViewer>
+            <FlowDocument>
+                <Paragraph>
+                    <Image Source="/Resources/ResotelAppIcon.png" Width="64" Height="64"></Image>
+                    <Span BaselineAlignment="Center">Resotel</Span>
+                    <Span BaselineAlignment="Center">SIRET</Span>
+                    <Run Text="{Binding SIRET}"></Run>
+                </Paragraph>
+                <Table>
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>Dates</Paragraph>
+                            </TableCell>
+                            <TableCell ColumnSpan="2">
+                                <Paragraph>Du</Paragraph>
+                            </TableCell>
+                            <TableCell ColumnSpan="2">
+                                <Paragraph>Au</Paragraph>
+                            </TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell></TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Image Source="/Resources/calendarIcon.png" Width="16"></Image>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Run Text="{Binding Booking.Dates.Start, StringFormat=dd/MM/yyyy}"></Run>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Image Source="/Resources/calendarIcon.png" Width="16"></Image>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Run Text="{Binding Booking.Dates.End, StringFormat=dd/MM/yyyy}"></Run>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Image Source="/Resources/emailIcon.png" Width="16"></Image>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Run Text="{Binding Client.Email}"></Run>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>Client</Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Run Text="{Binding Client.FirstName}"></Run>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Run Text="{Binding Client.LastName}"></Run>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Image Source="/Resources/phoneIcon.png" Width="16"></Image>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell></TableCell>
+                            <TableCell ColumnSpan="2">
+                                <Paragraph>
+                                    <Run Text="{Binding Client.Address}"></Run>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell></TableCell>
+                            <TableCell ColumnSpan="2">
+                                <Paragraph>
+                                    <Run Text="{Binding Client.ZipCode}"></Run>
+                                    <Run Text="{Binding Client.City}"></Run>
+                                </Paragraph>
+                            </TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                            <TableCell></TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+                <BlockUIContainer>
+                    <BlockUIContainer.Resources>
+                        <DataTemplate DataType="{x:Type vme:OptionChoiceEntity}">
+                            <local:SumUpOptionView></local:SumUpOptionView>
+                        </DataTemplate>
+                    </BlockUIContainer.Resources>
+                    <ListBox ItemsSource="{Binding OptionChoices}">
+                    </ListBox>
+                </BlockUIContainer>
+                <Paragraph>
+                    <TextBlock Width="110">Total Options:</TextBlock>
+                    <TextBlock Width="50" Text="{Binding OptionTotal}"></TextBlock>
+                </Paragraph>
+
+                <BlockUIContainer>
+                    <BlockUIContainer.Resources>
+                        <DataTemplate DataType="{x:Type vme:BookedRoomEntity}">
+                            <local:BookedRoomView></local:BookedRoomView>
+                        </DataTemplate>
+                    </BlockUIContainer.Resources>
+                    <ListBox ItemsSource="{Binding Rooms}">
+                    </ListBox>
+                </BlockUIContainer>
+                <Paragraph>
+                    <TextBlock Width="110">Total Options:</TextBlock>
+                    <TextBlock Width="50" Text="{Binding RoomsTotal}"></TextBlock>
+                </Paragraph>
+            </FlowDocument>
+        </FlowDocumentScrollViewer> 
+    </Grid>
+</UserControl>

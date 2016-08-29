@@ -2,15 +2,16 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ResotelApp.Models
 {
     public class Booking : IValidable, IDataErrorInfo
     {
-        private Discount _roomDiscount;
         private Discount _optionDiscount;
+        private OptionChoice _discountedOptionChoice;
+        private List<AppliedDiscount> _roomDiscounts;
+
         private Dictionary<string, Func<string>> _propertiesValidations;
 
         public int Id { get; set; }
@@ -24,43 +25,59 @@ namespace ResotelApp.Models
         public int BabiesCount { get; set; }
         public BookingState State { get; set; }
 
-        [NotMapped]
-        public Discount RoomDiscount
+        public Discount OptionDiscount
         {
-            get { return _roomDiscount; }
-            set
+            get
             {
-                string errMessage = "";
-                if(value.Room == null)
+                if(_optionDiscount == null)
                 {
-                    errMessage = string.Format("La promotion de chambre de la réservation {0} doit contenir une chambre.", Id);
-                    throw new InvalidOperationException(errMessage);
-                } else if(!Rooms.Contains(value.Room))
-                {
-                    errMessage = string.Format("Cette promotion de chambre concerne une chambre ne faisant pas partie de la réservation {0}", Id);
-                    throw new InvalidOperationException(errMessage);
+                    _computeOptionDiscount();
                 }
-                _roomDiscount = value;
+                return _optionDiscount;
             }
         }
 
-        public Discount OptionDiscount
+        public OptionChoice DiscountedOptionChoice
         {
-            get { return _optionDiscount; }
+            get
+            {
+                if(_discountedOptionChoice == null)
+                {
+                    _computeOptionDiscount();
+                }
+                return _discountedOptionChoice;
+            }
+        }
+
+        public List<AppliedDiscount> RoomDiscounts
+        {
+            get
+            {
+                if(_roomDiscounts == null)
+                {
+                    foreach(Room room in Rooms)
+                    {
+                        List<Discount> orderedPacks = new List<Discount>(room.AvailablePacks);
+                        orderedPacks.Sort((firstDiscount, secondDiscount) =>
+                        secondDiscount.PackQuantity.CompareTo(firstDiscount.PackQuantity));
+                        int leftDays = Dates.Days;
+                        foreach(Discount pack in orderedPacks)
+                        {
+                            int quantity = leftDays / pack.PackQuantity;
+                            leftDays = leftDays % pack.PackQuantity;
+                            if(quantity > 0)
+                            {
+                                AppliedDiscount appliedDiscount = new AppliedDiscount { Count=quantity, Discount=pack };
+                                _roomDiscounts.Add(appliedDiscount);
+                            }
+                        }
+                    }
+                }
+                return _roomDiscounts;
+            }
             set
             {
-                string errMessage = "";
-                if(value.Option == null)
-                {
-                    errMessage = string.Format("La promotion d'option de la réservation {0} doit contenir une option.", Id);
-                    throw new InvalidOperationException(errMessage);
-                } else if (OptionChoices.FindIndex( (Predicate<OptionChoice>)(optChoice => optChoice.Option.Id == value.Option.Id)) == -1)
-                {
-                    errMessage = string.Format("Cette promotion d'option concerne une option ne faisant pas partie de la réservation {0}"
-                        , Id);
-                    throw new InvalidOperationException(errMessage);
-                }
-                _optionDiscount = value;
+                _roomDiscounts = value;
             }
         }
 
@@ -98,6 +115,19 @@ namespace ResotelApp.Models
                     error = _propertiesValidations[columnName]();
                 }
                 return error;
+            }
+        }
+
+        private void _computeOptionDiscount()
+        {
+            List<OptionChoice> sortedOptionChoices = new List<OptionChoice>(OptionChoices);
+            sortedOptionChoices.Sort((firstOptChoice, secondOptChoice) =>
+                secondOptChoice.DiscountedAmmount.CompareTo(firstOptChoice.DiscountedAmmount)
+            );
+            if (sortedOptionChoices.Count > 0)
+            {
+                _optionDiscount = sortedOptionChoices[0].Option.CurrentDiscount;
+                _discountedOptionChoice = sortedOptionChoices[0];
             }
         }
 
@@ -157,49 +187,20 @@ namespace ResotelApp.Models
             return error;
         }
 
-        private string _validateRoomDiscount()
-        {
-            string error = null;
-            if (_roomDiscount != null && _roomDiscount.Room == null)
-            {
-                error = string.Format("La promotion de chambre {1} de la réservation {0} n'est pas valide, car sa chambre n'est pas renseignée", Id, _roomDiscount.Id);
-            } else if (_roomDiscount != null && !Rooms.Contains(_roomDiscount.Room))
-            {
-                error = string.Format("La promotion de chambre {1} ne concerne pas une chambre de la réservation {0}", Id, _roomDiscount.Id);
-            }
-            return error;
-        }
-
-        private string _validateOptionDiscount()
-        {
-            string error = null;
-            if (_optionDiscount != null && _optionDiscount.Option == null)
-            {
-                error = string.Format("La promotion d'option {1} de la réservation {0} n'est pas valide, car son option n'est pas renseignée", Id, _optionDiscount.Id);
-            }
-            else if (_optionDiscount != null &&
-                OptionChoices.FindIndex( (Predicate<OptionChoice>)(optChoice => optChoice.Option.Id == _optionDiscount.Option.Id)) == -1)
-            {
-                error = string.Format("La promotion d'option {1} ne concerne pas une option de la réservation {0}", Id, _optionDiscount.Id);
-            }
-            return error;
-        }
-
         public Booking()
         {
             Client = new Client();
             OptionChoices = new List<OptionChoice>();
             Rooms = new List<Room>();
             Dates = new DateRange();
+            _roomDiscounts = new List<AppliedDiscount>();
             _propertiesValidations = new Dictionary<string, Func<string>> {
                 { nameof(Client), _validateClient },
                 { nameof(OptionChoices), _validateOptions },
                 { nameof(Rooms), _validateRooms },
                 { nameof(Dates), _validateDates },
                 { nameof(AdultsCount), _validateAdultsCount },
-                { nameof(BabiesCount), _validateBabiesCount },
-                { nameof(RoomDiscount), _validateRoomDiscount },
-                { nameof(OptionDiscount), _validateOptionDiscount }
+                { nameof(BabiesCount), _validateBabiesCount }
             };
         }
 
@@ -220,12 +221,9 @@ namespace ResotelApp.Models
             bool datesValidates = _validateDates() == null;
             bool adultCountValidates = _validateAdultsCount() == null;
             bool babiesCountValidates = _validateBabiesCount() == null;
-            bool roomDiscountValidates = _validateRoomDiscount() == null;
-            bool optionDiscountValidates = _validateOptionDiscount() == null;
 
             return clientValidates && optionsValidates && roomValidates
-                && datesValidates && adultCountValidates && babiesCountValidates
-                && roomDiscountValidates && optionDiscountValidates;
+                && datesValidates && adultCountValidates && babiesCountValidates;
         }
     }
 }

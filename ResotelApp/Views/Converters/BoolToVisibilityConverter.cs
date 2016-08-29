@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
 
-namespace ResotelApp.Utils.Converters
+namespace ResotelApp.Views.Converters
 {
     [ValueConversion(typeof(bool), typeof(Visibility))]
     class BoolToVisibilityConverter : IValueConverter

@@ -24,6 +24,8 @@ namespace ResotelApp.Models
         public int Capacity { get; set; }
         public List<Option> Options { get; set; }
         public List<Booking> Bookings { get; set; }
+        public List<Discount> AvailablePacks { get; set; }
+
         [Required]
         [DefaultValue(false)]
         public bool IsCleaned { get; set; }
@@ -62,7 +64,6 @@ namespace ResotelApp.Models
                 return _kind.Value;
             }
         }
-
 
         string IDataErrorInfo.Error
         {
@@ -146,11 +147,13 @@ namespace ResotelApp.Models
         {
             Options = new List<Option>();
             Bookings = new List<Booking>();
+            AvailablePacks = new List<Discount>();
             _propertiesValidations = new Dictionary<string, Func<string>> {
                 { nameof(Stage), _validateStage },
                 { nameof(Capacity), _validateCapacity },
                 { nameof(Options), _validateOptions },
-                {nameof(Price), _validatePrice }
+                {nameof(Price), _validatePrice },
+                { nameof(AvailablePacks), _validateAvailablePacks }
             };
         }
 
@@ -179,7 +182,8 @@ namespace ResotelApp.Models
             StringBuilder stringBuilder = new StringBuilder();
             List<Option> invalidOptions = new List<Option>(Options);
             invalidOptions.RemoveAll(opt => (opt == null ? null : ((IDataErrorInfo)opt).Error) == null);
-            string error = string.Format("La chambre {0} est invalide car: {1}", Id, string.Join(";", invalidOptions) );
+            string optErrors = string.Join(";", invalidOptions.ConvertAll(opt => ((IDataErrorInfo)opt).Error));
+            string error = string.Format("La chambre {0} est invalide car: {1}", Id, optErrors );
             return error;
         }
 
@@ -193,6 +197,16 @@ namespace ResotelApp.Models
             return error;
         }
 
+        private string _validateAvailablePacks()
+        {
+            StringBuilder stringBuilder = new StringBuilder();
+            List<Discount> invalidPacks = new List<Discount>(AvailablePacks);
+            invalidPacks.RemoveAll(discount => (discount == null ? null : ((IDataErrorInfo)discount).Error) == null);
+            string packsError = string.Join(";", invalidPacks.ConvertAll(discount => ((IDataErrorInfo)discount).Error));
+            string error = string.Format("La chambre {0} est invalide car: {1}", Id, packsError);
+            return error;
+        }
+
         /// <summary>Validates a Room</summary>
         /// <returns>true if the room is valid, false otherwise</returns>
         /// <remarks>This method must be called before saving or showing an instance</remarks>
@@ -202,9 +216,10 @@ namespace ResotelApp.Models
             bool capacityValidates = _validateCapacity() == null;
             bool optionsValidates = _validateOptions() == null;
             bool priceValidates = _validatePrice() == null;
+            bool validateAvailablePacks = _validateAvailablePacks() == null;
 
             return stageValidates && capacityValidates && optionsValidates
-                 && priceValidates;
+                 && priceValidates && validateAvailablePacks;
         }
     }
 }

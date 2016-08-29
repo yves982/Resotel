@@ -38,7 +38,16 @@
     <StartupObject>CustomControlsTest.App</StartupObject>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
@@ -58,9 +67,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AppliedDiscount.cs" />
+    <Compile Include="BedKind.cs" />
+    <Compile Include="Booking.cs" />
+    <Compile Include="BookingState.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Controls\FlowDoc.xaml.cs">
+      <DependentUpon>FlowDoc.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="DateRange.cs" />
+    <Compile Include="Discount.cs" />
+    <Compile Include="FlowDocDataItem.cs" />
+    <Compile Include="FlowDocViewModel.cs" />
+    <Compile Include="IValidable.cs" />
+    <Compile Include="PredicateExpressionExtensions.cs" />
+    <Compile Include="PropertyChangeSupport.cs" />
+    <Compile Include="Room.cs" />
+    <Compile Include="RoomKind.cs" />
+    <Compile Include="RoomKindExtensions.cs" />
+    <Compile Include="SubstituteParametersVisitor.cs" />
     <Page Include="Controls\DateRangeSlider.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\FlowDoc.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SumUpOptionView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="CustomControlContainer.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -73,6 +109,9 @@
     <Compile Include="Controls\DateRangeSlider.xaml.cs">
       <DependentUpon>DateRangeSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\SumUpOptionView.xaml.cs">
+      <DependentUpon>SumUpOptionView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Converters\DateTimeDoubleConverter.cs" />
     <Compile Include="Converters\DoubleToDateTimeStringConverter.cs" />
     <Compile Include="CustomControlContainer.xaml.cs">
@@ -81,6 +120,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Option.cs" />
+    <Compile Include="OptionChoice.cs" />
+    <Compile Include="OptionChoiceEntity.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -98,6 +140,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -106,6 +149,42 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\AddBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bookingIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\clientAdd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\errorIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\next.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\ResotelAppIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\searchBtn.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\summaryIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\toggle_menu_checked2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\toggle_menu_unchecked2.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

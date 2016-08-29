@@ -5,9 +5,9 @@ namespace CustomControlsTest
     /// <summary>
     /// Logique d'interaction pour MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class CustomControlContainer : Window
     {
-        public MainWindow()
+        public CustomControlContainer()
         {
             InitializeComponent();
         }

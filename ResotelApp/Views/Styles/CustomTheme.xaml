@@ -1,12 +1,13 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:ResotelApp.Views.Styles"
+                    xmlns:cnv="clr-namespace:ResotelApp.Views.Converters"
                     xmlns:sys="clr-namespace:System;assembly=mscorlib">
-    
+
     <sys:Double x:Key="bookingImagesSize">48</sys:Double>
-
     <sys:Double x:Key="fontSize">16</sys:Double>
-
+    <cnv:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"></cnv:BoolToVisibilityConverter>
+    <cnv:RoomKindToImagePathConverter x:Key="roomKindToImagePathConverter"></cnv:RoomKindToImagePathConverter>
 
     <Style TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>

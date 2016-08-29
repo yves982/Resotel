@@ -1,6 +1,5 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
-using System;
 using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
@@ -49,17 +48,6 @@ namespace ResotelApp.ViewModels.Entities
             }
         }
 
-        public string ImageFullPath
-        {
-            get { return _imageFullPath; }
-
-            set
-            {
-                _imageFullPath = value;
-                _pcs.NotifyChange();
-            }
-        }
-
         public BedKind BedKind
         {
             get { return _bedKind; }
@@ -102,7 +90,6 @@ namespace ResotelApp.ViewModels.Entities
         public RoomChoiceEntity(RoomKind kind, int count=0)
         {
             _pcs = new PropertyChangeSupport(this);
-            _imageFullPath = string.Format("/Resources/room_{0}.png", kind.ToString());
             _bedKind = kind.ToBedKind();
             _roomKind = kind;
             _count = count;

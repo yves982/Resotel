@@ -1,5 +1,6 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 
@@ -47,6 +48,16 @@ namespace ResotelApp.ViewModels.Entities
             set
             {
                 _client.LastName = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        public DateTime BirthDate
+        {
+            get { return _client.BirthDate; }
+            set
+            {
+                _client.BirthDate = value;
                 _pcs.NotifyChange();
             }
         }

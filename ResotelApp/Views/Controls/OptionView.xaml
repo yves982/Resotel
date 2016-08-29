@@ -13,6 +13,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="140"></ColumnDefinition>
             <ColumnDefinition Width="80px"></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="60px"></RowDefinition>
@@ -57,5 +58,9 @@
         <DatePicker Grid.Row="3" Grid.Column="1"
             Name="EndDate" SelectedDate="{Binding TakenDates.End}"
             IsEnabled="{Binding ElementName=TakenChxBox, Path=IsChecked}"></DatePicker>
+        <xctk:IntegerUpDown Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center"
+            Name="PeopleCnt" Value="{Binding PeopleCount, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+            Visibility="{Binding IsPeopleRelated, Converter={StaticResource boolToVisibilityConverter}}"
+            ></xctk:IntegerUpDown>
     </Grid>
 </UserControl>

@@ -59,9 +59,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="PresentationFramework.Classic" />
+    <Reference Include="ReachFramework" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Printing" />
     <Reference Include="System.Windows.Controls.Ribbon" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
@@ -135,6 +138,15 @@
     <Compile Include="Migrations\201608190944016_AddedOptionChoices.Designer.cs">
       <DependentUpon>201608190944016_AddedOptionChoices.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201608200602358_ReplacedDiscountWithOptionCurrentDiscountAndAddedPeopleCountToOption.cs" />
+    <Compile Include="Migrations\201608200602358_ReplacedDiscountWithOptionCurrentDiscountAndAddedPeopleCountToOption.Designer.cs">
+      <DependentUpon>201608200602358_ReplacedDiscountWithOptionCurrentDiscountAndAddedPeopleCountToOption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201608200843543_AddedAppliedDiscountsForRoomPacks.cs" />
+    <Compile Include="Migrations\201608200843543_AddedAppliedDiscountsForRoomPacks.Designer.cs">
+      <DependentUpon>201608200843543_AddedAppliedDiscountsForRoomPacks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppliedDiscount.cs" />
     <Compile Include="Models\BookingState.cs" />
     <Compile Include="Models\IValidable.cs" />
     <Compile Include="Models\OptionChoice.cs" />
@@ -191,12 +203,25 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
+    <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
     <Compile Include="Utils\IEnumerable.cs" />
+    <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\PredicateExpressionExtensions.cs" />
     <Compile Include="Repositories\OptionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
-    <Compile Include="Utils\Converters\BoolToVisibilityConverter.cs" />
+    <Compile Include="ViewModels\Entities\BookedRoomEntity.cs" />
+    <Compile Include="ViewModels\SumUpViewModel.cs" />
+    <Compile Include="Views\Controls\SumUpOptionView.xaml.cs">
+      <DependentUpon>SumUpOptionView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\BookedRoomView.xaml.cs">
+      <DependentUpon>BookedRoomView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SumUpView.xaml.cs">
+      <DependentUpon>SumUpView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Converters\BoolToVisibilityConverter.cs" />
     <Compile Include="Utils\HashManager.cs" />
     <Compile Include="Utils\SecureStringUtil.cs" />
     <Compile Include="Utils\SubstituteParametersVisitor.cs" />
@@ -239,6 +264,7 @@
     <Compile Include="Views\Controls\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converters\RoomKindToImagePathConverter.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -318,6 +344,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Controls\OptionsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SumUpOptionView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\BookedRoomView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SumUpView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -469,6 +507,12 @@
     <EmbeddedResource Include="Migrations\201608190944016_AddedOptionChoices.resx">
       <DependentUpon>201608190944016_AddedOptionChoices.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608200602358_ReplacedDiscountWithOptionCurrentDiscountAndAddedPeopleCountToOption.resx">
+      <DependentUpon>201608200602358_ReplacedDiscountWithOptionCurrentDiscountAndAddedPeopleCountToOption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201608200843543_AddedAppliedDiscountsForRoomPacks.resx">
+      <DependentUpon>201608200843543_AddedAppliedDiscountsForRoomPacks.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
@@ -535,13 +579,23 @@
     <Resource Include="Resources\searchBtn.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\clientAdd.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\bookingIcon.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\errorIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\next.png" />
+    <Resource Include="Resources\previous.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\clientAdd.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\summaryIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\accept.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

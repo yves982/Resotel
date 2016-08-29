@@ -147,7 +147,7 @@ namespace ResotelApp.ViewModels
         {
             Client newClient = new Client();
             ClientEntity newClientEntity = new ClientEntity(newClient);
-            ClientViewModel clientVM = new ClientViewModel(_navigation, newClientEntity);
+            ClientViewModel clientVM = new ClientViewModel(_navigation, newClientEntity, true);
             _currentEntities.Add(clientVM);
         }
 

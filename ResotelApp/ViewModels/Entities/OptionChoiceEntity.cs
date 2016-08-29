@@ -10,7 +10,6 @@ namespace ResotelApp.ViewModels.Entities
     {
         private PropertyChangeSupport _pcs;
         private OptionChoice _optionChoice;
-        private string _description;
         private string _imageFullPath;
         private bool _taken;
 
@@ -25,15 +24,67 @@ namespace ResotelApp.ViewModels.Entities
             get { return _optionChoice; }
         }
 
+        public int PeopleCount
+        {
+            get { return _optionChoice.PeopleCount; }
+            set
+            {
+                _optionChoice.PeopleCount = value;
+                _pcs.NotifyChange();
+            }
+        }
+
         public string Description
         {
-            get { return _description; }
+            get { return _optionChoice.Option.Label; }
 
             set
             {
-                _description = value;
+                _optionChoice.Option.Label = value;
                 _pcs.NotifyChange();
             }
+        }
+
+        public double BasePrice
+        {
+            get { return _optionChoice.Option.BasePrice; }
+            set
+            {
+                _optionChoice.Option.BasePrice = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        public double ReduceByPercent
+        {
+            get
+            {
+                double reduceByPertcent = 0d;
+                if(_optionChoice.Option.CurrentDiscount != null)
+                {
+                    reduceByPertcent = _optionChoice.Option.CurrentDiscount.ReduceByPercent;
+                }
+                return reduceByPertcent;
+            }
+            set
+            {
+                if(_optionChoice.Option.CurrentDiscount == null)
+                {
+                    _optionChoice.Option.CurrentDiscount = new Discount();
+                }
+                _optionChoice.Option.CurrentDiscount.ReduceByPercent = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        public double ActualPrice
+        {
+            get { return _optionChoice.Option.ActualPrice; }
+        }
+
+        public bool IsPeopleRelated
+        {
+            get { return _optionChoice.Option.Label.Equals("Restauration"); }
         }
 
         public string ImageFullPath
@@ -88,7 +139,6 @@ namespace ResotelApp.ViewModels.Entities
         {
             _pcs = new PropertyChangeSupport(this);
             _optionChoice = optionChoice;
-            _description = optionChoice.Option.Label;
             
             string cleanedLabel;
             
@@ -125,7 +175,6 @@ namespace ResotelApp.ViewModels.Entities
         {
             _pcs = new PropertyChangeSupport(this);
             _optionChoice = option;
-            _description = description;
             _imageFullPath = imageFullName;
             _taken = taken;
         }

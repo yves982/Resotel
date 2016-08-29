@@ -34,6 +34,7 @@ namespace ResotelApp.Migrations
 
                 IDictionary<string, Option> uniqueOptions = new Dictionary<string, Option>();
                 IDictionary<string, Room> uniqueRooms = new Dictionary<string, Room>();
+                IDictionary<string, Discount> uniquePackDiscount = new Dictionary<string, Discount>();
 
                 foreach(Option opt in options)
                 {
@@ -52,8 +53,22 @@ namespace ResotelApp.Migrations
                                                    select el).First().Descendants("Option").Select(e => e.Element("Id").Value)
                                                    .ToList();
 
+                        List<Discount> availablePacks = (from el in doc.Descendants("Room")
+                                                         where el.Element("Id").Value == room.Id.ToString()
+                                                         select el).First().Descendants("Discount")
+                                                         .Select(discountPackFromXElement).ToList();
+                        // add missing packs
+                        availablePacks
+                                .Where(pack => !uniquePackDiscount.ContainsKey(pack.Id.ToString()))
+                                .ToList()
+                                .ForEach(pack =>
+                                {
+                                    uniquePackDiscount.Add(pack.Id.ToString(), pack);
+                                    room.AvailablePacks.Add(pack);
+                                });
 
                         room.Options.AddRange(optionsIds.Select( id=> uniqueOptions[id] ));
+                        
                         uniqueRooms.Add(room.Id.ToString(), room);
                     }
                 }
@@ -68,11 +83,10 @@ namespace ResotelApp.Migrations
                     option.Rooms.AddRange(roomIds.Select(id => uniqueRooms[id]));
                 }
 
-                context.Rooms.Include(room => room.Options).Load();
+                context.Rooms.Include(room => room.Options).Include(room => room.AvailablePacks).Load();
                 context.Options.Include(opt => opt.Rooms).Load();
                 context.Rooms.AddOrUpdate(room => room.Id, uniqueRooms.Values.ToArray());
                 context.Options.AddOrUpdate(opt => opt.Id, uniqueOptions.Values.ToArray());
-                
             }
 
             using (Stream stream = File.OpenRead(Path.Combine(Path.GetDirectoryName(new Uri(asm.CodeBase).LocalPath), "../../InitialData/Users.xml")))
@@ -89,7 +103,7 @@ namespace ResotelApp.Migrations
 
         private Room roomFromXElment(XElement e)
         {
-            Room room = new Models.Room
+            Room room = new Room
             {
                 Id = int.Parse(e.Element("Id").Value),
                 BedKind = (BedKind)Enum.Parse(typeof(BedKind), e.Element("BedKind").Value),
@@ -128,6 +142,17 @@ namespace ResotelApp.Migrations
                 Service = e.Element("Service").Value
             };
             return user;
+        }
+
+        private Discount discountPackFromXElement(XElement e)
+        {
+            Discount discount = new Discount
+            {
+                Id = int.Parse(e.Element("Id").Value),
+                PackPrice = double.Parse(e.Element("PackPrice").Value),
+                PackQuantity = int.Parse(e.Element("PackQuantity").Value)
+            };
+            return discount;
         }
     }
 }

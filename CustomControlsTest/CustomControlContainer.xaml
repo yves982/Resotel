@@ -1,11 +1,13 @@
-﻿<Window x:Class="CustomControlsTest.MainWindow"
+﻿<Window x:Class="CustomControlsTest.CustomControlContainer"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:ctrl="clr-namespace:CustomControlsTest.Controls"
         xmlns:local="clr-namespace:CustomControlsTest"
-        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:rvc="clr-namespace:ResotelApp.Views.Controls"
+        xmlns:rvme="clr-namespace:ResotelApp.ViewModels.Entities"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
         mc:Ignorable="d"
         Title="MainWindow" Height="350" Width="525">
     <Grid>
@@ -14,8 +16,11 @@
             <sys:DateTime x:Key="maxDate">2016-12-31</sys:DateTime>
             <sys:DateTime x:Key="startDate">2016-07-02</sys:DateTime>
             <sys:DateTime x:Key="endDate">2016-07-03</sys:DateTime>
+            <DataTemplate DataType="{x:Type rvme:OptionChoiceEntity}">
+                <rvc:SumUpOptionView></rvc:SumUpOptionView>
+            </DataTemplate>
         </Grid.Resources>
-        <ctrl:DateRangeSlider 
+        <!--<ctrl:DateRangeSlider 
             MinDate="{StaticResource minDate}" 
             MaxDate="{StaticResource maxDate}" 
             StartDate="{StaticResource startDate}"
@@ -23,5 +28,7 @@
         >
             
         </ctrl:DateRangeSlider>
+        <ContentControl Content="{Binding}"></ContentControl>-->
+        <ctrl:FlowDoc></ctrl:FlowDoc>
     </Grid>
 </Window>

@@ -28,41 +28,59 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Grid.Column="0"
-            Name="LastNameTbl" Text="Nom"></TextBlock>
-        <TextBox Grid.Row="0" Grid.Column="1"
-            Name="LastNameTxt" Text="{Binding Client.LastName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-        <TextBlock Grid.Row="1" Grid.Column="0"
             Name="FirstNameTbl" Text="Prenom"></TextBlock>
+        <TextBox Grid.Row="0" Grid.Column="1"
+                 Name="FirstNameTxt" Text="{Binding ClientEntity.FirstName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+        <TextBlock Grid.Row="1" Grid.Column="0"
+            Name="LastNameTbl" Text="Nom"></TextBlock>
         <TextBox Grid.Row="1" Grid.Column="1"
-                 Name="FirstNameTxt" Text="{Binding Client.FirstName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            Name="LastNameTxt" Text="{Binding ClientEntity.LastName, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
         <TextBlock Grid.Row="2" Grid.Column="0"
-            Name="CityTbl" Text="Ville"></TextBlock>
-        <TextBox Grid.Row="2" Grid.Column="1"
-                 Name="CityTxt" Text="{Binding Client.City}"></TextBox>
+                   Name="BirthdateTxt" Text="Date de naissance"></TextBlock>
+        <DatePicker Grid.Row="2" Grid.Column="1"
+                    Name="BirthdateDatePck"
+                    SelectedDate="{Binding ClientEntity.BirthDate, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></DatePicker>
         <TextBlock Grid.Row="3" Grid.Column="0"
-            Name="ZipCodeTbl" Text="CodePostal"></TextBlock>
+            Name="CityTbl" Text="Ville"></TextBlock>
         <TextBox Grid.Row="3" Grid.Column="1"
-                 Name="ZipCodeTxt" Text="{Binding Client.ZipCode}"></TextBox>
+                 Name="CityTxt" Text="{Binding ClientEntity.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
         <TextBlock Grid.Row="4" Grid.Column="0"
-            Name="AddressTbl" Text="Adresse"></TextBlock>
+            Name="ZipCodeTbl" Text="CodePostal"></TextBlock>
         <TextBox Grid.Row="4" Grid.Column="1"
-                 Name="AddressTxt" Text="{Binding Client.Address}"></TextBox>
+                 Name="ZipCodeTxt" Text="{Binding ClientEntity.ZipCode, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
         <TextBlock Grid.Row="5" Grid.Column="0"
-            Name="EmailTbl" Text="Email"></TextBlock>
+            Name="AddressTbl" Text="Adresse"></TextBlock>
         <TextBox Grid.Row="5" Grid.Column="1"
-                 Name="EmailTxt" Text="{Binding Client.Email}"></TextBox>
+                 Name="AddressTxt" Text="{Binding ClientEntity.Address, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
         <TextBlock Grid.Row="6" Grid.Column="0"
-            Name="PhoneTbl" Text="Téléphone"></TextBlock>
+            Name="EmailTbl" Text="Email"></TextBlock>
         <TextBox Grid.Row="6" Grid.Column="1"
-                 Name="PhoneTxt" Text="{Binding Client.Phone}"></TextBox>
-        <StackPanel Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" 
-                    Orientation="Horizontal">
-            <Button Width="78"
-                Content="Précédent" Command="{Binding BookingCommand}" CommandParameter="{Binding}"></Button>
-            <Button Margin="8,0,0,0" Width="78" 
-                Content="Suivant" Command="{Binding SumUpCommand}" CommandParameter="{Binding}"></Button>
+                 Name="EmailTxt" Text="{Binding ClientEntity.Email, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+        <TextBlock Grid.Row="7" Grid.Column="0"
+            Name="PhoneTbl" Text="Téléphone"></TextBlock>
+        <TextBox Grid.Row="7" Grid.Column="1"
+                 Name="PhoneTxt" Text="{Binding ClientEntity.Phone, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+        <StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                    Orientation="Horizontal" Visibility="{Binding BookingMode, Converter={StaticResource boolToVisibilityConverter}}">
+            <Button Width="78" Background="Transparent"
+                Command="{Binding BookingCommand}" CommandParameter="{Binding}">
+                <Image Source="/Resources/previous.png"></Image>
+            </Button>
+            <Button Margin="8,0,0,0" Width="78" Background="Transparent"
+                Command="{Binding SumUpCommand}" CommandParameter="{Binding}">
+                <Image Source="/Resources/summaryIcon.png"></Image>
+            </Button>
+        </StackPanel>
+        <StackPanel Grid.Row="9" Grid.Column="0" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                    Orientation="Horizontal"
+                    Visibility="{Binding ClientMode, Converter={StaticResource boolToVisibilityConverter}}">
+            <Button Margin="8,0,0,8" Width="78" Background="Transparent"
+                Command="{Binding SaveClientCommand}" CommandParameter="{Binding}">
+                <Image Source="/Resources/accept.png"></Image>
+            </Button>
         </StackPanel>
     </Grid> 
 </UserControl>

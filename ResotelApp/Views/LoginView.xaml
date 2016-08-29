@@ -8,7 +8,7 @@
         xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity" 
         xmlns:u="clr-namespace:ResotelApp.Views.Utils"
         xmlns:bh="clr-namespace:ResotelApp.Behaviours"
-        xmlns:cnv="clr-namespace:ResotelApp.Utils.Converters"
+        xmlns:cnv="clr-namespace:ResotelApp.Views.Converters"
         mc:Ignorable="d"
         Title="{Binding Title}" 
         Height="222" Width="300"
