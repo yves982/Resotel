@@ -1,0 +1,74 @@
+﻿<Application x:Class="CustomControlsTest.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:CustomControlsTest"
+             xmlns:cnv="clr-namespace:CustomControlsTest.Converters"
+             StartupUri="CustomControlContainer.xaml">
+    <Application.Resources>
+        <cnv:DoubleToDateTimeStringConverter x:Key="doubleToDateTimeStringConverter"></cnv:DoubleToDateTimeStringConverter>
+        <ControlTemplate x:Key="SliderHorizontal" TargetType="{x:Type Slider}">
+            <Border x:Name="border" 
+                    BorderBrush="{TemplateBinding BorderBrush}" 
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    SnapsToDevicePixels="True">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    
+                    <Rectangle x:Name="PART_SelectionRange"/>
+
+                    <Track x:Name="PART_Track" Grid.Row="1">
+                        <Track.Thumb>
+                            <Thumb x:Name="Thumb">
+                                <Thumb.Template>
+                                    <ControlTemplate TargetType="Thumb">
+                                        <Grid>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                                <RowDefinition Height="Auto"></RowDefinition>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <TextBlock
+                                                Grid.Row="0"
+                                                Grid.Column="0"
+                                                Width="70"
+                                                HorizontalAlignment="Left"
+                                                Text="{Binding Value, RelativeSource={RelativeSource Mode=FindAncestor, AncestorLevel=1, AncestorType=Slider}, Converter={StaticResource doubleToDateTimeStringConverter}}">
+                                                <TextBlock.RenderTransformOrigin>
+                                                    0.5,0.5
+                                                </TextBlock.RenderTransformOrigin>
+                                                <TextBlock.RenderTransform>
+                                                    <TransformGroup>
+                                                        <RotateTransform Angle="-90"></RotateTransform>
+                                                        <TranslateTransform Y="-32"></TranslateTransform>
+                                                    </TransformGroup>
+                                                </TextBlock.RenderTransform>
+                                            </TextBlock>
+                                            <Rectangle
+                                                Grid.Row="1"
+                                                Grid.Column="0"
+                                                Fill="LightGray" 
+                                                Stroke="Black"
+                                                StrokeThickness="1" 
+                                                Width="10"
+                                                Height="18"
+                                                SnapsToDevicePixels="True"
+                                             ></Rectangle>
+                                        </Grid>
+                                        
+                                    </ControlTemplate>
+                                </Thumb.Template>
+                            </Thumb>
+                        </Track.Thumb>
+                    </Track>
+                </Grid>
+            </Border>
+        </ControlTemplate>
+
+    </Application.Resources>
+</Application>

@@ -1,0 +1,48 @@
+﻿using System;
+using System.ComponentModel.DataAnnotations;
+
+namespace ResotelApp.Models
+{
+    class User : IValidable
+    {
+        public int Id { get; set; }
+
+        [Required]
+        public string Password { get; set; }
+
+        [Required]
+        public string Login { get; set; }
+
+        [Required]
+        public string FirstName { get; set; }
+
+        [Required]
+        public string LastName { get; set; }
+
+        public string Email { get; set; }
+
+        public string Service { get; set; }
+
+        public bool Manager { get; set; }
+
+        [Required]
+        public UserRights Rights { get; set; }
+
+        /// <summary>Validates a User</summary>
+        /// <returns>true if the user is valid, false otherwise</returns>
+        /// <remarks>This method must be called before saving or showing an instance</remarks>
+        public bool Validate()
+        {
+            bool passwordValidates = !string.IsNullOrWhiteSpace(Password);
+            bool loginValidates = !string.IsNullOrWhiteSpace(Login);
+            bool firstNameValidates = !string.IsNullOrWhiteSpace(FirstName) && FirstName.Length <= 50;
+            bool lastNameValidates = false;
+            bool emailValidates = false;
+            bool serviceValidates = false;
+
+
+            return passwordValidates && loginValidates && firstNameValidates
+                && lastNameValidates && emailValidates && serviceValidates;
+        }
+    }
+}

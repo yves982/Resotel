@@ -1,0 +1,56 @@
+﻿<!-- parent's an hell of a weird namespace, but for simplicity's sake let's use this one here in our testing assembly -->
+    <UserControl x:Class="CustomControlsTest.Controls.FlowDoc"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CustomControlsTest.Controls"
+             xmlns:parent="clr-namespace:CustomControlsTest"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <FlowDocumentScrollViewer>
+            <FlowDocument>
+                <Paragraph>
+                    <Run Text="{Binding CanIBindStuffToRunNowadays, Mode=OneWay}"></Run>
+                </Paragraph>
+                <Table>
+                    <TableRowGroup>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph>
+                                    <Span>Test</Span></Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Span>Data</Span>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                        <TableRow>
+                            <TableCell>
+                                <Paragraph><Run Text="{Binding Coucou, Mode=OneWay}"></Run></Paragraph>
+                            </TableCell>
+                            <TableCell>
+                                <Paragraph>
+                                    <Run Text="{Binding Dupond, Mode=OneWay}"></Run>
+                                </Paragraph>
+                            </TableCell>
+                        </TableRow>
+                    </TableRowGroup>
+                </Table>
+                <BlockUIContainer>
+                    <BlockUIContainer.Resources>
+                        <DataTemplate DataType="{x:Type parent:FlowDocDataItem}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/Resources/accept.png" Width="24"></Image>
+                                <TextBlock Text="{Binding Label}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </BlockUIContainer.Resources>
+                    <ListBox ItemsSource="{Binding Datas}"></ListBox>
+                </BlockUIContainer>
+            </FlowDocument>
+        </FlowDocumentScrollViewer>
+    </Grid>
+</UserControl>

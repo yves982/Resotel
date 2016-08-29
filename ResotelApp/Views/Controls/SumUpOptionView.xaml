@@ -1,0 +1,24 @@
+﻿<UserControl x:Class="ResotelApp.Views.Controls.SumUpOptionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ResotelApp.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel Orientation="Horizontal" Height="24" VerticalAlignment="Top">
+        <StackPanel.Resources>
+            <Style TargetType="FrameworkElement">
+                <Setter Property="VerticalAlignment" Value="Center"></Setter>
+            </Style>
+        </StackPanel.Resources>
+        <Image Source="{Binding ImageFullPath}" Width="24"></Image>
+        <Image Source="/Resources/calendarIcon.png" Width="16"></Image>
+        <TextBlock Text="{Binding TakenDates.Start, StringFormat=dd/MM/yyyy}" Width="70"></TextBlock>
+        <Image Source="/Resources/calendarIcon.png" Width="16"></Image>
+        <TextBlock Text="{Binding TakenDates.End, StringFormat=dd/MM/yyyy}" Width="70"></TextBlock>
+        <TextBlock TextAlignment="Center" Width="50" Text="{Binding BasePrice}"></TextBlock>
+        <TextBlock TextAlignment="Center" Width="40" Text="{Binding ReduceByPercent}"></TextBlock>
+        <TextBlock TextAlignment="Center" Width="50" Text="{Binding ActualPrice}"></TextBlock>
+    </StackPanel>
+</UserControl>

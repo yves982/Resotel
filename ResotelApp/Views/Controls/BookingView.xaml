@@ -1,0 +1,38 @@
+﻿<UserControl x:Class="ResotelApp.Views.Controls.BookingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:ResotelApp.ViewModels"
+             xmlns:local="clr-namespace:ResotelApp.Views.Controls"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <StackPanel>
+        <StackPanel.Resources>
+            <DataTemplate DataType="{x:Type vm:BookingParametersViewModel}">
+                <local:BookingParametersView></local:BookingParametersView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:RoomsChoiceViewModel}">
+                <local:RoomsChoiceView></local:RoomsChoiceView>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type vm:OptionsViewModel}">
+                <local:OptionsView></local:OptionsView>
+            </DataTemplate>
+        </StackPanel.Resources>
+        <ContentControl Content="{Binding Parameters}"></ContentControl>
+        <ContentControl Content="{Binding Options}" IsEnabled="{Binding ParametersValidated}"></ContentControl>
+        <ContentControl Content="{Binding RoomsChoices}" IsEnabled="{Binding ParametersValidated}"></ContentControl>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,0">
+            <Button HorizontalAlignment="Center" Margin="0,0,4,0"
+                    Command="{Binding SearchClientCommand}" CommandParameter="{Binding}"
+                    Background="Transparent">
+                <Image Source="/Resources/SearchBtn.png" Width="32" Height="32"></Image>
+            </Button>
+            <Button HorizontalAlignment="Center" Margin="4,0,0,0"
+                    Command="{Binding NewClientCommand}" CommandParameter="{Binding}"
+                    Background="Transparent">
+                <Image Source="/Resources/clientAdd.png" Width="32" Height="32"></Image>
+            </Button>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

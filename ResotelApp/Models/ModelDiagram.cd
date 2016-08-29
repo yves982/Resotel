@@ -1,0 +1,190 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ResotelApp.Models.Booking">
+    <Position X="4.25" Y="6.75" Width="2" />
+    <Members>
+      <Method Name="_computeOptionDiscount" Hidden="true" />
+      <Field Name="_discountedOptionChoice" Hidden="true" />
+      <Field Name="_optionDiscount" Hidden="true" />
+      <Field Name="_propertiesValidations" Hidden="true" />
+      <Field Name="_roomDiscounts" Hidden="true" />
+      <Method Name="_validateAdultsCount" Hidden="true" />
+      <Method Name="_validateBabiesCount" Hidden="true" />
+      <Method Name="_validateClient" Hidden="true" />
+      <Method Name="_validateDates" Hidden="true" />
+      <Method Name="_validateOptions" Hidden="true" />
+      <Method Name="_validateRooms" Hidden="true" />
+      <Method Name="Booking" Hidden="true" />
+      <Property Name="IDataErrorInfo.Error" Hidden="true" />
+      <Property Name="IDataErrorInfo.this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>QAACAAAAAACgAACAJEEKAABCACIgCQEABAACBAQCgAQ=</HashCode>
+      <FileName>Models\Booking.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Client" />
+      <Property Name="Dates" />
+      <Property Name="OptionDiscount" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="OptionChoices" />
+      <Property Name="Rooms" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ResotelApp.Models.Client" BaseTypeListCollapsed="true">
+    <Position X="4" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_propertiesValidations" Hidden="true" />
+      <Method Name="_validateAddress" Hidden="true" />
+      <Method Name="_validateCity" Hidden="true" />
+      <Method Name="_validateEmail" Hidden="true" />
+      <Method Name="_validateFirstName" Hidden="true" />
+      <Method Name="_validateLastName" Hidden="true" />
+      <Method Name="_validatePhone" Hidden="true" />
+      <Method Name="_validateZipCode" Hidden="true" />
+      <Method Name="Client" Hidden="true" />
+      <Property Name="IDataErrorInfo.Error" Hidden="true" />
+      <Property Name="IDataErrorInfo.this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAQCAUQAACCgAAAIQAEAAAQAASAgAAgDAAAAIAAAAAg=</HashCode>
+      <FileName>Models\Client.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ResotelApp.Models.Discount">
+    <Position X="0.75" Y="8.5" Width="2" />
+    <Members>
+      <Field Name="_propertiesValidations" Hidden="true" />
+      <Method Name="_validatePackPrice" Hidden="true" />
+      <Method Name="_validatePackQuantity" Hidden="true" />
+      <Method Name="_validateReduceByPercent" Hidden="true" />
+      <Method Name="_validateValidity" Hidden="true" />
+      <Method Name="Discount" Hidden="true" />
+      <Property Name="IDataErrorInfo.Error" Hidden="true" />
+      <Property Name="IDataErrorInfo.this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAQAAAACAAAAAAAEAQAAgQiAgAEAAAAAgAAAAAIA=</HashCode>
+      <FileName>Models\Discount.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Validity" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ResotelApp.Models.DateRange" BaseTypeListCollapsed="true">
+    <Position X="2.5" Y="10.75" Width="1.5" />
+    <Members>
+      <Field Name="_propertiesValidations" Hidden="true" />
+      <Method Name="_validateStartAndEnd" Hidden="true" />
+      <Method Name="DateRange" Hidden="true" />
+      <Property Name="IDataErrorInfo.Error" Hidden="true" />
+      <Property Name="IDataErrorInfo.this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAICAAAAACCAAAAAAAEAAAAAADAgAAAAQAAAAAAAABA=</HashCode>
+      <FileName>Models\DateRange.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ResotelApp.Models.Option">
+    <Position X="8" Y="0.5" Width="1.75" />
+    <Members>
+      <Method Name="_noBookedRoomDuring" Hidden="true" />
+      <Field Name="_propertiesValidations" Hidden="true" />
+      <Method Name="_validateBasePrice" Hidden="true" />
+      <Method Name="_validateLabel" Hidden="true" />
+      <Property Name="IDataErrorInfo.Error" Hidden="true" />
+      <Property Name="IDataErrorInfo.this" Hidden="true" />
+      <Method Name="Option" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>BAACAAABEACAAAAAAAEAAAACACAgAAAQAEAAACAACAA=</HashCode>
+      <FileName>Models\Option.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ResotelApp.Models.Room">
+    <Position X="7.75" Y="9.75" Width="1.75" />
+    <Members>
+      <Method Name="_bookingsEndedBefore" Hidden="true" />
+      <Method Name="_bookingsStartedAfter" Hidden="true" />
+      <Method Name="_hasNoBooking" Hidden="true" />
+      <Field Name="_kind" Hidden="true" />
+      <Field Name="_propertiesValidations" Hidden="true" />
+      <Method Name="_validateCapacity" Hidden="true" />
+      <Method Name="_validateOptions" Hidden="true" />
+      <Method Name="_validatePrice" Hidden="true" />
+      <Method Name="_validateStage" Hidden="true" />
+      <Property Name="IDataErrorInfo.Error" Hidden="true" />
+      <Property Name="IDataErrorInfo.this" Hidden="true" />
+      <Method Name="Room" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>hgBCAAAAQSDgAEAAAAkgAAECACBgIAAQAAgAAABIgAA=</HashCode>
+      <FileName>Models\Room.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ResotelApp.Models.User" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="0.5" Width="1.75" />
+    <Members>
+      <Field Name="_propertiesValidations" Hidden="true" />
+      <Method Name="_validateEmail" Hidden="true" />
+      <Method Name="_validateFirstName" Hidden="true" />
+      <Method Name="_validateLastName" Hidden="true" />
+      <Method Name="_validateLogin" Hidden="true" />
+      <Method Name="_validatePassword" Hidden="true" />
+      <Method Name="_validateService" Hidden="true" />
+      <Property Name="IDataErrorInfo.Error" Hidden="true" />
+      <Property Name="IDataErrorInfo.this" Hidden="true" />
+      <Method Name="User" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>gAQCAEAAACCAAAAAQAEAIAAABKAgRAACAACQAAAAAAg=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ResotelApp.Models.OptionChoice">
+    <Position X="8" Y="3.75" Width="2" />
+    <Members>
+      <Field Name="_discountedAmmount" Hidden="true" />
+      <Field Name="_propertiesValidations" Hidden="true" />
+      <Method Name="_validateOption" Hidden="true" />
+      <Method Name="_validatePeopleCount" Hidden="true" />
+      <Method Name="_validateTakenDates" Hidden="true" />
+      <Property Name="IDataErrorInfo.Error" Hidden="true" />
+      <Property Name="IDataErrorInfo.this" Hidden="true" />
+      <Method Name="OptionChoice" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAACAAAAAAAEADEAAACAgABAoAAAAABAAAAE=</HashCode>
+      <FileName>Models\OptionChoice.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Option" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ResotelApp.Models.AppliedDiscount">
+    <Position X="0.75" Y="4.5" Width="1.5" />
+    <Members>
+      <Field Name="_propertiesValidations" Hidden="true" />
+      <Method Name="_validateCount" Hidden="true" />
+      <Method Name="_validateDiscount" Hidden="true" />
+      <Method Name="_validateRoom" Hidden="true" />
+      <Property Name="IDataErrorInfo.Error" Hidden="true" />
+      <Property Name="IDataErrorInfo.this" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAACCAAAAAABEAAAQAACAgBAAAAgAAAAAAAAA=</HashCode>
+      <FileName>Models\AppliedDiscount.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

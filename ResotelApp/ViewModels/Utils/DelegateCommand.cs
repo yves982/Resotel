@@ -3,41 +3,41 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels.Utils
 {
-    class DelegateCommand : ICommand
+    class DelegateCommand<T> : ICommand where T : class
     {
-        private readonly Predicate<object> _canExecute;
-        private readonly Action<object> _execute;
+        private Action<T> _execute;
+        private bool _canExecute;
+
 
         public event EventHandler CanExecuteChanged;
 
-        public DelegateCommand(Action<object> execute)
-                       : this(execute, null)
-        {
-        }
 
-        public DelegateCommand(Action<object> execute,
-                       Predicate<object> canExecute)
+        public DelegateCommand(Action<T> execute, bool canExecute = true)
         {
             _execute = execute;
             _canExecute = canExecute;
-            if(CanExecuteChanged != null)
+        }
+
+        public void ChangeCanExecute()
+        {
+            _canExecute = !_canExecute;
+            if (CanExecuteChanged != null)
             {
-                EventArgs e = canExecute as Object as EventArgs;
-                CanExecuteChanged(this, e);
+                CanExecuteChanged(this, new EventArgs());
             }
         }
 
-       public bool CanExecute(object parameter)
+        public bool CanExecute(object parameter)
         {
-            if (_canExecute == null)
-            {
-                return true;
-            }
-
-            return _canExecute(parameter);
+            return _canExecute;
         }
 
         public void Execute(object parameter)
+        {
+            Execute((T)parameter);
+        }
+
+        public void Execute(T parameter)
         {
             _execute(parameter);
         }

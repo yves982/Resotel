@@ -1,7 +1,8 @@
-﻿using ResotelApp.ViewModels;
+﻿using ResotelApp.ViewModels.Utils;
 using ResotelApp.Views;
+using ResotelApp.Views.Utils;
 using System.Windows;
-using System.Windows.Controls;
+using System.Windows.Data;
 
 namespace ResotelApp
 {
@@ -12,10 +13,14 @@ namespace ResotelApp
     {
         protected override void OnStartup(StartupEventArgs e)
         {
-            Window mainWindow = new MainWindow();
+            ViewDriver viewDriver = new ViewDriver();
+            ViewDriverProvider.ViewDriver = viewDriver;
 
-            mainWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            mainWindow.Show();
+            CollectionViewProvider.Provider = CollectionViewSource.GetDefaultView;
+
+            Window loginWindow = new LoginView();
+            loginWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            loginWindow.Show();
         }
     }
 }
