@@ -15,6 +15,7 @@ namespace ResotelApp.Repositories
             using (ResotelContext ctx = new ResotelContext())
             {
                 List<Option> availableOptions = await ctx.Options
+                    .Include( opt => opt.Discounts.Select( discount => discount.Validity ) )
                     .Where(Option.IsAvailableBetween(dateRange))
                     .ToListAsync();
                 return availableOptions;

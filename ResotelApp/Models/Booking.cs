@@ -10,7 +10,7 @@ namespace ResotelApp.Models
     {
         private Discount _optionDiscount;
         private OptionChoice _discountedOptionChoice;
-        private List<AppliedDiscount> _roomDiscounts;
+        private List<AppliedPack> _roomDiscounts;
 
         private Dictionary<string, Func<string>> _propertiesValidations;
 
@@ -49,25 +49,26 @@ namespace ResotelApp.Models
             }
         }
 
-        public List<AppliedDiscount> RoomDiscounts
+        public List<AppliedPack> RoomPacks
         {
             get
             {
-                if(_roomDiscounts == null)
+                if(_roomDiscounts.Count == 0 && Rooms.Count > 0)
                 {
+                    _roomDiscounts.Clear();
                     foreach(Room room in Rooms)
                     {
-                        List<Discount> orderedPacks = new List<Discount>(room.AvailablePacks);
+                        List<Pack> orderedPacks = new List<Pack>(room.AvailablePacks);
                         orderedPacks.Sort((firstDiscount, secondDiscount) =>
-                        secondDiscount.PackQuantity.CompareTo(firstDiscount.PackQuantity));
+                        secondDiscount.Quantity.CompareTo(firstDiscount.Quantity));
                         int leftDays = Dates.Days;
-                        foreach(Discount pack in orderedPacks)
+                        foreach(Pack pack in orderedPacks)
                         {
-                            int quantity = leftDays / pack.PackQuantity;
-                            leftDays = leftDays % pack.PackQuantity;
+                            int quantity = leftDays / pack.Quantity;
+                            leftDays = leftDays % pack.Quantity;
                             if(quantity > 0)
                             {
-                                AppliedDiscount appliedDiscount = new AppliedDiscount { Count=quantity, Discount=pack };
+                                AppliedPack appliedDiscount = new AppliedPack { Count=quantity, RoomPack=pack, Room = room };
                                 _roomDiscounts.Add(appliedDiscount);
                             }
                         }
@@ -193,7 +194,7 @@ namespace ResotelApp.Models
             OptionChoices = new List<OptionChoice>();
             Rooms = new List<Room>();
             Dates = new DateRange();
-            _roomDiscounts = new List<AppliedDiscount>();
+            _roomDiscounts = new List<AppliedPack>();
             _propertiesValidations = new Dictionary<string, Func<string>> {
                 { nameof(Client), _validateClient },
                 { nameof(OptionChoices), _validateOptions },

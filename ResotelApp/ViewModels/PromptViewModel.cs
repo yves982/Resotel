@@ -12,6 +12,7 @@ namespace ResotelApp.ViewModels
         private string _result;
         private string _message;
         private string _title;
+        private bool _hasInput;
 
         public event PromptClosedEventHandler PromptClosed;
         public event PropertyChangedEventHandler PropertyChanged
@@ -51,6 +52,16 @@ namespace ResotelApp.ViewModels
             }
         }
 
+        public bool HasInput
+        {
+            get { return _hasInput; }
+            set
+            {
+                _hasInput = value;
+                _pcs.NotifyChange();
+            }
+        }
+
         public DelegateCommand<object> OkCommand
         {
             get
@@ -75,11 +86,12 @@ namespace ResotelApp.ViewModels
             }
         }
 
-        public PromptViewModel(string title, string message)
+        public PromptViewModel(string title, string message, bool hasInput=true)
         {
             _pcs = new PropertyChangeSupport(this);
-            Title = title;
-            Message = message;
+            _title = title;
+            _message = message;
+            _hasInput = hasInput;
         }
 
         private void _ok(object ignore)
@@ -99,10 +111,7 @@ namespace ResotelApp.ViewModels
 
         private void OnPromptClosed(PromptClosedEventArgs pcea)
         {
-            if(PromptClosed != null)
-            {
-                PromptClosed(pcea);
-            }
+            PromptClosed?.Invoke(pcea);
         }
     }
 }

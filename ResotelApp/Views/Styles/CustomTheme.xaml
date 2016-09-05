@@ -8,6 +8,9 @@
     <sys:Double x:Key="fontSize">16</sys:Double>
     <cnv:BoolToVisibilityConverter x:Key="boolToVisibilityConverter"></cnv:BoolToVisibilityConverter>
     <cnv:RoomKindToImagePathConverter x:Key="roomKindToImagePathConverter"></cnv:RoomKindToImagePathConverter>
+    <cnv:PromptViewBoolToColumnSpanConverter x:Key="promptViewBoolToColumnSpanConverter"></cnv:PromptViewBoolToColumnSpanConverter>
+    <cnv:MessageKindToColorConverter x:Key="messageKindToColorConverter"></cnv:MessageKindToColorConverter>
+    <cnv:HasInputToWidthConverter x:Key="hasInputToWidthConverter"></cnv:HasInputToWidthConverter>
 
     <Style TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>

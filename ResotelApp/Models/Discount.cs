@@ -6,6 +6,10 @@ using System.Text;
 
 namespace ResotelApp.Models
 {
+    /// <summary> 
+    ///     This class is intended to hold discount and pack informations.
+    ///     Packs only have PackPrice and PackQuantity while Discounts have reduceByPercent and optionally Validity
+    /// </summary>
     public class Discount : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;
@@ -13,8 +17,6 @@ namespace ResotelApp.Models
         public int Id { get; set; }
         [Required]
         public double ReduceByPercent { get; set; }
-        public double PackPrice { get; set; }
-        public int PackQuantity { get; set; }
         public DateRange Validity { get; set; }
 
       
@@ -61,7 +63,6 @@ namespace ResotelApp.Models
         {
             _propertiesValidations = new Dictionary<string, Func<string>> {
                 { nameof(ReduceByPercent), _validateReduceByPercent },
-                { nameof(PackQuantity), _validatePackQuantity},
                 { nameof(Validity), _validateValidity }
             };
         }
@@ -72,26 +73,6 @@ namespace ResotelApp.Models
             if(ReduceByPercent < 0)
             {
                 error = string.Format("La promotion {0} est invalide car le pourcentage de réduction doit être positif ou null.", Id);
-            }
-            return error;
-        }
-
-        private string _validatePackQuantity()
-        {
-            string error = null;
-            if(PackQuantity <= 0)
-            {
-                error = string.Format("La promotion {0} est invalide car la quantité doit être strictement positive.", Id);
-            }
-            return error;
-        }
-
-        private string _validatePackPrice()
-        {
-            string error = null;
-            if(PackPrice < 0)
-            {
-                error = string.Format("La promotion {0} est invalide car le prix du pack doit être positif", Id);
             }
             return error;
         }
@@ -114,12 +95,11 @@ namespace ResotelApp.Models
         public bool Validate()
         {
             bool reduceByPercentValidates = _validateReduceByPercent() == null;
-            bool packQuantityValidates = _validatePackQuantity() == null;
+            
             bool validityValidates = _validateValidity() == null;
-            bool packPriceValidates = _validatePackPrice() == null;
+            
 
-            return reduceByPercentValidates && packQuantityValidates && validityValidates
-                && packPriceValidates;
+            return reduceByPercentValidates && validityValidates;
         }
     }
 }

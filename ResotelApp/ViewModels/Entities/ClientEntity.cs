@@ -72,12 +72,23 @@ namespace ResotelApp.ViewModels.Entities
             }
         }
 
-        public int ZipCode
+        public int? ZipCode
         {
-            get { return _client.ZipCode; }
+            get
+            {
+                int? zipCode = null;
+                if(_client.ZipCode != 0)
+                {
+                    zipCode = _client.ZipCode;
+                }
+                return zipCode;
+            }
             set
             {
-                _client.ZipCode = value;
+                if (value.HasValue)
+                {
+                    _client.ZipCode = value.Value;
+                }
                 _pcs.NotifyChange();
             }
         }
@@ -142,6 +153,11 @@ namespace ResotelApp.ViewModels.Entities
         {
             _pcs = new PropertyChangeSupport(this);
             _client = client;
+            if(client.BirthDate.Year == 1)
+            {
+                // completely randomly choosen birthdate initialization (but that's better than 01/01/0001)
+                _client.BirthDate = DateTime.Now.AddYears(-20);
+            }
         }
     }
 }

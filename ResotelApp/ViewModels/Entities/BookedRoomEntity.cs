@@ -1,26 +1,44 @@
 ﻿using ResotelApp.Models;
+using ResotelApp.ViewModels.Utils;
+using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
     class BookedRoomEntity : IEntity
     {
         private Room _room;
-        private Booking _booking;
+        private DateRange _takenDates;
+        private List<AppliedPack> _appliedDiscounts;
 
         public Room Room
         {
             get { return _room; }
         }
 
-        public Booking Booking
+        public DateRange TakenDates
         {
-            get { return _booking; }
+            get { return _takenDates; }
+
         }
 
-        public BookedRoomEntity(Room room, Booking booking)
+        public IEnumerable<AppliedPack> AppliedDiscounts
+        {
+            get { return _appliedDiscounts; }
+        }
+
+        public BookedRoomEntity(Booking booking, Room room)
         {
             _room = room;
-            _booking = booking;
+            _takenDates = booking.Dates;
+            _appliedDiscounts = new List<AppliedPack>();
+            foreach(AppliedPack appliedDiscount in booking.RoomPacks)
+            {
+                if(appliedDiscount.Room.Id == _room.Id)
+                {
+                    _appliedDiscounts.Add(appliedDiscount);
+                }
+            }
         }
     }
 }

@@ -44,21 +44,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -105,21 +105,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -166,21 +166,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -227,21 +227,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -288,21 +288,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -349,21 +349,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -410,21 +410,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -471,21 +471,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -532,21 +532,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -593,21 +593,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -654,21 +654,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -715,21 +715,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -776,21 +776,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -837,21 +837,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -898,21 +898,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -959,21 +959,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1020,21 +1020,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1081,21 +1081,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1142,21 +1142,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1203,21 +1203,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1264,21 +1264,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1325,21 +1325,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>1</Id>
         <PackPrice>49</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>2</Id>
         <PackPrice>229</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>3</Id>
         <PackPrice>399</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1386,21 +1386,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1447,21 +1447,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1508,21 +1508,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1569,21 +1569,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1630,21 +1630,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1691,21 +1691,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1752,21 +1752,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1813,21 +1813,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1849,6 +1849,16 @@
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <Discounts>
+          <Discount>
+            <Id>1</Id>
+            <ReduceByPercent>33.68</ReduceByPercent>
+            <Validity>
+              <Start>2016-09-01</Start>
+              <End>2016-09-30</End>
+            </Validity>
+          </Discount>
+        </Discounts>
       </Option>
       <Option>
         <Id>4</Id>
@@ -1879,21 +1889,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1915,6 +1925,16 @@
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <Discounts>
+          <Discount>
+            <Id>1</Id>
+            <ReduceByPercent>33.68</ReduceByPercent>
+            <Validity>
+              <Start>2016-09-01</Start>
+              <End>2016-09-30</End>
+            </Validity>
+          </Discount>
+        </Discounts>
       </Option>
       <Option>
         <Id>4</Id>
@@ -1945,21 +1965,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -1981,6 +2001,16 @@
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <Discounts>
+          <Discount>
+            <Id>1</Id>
+            <ReduceByPercent>33.68</ReduceByPercent>
+            <Validity>
+              <Start>2016-09-01</Start>
+              <End>2016-09-30</End>
+            </Validity>
+          </Discount>
+        </Discounts>
       </Option>
       <Option>
         <Id>4</Id>
@@ -2011,21 +2041,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2047,6 +2077,16 @@
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <Discounts>
+          <Discount>
+            <Id>1</Id>
+            <ReduceByPercent>33.68</ReduceByPercent>
+            <Validity>
+              <Start>2016-09-01</Start>
+              <End>2016-09-30</End>
+            </Validity>
+          </Discount>
+        </Discounts>
       </Option>
       <Option>
         <Id>4</Id>
@@ -2077,21 +2117,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2113,6 +2153,16 @@
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <Discounts>
+          <Discount>
+            <Id>1</Id>
+            <ReduceByPercent>33.68</ReduceByPercent>
+            <Validity>
+              <Start>2016-09-01</Start>
+              <End>2016-09-30</End>
+            </Validity>
+          </Discount>
+        </Discounts>
       </Option>
       <Option>
         <Id>4</Id>
@@ -2143,21 +2193,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2179,6 +2229,16 @@
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <Discounts>
+          <Discount>
+            <Id>1</Id>
+            <ReduceByPercent>33.68</ReduceByPercent>
+            <Validity>
+              <Start>2016-09-01</Start>
+              <End>2016-09-30</End>
+            </Validity>
+          </Discount>
+        </Discounts>
       </Option>
       <Option>
         <Id>4</Id>
@@ -2209,21 +2269,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2245,6 +2305,16 @@
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <Discounts>
+          <Discount>
+            <Id>1</Id>
+            <ReduceByPercent>33.68</ReduceByPercent>
+            <Validity>
+              <Start>2016-09-01</Start>
+              <End>2016-09-30</End>
+            </Validity>
+          </Discount>
+        </Discounts>
       </Option>
       <Option>
         <Id>4</Id>
@@ -2275,21 +2345,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2311,6 +2381,16 @@
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <Discounts>
+          <Discount>
+            <Id>1</Id>
+            <ReduceByPercent>33.68</ReduceByPercent>
+            <Validity>
+              <Start>2016-09-01</Start>
+              <End>2016-09-30</End>
+            </Validity>
+          </Discount>
+        </Discounts>
       </Option>
       <Option>
         <Id>4</Id>
@@ -2341,21 +2421,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>4</Id>
         <PackPrice>89</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>5</Id>
         <PackPrice>429</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>6</Id>
         <PackPrice>799</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2402,21 +2482,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>7</Id>
         <PackPrice>260</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>8</Id>
         <PackPrice>1279</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>9</Id>
         <PackPrice>2490</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2463,21 +2543,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>7</Id>
         <PackPrice>260</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>8</Id>
         <PackPrice>1279</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>9</Id>
         <PackPrice>2490</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2524,21 +2604,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>10</Id>
         <PackPrice>179</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>11</Id>
         <PackPrice>879</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>12</Id>
         <PackPrice>1689</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2585,21 +2665,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>10</Id>
         <PackPrice>179</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>11</Id>
         <PackPrice>879</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>12</Id>
         <PackPrice>1689</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2646,21 +2726,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Double</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>10</Id>
         <PackPrice>179</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>11</Id>
         <PackPrice>879</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>12</Id>
         <PackPrice>1689</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2707,21 +2787,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>13</Id>
         <PackPrice>139</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>14</Id>
         <PackPrice>669</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>15</Id>
         <PackPrice>1289</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2768,21 +2848,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>13</Id>
         <PackPrice>139</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>14</Id>
         <PackPrice>669</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>15</Id>
         <PackPrice>1289</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2829,21 +2909,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>13</Id>
         <PackPrice>139</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>14</Id>
         <PackPrice>669</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>15</Id>
         <PackPrice>1289</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2890,21 +2970,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>13</Id>
         <PackPrice>139</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>14</Id>
         <PackPrice>669</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>15</Id>
         <PackPrice>1289</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -2951,21 +3031,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>13</Id>
         <PackPrice>139</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>14</Id>
         <PackPrice>669</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>15</Id>
         <PackPrice>1289</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -3012,21 +3092,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>13</Id>
         <PackPrice>139</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>14</Id>
         <PackPrice>669</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>15</Id>
         <PackPrice>1289</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -3073,21 +3153,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>13</Id>
         <PackPrice>139</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>14</Id>
         <PackPrice>669</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>15</Id>
         <PackPrice>1289</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -3134,21 +3214,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>Simple</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>13</Id>
         <PackPrice>139</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>14</Id>
         <PackPrice>669</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>15</Id>
         <PackPrice>1289</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -3195,21 +3275,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>16</Id>
         <PackPrice>99</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>17</Id>
         <PackPrice>439</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>18</Id>
         <PackPrice>809</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -3256,21 +3336,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>16</Id>
         <PackPrice>99</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>17</Id>
         <PackPrice>439</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>18</Id>
         <PackPrice>809</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -3317,21 +3397,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>16</Id>
         <PackPrice>99</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>17</Id>
         <PackPrice>439</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>18</Id>
         <PackPrice>809</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -3378,21 +3458,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>16</Id>
         <PackPrice>99</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>17</Id>
         <PackPrice>439</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>18</Id>
         <PackPrice>809</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -3439,21 +3519,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>16</Id>
         <PackPrice>99</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>17</Id>
         <PackPrice>439</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>18</Id>
         <PackPrice>809</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
   <Room>
@@ -3500,21 +3580,21 @@
     <IsCleaned></IsCleaned>
     <BedKind>DoubleWithBaby</BedKind>
     <AvailablePacks>
-      <Discount>
+      <Pack>
         <Id>16</Id>
         <PackPrice>99</PackPrice>
         <PackQuantity>1</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>17</Id>
         <PackPrice>439</PackPrice>
         <PackQuantity>5</PackQuantity>
-      </Discount>
-      <Discount>
+      </Pack>
+      <Pack>
         <Id>18</Id>
         <PackPrice>809</PackPrice>
         <PackQuantity>10</PackQuantity>
-      </Discount>
+      </Pack>
     </AvailablePacks>
   </Room>
 </Rooms>

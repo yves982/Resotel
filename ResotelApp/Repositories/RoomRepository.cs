@@ -15,6 +15,8 @@ namespace ResotelApp.Repositories
             using (ResotelContext ctx = new ResotelContext())
             {
                 List<Room> availableRooms = await ctx.Rooms
+                    .Include(room => room.Options.Select(opt => opt.Discounts.Select(discount => discount.Validity)))
+                    .Include( room => room.AvailablePacks )
                     .Where(Room.NotBookedDuring(dateRange))
                     .ToListAsync();
                 return availableRooms;
@@ -26,10 +28,13 @@ namespace ResotelApp.Repositories
             using (ResotelContext ctx = new ResotelContext())
             {
                 List<Room> matchingRooms = await ctx.Rooms
+                    .Include( room => room.Options.Select( opt => opt.Discounts.Select( discount => discount.Validity ) ) )
+                    .Include( room => room.AvailablePacks)
                     .Where(
-                    Room.NotBookedDuring(dateRange)
-                    .And(Room.WithOptions(options))
-                    ).ToListAsync();
+                        Room.NotBookedDuring(dateRange)
+                        .And(Room.WithOptions(options))
+                    )
+                    .ToListAsync();
                 return matchingRooms;
             }
         }

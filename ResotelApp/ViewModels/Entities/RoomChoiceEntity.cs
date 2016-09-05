@@ -8,7 +8,6 @@ namespace ResotelApp.ViewModels.Entities
     {
         private PropertyChangeSupport _pcs;
         private int _count;
-        private string _imageFullPath;
         private BedKind _bedKind;
         private RoomKind _roomKind;
         private int _capacity;
@@ -33,6 +32,7 @@ namespace ResotelApp.ViewModels.Entities
             {
                 _maxAvailable = value;
                 _pcs.NotifyChange();
+                _pcs.NotifyChange(nameof(MaxTooltip));
             }
         }
 
@@ -40,10 +40,7 @@ namespace ResotelApp.ViewModels.Entities
         {
             get
             {
-                if(_maxTooltip == null)
-                {
-                    _maxTooltip = string.Format("Le maximum possible est de {0}", _maxAvailable);
-                }
+                _maxTooltip = string.Format("Le maximum possible est de {0}", _maxAvailable);
                 return _maxTooltip;
             }
         }
@@ -87,11 +84,12 @@ namespace ResotelApp.ViewModels.Entities
 
 
 
-        public RoomChoiceEntity(RoomKind kind, int count=0)
+        public RoomChoiceEntity(RoomKind kind, int maxAvailable, int count = 0)
         {
             _pcs = new PropertyChangeSupport(this);
             _bedKind = kind.ToBedKind();
             _roomKind = kind;
+            _maxAvailable = maxAvailable;
             _count = count;
         }
     }

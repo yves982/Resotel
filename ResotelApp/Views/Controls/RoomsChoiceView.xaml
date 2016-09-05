@@ -11,7 +11,7 @@
              Background="{StaticResource BgBrush}">
     <GroupBox Header="Chambres">
         <Expander Header="Types de chambres" VerticalAlignment="Top" IsExpanded="True">
-            <ItemsControl ItemsSource="{Binding AvailableRoomsChoicesView}">
+            <ItemsControl ItemsSource="{Binding AvailableRoomChoiceEntitiesView}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
                         <UniformGrid Columns="2" HorizontalAlignment="Center" Width="160px"></UniformGrid>

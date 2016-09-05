@@ -1,9 +1,11 @@
-﻿using ResotelApp.Models;
+﻿using ResotelApp.DAL;
+using ResotelApp.Models;
 using ResotelApp.Repositories;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Threading.Tasks;
 using System.Windows.Input;
@@ -15,7 +17,7 @@ namespace ResotelApp.ViewModels
         private PropertyChangeSupport _pcs;
         private BookingParametersViewModel _parameters;
         private OptionsViewModel _options;
-        private RoomsChoiceViewModel _roomsChoices;
+        private RoomsChoiceViewModel _roomChoices;
         private Booking _booking;
         private ClientEntity _clientEntity;
         private string _title;
@@ -34,6 +36,7 @@ namespace ResotelApp.ViewModels
         public event EventHandler<INavigableViewModel> NextCalled;
         public event EventHandler<INavigableViewModel> PreviousCalled;
         public event EventHandler<INavigableViewModel> Shutdown;
+        public event EventHandler<string> MessageReceived;
 
         public BookingParametersViewModel Parameters
         {
@@ -52,18 +55,28 @@ namespace ResotelApp.ViewModels
 
             set
             {
+                if(_options != null)
+                {
+                    _options.OptionChanged -= _optionsChanged;
+                }
+
                 _options = value;
+
+                if (_options != null)
+                {
+                    _options.OptionChanged += _optionsChanged;
+                }
                 _pcs.NotifyChange();
             }
         }
 
-        public RoomsChoiceViewModel RoomsChoices
+        public RoomsChoiceViewModel RoomChoices
         {
-            get { return _roomsChoices; }
+            get { return _roomChoices; }
 
             set
             {
-                _roomsChoices = value;
+                _roomChoices = value;
                 _pcs.NotifyChange();
             }
         }
@@ -98,6 +111,17 @@ namespace ResotelApp.ViewModels
             get { return _navigation; }
         }
 
+        public IEnumerable<BookedRoomEntity> AssignedRooms
+        {
+            get
+            {
+                List<BookedRoomEntity> bookedRooms = _booking.Rooms.ConvertAll(
+                    room => new BookedRoomEntity(_booking, room) 
+                );
+                return bookedRooms;
+            }
+        }
+
         public ICommand NewClientCommand
         {
             get
@@ -130,8 +154,8 @@ namespace ResotelApp.ViewModels
             _parameters.PropertyChanged += _parametersChanged;
             _parametersValidated = false;
             _booking = booking;
-            _clientEntity = new ClientEntity(booking.Client);
-            _clientEntity.Bookings.Add(booking);
+            _clientEntity = new ClientEntity(_booking.Client);
+            _clientEntity.Bookings.Add(_booking);
             _computeTitle(_clientEntity);
             _clientEntity.PropertyChanged += _clientChanged;
             _navigation = navigation;
@@ -140,13 +164,28 @@ namespace ResotelApp.ViewModels
 
         ~BookingViewModel()
         {
-            _parameters.Defined -= _parameters_defined;
-            _parameters.PropertyChanged -= _parametersChanged;
-            _clientEntity.PropertyChanged -= _clientChanged;
-            if(Shutdown != null)
+            if (_parameters != null)
             {
-                Shutdown(this, this);
+                _parameters.Defined -= _parameters_defined;
+                _parameters.PropertyChanged -= _parametersChanged;
             }
+
+            if (_clientEntity != null)
+            {
+                _clientEntity.PropertyChanged -= _clientChanged;
+            }
+
+            if (_options != null)
+            {
+                _options.OptionChanged -= _optionsChanged;
+            }
+
+            Shutdown?.Invoke(null, this);
+        }
+
+        public async Task Save()
+        {
+            await BookingRepository.Save(_booking);
         }
 
         private async void _parameters_defined(object sender, BookingParametersViewModel bookingParametersVM)
@@ -154,43 +193,10 @@ namespace ResotelApp.ViewModels
             ParametersValidated = true;
             _newClientCommand.ChangeCanExecute();
             _searchClientCommand.ChangeCanExecute();
-            List<Option> availableOptions = await OptionRepository.GetAvailablesBetweenAsync(bookingParametersVM.DateRange);
-            List<Room> availableRooms = await RoomRepository.GetAvailablesBetweenAsync(bookingParametersVM.DateRange);
 
-            List<OptionChoiceEntity> availableOptionEntities = new List<OptionChoiceEntity>();
-            List<RoomChoiceEntity> availableRoomChoiceEntities = new List<RoomChoiceEntity>();
-            Dictionary<RoomKind, int> availableRoomKinds = new Dictionary<RoomKind, int>();
-            foreach(Option opt in availableOptions)
-            {
-                OptionChoice optChoice = new OptionChoice {
-                    Option = opt,
-                    TakenDates = (DateRange)((ICloneable)bookingParametersVM.DateRange).Clone()
-                };
-                OptionChoiceEntity optionEntity = new OptionChoiceEntity(optChoice);
-                availableOptionEntities.Add(optionEntity);
-            }
-
-            foreach(Room room in availableRooms)
-            {
-                if(!availableRoomKinds.ContainsKey(room.Kind))
-                {
-                    availableRoomKinds.Add(room.Kind, 1);
-                    RoomChoiceEntity roomChoice = new RoomChoiceEntity(room.Kind, 0);
-                    availableRoomChoiceEntities.Add(roomChoice);
-                } else
-                {
-                    availableRoomKinds[room.Kind]++;
-                }
-            }
-
-            foreach(RoomChoiceEntity roomChoice in availableRoomChoiceEntities)
-            {
-                roomChoice.MaxAvailable = availableRoomKinds[roomChoice.RoomKind];
-            }
-
-            Options = new OptionsViewModel(_booking, availableOptionEntities);
-            RoomsChoices = new RoomsChoiceViewModel(availableRoomChoiceEntities);
-            RoomsChoices.AvailableRoomsChoicesView.Filter = _mustShowRoomChoice;
+            Options = await OptionsViewModel.CreateAsync(bookingParametersVM.DateRange);
+            RoomChoices = await RoomsChoiceViewModel.CreateAsync(bookingParametersVM.DateRange);
+            RoomChoices.AvailableRoomChoiceEntitiesView.Filter = _mustShowRoomChoice;
         }
 
         private bool _mustShowRoomChoice(object item)
@@ -199,17 +205,27 @@ namespace ResotelApp.ViewModels
             {
                 throw new InvalidOperationException("On ne peut pas filtrer la liste des choix de chambre. Cette exception est critique");
             }
-            RoomChoiceEntity roomChoice = (RoomChoiceEntity)item;
-            return !roomChoice.RoomKind.Equals(RoomKind.DoubleWithBaby) || _parameters.BabiesCount > 0;
+            RoomChoiceEntity roomChoiceEntity = (RoomChoiceEntity)item;
+
+            bool mustShowRoomChoice = !roomChoiceEntity.RoomKind.Equals(RoomKind.DoubleWithBaby) || _parameters.BabiesCount > 0;
+
+            return mustShowRoomChoice;
         }
 
         private void _parametersChanged(object sender, PropertyChangedEventArgs e)
         {
+
+
+            _booking.AdultsCount = _parameters.AdultsCount;
+            _booking.BabiesCount = _parameters.BabiesCount;
+            _booking.Dates = _parameters.DateRange;
+
             if (_newClientCommand.CanExecute(null))
             {
                 ParametersValidated = false;
                 _newClientCommand.ChangeCanExecute();
                 _searchClientCommand.ChangeCanExecute();
+                MessageReceived?.Invoke(null, null);
             }
         }
 
@@ -233,13 +249,88 @@ namespace ResotelApp.ViewModels
             _pcs.NotifyChange("Title");
         }
 
+        private void _optionsChanged(object sender, OptionChoiceEntity optChoiceEntity)
+        {
+            if (optChoiceEntity.Taken)
+            {
+                _booking.OptionChoices.Add(optChoiceEntity.OptionChoice);
+            } else
+            {
+                _booking.OptionChoices.Remove(optChoiceEntity.OptionChoice);
+            }
+
+            bool previouslyHadBabyRoom = hasAvailableBabyRoom();
+
+            RoomChoices.Update(optChoiceEntity);
+
+            bool hasBabyRoom = hasAvailableBabyRoom();
+
+            if (_parameters.BabiesCount > 0 && optChoiceEntity.Taken && previouslyHadBabyRoom)
+            {
+                
+                if (!hasBabyRoom)
+                {
+                    MessageReceived?.Invoke(null, $"#Aucune chambre avec lit bébé ne possède l'option {optChoiceEntity.Description}!");
+                }
+                else
+                {
+                    MessageReceived?.Invoke(null, null);
+                }
+            }
+
+            else if(_parameters.BabiesCount > 0 && hasBabyRoom && !previouslyHadBabyRoom)
+            {
+                MessageReceived?.Invoke(null, null);
+            }
+        }
+
+        private bool hasAvailableBabyRoom()
+        {
+            bool babyRoomFound = false;
+            foreach (RoomChoiceEntity roomChoiceEntity in RoomChoices.AvailableRoomChoiceEntitiesView)
+            {
+                if (roomChoiceEntity.RoomKind.Equals(RoomKind.DoubleWithBaby))
+                {
+                    babyRoomFound = true;
+                    break;
+                }
+            }
+
+            return babyRoomFound;
+        }
+
         private async Task _newClient(BookingViewModel bookingVM)
         {
             ClientViewModel clientVM = new ClientViewModel(_navigation, _clientEntity);
-            await _roomsChoices.AssignRoomsCommand.ExecuteAsync(_booking);
-            if(NextCalled != null)
+            await _roomChoices.AssignRoomsCommand.ExecuteAsync(_booking);
+            
+            if(_clientEntity.Bookings != null && _clientEntity.Bookings.Count>0)
             {
-                NextCalled(this, bookingVM);
+                int babiesRooms = 0;
+                int totalAdultCapacity = 0;
+
+                foreach(Room room in _booking.Rooms)
+                {
+                    if(room.Kind.Equals(RoomKind.DoubleWithBaby))
+                    {
+                        babiesRooms++;
+                    }
+
+                    totalAdultCapacity += room.Capacity;
+                }
+
+                if(babiesRooms < _booking.BabiesCount || totalAdultCapacity < _booking.AdultsCount)
+                {
+                    PromptViewModel insufficientRoomsPromptVM = new PromptViewModel("Erreur", 
+                        $"Il n'y a pas assez de chambre pour accueillir {_booking.BabiesCount} bébés et {_booking.AdultsCount} adultes.",
+                        false
+                    );
+                    ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(insufficientRoomsPromptVM);
+                }
+                else
+                {
+                    NextCalled?.Invoke(null, bookingVM);
+                }
             }
         }
 

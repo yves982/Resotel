@@ -18,6 +18,8 @@ namespace ResotelApp.ViewModels
         private string _title;
         private UserEntity _user;
         private LinkedList<INavigableViewModel> _navigation;
+        private string _message;
+        private MessageKind _messageKind;
 
 
         private DelegateCommand<object> _addBookingCommand;
@@ -120,7 +122,35 @@ namespace ResotelApp.ViewModels
             get { return _navigation; }
         }
         
-            public MainWindowViewModel(UserEntity user)
+        public string Message
+        {
+            get { return _message; }
+            set
+            {
+                if(value != null && value[0] == '#')
+                {
+                    MessageKind = MessageKind.Error;
+                    _message = value.Substring(1);
+                } else
+                {
+                    MessageKind = MessageKind.Standard;
+                    _message = value;
+                }
+                _pcs.NotifyChange();
+            }
+        }
+
+        public MessageKind MessageKind
+        {
+            get { return _messageKind; }
+            set
+            {
+                _messageKind = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        public MainWindowViewModel(UserEntity user)
         {
             _pcs = new PropertyChangeSupport(this);
             _user = user;
@@ -141,6 +171,7 @@ namespace ResotelApp.ViewModels
             _currentEntitiesView.MoveCurrentToPosition(_currentEntities.Count - 1);
             bookingVM.NextCalled += _nextCalled;
             bookingVM.PreviousCalled += _prevCalled;
+            bookingVM.MessageReceived += _messageReceived;
         }
 
         private void _addClient(object ignore)
@@ -166,6 +197,10 @@ namespace ResotelApp.ViewModels
             }
             if(entityIndex != -1)
             {
+                BookingViewModel bookingVM = closedEntity as BookingViewModel;
+                bookingVM.NextCalled -= _nextCalled;
+                bookingVM.PreviousCalled -= _prevCalled;
+                bookingVM.MessageReceived -= _messageReceived;
                 _currentEntities.RemoveAt(entityIndex);
             }
         }
@@ -184,6 +219,11 @@ namespace ResotelApp.ViewModels
         private void _nodeShutdown(object sender, INavigableViewModel navigableVM)
         {
             _node_shutdown(navigableVM);
+        }
+
+        private void _messageReceived(object sender, string message)
+        {
+            Message = message;
         }
 
         private void _next(INavigableViewModel navigableVM)

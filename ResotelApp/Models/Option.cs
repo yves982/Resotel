@@ -21,21 +21,29 @@ namespace ResotelApp.Models
         [Required]
         public double BasePrice { get; set; }
 
+        public List<Discount> Discounts { get; set; }
+
         [NotMapped]
-        public double ActualPrice
+        public Discount CurrentDiscount
         {
             get
             {
-                double actualPrice = BasePrice;
-                if(CurrentDiscount != null)
+                Discount currentDiscount = new Discount();
+                if (Discounts != null)
                 {
-                    actualPrice *= (1d - (CurrentDiscount.ReduceByPercent / 100d));
+                    foreach (Discount discount in Discounts)
+                    {
+                        if (discount.Validity == null || discount.Validity.Contains(DateTime.Now.Date))
+                        {
+                            currentDiscount = discount;
+                            break;
+                        }
+                    }
                 }
-                return actualPrice;
+
+                return currentDiscount;
             }
         }
-
-        public Discount CurrentDiscount { get; set; }
 
         string IDataErrorInfo.Error
         {
@@ -77,6 +85,7 @@ namespace ResotelApp.Models
         public Option()
         {
             Rooms = new List<Room>();
+            Discounts = new List<Discount>();
             _propertiesValidations = new Dictionary<string, Func<string>> {
                 { nameof(Label), _validateLabel },
                 { nameof(BasePrice), _validateBasePrice }

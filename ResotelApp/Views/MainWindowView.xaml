@@ -34,8 +34,9 @@
             </Style>
         </Grid.Resources>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40px" />
+            <RowDefinition Height="40" />
             <RowDefinition Height="*" />
+            <RowDefinition Height="40" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*" />
@@ -119,13 +120,13 @@
                     </StackPanel.RenderTransform>
                     <Button
                         Height="28" Width="52"
-                        ToolTip="recherche de client"
+                        ToolTip="Recherche de réservation"
                         Margin="2,40,4,4">
-                        <Image Source="/Resources/SearchBtn.png"></Image> 
+                        <Image Source="/Resources/SearchBtn.png"></Image>
                     </Button>
                     <Button
                         Height="28" Width="52" 
-                        ToolTip="Add a new reservation" 
+                        ToolTip="Ajout d'une réservation" 
                         Command="{Binding AddBookingCommand}">
                         <Image Source="/Resources/bookingIcon.png"></Image>
                     </Button>
@@ -173,5 +174,8 @@
                 </TabControl>
             </Grid>
         </DockPanel>
+        <StatusBar Grid.Row="2" Grid.Column="0">
+            <TextBlock Text="{Binding Message}" Foreground="{Binding MessageKind, Converter={StaticResource messageKindToColorConverter}}"></TextBlock>
+        </StatusBar>
     </Grid>
 </Window>

@@ -192,7 +192,7 @@ namespace ResotelApp.ViewModels
 
             if (user == null)
             {
-                LoginResult = "User Not found";
+                LoginResult = "Utilisateur inconnu";
                 ResultReady = true;
                 return;
             }
@@ -202,7 +202,7 @@ namespace ResotelApp.ViewModels
             if (passwordMatch && hasRights)
             {
                 _user = user;
-                LoginResult = "Success, loading...";
+                LoginResult = "Succés, Chargement...";
                 ResultReady = true;
                 _timer.IntervalMS = 1400;
                 _timer.Elapsed += _showMainView;
@@ -210,11 +210,11 @@ namespace ResotelApp.ViewModels
             }
             else if (!passwordMatch)
             {
-                LoginResult = "Invalid user name or password";
+                LoginResult = "Nom d'utilisateur ou mot de passe invalide";
                 ResultReady = true;
             } else
             {
-                LoginResult = "Unauthorized";
+                LoginResult = "Utilisateur non autorisé";
                 ResultReady = true;
             }
         }

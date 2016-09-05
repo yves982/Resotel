@@ -146,10 +146,15 @@
     <Compile Include="Migrations\201608200843543_AddedAppliedDiscountsForRoomPacks.Designer.cs">
       <DependentUpon>201608200843543_AddedAppliedDiscountsForRoomPacks.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\AppliedDiscount.cs" />
+    <Compile Include="Migrations\201609041137116_SeparatedDiscountsFromRoomPacks.cs" />
+    <Compile Include="Migrations\201609041137116_SeparatedDiscountsFromRoomPacks.Designer.cs">
+      <DependentUpon>201609041137116_SeparatedDiscountsFromRoomPacks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\AppliedPack.cs" />
     <Compile Include="Models\BookingState.cs" />
     <Compile Include="Models\IValidable.cs" />
     <Compile Include="Models\OptionChoice.cs" />
+    <Compile Include="Models\Pack.cs" />
     <Compile Include="Models\RoomKind.cs" />
     <Compile Include="Models\RoomKindExtensions.cs" />
     <Compile Include="Models\User.cs" />
@@ -211,6 +216,7 @@
     <Compile Include="Repositories\OptionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModels\Entities\BookedRoomEntity.cs" />
+    <Compile Include="ViewModels\Entities\MessageKind.cs" />
     <Compile Include="ViewModels\SumUpViewModel.cs" />
     <Compile Include="Views\Controls\SumUpOptionView.xaml.cs">
       <DependentUpon>SumUpOptionView.xaml</DependentUpon>
@@ -264,6 +270,9 @@
     <Compile Include="Views\Controls\OptionsView.xaml.cs">
       <DependentUpon>OptionsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converters\HasInputToWidthConverter.cs" />
+    <Compile Include="Views\Converters\MessageKindToColorConverter.cs" />
+    <Compile Include="Views\Converters\PromptViewBoolToColumnSpanConverter.cs" />
     <Compile Include="Views\Converters\RoomKindToImagePathConverter.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -512,6 +521,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201608200843543_AddedAppliedDiscountsForRoomPacks.resx">
       <DependentUpon>201608200843543_AddedAppliedDiscountsForRoomPacks.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609041137116_SeparatedDiscountsFromRoomPacks.resx">
+      <DependentUpon>201609041137116_SeparatedDiscountsFromRoomPacks.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
