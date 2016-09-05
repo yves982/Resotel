@@ -15,6 +15,8 @@ namespace ResotelApp.Models
     {
         private Dictionary<string, Func<string>> _propertiesValidations;
         private RoomKind? _kind;
+        private string _label;
+        private static Dictionary<RoomKind, string> _roomKindLabels;
 
         public int Id { get; set; }
         [Required]
@@ -24,7 +26,7 @@ namespace ResotelApp.Models
         public int Capacity { get; set; }
         public List<Option> Options { get; set; }
         public List<Booking> Bookings { get; set; }
-        public List<Discount> AvailablePacks { get; set; }
+        public List<Pack> AvailablePacks { get; set; }
 
         [Required]
         [DefaultValue(false)]
@@ -62,6 +64,19 @@ namespace ResotelApp.Models
                     }
                 }
                 return _kind.Value;
+            }
+        }
+
+        [NotMapped]
+        public string Label
+        {
+            get
+            {
+                if(_label == null)
+                {
+                    _label = _roomKindLabels[_kind.Value];
+                }
+                return _label;
             }
         }
 
@@ -138,16 +153,27 @@ namespace ResotelApp.Models
 
         public static Expression<Func<Room, bool>> WithOptions(IEnumerable<Option> seekedOptions)
         {
-            return room => !seekedOptions.Any(seekedOpt => !room.Options.Contains(seekedOpt));
+            int[] seekedOptIds = seekedOptions.Select(opt => opt.Id).ToArray();
+            return room => !seekedOptIds.Any( seekedOptId => !room.Options.Select( opt => opt.Id ).Contains(seekedOptId) );
         }
 
-        
+        static Room()
+        {
+            _roomKindLabels = new Dictionary<Models.RoomKind, string> {
+                { RoomKind.Simple, "Chambre individuelle" },
+                { RoomKind.Double, "Chambre Double" },
+                { RoomKind.DoubleWithBaby, "Chambre double avec lit bébé" },
+                { RoomKind.Three, "Chambre de 3 personnes" },
+                { RoomKind.Four, "Chambre de 4 personnes" },
+                { RoomKind.Six, "Chambre de 6 personnes" }
+            };
+        }
 
         public Room()
         {
             Options = new List<Option>();
             Bookings = new List<Booking>();
-            AvailablePacks = new List<Discount>();
+            AvailablePacks = new List<Pack>();
             _propertiesValidations = new Dictionary<string, Func<string>> {
                 { nameof(Stage), _validateStage },
                 { nameof(Capacity), _validateCapacity },
@@ -183,7 +209,11 @@ namespace ResotelApp.Models
             List<Option> invalidOptions = new List<Option>(Options);
             invalidOptions.RemoveAll(opt => (opt == null ? null : ((IDataErrorInfo)opt).Error) == null);
             string optErrors = string.Join(";", invalidOptions.ConvertAll(opt => ((IDataErrorInfo)opt).Error));
-            string error = string.Format("La chambre {0} est invalide car: {1}", Id, optErrors );
+            string error = null;
+            if (optErrors.Length > 0)
+            {
+                error = string.Format("La chambre {0} est invalide car: {1}", Id, optErrors);
+            }
             return error;
         }
 
@@ -200,10 +230,14 @@ namespace ResotelApp.Models
         private string _validateAvailablePacks()
         {
             StringBuilder stringBuilder = new StringBuilder();
-            List<Discount> invalidPacks = new List<Discount>(AvailablePacks);
+            List<Pack> invalidPacks = new List<Pack>(AvailablePacks);
             invalidPacks.RemoveAll(discount => (discount == null ? null : ((IDataErrorInfo)discount).Error) == null);
             string packsError = string.Join(";", invalidPacks.ConvertAll(discount => ((IDataErrorInfo)discount).Error));
-            string error = string.Format("La chambre {0} est invalide car: {1}", Id, packsError);
+            string error = null;
+            if (packsError != "")
+            {
+                error = string.Format("La chambre {0} est invalide car: {1}", Id, packsError);
+            }
             return error;
         }
 

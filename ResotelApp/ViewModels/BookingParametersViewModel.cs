@@ -1,6 +1,7 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows.Input;
 
@@ -75,6 +76,7 @@ namespace ResotelApp.ViewModels
             }
         }
 
+
         public BookingParametersViewModel(Booking booking)
         {
             _pcs = new PropertyChangeSupport(this);
@@ -86,10 +88,7 @@ namespace ResotelApp.ViewModels
         private void _validate(object ignore)
         {
             _validateCommand.ChangeCanExecute();
-            if(Defined != null)
-            {
-                Defined(null, this);
-            }
+            Defined?.Invoke(null, this);
         }
     }
 }

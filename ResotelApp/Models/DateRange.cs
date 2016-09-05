@@ -13,7 +13,7 @@ namespace ResotelApp.Models
 
         public int Days
         {
-            get { return End.Subtract(Start).Days + 1; }
+            get { return End.Subtract(Start).Days; }
         }
 
         string IDataErrorInfo.Error
@@ -74,6 +74,11 @@ namespace ResotelApp.Models
                 End = new DateTime(End.Ticks)
             };
             return dateRange;
+        }
+
+        public bool Contains(DateTime date)
+        {
+            return Start.CompareTo(date) <= 0 && End.CompareTo(date) >= 0;
         }
     }
 }

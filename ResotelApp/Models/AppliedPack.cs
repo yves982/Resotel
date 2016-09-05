@@ -1,19 +1,40 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ResotelApp.Models
 {
-    public class AppliedDiscount : IValidable, IDataErrorInfo
+    public class AppliedPack : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;
+        private string _label;
 
         public int Id { get; set; }
-        public Discount Discount { get; set; }
         public Room Room { get; set; }
+        public Pack RoomPack { get; set; }
         public int Count { get; set; }
 
+        [NotMapped]
+        public string Label
+        {
+            get
+            {
+                if (_label == null)
+                {
+                    _label = $"Pack de {RoomPack.Quantity} nuits - {Room.Label}";
+                }
+                return _label;
+            }
+        }
+
+        [NotMapped]
+        public double Price
+        {
+            get { return RoomPack.Price; }
+        }
+        
         string IDataErrorInfo.Error
         {
             get
@@ -51,10 +72,10 @@ namespace ResotelApp.Models
             }
         }
 
-        public AppliedDiscount()
+        public AppliedPack()
         {
             _propertiesValidations = new Dictionary<string, Func<string>> {
-                { nameof(Discount), _validateDiscount },
+                { nameof(RoomPack), _validateDiscount },
                 { nameof(Count), _validateCount },
                 { nameof(Room), _validateRoom }
             };
@@ -63,13 +84,13 @@ namespace ResotelApp.Models
         private string _validateDiscount()
         {
             string error = null;
-            if (Discount == null)
+            if (RoomPack == null)
             {
                 error = string.Format("L'application de promotion {0} n'est pas valider car sa promotion doit être non nulle.", Id);
             }
             else
             {
-                string discountError = ((IDataErrorInfo)Discount).Error;
+                string discountError = ((IDataErrorInfo)RoomPack).Error;
                 error = string.Format("L'application de promotion {0} n'est pas valide car : {1}", Id, discountError);
             }
             return error;

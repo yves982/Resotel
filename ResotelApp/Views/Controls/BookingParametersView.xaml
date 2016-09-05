@@ -48,13 +48,15 @@
                             <Setter Property="Margin" Value="4 0 0 4"></Setter>
                         </Style>
                     </Grid.Resources>
-                    <Label Grid.Column="0" Grid.Row="0">Nombre Enfants</Label>
+                    <Label Grid.Column="0" Grid.Row="0">Nombre de bébés</Label>
                     <xctk:IntegerUpDown
-                        Grid.Column="1" Grid.Row="0" Value="{Binding BabiesCount}"></xctk:IntegerUpDown>
-                    <Label Grid.Column="0" Grid.Row="1">Nombre Adultes</Label>
+                        Grid.Column="1" Grid.Row="0" Value="{Binding BabiesCount}"
+                        Minimum="0"></xctk:IntegerUpDown>
+                    <Label Grid.Column="0" Grid.Row="1">Nombre d'adultes</Label>
                     <xctk:IntegerUpDown
                         Grid.Column="1" Grid.Row="1"
                         Value="{Binding AdultsCount}"
+                        Minimum="0"
                         ></xctk:IntegerUpDown>
                 </Grid>
             </Expander>

@@ -21,10 +21,7 @@ namespace ResotelApp.ViewModels.Utils
 
         public void NotifyChange([CallerMemberName]string propertyName = null)
         {
-            if(_handler != null)
-            {
-                _handler(_sender, new PropertyChangedEventArgs(propertyName));
-            }
+            _handler?.Invoke(_sender, new PropertyChangedEventArgs(propertyName));
         }
     }
 }

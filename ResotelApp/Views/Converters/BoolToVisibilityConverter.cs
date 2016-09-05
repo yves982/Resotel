@@ -12,7 +12,7 @@ namespace ResotelApp.Views.Converters
         {
             if( !(value is bool) )
             {
-                throw new NotImplementedException();
+                throw new InvalidOperationException("Seuls les booleens peuvent êtres convertis en visibilité (BoolToVisibilityConverter). Cette erreur est critique.");
             }
             Visibility visibility = Visibility.Hidden;
 

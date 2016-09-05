@@ -22,10 +22,7 @@ namespace ResotelApp.ViewModels.Utils
         public void ChangeCanExecute()
         {
             _canExecute = !_canExecute;
-            if(CanExecuteChanged != null)
-            {
-                CanExecuteChanged(this, new EventArgs());
-            }
+            CanExecuteChanged?.Invoke(this, new EventArgs());
         }
 
         public bool CanExecute(object parameter)

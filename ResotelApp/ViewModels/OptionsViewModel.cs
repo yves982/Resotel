@@ -1,19 +1,22 @@
 ﻿using ResotelApp.Models;
+using ResotelApp.Repositories;
 using ResotelApp.ViewModels.Entities;
+using ResotelApp.ViewModels.Events;
 using ResotelApp.ViewModels.Utils;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace ResotelApp.ViewModels
 {
     class OptionsViewModel : INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;
-        private ICollectionView _availableOptionsView;
-        private ObservableCollection<OptionChoiceEntity> _availableOptions;
-        private Booking _booking;
+        private ICollectionView _availableOptionChoiceEntitiesView;
+        private ObservableCollection<OptionChoiceEntity> _availableOptionChoiceEntities;
+        private List<OptionChoiceEntity> _choosenOptionChoiceEntities;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -21,40 +24,85 @@ namespace ResotelApp.ViewModels
             remove { _pcs.Handler -= value; }
         }
 
+        public event EventHandler<OptionChoiceEntity> OptionChanged;
 
-        public ICollectionView AvailableOptionsView
+        public ICollectionView AvailableOptionChoiceEntitiesView
         {
             get
             {
-                return _availableOptionsView;
+                return _availableOptionChoiceEntitiesView;
             }
             set
             {
-                _availableOptionsView = value;
+                _availableOptionChoiceEntitiesView = value;
                 _pcs.NotifyChange();
             }
         }
+
+        public IList<OptionChoiceEntity> ChoosenOptionChoiceEntities
+        {
+            get { return _choosenOptionChoiceEntities; }
+        }
         
 
-        public OptionsViewModel(Booking booking, IEnumerable<OptionChoiceEntity> options)
+        private OptionsViewModel()
         {
             _pcs = new PropertyChangeSupport(this);
-            _availableOptions = new ObservableCollection<OptionChoiceEntity>(options);
-            _availableOptionsView = CollectionViewProvider.Provider(_availableOptions);
-            _booking = booking;
-            _availableOptionsView.CollectionChanged += _optionChanged;
+            _availableOptionChoiceEntities = new ObservableCollection<OptionChoiceEntity>();
+            _availableOptionChoiceEntitiesView = CollectionViewProvider.Provider(_availableOptionChoiceEntities);
         }
 
-        private void _optionChanged(object sender, NotifyCollectionChangedEventArgs nccea)
+        ~ OptionsViewModel()
         {
-            _booking.OptionChoices.Clear();
-            foreach(OptionChoiceEntity optChoiceEntity in _availableOptions)
+            foreach (OptionChoiceEntity optChoiceEntity in _availableOptionChoiceEntitiesView)
             {
-                if(optChoiceEntity.Taken)
-                {
-                    _booking.OptionChoices.Add(optChoiceEntity.OptionChoice);
-                }
+                optChoiceEntity.PropertyChanged -= _optionChanged;
             }
+        }
+
+        public static async Task<OptionsViewModel> CreateAsync(DateRange dates)
+        {
+            OptionsViewModel newInstance = new OptionsViewModel();
+            List<Option> availableOptions = await OptionRepository.GetAvailablesBetweenAsync(dates);
+            foreach (Option opt in availableOptions)
+            {
+                OptionChoice optChoice = new OptionChoice
+                {
+                    Option = opt,
+                    TakenDates = (DateRange)((ICloneable)dates).Clone()
+                };
+                optChoice.TakenDates.Start = optChoice.TakenDates.Start.Date;
+                OptionChoiceEntity optChoiceEntity = new OptionChoiceEntity(optChoice);
+                newInstance._availableOptionChoiceEntities.Add(optChoiceEntity);
+            }
+
+            foreach (OptionChoiceEntity optChoiceEntity in newInstance._availableOptionChoiceEntities)
+            {
+                optChoiceEntity.PropertyChanged += newInstance._optionChanged;
+            }
+            return newInstance;
+        }
+
+        private void _optionChanged(object sender, PropertyChangedEventArgs pcea)
+        {
+            if(!(sender is OptionChoiceEntity))
+            {
+                throw new InvalidOperationException();
+            }
+            
+            OptionChoiceEntity optChoiceEntity = sender as OptionChoiceEntity;
+
+            OptionChanged?.Invoke(null, optChoiceEntity);
+        }
+
+        private bool _isChoosen(object item)
+        {
+            if(!(item is OptionChoiceEntity))
+            {
+                throw new InvalidOperationException("Seules les OptionChoiceEntity peuvent êtres filtrées (OptionsViewModel). Cette exception est critique.");
+            }
+            OptionChoiceEntity optChoiceEntity = item as OptionChoiceEntity;
+            return optChoiceEntity.Taken;
         }
     }
 }

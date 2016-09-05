@@ -32,55 +32,78 @@ namespace ResotelApp.Migrations
                 Option[] options = (from el in doc.Descendants("Option")
                                     select el).Select(optionFromXElement).ToArray();
 
+                Discount[] discounts = (from el in doc.Descendants("Room")
+                                        select el.Descendants("Discount"))
+                                        .SelectMany(discnts => discnts)
+                                        .Select(discountFromXElement).ToArray();
+
                 IDictionary<string, Option> uniqueOptions = new Dictionary<string, Option>();
                 IDictionary<string, Room> uniqueRooms = new Dictionary<string, Room>();
-                IDictionary<string, Discount> uniquePackDiscount = new Dictionary<string, Discount>();
+                IDictionary<string, Pack> uniquePacks = new Dictionary<string, Pack>();
+                IDictionary<string, Discount> uniqueDiscounts = new Dictionary<string, Discount>();
 
-                foreach(Option opt in options)
+
+                foreach (Option opt in options)
                 {
-                    if(!uniqueOptions.ContainsKey(opt.Id.ToString()))
+                    if (!uniqueOptions.ContainsKey(opt.Id.ToString()))
                     {
                         uniqueOptions.Add(opt.Id.ToString(), opt);
                     }
                 }
 
-                foreach(Room room in rooms)
+                foreach(Discount discount in discounts)
                 {
-                    if(!uniqueRooms.ContainsKey(room.Id.ToString()))
+                    if(!uniqueDiscounts.ContainsKey(discount.Id.ToString()))
+                    {
+                        uniqueDiscounts.Add(discount.Id.ToString(), discount);
+                    }
+                }
+
+                foreach (Room room in rooms)
+                {
+                    if (!uniqueRooms.ContainsKey(room.Id.ToString()))
                     {
                         List<string> optionsIds = (from el in doc.Descendants("Room")
                                                    where el.Element("Id").Value == room.Id.ToString()
                                                    select el).First().Descendants("Option").Select(e => e.Element("Id").Value)
                                                    .ToList();
 
-                        List<Discount> availablePacks = (from el in doc.Descendants("Room")
-                                                         where el.Element("Id").Value == room.Id.ToString()
-                                                         select el).First().Descendants("Discount")
-                                                         .Select(discountPackFromXElement).ToList();
+                        List<Pack> availablePacks = (from el in doc.Descendants("Room")
+                                                     where el.Element("Id").Value == room.Id.ToString()
+                                                     select el).First().Descendants("Pack")
+                                                         .Select(packFromXElement).ToList();
+
                         // add missing packs
                         availablePacks
-                                .Where(pack => !uniquePackDiscount.ContainsKey(pack.Id.ToString()))
+                                .Where(pack => !uniquePacks.ContainsKey(pack.Id.ToString()))
                                 .ToList()
                                 .ForEach(pack =>
                                 {
-                                    uniquePackDiscount.Add(pack.Id.ToString(), pack);
+                                    uniquePacks.Add(pack.Id.ToString(), pack);
                                     room.AvailablePacks.Add(pack);
                                 });
 
-                        room.Options.AddRange(optionsIds.Select( id=> uniqueOptions[id] ));
-                        
+                        room.Options.AddRange(optionsIds.Select(id => uniqueOptions[id]));
+
                         uniqueRooms.Add(room.Id.ToString(), room);
                     }
                 }
 
 
-                foreach(Option option in uniqueOptions.Values)
+                foreach (Option option in uniqueOptions.Values)
                 {
                     List<string> roomIds = uniqueRooms.Values.Where(room => room.Options.Any(opt => opt.Id == option.Id))
                         .Select(room => room.Id.ToString())
                         .ToList();
-                    
+
+                    List<string> discountIds = (from el in doc.Descendants("Option")
+                                               where el.Element("Id").Value == option.Id.ToString()
+                                               select el).First().Descendants("Discount").Select(
+                                                    e => e.Element("Id").Value)
+                                                   .ToList();
+
                     option.Rooms.AddRange(roomIds.Select(id => uniqueRooms[id]));
+                    option.Discounts.AddRange(discountIds.Select( id => uniqueDiscounts[id] ));
                 }
 
                 context.Rooms.Include(room => room.Options).Include(room => room.AvailablePacks).Load();
@@ -109,7 +132,7 @@ namespace ResotelApp.Migrations
                 BedKind = (BedKind)Enum.Parse(typeof(BedKind), e.Element("BedKind").Value),
                 Capacity = int.Parse(e.Element("Capacity").Value),
                 Stage = int.Parse(e.Element("Stage").Value),
-                Options = new List<Models.Option>(),
+                Options = new List<Option>(),
                 IsCleaned = e.Element("IsCleaned").Value == "" ? false : bool.Parse(e.Element("IsCleaned").Value)
             };
             return room;
@@ -144,15 +167,37 @@ namespace ResotelApp.Migrations
             return user;
         }
 
-        private Discount discountPackFromXElement(XElement e)
+        private Pack packFromXElement(XElement e)
+        {
+            Pack pack = new Pack
+            {
+                Id = int.Parse(e.Element("Id").Value),
+                Price = double.Parse(e.Element("PackPrice").Value),
+                Quantity = int.Parse(e.Element("PackQuantity").Value)
+            };
+            return pack;
+        }
+
+        private Discount discountFromXElement(XElement e)
         {
             Discount discount = new Discount
             {
                 Id = int.Parse(e.Element("Id").Value),
-                PackPrice = double.Parse(e.Element("PackPrice").Value),
-                PackQuantity = int.Parse(e.Element("PackQuantity").Value)
+                ReduceByPercent = double.Parse(e.Element("ReduceByPercent").Value, CultureInfo.CreateSpecificCulture("en-US")),
+                Validity = dateRangeFromXElement(e.Element("Validity"))
             };
+
             return discount;
+        }
+
+        private DateRange dateRangeFromXElement(XElement e)
+        {
+            DateRange dateRange = new DateRange
+            {
+                Start = DateTime.ParseExact(e.Element("Start").Value, "yyyy-MM-dd", CultureInfo.CurrentCulture),
+                End = DateTime.ParseExact(e.Element("End").Value, "yyyy-MM-dd", CultureInfo.CurrentCulture)
+            };
+            return dateRange;
         }
     }
 }

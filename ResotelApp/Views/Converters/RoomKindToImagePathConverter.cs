@@ -12,7 +12,8 @@ namespace ResotelApp.Views.Converters
         {
             if(!(value is RoomKind))
             {
-                throw new ArgumentException("Seules les instances de Resotel.Models.RoomKind peuvent êtres converties", "value"); 
+                throw new InvalidOperationException("Seules les instances de Resotel.Models.RoomKind " +
+                    "peuvent êtres converties (RoomKindToImagePathConverter).Cette erreur est critique."); 
             }
 
             return $"/Resources/room_{((RoomKind)value).ToString()}.png";

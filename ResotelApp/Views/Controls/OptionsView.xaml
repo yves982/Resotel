@@ -16,7 +16,7 @@
         </Grid.Resources>
         <GroupBox Header="Options">
             <Expander Header="Options" IsExpanded="True">
-                <ItemsControl ItemsSource="{Binding AvailableOptionsView}"></ItemsControl>
+                <ItemsControl ItemsSource="{Binding AvailableOptionChoiceEntitiesView}"></ItemsControl>
             </Expander>
         </GroupBox>
     </Grid>

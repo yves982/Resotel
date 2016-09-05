@@ -17,8 +17,9 @@ namespace ResotelApp.ViewModels
         private string _title;
         private bool _clientMode;
         private bool _bookingMode;
+        private BookingViewModel _currentBookingVM;
 
-        private DelegateCommand<ClientViewModel> _sumUpCommand;
+        private DelegateCommandAsync<ClientViewModel> _sumUpCommand;
         private DelegateCommand<ClientViewModel> _bookingCommand;
         private DelegateCommandAsync<ClientViewModel> _saveClientCommand;
 
@@ -81,13 +82,18 @@ namespace ResotelApp.ViewModels
             get { return _bookingMode; }
         }
 
+        public BookingViewModel CurrentBookingVM
+        {
+            get { return _currentBookingVM; }
+        }
+
         public ICommand SumUpCommand
         {
             get
             {
                 if(_sumUpCommand == null)
                 {
-                    _sumUpCommand = new DelegateCommand<ClientViewModel>(_sumUp);
+                    _sumUpCommand = new DelegateCommandAsync<ClientViewModel>(_sumUp);
                 }
                 return _sumUpCommand;
             }
@@ -126,15 +132,16 @@ namespace ResotelApp.ViewModels
             _bookingMode = !clientMode;
             _navigation = navigation;
             _navigation.AddLast(this);
+            if (_bookingMode)
+            {
+                _currentBookingVM = _navigation.Last.Previous.Value as BookingViewModel;
+            }
         }
 
         ~ClientViewModel()
         {
             _clientEntity.PropertyChanged -= _clientChanged;
-            if(Shutdown != null)
-            {
-                Shutdown(this, this);
-            }
+            Shutdown?.Invoke(null, this);
         }
 
         private void _clientChanged(object sender, PropertyChangedEventArgs pcea)
@@ -142,17 +149,14 @@ namespace ResotelApp.ViewModels
             _pcs.NotifyChange("Title");
         }
 
-        private void _sumUp(ClientViewModel clientVM)
+        private async Task _sumUp(ClientViewModel clientVM)
         {
-            throw new NotImplementedException();
+            await clientVM.CurrentBookingVM.Save();
         }
 
         private void _booking(ClientViewModel clientVM)
         {
-            if(PreviousCalled != null)
-            {
-                PreviousCalled(this, clientVM);
-            }
+            PreviousCalled?.Invoke(null, clientVM);
         }
 
         private async Task _saveClient(ClientViewModel clientVM)
@@ -163,7 +167,8 @@ namespace ResotelApp.ViewModels
             }
             await ClientRepository.SaveNewClient(clientVM.ClientEntity.Client);
             PromptViewModel promptVM = new PromptViewModel("Action réussie", 
-                $"Le client {clientVM.ClientEntity.FirstName} {clientVM.ClientEntity.LastName}"
+                $"Le client {clientVM.ClientEntity.FirstName} {clientVM.ClientEntity.LastName}",
+                false
             );
             ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(promptVM);
         }

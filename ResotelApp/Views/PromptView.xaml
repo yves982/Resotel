@@ -13,7 +13,7 @@
           FocusManager.FocusedElement="{Binding ElementName=PromptTxt}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="160"></ColumnDefinition>
+            <ColumnDefinition Width="{Binding HasInput, Converter={StaticResource hasInputToWidthConverter}}"></ColumnDefinition>
             <ColumnDefinition Width="160"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
@@ -22,24 +22,31 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <TextBlock 
-            Grid.Row="0" Grid.Column="1" 
-            VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,8,0" Width="150"
+        <ScrollViewer Width="120" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="{Binding HasInput, Converter={StaticResource promptViewBoolToColumnSpanConverter}}" VerticalAlignment="Center"
+                      HorizontalAlignment="Center">
+            <TextBlock 
+              Margin="0,0,8,0"
             FontWeight="Bold"
-            Text="{Binding Message, StringFormat={}{0}:}"></TextBlock>
+            Text="{Binding Message}"
+                TextWrapping="Wrap">
+            </TextBlock>
+        </ScrollViewer>
         <TextBox 
             Grid.Row="0" Grid.Column="2"
             VerticalAlignment="Center"
             Width="80px"
             Name="PromptTxt"
-            Text="{Binding Result}"></TextBox>
+            Text="{Binding Result}"
+            Visibility="{Binding HasInput, Converter={StaticResource boolToVisibilityConverter}}"></TextBox>
         <Button 
-            Grid.Row="1" Grid.Column="1" 
-            VerticalAlignment="Top" HorizontalAlignment="Right" Margin="0,0,4,0" Width="80"
-            Command="{Binding OkCommand}">Ok</Button>
+            Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="{Binding HasInput, Converter={StaticResource promptViewBoolToColumnSpanConverter}}" 
+            VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,0,4,0" Width="80"
+            Command="{Binding OkCommand}"
+            >Ok</Button>
         <Button 
             Grid.Row="1" Grid.Column="2" 
-            VerticalAlignment="Top" HorizontalAlignment="Left" Margin="4,0" Width="80"
-            Command="{Binding CancelCommand}">Cancel</Button>
+            VerticalAlignment="Top" HorizontalAlignment="Center" Margin="4,0" Width="80"
+            Command="{Binding CancelCommand}"
+            Visibility="{Binding HasInput, Converter={StaticResource boolToVisibilityConverter}}">Cancel</Button>
     </Grid>
 </Window>

@@ -10,6 +10,8 @@
     <StackPanel>
         <Image Source="{Binding RoomKind, Converter={StaticResource roomKindToImagePathConverter}}" Width="{StaticResource bookingImagesSize}" Height="{StaticResource bookingImagesSize}" />
         <xctk:IntegerUpDown Margin="0 4 0 0" VerticalAlignment="Stretch" HorizontalAlignment="Stretch" 
-               Value="{Binding Count}" Maximum="{Binding MaxAvailable}" ToolTip="{Binding MaxTooltip}"></xctk:IntegerUpDown>
+               Value="{Binding Count}" Maximum="{Binding MaxAvailable}"
+               Minimum="0"
+               ToolTip="{Binding MaxTooltip}"></xctk:IntegerUpDown>
     </StackPanel>
 </UserControl>

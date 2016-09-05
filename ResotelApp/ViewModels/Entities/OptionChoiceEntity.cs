@@ -68,10 +68,6 @@ namespace ResotelApp.ViewModels.Entities
             }
             set
             {
-                if(_optionChoice.Option.CurrentDiscount == null)
-                {
-                    _optionChoice.Option.CurrentDiscount = new Discount();
-                }
                 _optionChoice.Option.CurrentDiscount.ReduceByPercent = value;
                 _pcs.NotifyChange();
             }
@@ -79,7 +75,7 @@ namespace ResotelApp.ViewModels.Entities
 
         public double ActualPrice
         {
-            get { return _optionChoice.Option.ActualPrice; }
+            get { return _optionChoice.ActualPrice; }
         }
 
         public bool IsPeopleRelated
@@ -116,6 +112,39 @@ namespace ResotelApp.ViewModels.Entities
             {
                 _optionChoice.TakenDates = value;
                 _pcs.NotifyChange();
+            }
+        }
+
+        public DateRange DiscountedDates
+        {
+            get
+            {
+                DateRange discountedDates = null;
+                if(_optionChoice.Option.CurrentDiscount != null && _optionChoice.Option.CurrentDiscount.Validity != null)
+                {
+                    discountedDates = _optionChoice.Option.CurrentDiscount.Validity;
+                }
+                return discountedDates;
+            }
+        }
+
+        public bool HasPartialDiscount
+        {
+            get
+            {
+                bool hasPartialDiscount = false;
+                if(_optionChoice.Option.CurrentDiscount != null)
+                {
+                    Discount currentDiscount = _optionChoice.Option.CurrentDiscount;
+                    DateTime takenStart = _optionChoice.TakenDates.Start;
+                    DateTime takenEnd = _optionChoice.TakenDates.End; 
+                    if(DiscountedDates != null && 
+                        (!DiscountedDates.Start.Date.Equals(takenStart.Date)) || !DiscountedDates.End.Date.Equals(takenEnd.Date))
+                    {
+                        hasPartialDiscount = true;
+                    }
+                }
+                return hasPartialDiscount;
             }
         }
 
