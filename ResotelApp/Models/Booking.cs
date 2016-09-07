@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ResotelApp.Models
@@ -53,9 +54,8 @@ namespace ResotelApp.Models
         {
             get
             {
-                if(_roomDiscounts.Count == 0 && Rooms.Count > 0)
+                if(_roomDiscounts.Count == 0)
                 {
-                    _roomDiscounts.Clear();
                     foreach(Room room in Rooms)
                     {
                         List<Pack> orderedPacks = new List<Pack>(room.AvailablePacks);
@@ -149,18 +149,30 @@ namespace ResotelApp.Models
         {
             List<OptionChoice> invalidOptions = new List<OptionChoice>(OptionChoices);
             invalidOptions.RemoveAll(opt => opt == null || string.IsNullOrEmpty(((IDataErrorInfo)opt).Error));
-            return string.Join(";", 
+            string errors = string.Join(";", 
                 invalidOptions.ConvertAll<string>( opt => ((IDataErrorInfo)opt).Error )
             );
+
+            if(errors.Length == 0)
+            {
+                errors = null;
+            }
+            return errors;
         }
 
         private string _validateRooms()
         {
             List<Room> invalidRooms = new List<Room>(Rooms);
             invalidRooms.RemoveAll(room => room == null || string.IsNullOrEmpty(((IDataErrorInfo)room).Error));
-            return string.Join(";",
+            string errors = string.Join(";",
                 invalidRooms.ConvertAll<string>(room => ((IDataErrorInfo)room).Error)
             );
+
+            if(errors.Length == 0)
+            {
+                errors = null;
+            }
+            return errors;
         }
 
         private string _validateDates()

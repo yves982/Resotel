@@ -194,8 +194,8 @@ namespace ResotelApp.ViewModels
             _newClientCommand.ChangeCanExecute();
             _searchClientCommand.ChangeCanExecute();
 
-            Options = await OptionsViewModel.CreateAsync(bookingParametersVM.DateRange);
-            RoomChoices = await RoomsChoiceViewModel.CreateAsync(bookingParametersVM.DateRange);
+            Options = await OptionsViewModel.CreateAsync(bookingParametersVM.DateRangeEntity.DateRange);
+            RoomChoices = await RoomsChoiceViewModel.CreateAsync(bookingParametersVM.DateRangeEntity.DateRange);
             RoomChoices.AvailableRoomChoiceEntitiesView.Filter = _mustShowRoomChoice;
         }
 
@@ -218,13 +218,14 @@ namespace ResotelApp.ViewModels
 
             _booking.AdultsCount = _parameters.AdultsCount;
             _booking.BabiesCount = _parameters.BabiesCount;
-            _booking.Dates = _parameters.DateRange;
+            _booking.Dates = _parameters.DateRangeEntity.DateRange;
 
             if (_newClientCommand.CanExecute(null))
             {
                 ParametersValidated = false;
                 _newClientCommand.ChangeCanExecute();
                 _searchClientCommand.ChangeCanExecute();
+                _parameters.ChangeValidateCanExecute();
                 MessageReceived?.Invoke(null, null);
             }
         }
@@ -251,10 +252,10 @@ namespace ResotelApp.ViewModels
 
         private void _optionsChanged(object sender, OptionChoiceEntity optChoiceEntity)
         {
-            if (optChoiceEntity.Taken)
+            if (optChoiceEntity.Taken && _booking.OptionChoices.Find( optC => optC.Option.Id == optChoiceEntity.OptionChoice.Option.Id ) == null)
             {
                 _booking.OptionChoices.Add(optChoiceEntity.OptionChoice);
-            } else
+            } else if(!optChoiceEntity.Taken)
             {
                 _booking.OptionChoices.Remove(optChoiceEntity.OptionChoice);
             }

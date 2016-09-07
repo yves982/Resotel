@@ -1,4 +1,5 @@
 ﻿using ResotelApp.Models;
+using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ namespace ResotelApp.ViewModels
     class BookingParametersViewModel : INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;
-        private DateRange _dateRange;
+        private DateRangeEntity _dateRange;
         private int _babiesCount;
         private int _adultsCount;
 
@@ -24,7 +25,7 @@ namespace ResotelApp.ViewModels
 
         public event EventHandler<BookingParametersViewModel> Defined;
 
-        public DateRange DateRange
+        public DateRangeEntity DateRangeEntity
         {
             get { return _dateRange; }
             set
@@ -41,10 +42,6 @@ namespace ResotelApp.ViewModels
             set
             {
                 _babiesCount = value;
-                if (!_validateCommand.CanExecute(null))
-                {
-                    _validateCommand.ChangeCanExecute();
-                }
                 _pcs.NotifyChange();
             }
         }
@@ -56,10 +53,6 @@ namespace ResotelApp.ViewModels
             set
             {
                 _adultsCount = value;
-                if(!_validateCommand.CanExecute(null))
-                {
-                    _validateCommand.ChangeCanExecute();
-                }
                 _pcs.NotifyChange();
             }
         }
@@ -80,10 +73,25 @@ namespace ResotelApp.ViewModels
         public BookingParametersViewModel(Booking booking)
         {
             _pcs = new PropertyChangeSupport(this);
-            _dateRange = booking.Dates;
+            _dateRange = new DateRangeEntity(booking.Dates);
+            _dateRange.PropertyChanged += _dateRange_PropertyChanged;
             _adultsCount = booking.AdultsCount;
             _babiesCount = booking.BabiesCount;
         }
+
+        public void ChangeValidateCanExecute()
+        {
+            if (!_validateCommand.CanExecute(null))
+            {
+                _validateCommand.ChangeCanExecute();
+            }
+        }
+
+        private void _dateRange_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            _pcs.NotifyChange(nameof(DateRangeEntity));
+        }
+
 
         private void _validate(object ignore)
         {

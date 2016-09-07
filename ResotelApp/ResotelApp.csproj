@@ -216,6 +216,7 @@
     <Compile Include="Repositories\OptionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
     <Compile Include="ViewModels\Entities\BookedRoomEntity.cs" />
+    <Compile Include="ViewModels\Entities\DateRangeEntity.cs" />
     <Compile Include="ViewModels\Entities\MessageKind.cs" />
     <Compile Include="ViewModels\SumUpViewModel.cs" />
     <Compile Include="Views\Controls\SumUpOptionView.xaml.cs">
