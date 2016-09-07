@@ -195,9 +195,9 @@ namespace ResotelApp.ViewModels
                 }
                 i++;
             }
-            if(entityIndex != -1)
+            if(entityIndex != -1 && closedEntity is INavigableViewModel)
             {
-                BookingViewModel bookingVM = closedEntity as BookingViewModel;
+                INavigableViewModel bookingVM = closedEntity as INavigableViewModel;
                 bookingVM.NextCalled -= _nextCalled;
                 bookingVM.PreviousCalled -= _prevCalled;
                 bookingVM.MessageReceived -= _messageReceived;

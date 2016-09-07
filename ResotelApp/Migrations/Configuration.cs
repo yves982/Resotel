@@ -68,25 +68,27 @@ namespace ResotelApp.Migrations
                                                    select el).First().Descendants("Option").Select(e => e.Element("Id").Value)
                                                    .ToList();
 
-                        List<Pack> availablePacks = (from el in doc.Descendants("Room")
-                                                     where el.Element("Id").Value == room.Id.ToString()
-                                                     select el).First().Descendants("Pack")
-                                                         .Select(packFromXElement).ToList();
-
-                        // add missing packs
-                        availablePacks
-                                .Where(pack => !uniquePacks.ContainsKey(pack.Id.ToString()))
-                                .ToList()
-                                .ForEach(pack =>
-                                {
-                                    uniquePacks.Add(pack.Id.ToString(), pack);
-                                    room.AvailablePacks.Add(pack);
-                                });
+                        
 
                         room.Options.AddRange(optionsIds.Select(id => uniqueOptions[id]));
 
                         uniqueRooms.Add(room.Id.ToString(), room);
                     }
+                    // add missing packs
+                    List<Pack> availablePacks = (from el in doc.Descendants("Room")
+                                                 where el.Element("Id").Value == room.Id.ToString()
+                                                 select el).First().Descendants("Pack")
+                                                         .Select(packFromXElement).ToList();
+
+                    
+                    availablePacks
+                            .Where(pack => !uniquePacks.ContainsKey(pack.Id.ToString()))
+                            .ToList()
+                            .ForEach(pack =>
+                            {
+                                uniquePacks.Add(pack.Id.ToString(), pack);
+                                room.AvailablePacks.Add(pack);
+                            });
                 }
 
 

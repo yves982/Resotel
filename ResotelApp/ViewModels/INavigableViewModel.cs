@@ -13,5 +13,6 @@ namespace ResotelApp.ViewModels
         event EventHandler<INavigableViewModel> NextCalled;
         event EventHandler<INavigableViewModel> PreviousCalled;
         event EventHandler<INavigableViewModel> Shutdown;
+        event EventHandler<string> MessageReceived; 
     }
 }

@@ -32,6 +32,7 @@ namespace ResotelApp.ViewModels
         public event EventHandler<INavigableViewModel> NextCalled;
         public event EventHandler<INavigableViewModel> PreviousCalled;
         public event EventHandler<INavigableViewModel> Shutdown;
+        public event EventHandler<string> MessageReceived;
 
         public ClientEntity ClientEntity
         {

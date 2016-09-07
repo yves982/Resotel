@@ -16,7 +16,6 @@ namespace ResotelApp.ViewModels
         private PropertyChangeSupport _pcs;
         private ICollectionView _availableOptionChoiceEntitiesView;
         private ObservableCollection<OptionChoiceEntity> _availableOptionChoiceEntities;
-        private List<OptionChoiceEntity> _choosenOptionChoiceEntities;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -37,11 +36,6 @@ namespace ResotelApp.ViewModels
                 _availableOptionChoiceEntitiesView = value;
                 _pcs.NotifyChange();
             }
-        }
-
-        public IList<OptionChoiceEntity> ChoosenOptionChoiceEntities
-        {
-            get { return _choosenOptionChoiceEntities; }
         }
         
 

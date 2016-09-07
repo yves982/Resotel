@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ResotelApp.Models
@@ -13,7 +14,7 @@ namespace ResotelApp.Models
     public class Discount : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;
-        
+
         public int Id { get; set; }
         [Required]
         public double ReduceByPercent { get; set; }

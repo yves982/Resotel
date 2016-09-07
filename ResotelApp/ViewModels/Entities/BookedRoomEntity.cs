@@ -1,7 +1,5 @@
 ﻿using ResotelApp.Models;
-using ResotelApp.ViewModels.Utils;
 using System.Collections.Generic;
-using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
@@ -10,6 +8,7 @@ namespace ResotelApp.ViewModels.Entities
         private Room _room;
         private DateRange _takenDates;
         private List<AppliedPack> _appliedDiscounts;
+        private List<OptionChoiceEntity> _optionChoiceEntities;
 
         public Room Room
         {
@@ -27,6 +26,11 @@ namespace ResotelApp.ViewModels.Entities
             get { return _appliedDiscounts; }
         }
 
+        public IList<OptionChoiceEntity> OptionChoiceEntities
+        {
+            get { return _optionChoiceEntities; }
+        }
+
         public BookedRoomEntity(Booking booking, Room room)
         {
             _room = room;
@@ -39,6 +43,11 @@ namespace ResotelApp.ViewModels.Entities
                     _appliedDiscounts.Add(appliedDiscount);
                 }
             }
+
+            List<OptionChoiceEntity> optChoiceEntities =
+                booking.OptionChoices.ConvertAll(optChoice => new OptionChoiceEntity(optChoice));
+            _optionChoiceEntities = new List<OptionChoiceEntity>();
+            _optionChoiceEntities.AddRange(optChoiceEntities);
         }
     }
 }
