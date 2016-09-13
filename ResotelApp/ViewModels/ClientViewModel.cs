@@ -1,5 +1,7 @@
-﻿using ResotelApp.Repositories;
+﻿using ResotelApp.Models;
+using ResotelApp.Repositories;
 using ResotelApp.ViewModels.Entities;
+using ResotelApp.ViewModels.Events;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
@@ -90,53 +92,37 @@ namespace ResotelApp.ViewModels
 
         public ICommand SumUpCommand
         {
-            get
-            {
-                if(_sumUpCommand == null)
-                {
-                    _sumUpCommand = new DelegateCommandAsync<ClientViewModel>(_sumUp);
-                }
-                return _sumUpCommand;
-            }
+            get { return _sumUpCommand; }
         }
 
         public ICommand BookingCommand
         {
-            get
-            {
-                if(_bookingCommand == null)
-                {
-                    _bookingCommand = new DelegateCommand<ClientViewModel>(_booking);
-                }
-                return _bookingCommand;
-            }
+            get { return _bookingCommand; }
         }
 
         public ICommand SaveClientCommand
         {
-            get
-            {
-                if (_saveClientCommand == null)
-                {
-                    _saveClientCommand = new DelegateCommandAsync<ClientViewModel>(_saveClient);
-                }
-                return _saveClientCommand;
-            }
+            get { return _saveClientCommand; }
         }
 
-        public ClientViewModel(LinkedList<INavigableViewModel> navigation, ClientEntity clientEntity, bool clientMode = false)
+        public ClientViewModel(LinkedList<INavigableViewModel> navigation, ClientEntity clientEntity, BookingViewModel bookingVM = null)
         {
             _pcs = new PropertyChangeSupport(this);
+            _navigation = navigation;
             _clientEntity = clientEntity;
             _clientEntity.PropertyChanged += _clientChanged;
-            _clientMode = clientMode;
-            _bookingMode = !clientMode;
-            _navigation = navigation;
-            _navigation.AddLast(this);
+            _clientMode = bookingVM == null;
+            _bookingMode = !_clientMode;
+            
             if (_bookingMode)
             {
-                _currentBookingVM = _navigation.Last.Previous.Value as BookingViewModel;
+                _currentBookingVM = bookingVM;
             }
+
+            _sumUpCommand = new DelegateCommandAsync<ClientViewModel>(_sumUp);
+            _bookingCommand = new DelegateCommand<ClientViewModel>(_booking);
+            _saveClientCommand = new DelegateCommandAsync<ClientViewModel>(_saveClient);
+            _navigation.AddLast(this);
         }
 
         ~ClientViewModel()
@@ -152,7 +138,20 @@ namespace ResotelApp.ViewModels
 
         private async Task _sumUp(ClientViewModel clientVM)
         {
-            await clientVM.CurrentBookingVM.Save();
+            if (!clientVM.CurrentBookingVM.IsSaved)
+            {
+                await clientVM.CurrentBookingVM.Save();
+                PromptViewModel successPromptVM = new PromptViewModel("Succés", "La commande a réussi", false);
+                ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+            }
+            
+            int bookingCnt = clientVM.ClientEntity.Bookings.Count;
+            Booking booking = clientVM.CurrentBookingVM.Booking;
+            if (!(_navigation.Last.Value is SumUpViewModel))
+            {
+                SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, booking);
+            }
+            NextCalled?.Invoke(null, clientVM);
         }
 
         private void _booking(ClientViewModel clientVM)

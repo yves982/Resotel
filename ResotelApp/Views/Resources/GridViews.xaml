@@ -1,0 +1,41 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:local="clr-namespace:ResotelApp.Views.Resources">
+
+    <GridView
+       x:Key="SumUpOptionView">
+        <GridViewColumn Header="Option" Width="60">
+            <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                    <Image HorizontalAlignment="Center" Source="{Binding ImageFullPath}" Width="32"></Image>
+                </DataTemplate>
+            </GridViewColumn.CellTemplate>
+        </GridViewColumn>
+        <GridViewColumn Width="32">
+            <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                    <Image HorizontalAlignment="Center" Source="/Resources/calendarIcon.png" Width="32"></Image>
+                </DataTemplate>
+            </GridViewColumn.CellTemplate>
+        </GridViewColumn>
+        <GridViewColumn Header="Du" Width="Auto" DisplayMemberBinding="{Binding TakenDates.Start, StringFormat=dd/MM/yyyy}"></GridViewColumn>
+        <GridViewColumn>
+            <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                    <Image HorizontalAlignment="Center" Source="/Resources/calendarIcon.png" Width="32"></Image>
+                </DataTemplate>
+            </GridViewColumn.CellTemplate>
+        </GridViewColumn>
+        <GridViewColumn Header="Au" Width="Auto" DisplayMemberBinding="{Binding TakenDates.End, StringFormat=dd/MM/yyyy}"></GridViewColumn>
+        <GridViewColumn Header="PrixBase" DisplayMemberBinding="{Binding BasePrice}"></GridViewColumn>
+        <GridViewColumn Header="Pourc. Reduction" Width="120" DisplayMemberBinding="{Binding ReduceByPercent}"></GridViewColumn>
+        <GridViewColumn Header="Prix" DisplayMemberBinding="{Binding ActualPrice}"></GridViewColumn>
+    </GridView>
+
+    <GridView x:Key="AppliedPackView">
+        <GridViewColumn Header="Identifiant" DisplayMemberBinding="{Binding Room.Id}" Width="210"></GridViewColumn>
+        <GridViewColumn Header="Type" DisplayMemberBinding="{Binding Room.Kind, Converter={StaticResource roomKindToImagePathConverter}}" Width="51"></GridViewColumn>
+        <GridViewColumn Header="Quantité" DisplayMemberBinding="{Binding Count}" Width="Auto"></GridViewColumn>
+        <GridViewColumn Header="PrixUnitaire" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+    </GridView>
+</ResourceDictionary>

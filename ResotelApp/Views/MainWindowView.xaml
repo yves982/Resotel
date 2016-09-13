@@ -12,8 +12,8 @@
         xmlns:col="clr-namespace:System.Collections;assembly=mscorlib"
         mc:Ignorable="d"
         Height="400"
-        Width="500"
-        MinWidth="500"
+        Width="560"
+        MinWidth="560"
         MinHeight="400"
         Title="{Binding Title}"
         Icon="/Resources/ResotelAppIcon.png"
@@ -121,7 +121,8 @@
                     <Button
                         Height="28" Width="52"
                         ToolTip="Recherche de réservation"
-                        Margin="2,40,4,4">
+                        Margin="2,40,4,4"
+                        Command="{Binding SearchBookingCommand}">
                         <Image Source="/Resources/SearchBtn.png"></Image>
                     </Button>
                     <Button
@@ -153,6 +154,9 @@
                             </DataTemplate>
                             <DataTemplate DataType="{x:Type vm:ClientViewModel}">
                                 <cts:ClientView></cts:ClientView>
+                            </DataTemplate>
+                            <DataTemplate DataType="{x:Type vm:SumUpViewModel}">
+                                <cts:SumUpView></cts:SumUpView>
                             </DataTemplate>
                         </ResourceDictionary>
                     </TabControl.Resources>

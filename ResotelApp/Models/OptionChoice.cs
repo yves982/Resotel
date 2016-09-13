@@ -33,7 +33,14 @@ namespace ResotelApp.Models
                     {
                         peopleCount = PeopleCount;
                     }
-                    _discountedAmmount = Option.BasePrice * TakenDates.Days * peopleCount - ActualPrice;   
+                    if (TakenDates == null)
+                    {
+                        _discountedAmmount = 0;
+                    }
+                    else
+                    {
+                        _discountedAmmount = Option.BasePrice * TakenDates.Days * peopleCount - ActualPrice;
+                    }
                 }
                 return _discountedAmmount;
             }
@@ -43,10 +50,14 @@ namespace ResotelApp.Models
         {
             get
             {
-                if(_actualPrice == -1)
+                if (TakenDates == null)
+                {
+                    _actualPrice = 0;
+                }
+                else
                 {
                     int peopleCount = 1;
-                    if(PeopleCount>0)
+                    if (PeopleCount > 0)
                     {
                         peopleCount = PeopleCount;
                     }
@@ -54,7 +65,7 @@ namespace ResotelApp.Models
                     if (Option.CurrentDiscount.ReduceByPercent == 0)
                     {
                         _discountedAmmount = 0;
-                        _actualPrice = Option.BasePrice;
+                        _actualPrice = Option.BasePrice * TakenDates.Days;
                     }
                     else if (Option.CurrentDiscount.Validity != null && Option.CurrentDiscount.ReduceByPercent > 0)
                     {
@@ -65,14 +76,15 @@ namespace ResotelApp.Models
                         double normalPrice = Option.BasePrice * fullPriceDays * peopleCount;
                         double discountedPrice = Option.BasePrice * (1d - (Option.CurrentDiscount.ReduceByPercent / 100d)) * discountedDays * peopleCount;
                         _actualPrice = Math.Floor(normalPrice + discountedPrice);
-                    } else if(Option.CurrentDiscount.Validity == null)
+                    }
+                    else if (Option.CurrentDiscount.Validity == null)
                     {
                         double reduceByPercent = 1;
-                        if(Option.CurrentDiscount.ReduceByPercent > 0)
+                        if (Option.CurrentDiscount.ReduceByPercent > 0)
                         {
                             reduceByPercent = Option.CurrentDiscount.ReduceByPercent;
                         }
-                        _actualPrice = Option.BasePrice * TakenDates.Days * peopleCount * (1d - (Option.CurrentDiscount.ReduceByPercent / 100d ));
+                        _actualPrice = Option.BasePrice * TakenDates.Days * peopleCount * (1d - (Option.CurrentDiscount.ReduceByPercent / 100d));
                     }
                 }
                 return _actualPrice;
@@ -148,7 +160,11 @@ namespace ResotelApp.Models
         private string _validateTakenDates()
         {
             string error = null;
-            string takenDatesError = ((IDataErrorInfo)TakenDates).Error;
+            string takenDatesError = null;
+            if (TakenDates != null)
+            {
+                takenDatesError = ((IDataErrorInfo)TakenDates).Error;
+            }
             if(takenDatesError != null)
             {
                 error = string.Format("Le choix d'option {0} est invalide car {1}", Id, takenDatesError);

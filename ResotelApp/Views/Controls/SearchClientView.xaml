@@ -1,0 +1,57 @@
+﻿<UserControl x:Class="ResotelApp.Views.Controls.SearchClientView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ResotelApp.Views.Controls"
+             xmlns:vme="clr-namespace:ResotelApp.ViewModels.Entities"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="Auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+            <TextBlock Grid.Row="0" Grid.Column="0"
+                Name="ClientFirstName" Text="{Binding ClientEntity.FirstName, Mode=OneWay}" MinWidth="60"></TextBlock>
+            <TextBlock  Grid.Row="0" Grid.Column="1"
+                Name="ClientLastName" Text="{Binding ClientEntity.LastName, Mode=OneWay}" Margin="2,0,0,0" MinWidth="60"></TextBlock>
+            <TextBlock  Grid.Row="0" Grid.Column="2"
+                Name="ClientCount" Text="{Binding FoundClientsCount, Mode=OneWay}" Margin="6,0,0,0"  MinWidth="60"
+                       Visibility="{Binding NeedsCount, Converter={StaticResource boolToVisibilityConverter}}"></TextBlock>
+            <Button  Grid.Row="0" Grid.Column="3"
+                Name="DisplayMoreButton" Margin="20,0" VerticalAlignment="Center" 
+                Command="{Binding DisplayMoreCommand}" CommandParameter="{Binding}"
+                Visibility="{Binding NeedsCount, Converter={StaticResource boolToVisibilityConverter}}">
+            <Image Source="{Binding DisplayMoreImage}" Width="24" Height="24"></Image>
+            </Button>
+
+        <ListView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4"
+                 ItemsSource="{Binding SubClientEntitiesView}" IsSynchronizedWithCurrentItem="True"
+                 Visibility="{Binding ShowSubs, Converter={StaticResource boolToVisibilityConverter}}">
+            <ListView.Resources>
+                <Style TargetType="{x:Type ListViewItem}">
+                    <!--<Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="{StaticResource BgBrush}"></Setter>
+                        </Trigger>
+                    </Style.Triggers>-->
+                    <Setter Property="Background" Value="DarkGray"></Setter>
+                </Style>
+            </ListView.Resources>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Prénom" DisplayMemberBinding="{Binding FirstName, Mode=OneWay}"></GridViewColumn>
+                    <GridViewColumn Header="Nom" DisplayMemberBinding="{Binding LastName, Mode=OneWay}"></GridViewColumn>
+                    <GridViewColumn Header="Date Naissance" DisplayMemberBinding="{Binding BirthDate, StringFormat=dd/MM/yyyy, Mode=OneWay}"></GridViewColumn>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </Grid>
+</UserControl>

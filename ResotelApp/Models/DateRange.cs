@@ -54,7 +54,7 @@ namespace ResotelApp.Models
                 error = string.Format("La plage de dates {0} est invalide car elle n'a ni début ni fin.", Id);
             } else if(Start > End)
             {
-                error = string.Format("La plage de dates {0} est invalide car son début ({0:dd/MM/yyyy HH:mm:ss}) est postérieur à sa fin ({1:dd/MM/yyyy HH:mm:ss})", Id, Start, End);
+                error = string.Format("La plage de dates {0} est invalide car son début ({1:dd/MM/yyyy HH:mm:ss}) est postérieur à sa fin ({2:dd/MM/yyyy HH:mm:ss})", Id, Start, End);
             }
             return error;
         }

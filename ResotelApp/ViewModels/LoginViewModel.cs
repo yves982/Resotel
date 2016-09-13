@@ -80,26 +80,12 @@ namespace ResotelApp.ViewModels
 
         public ICommand LoginCommand
         {
-            get
-            {
-                if (_loginCommand == null)
-                {
-                    _loginCommand = new DelegateCommandAsync<object>(_onLogin, false);
-                }
-                return _loginCommand;
-            }
+            get { return _loginCommand; }
         }
 
         public ICommand LoadCommand
         {
-            get
-            {
-                if(_loadCommand == null)
-                {
-                    _loadCommand = new DelegateCommand<IUITimer>(_onLoad);
-                }
-                return _loadCommand;
-            }
+            get { return _loadCommand; }
         }
 
         public string Error
@@ -157,10 +143,13 @@ namespace ResotelApp.ViewModels
 
         public LoginViewModel()
         {
-            _pcs = new Utils.PropertyChangeSupport(this);
+            _pcs = new PropertyChangeSupport(this);
             _loginResult = "";
             _resultReady = false;
             _title = "Resotel - Login";
+
+            _loadCommand = new DelegateCommand<IUITimer>(_load);
+            _loginCommand = new DelegateCommandAsync<object>(_loginCmd);
         }
 
         private void _unlockLoginIfNeeded()
@@ -181,12 +170,12 @@ namespace ResotelApp.ViewModels
             }
         }
 
-        private void _onLoad(IUITimer timer)
+        private void _load(IUITimer timer)
         {
             _timer = timer;
         }
 
-        private async Task _onLogin(object ignore)
+        private async Task _loginCmd(object ignore)
         {
             User user = await UserRepository.FindByLoginAsync(_login);
 

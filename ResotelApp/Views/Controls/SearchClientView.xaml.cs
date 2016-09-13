@@ -3,11 +3,11 @@
 namespace ResotelApp.Views.Controls
 {
     /// <summary>
-    /// Logique d'interaction pour SumUpRoomView.xaml
+    /// Logique d'interaction pour SearchClientView.xaml
     /// </summary>
-    public partial class BookedRoomView : UserControl
+    public partial class SearchClientView : UserControl
     {
-        public BookedRoomView()
+        public SearchClientView()
         {
             InitializeComponent();
         }

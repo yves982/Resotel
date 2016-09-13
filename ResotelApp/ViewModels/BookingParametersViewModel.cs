@@ -59,32 +59,26 @@ namespace ResotelApp.ViewModels
 
         public ICommand ValidateCommand
         {
-            get
-            {
-                if(_validateCommand == null)
-                {
-                    _validateCommand = new DelegateCommand<object>(_validate);
-                }
-                return _validateCommand;
-            }
+            get { return _validateCommand; }
         }
 
 
         public BookingParametersViewModel(Booking booking)
         {
             _pcs = new PropertyChangeSupport(this);
+            
+            booking.Dates.Start = booking.Dates.Start.Date;
+            booking.Dates.End = booking.Dates.End.Date;
             _dateRange = new DateRangeEntity(booking.Dates);
             _dateRange.PropertyChanged += _dateRange_PropertyChanged;
             _adultsCount = booking.AdultsCount;
             _babiesCount = booking.BabiesCount;
+            _validateCommand = new DelegateCommand<object>(_validate);
         }
 
         public void ChangeValidateCanExecute()
         {
-            if (!_validateCommand.CanExecute(null))
-            {
-                _validateCommand.ChangeCanExecute();
-            }
+            _validateCommand.ChangeCanExecute();
         }
 
         private void _dateRange_PropertyChanged(object sender, PropertyChangedEventArgs e)

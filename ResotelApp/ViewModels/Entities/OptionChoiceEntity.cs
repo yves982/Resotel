@@ -170,9 +170,11 @@ namespace ResotelApp.ViewModels.Entities
             _optionChoice = optionChoice;
             
             string cleanedLabel;
-            
-            cleanedLabel = _cleanLabel(optionChoice.Option.Label);
-            _imageFullPath = string.Format("/Resources/{0}.png", cleanedLabel);
+            if (optionChoice != null)
+            {
+                cleanedLabel = _cleanLabel(optionChoice.Option.Label);
+                _imageFullPath = string.Format("/Resources/{0}.png", cleanedLabel);
+            }
             _taken = false;
         }
 
