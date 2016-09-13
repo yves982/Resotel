@@ -1,10 +1,12 @@
 ﻿using ResotelApp.Models;
+using ResotelApp.Repositories;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using System.Windows.Data;
 using System.Windows.Input;
 
@@ -25,6 +27,7 @@ namespace ResotelApp.ViewModels
         private DelegateCommand<object> _addBookingCommand;
         private DelegateCommand<IEntity> _closeBookingCommand;
         private DelegateCommand<object> _addClientCommand;
+        private DelegateCommandAsync<object> _searchBookingCommand;
         private DelegateCommand<BookingViewModel> _nextCommand;
         private DelegateCommand<BookingViewModel> _prevCommand;
 
@@ -36,62 +39,32 @@ namespace ResotelApp.ViewModels
 
         public ICommand AddBookingCommand
         {
-            get
-            {
-                if(_addBookingCommand == null)
-                {
-                    _addBookingCommand = new DelegateCommand<object>(_addBooking);
-                }
-                return _addBookingCommand;
-            }
+            get { return _addBookingCommand; }
         }
 
         public ICommand CloseBookingCommand
         {
-            get
-            {
-                if(_closeBookingCommand == null)
-                {
-                    _closeBookingCommand = new DelegateCommand<IEntity>(_closeBooking);
-                }
-                return _closeBookingCommand;
-            }
+            get { return _closeBookingCommand; }
         }
 
         public ICommand AddClientCommand
         {
-            get
-            {
-                if(_addClientCommand == null)
-                {
-                    _addClientCommand = new DelegateCommand<object>(_addClient);
-                }
-                return _addClientCommand;
-            }
+            get { return _addClientCommand; }
+        }
+
+        public ICommand SearchBookingCommand
+        {
+            get { return _searchBookingCommand; }
         }
 
         public ICommand NextCommand
         {
-            get
-            {
-                if(_nextCommand == null)
-                {
-                    _nextCommand = new DelegateCommand<BookingViewModel>(_next);
-                }
-                return _nextCommand;
-            }
+            get { return _nextCommand; }
         }
 
         public ICommand PrevCommand
         {
-            get
-            {
-                if (_prevCommand == null)
-                {
-                    _prevCommand = new DelegateCommand<BookingViewModel>(_prev);
-                }
-                return _prevCommand;
-            }
+            get { return _prevCommand; }
         }
 
         public ICollectionView CurrentEntitiesView
@@ -157,6 +130,13 @@ namespace ResotelApp.ViewModels
             _currentEntities = new ObservableCollection<INavigableViewModel>();
             _title = "Resotel - Facturation";
             _navigation = new LinkedList<INavigableViewModel>();
+
+            _addBookingCommand = new DelegateCommand<object>(_addBooking);
+            _closeBookingCommand = new DelegateCommand<IEntity>(_closeBooking);
+            _addClientCommand = new DelegateCommand<object>(_addClient);
+            _searchBookingCommand = new DelegateCommandAsync<object>(_searchBooking);
+            _nextCommand = new DelegateCommand<BookingViewModel>(_next);
+            _prevCommand = new DelegateCommand<BookingViewModel>(_prev);
         }
 
         private void _addBooking(object ignore)
@@ -178,8 +158,36 @@ namespace ResotelApp.ViewModels
         {
             Client newClient = new Client();
             ClientEntity newClientEntity = new ClientEntity(newClient);
-            ClientViewModel clientVM = new ClientViewModel(_navigation, newClientEntity, true);
+            ClientViewModel clientVM = new ClientViewModel(_navigation, newClientEntity);
             _currentEntities.Add(clientVM);
+            _currentEntitiesView.MoveCurrentToLast();
+        }
+
+        private async Task _searchBooking(object ignore)
+        {
+            List<ClientEntity> clientEntities = (await ClientRepository.GetAllClients())
+                .ConvertAll(client => new ClientEntity(client));
+            SearchClientsViewModel searchClientsVM = new SearchClientsViewModel(clientEntities);
+            searchClientsVM.ClientSelected += _searchClients_clientSelected;
+            ViewDriverProvider.ViewDriver.ShowView<SearchClientsViewModel>(searchClientsVM);
+        }
+
+        private void _searchClients_clientSelected(object sender, ClientEntity selectedClientEntity)
+        {
+            (sender as SearchClientsViewModel).ClientSelected -= _searchClients_clientSelected;
+            ClientBookingsViewModel clientBookingsVM = new ClientBookingsViewModel(selectedClientEntity);
+            clientBookingsVM.BookingSelected += _clientBookings_bookingSelected;
+            ViewDriverProvider.ViewDriver.ShowView<ClientBookingsViewModel>(clientBookingsVM);
+        }
+
+        private void _clientBookings_bookingSelected(object sender, BookingEntity selectedBookingEntity)
+        {
+            (sender as ClientBookingsViewModel).BookingSelected -= _clientBookings_bookingSelected;
+            SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, selectedBookingEntity.Booking);
+            sumUpVM.NextCalled += _nextCalled;
+            sumUpVM.PreviousCalled += _prevCalled;
+            _currentEntities.Add(sumUpVM);
+            _currentEntitiesView.MoveCurrentToPosition(_currentEntities.Count - 1);
         }
 
         private void _closeBooking(IEntity closedEntity)

@@ -90,8 +90,11 @@ namespace ResotelApp.Models
             }
             else
             {
-                string discountError = ((IDataErrorInfo)RoomPack).Error;
-                error = string.Format("L'application de promotion {0} n'est pas valide car : {1}", Id, discountError);
+                string packError = ((IDataErrorInfo)RoomPack).Error;
+                if (packError != null)
+                {
+                    error = string.Format("L'application de promotion {0} n'est pas valide car : {1}", Id, packError);
+                }
             }
             return error;
         }
@@ -116,7 +119,10 @@ namespace ResotelApp.Models
             else
             {
                 string roomError = ((IDataErrorInfo)Room).Error;
-                error = string.Format("L'application de promotion {0} n'est pas valide car : {1}", Id, roomError);
+                if (roomError != null)
+                {
+                    error = string.Format("L'application de promotion {0} n'est pas valide car : {1}", Id, roomError);
+                }
             }
             return error;
         }

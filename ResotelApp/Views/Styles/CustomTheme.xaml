@@ -11,7 +11,8 @@
     <cnv:PromptViewBoolToColumnSpanConverter x:Key="promptViewBoolToColumnSpanConverter"></cnv:PromptViewBoolToColumnSpanConverter>
     <cnv:MessageKindToColorConverter x:Key="messageKindToColorConverter"></cnv:MessageKindToColorConverter>
     <cnv:HasInputToWidthConverter x:Key="hasInputToWidthConverter"></cnv:HasInputToWidthConverter>
-
+    <cnv:FlowDocumentToXpsConverter x:Key="flowDocumentToXpsConverter"></cnv:FlowDocumentToXpsConverter>
+    
     <Style TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>
     </Style>

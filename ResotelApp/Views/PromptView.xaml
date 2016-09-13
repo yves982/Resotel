@@ -13,8 +13,8 @@
           FocusManager.FocusedElement="{Binding ElementName=PromptTxt}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="{Binding HasInput, Converter={StaticResource hasInputToWidthConverter}}"></ColumnDefinition>
-            <ColumnDefinition Width="160"></ColumnDefinition>
+            <ColumnDefinition Width="Auto"></ColumnDefinition>
+            <ColumnDefinition Width="180"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -22,11 +22,12 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <ScrollViewer Width="120" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="{Binding HasInput, Converter={StaticResource promptViewBoolToColumnSpanConverter}}" VerticalAlignment="Center"
+        <ScrollViewer Width="{Binding HasInput, Converter={StaticResource hasInputToWidthConverter}}" Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="{Binding HasInput, Converter={StaticResource promptViewBoolToColumnSpanConverter}}" VerticalAlignment="Center"
                       HorizontalAlignment="Center">
             <TextBlock 
               Margin="0,0,8,0"
             FontWeight="Bold"
+                HorizontalAlignment="Center"
             Text="{Binding Message}"
                 TextWrapping="Wrap">
             </TextBlock>

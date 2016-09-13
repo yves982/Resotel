@@ -2,6 +2,7 @@
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
@@ -10,6 +11,8 @@ namespace ResotelApp.ViewModels.Entities
     {
         private PropertyChangeSupport _pcs;
         private Client _client;
+        private ObservableCollection<BookingEntity> _bookingEntities;
+        private ICollectionView _bookingEntitiesView;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -103,14 +106,43 @@ namespace ResotelApp.ViewModels.Entities
             }
         }
 
-        public List<Booking> Bookings
+        public ObservableCollection<BookingEntity> Bookings
         {
-            get { return _client.Bookings; }
+            get
+            {
+                if(_bookingEntities == null)
+                {
+                    _bookingEntities = new ObservableCollection<BookingEntity>();
+                    foreach(Booking booking in _client.Bookings)
+                    {
+                        BookingEntity bookingEntity = new BookingEntity(booking);
+                        _bookingEntities.Add(bookingEntity);
+                    }
+                    _bookingEntitiesView = CollectionViewProvider.Provider(_bookingEntities);
+                }
+                return _bookingEntities;
+            }
             set
             {
-                _client.Bookings = value;
+                
+                if(value != null)
+                {
+                    _client.Bookings.Clear();
+                    foreach(BookingEntity bookingEntity in value)
+                    {
+                        _client.Bookings.Add(bookingEntity.Booking);
+                    }
+                }
+                _bookingEntities = value;
+                _bookingEntitiesView = CollectionViewProvider.Provider(_bookingEntities);
                 _pcs.NotifyChange();
+                _pcs.NotifyChange(nameof(BookingsView));
             }
+        }
+
+        public ICollectionView BookingsView
+        {
+            get { return _bookingEntitiesView; }
         }
 
         public string Email

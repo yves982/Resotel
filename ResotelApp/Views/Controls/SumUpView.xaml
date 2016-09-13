@@ -6,17 +6,36 @@
              xmlns:local="clr-namespace:ResotelApp.Views.Controls"
              xmlns:vme="clr-namespace:ResotelApp.ViewModels.Entities"
              mc:Ignorable="d" 
-             d:DesignHeight="300" d:DesignWidth="300">
+             d:DesignHeight="600" d:DesignWidth="600">
     <Grid>
-        <FlowDocumentScrollViewer>
-            <FlowDocument>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <FlowDocumentScrollViewer Grid.Row="0" Grid.Column="0">
+            <FlowDocument x:Name="doc">
                 <Paragraph>
                     <Image Source="/Resources/ResotelAppIcon.png" Width="64" Height="64"></Image>
                     <Span BaselineAlignment="Center">Resotel</Span>
-                    <Span BaselineAlignment="Center">SIRET</Span>
-                    <Run Text="{Binding SIRET}"></Run>
+                    <Span BaselineAlignment="Center">SIRET
+                        <InlineUIContainer>
+                            <TextBlock Text="{Binding Siret, Mode=OneWay}"></TextBlock>
+                        </InlineUIContainer>
+                    </Span>
                 </Paragraph>
                 <Table>
+                    <Table.Columns>
+                        <TableColumn Width="50"></TableColumn>
+                        <TableColumn Width="50"></TableColumn>
+                        <TableColumn Width="90"></TableColumn>
+                        <TableColumn Width="50"></TableColumn>
+                        <TableColumn Width="90"></TableColumn>
+                        <TableColumn Width="60"></TableColumn>
+                        <TableColumn></TableColumn>
+                    </Table.Columns>
                     <TableRowGroup>
                         <TableRow>
                             <TableCell>
@@ -40,7 +59,7 @@
                             </TableCell>
                             <TableCell>
                                 <Paragraph>
-                                    <Run Text="{Binding Booking.Dates.Start, StringFormat=dd/MM/yyyy}"></Run>
+                                    <Run Text="{Binding Dates.Start, StringFormat=dd/MM/yyyy}"></Run>
                                 </Paragraph>
                             </TableCell>
                             <TableCell>
@@ -50,7 +69,7 @@
                             </TableCell>
                             <TableCell>
                                 <Paragraph>
-                                    <Run Text="{Binding Booking.Dates.End, StringFormat=dd/MM/yyyy}"></Run>
+                                    <Run Text="{Binding Dates.End, StringFormat=dd/MM/yyyy}"></Run>
                                 </Paragraph>
                             </TableCell>
                             <TableCell>
@@ -60,7 +79,7 @@
                             </TableCell>
                             <TableCell>
                                 <Paragraph>
-                                    <Run Text="{Binding Client.Email}"></Run>
+                                    <Run Text="{Binding ClientEntity.Client.Email}"></Run>
                                 </Paragraph>
                             </TableCell>
                         </TableRow>
@@ -70,12 +89,12 @@
                             </TableCell>
                             <TableCell>
                                 <Paragraph>
-                                    <Run Text="{Binding Client.FirstName}"></Run>
+                                    <Run Text="{Binding ClientEntity.Client.FirstName}"></Run>
                                 </Paragraph>
                             </TableCell>
                             <TableCell>
                                 <Paragraph>
-                                    <Run Text="{Binding Client.LastName}"></Run>
+                                    <Run Text="{Binding ClientEntity.Client.LastName}"></Run>
                                 </Paragraph>
                             </TableCell>
                             <TableCell></TableCell>
@@ -91,7 +110,7 @@
                             <TableCell></TableCell>
                             <TableCell ColumnSpan="2">
                                 <Paragraph>
-                                    <Run Text="{Binding Client.Address}"></Run>
+                                    <Run Text="{Binding ClientEntity.Client.Address}"></Run>
                                 </Paragraph>
                             </TableCell>
                             <TableCell></TableCell>
@@ -102,8 +121,8 @@
                             <TableCell></TableCell>
                             <TableCell ColumnSpan="2">
                                 <Paragraph>
-                                    <Run Text="{Binding Client.ZipCode}"></Run>
-                                    <Run Text="{Binding Client.City}"></Run>
+                                    <Run Text="{Binding ClientEntity.Client.ZipCode}"></Run>
+                                    <Run Text="{Binding ClientEntity.Client.City}"></Run>
                                 </Paragraph>
                             </TableCell>
                             <TableCell></TableCell>
@@ -114,32 +133,75 @@
                 </Table>
                 <BlockUIContainer>
                     <BlockUIContainer.Resources>
-                        <DataTemplate DataType="{x:Type vme:OptionChoiceEntity}">
-                            <local:SumUpOptionView></local:SumUpOptionView>
-                        </DataTemplate>
+                        <ResourceDictionary Source="/Views/Resources/GridViews.xaml"></ResourceDictionary>
                     </BlockUIContainer.Resources>
-                    <ListBox ItemsSource="{Binding OptionChoices}">
-                    </ListBox>
+                    <ListView ItemsSource="{Binding OptionChoiceEntities}" HorizontalContentAlignment="Center">
+                        <ListView.Resources>
+                            <Style x:Key="HeaderStyle" TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListView.Resources>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Focusable" Value="False"></Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListView.View>
+                            <StaticResource ResourceKey="SumUpOptionView"></StaticResource>
+                        </ListView.View>
+                    </ListView>
                 </BlockUIContainer>
-                <Paragraph>
+                <Paragraph LineHeight="16">
                     <TextBlock Width="110">Total Options:</TextBlock>
-                    <TextBlock Width="50" Text="{Binding OptionTotal}"></TextBlock>
+                    <TextBlock Width="50" Text="{Binding OptionsTotal}"></TextBlock>
                 </Paragraph>
 
                 <BlockUIContainer>
                     <BlockUIContainer.Resources>
-                        <DataTemplate DataType="{x:Type vme:BookedRoomEntity}">
-                            <local:BookedRoomView></local:BookedRoomView>
-                        </DataTemplate>
+                        <ResourceDictionary Source="/Views/Resources/GridViews.xaml"></ResourceDictionary>
                     </BlockUIContainer.Resources>
-                    <ListBox ItemsSource="{Binding Rooms}">
-                    </ListBox>
+                    <ListView ItemsSource="{Binding AppliedPackEntities}" HorizontalContentAlignment="Center">
+                        <ListView.Resources>
+                            <Style x:Key="HeaderStyle" TargetType="ListViewItem">
+                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                            </Style>
+                        </ListView.Resources>
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListBoxItem}">
+                                <Setter Property="Focusable" Value="False"></Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                        <ListView.View>
+                            <StaticResource ResourceKey="AppliedPackView"></StaticResource>
+                        </ListView.View>
+                    </ListView>
                 </BlockUIContainer>
                 <Paragraph>
-                    <TextBlock Width="110">Total Options:</TextBlock>
+                    <TextBlock Width="110">Total Chambres:</TextBlock>
                     <TextBlock Width="50" Text="{Binding RoomsTotal}"></TextBlock>
                 </Paragraph>
+                <Paragraph>
+                    <TextBlock Width="110">Total:</TextBlock>
+                    <TextBlock Width="50" Text="{Binding Total}"></TextBlock>
+                </Paragraph>
             </FlowDocument>
-        </FlowDocumentScrollViewer> 
+        </FlowDocumentScrollViewer>
+
+        <WrapPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,8,0,0">
+            <Button Name="EditBtn"  Margin="0,0,4,0"
+                    Command="{Binding EditBookingCommand}" CommandParameter="{Binding}">Editer</Button>
+            <Button Name="PrintBtn" Margin="4,0,0,0"
+                    Command="{Binding PrintBookingCommand}">
+                <Button.CommandParameter>
+                    <MultiBinding>
+                        <Binding ElementName="doc" Mode="OneWay"></Binding>
+                        <Binding Mode="OneWay"></Binding>
+                        <MultiBinding.Converter>
+                            <StaticResource ResourceKey="flowDocumentToXpsConverter"></StaticResource>
+                        </MultiBinding.Converter>
+                    </MultiBinding>
+                </Button.CommandParameter>
+                Imprimer</Button>
+        </WrapPanel>
     </Grid>
 </UserControl>

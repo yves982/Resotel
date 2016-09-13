@@ -96,6 +96,10 @@ namespace ResotelApp.ViewModels
 
         private void _ok(object ignore)
         {
+            if(_result == null)
+            {
+                _result = "";
+            }
             ShouldClose = true;
             _pcs.NotifyChange(nameof(ShouldClose));
             OnPromptClosed(new PromptClosedEventArgs(Result));

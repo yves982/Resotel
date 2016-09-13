@@ -23,7 +23,7 @@ namespace ResotelApp.ViewModels
             remove { _pcs.Handler -= value; }
         }
 
-        public event EventHandler<OptionChoiceEntity> OptionChanged;
+        public event EventHandler<OptionChoiceEntityChange> OptionChanged;
 
         public ICollectionView AvailableOptionChoiceEntitiesView
         {
@@ -85,8 +85,24 @@ namespace ResotelApp.ViewModels
             }
             
             OptionChoiceEntity optChoiceEntity = sender as OptionChoiceEntity;
+            OptionChangeKind kind = OptionChangeKind.Default;
 
-            OptionChanged?.Invoke(null, optChoiceEntity);
+            switch(pcea.PropertyName)
+            {
+                case nameof(optChoiceEntity.Taken):
+                    kind = OptionChangeKind.Taken;
+                    break;
+                case nameof(optChoiceEntity.TakenDates):
+                    kind = OptionChangeKind.TakenDates;
+                    break;
+                case nameof(optChoiceEntity.PeopleCount):
+                    kind = OptionChangeKind.PeopleCount;
+                    break;
+            }
+
+            OptionChoiceEntityChange optChange = new OptionChoiceEntityChange(kind, optChoiceEntity);
+
+            OptionChanged?.Invoke(null, optChange);
         }
 
         private bool _isChoosen(object item)

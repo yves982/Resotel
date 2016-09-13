@@ -220,15 +220,30 @@
     <Compile Include="Utils\PredicateExpressionExtensions.cs" />
     <Compile Include="Repositories\OptionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
+    <Compile Include="ViewModels\ClientBookingsViewModel.cs" />
+    <Compile Include="ViewModels\Entities\AppliedPackEntity.cs" />
     <Compile Include="ViewModels\Entities\BookedRoomEntity.cs" />
+    <Compile Include="ViewModels\Entities\BookingEntity.cs" />
+    <Compile Include="ViewModels\Entities\DiscountEntity.cs" />
+    <Compile Include="ViewModels\Entities\OptionEntity.cs" />
+    <Compile Include="ViewModels\Entities\PackEntity.cs" />
+    <Compile Include="ViewModels\Entities\RoomEntity.cs" />
+    <Compile Include="ViewModels\Events\OptionChangeKind.cs" />
+    <Compile Include="ViewModels\Events\OptionChoiceEntityChange.cs" />
+    <Compile Include="ViewModels\SearchClientViewModel.cs" />
     <Compile Include="ViewModels\Entities\DateRangeEntity.cs" />
     <Compile Include="ViewModels\Entities\MessageKind.cs" />
+    <Compile Include="ViewModels\SearchClientsViewModel.cs" />
     <Compile Include="ViewModels\SumUpViewModel.cs" />
-    <Compile Include="Views\Controls\SumUpOptionView.xaml.cs">
-      <DependentUpon>SumUpOptionView.xaml</DependentUpon>
+    <Compile Include="Views\ClientBookingsView.xaml.cs">
+      <DependentUpon>ClientBookingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Controls\BookedRoomView.xaml.cs">
-      <DependentUpon>BookedRoomView.xaml</DependentUpon>
+    <Compile Include="Views\Converters\FlowDocumentToXpsConverter.cs" />
+    <Compile Include="Views\SearchClientsView.xaml.cs">
+      <DependentUpon>SearchClientsView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Controls\SearchClientView.xaml.cs">
+      <DependentUpon>SearchClientView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Controls\SumUpView.xaml.cs">
       <DependentUpon>SumUpView.xaml</DependentUpon>
@@ -355,6 +370,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\ClientBookingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Controls\ClientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -363,11 +382,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\SumUpOptionView.xaml">
+    <Page Include="Views\Resources\GridViews.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Controls\BookedRoomView.xaml">
+    <Page Include="Views\SearchClientsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Controls\SearchClientView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -615,6 +638,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\accept.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\searchIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\displayMoreIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\displayLessIcon.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
