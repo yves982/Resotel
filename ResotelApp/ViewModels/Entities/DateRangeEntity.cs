@@ -1,11 +1,7 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ResotelApp.ViewModels.Entities
 {
@@ -59,12 +55,28 @@ namespace ResotelApp.ViewModels.Entities
 
         string IDataErrorInfo.this[string columnName]
         {
-            get { return ((IDataErrorInfo)_dateRange)[columnName]; }
+            get
+            {
+                string error = ((IDataErrorInfo)_dateRange)[columnName];
+                if (columnName == nameof(Start) && error == null && DateTime.Now.Date.CompareTo(_dateRange.Start) > 0 && _dateRange.Id == 0)
+                {
+                    error = "Une nouvelle réservation ne peut être dans le passé.";
+                }
+                return error;
+            }
         }
 
         string IDataErrorInfo.Error
         {
-            get { return ((IDataErrorInfo)_dateRange).Error; }
+            get
+            {
+                string error = ((IDataErrorInfo)_dateRange).Error;
+                if(DateTime.Now.Date.CompareTo(_dateRange.Start) > 0 && _dateRange.Id == 0)
+                {
+                    error = $"{error};Une nouvelle réservation ne peut être dans le passé";
+                }
+                return error;
+            }
         }
 
         

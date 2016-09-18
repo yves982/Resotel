@@ -28,6 +28,7 @@ namespace ResotelApp.ViewModels
         private DelegateCommand<IEntity> _closeBookingCommand;
         private DelegateCommand<object> _addClientCommand;
         private DelegateCommandAsync<object> _searchBookingCommand;
+        private DelegateCommandAsync<object> _searchClientCommand;
         private DelegateCommand<BookingViewModel> _nextCommand;
         private DelegateCommand<BookingViewModel> _prevCommand;
 
@@ -55,6 +56,11 @@ namespace ResotelApp.ViewModels
         public ICommand SearchBookingCommand
         {
             get { return _searchBookingCommand; }
+        }
+
+        public ICommand SearchClientCommand
+        {
+            get { return _searchClientCommand; }
         }
 
         public ICommand NextCommand
@@ -135,6 +141,7 @@ namespace ResotelApp.ViewModels
             _closeBookingCommand = new DelegateCommand<IEntity>(_closeBooking);
             _addClientCommand = new DelegateCommand<object>(_addClient);
             _searchBookingCommand = new DelegateCommandAsync<object>(_searchBooking);
+            _searchClientCommand = new Utils.DelegateCommandAsync<object>(_searchClient);
             _nextCommand = new DelegateCommand<BookingViewModel>(_next);
             _prevCommand = new DelegateCommand<BookingViewModel>(_prev);
         }
@@ -167,22 +174,40 @@ namespace ResotelApp.ViewModels
         {
             List<ClientEntity> clientEntities = (await ClientRepository.GetAllClients())
                 .ConvertAll(client => new ClientEntity(client));
-            SearchClientsViewModel searchClientsVM = new SearchClientsViewModel(clientEntities);
-            searchClientsVM.ClientSelected += _searchClients_clientSelected;
+            SearchClientsViewModel searchClientsVM = new SearchClientsViewModel(clientEntities, true);
+            searchClientsVM.ClientSelected += _searchBooking_clientSelected;
             ViewDriverProvider.ViewDriver.ShowView<SearchClientsViewModel>(searchClientsVM);
         }
 
-        private void _searchClients_clientSelected(object sender, ClientEntity selectedClientEntity)
+        private void _searchBooking_clientSelected(object sender, ClientEntity selectedClientEntity)
         {
-            (sender as SearchClientsViewModel).ClientSelected -= _searchClients_clientSelected;
+            (sender as SearchClientsViewModel).ClientSelected -= _searchBooking_clientSelected;
             ClientBookingsViewModel clientBookingsVM = new ClientBookingsViewModel(selectedClientEntity);
             clientBookingsVM.BookingSelected += _clientBookings_bookingSelected;
             ViewDriverProvider.ViewDriver.ShowView<ClientBookingsViewModel>(clientBookingsVM);
         }
 
+        private async Task _searchClient(object ignore)
+        {
+            List<ClientEntity> clientEntities = (await ClientRepository.GetAllClients())
+                .ConvertAll(client => new ClientEntity(client));
+            SearchClientsViewModel searchClientsVM = new SearchClientsViewModel(clientEntities);
+            searchClientsVM.ClientSelected += _searchClient_clientSelected;
+            ViewDriverProvider.ViewDriver.ShowView<SearchClientsViewModel>(searchClientsVM);
+        }
+
+        private void _searchClient_clientSelected(object sender, ClientEntity selectedClientEntity)
+        {
+            (sender as SearchClientsViewModel).ClientSelected -= _searchClient_clientSelected;
+            ClientViewModel clientVM = new ClientViewModel(_navigation, selectedClientEntity);
+            _currentEntities.Add(clientVM);
+            _currentEntitiesView.MoveCurrentToLast();
+        }
+
         private void _clientBookings_bookingSelected(object sender, BookingEntity selectedBookingEntity)
         {
             (sender as ClientBookingsViewModel).BookingSelected -= _clientBookings_bookingSelected;
+ 
             SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, selectedBookingEntity.Booking);
             sumUpVM.NextCalled += _nextCalled;
             sumUpVM.PreviousCalled += _prevCalled;

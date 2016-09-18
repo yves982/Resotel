@@ -23,7 +23,7 @@ namespace ResotelApp.Models
             {
                 if (_label == null)
                 {
-                    _label = $"Pack de {RoomPack.Quantity} nuits - {Room.Label}";
+                    _label = $"{RoomPack.Quantity} nuits - {Room.Label}";
                 }
                 return _label;
             }

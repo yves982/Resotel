@@ -12,7 +12,7 @@
             <Style TargetType="TextBlock">
                 <Setter Property="VerticalAlignment" Value="Center"></Setter>
             </Style>
-            <Style TargetType="TextBox">
+            <Style TargetType="TextBox" BasedOn="{StaticResource validationTemplate}">
                 <Setter Property="VerticalAlignment" Value="Center"></Setter>
             </Style>
         </Grid.Resources>

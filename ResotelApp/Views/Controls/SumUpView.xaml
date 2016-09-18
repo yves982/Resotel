@@ -9,15 +9,15 @@
              d:DesignHeight="600" d:DesignWidth="600">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="550"></RowDefinition>
+            <RowDefinition Height="45"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <FlowDocumentScrollViewer Grid.Row="0" Grid.Column="0">
-            <FlowDocument x:Name="doc">
-                <Paragraph>
+        <FlowDocumentScrollViewer Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center">
+            <FlowDocument x:Name="doc" PageWidth="8.3in" PageHeight="11.7in" ColumnWidth="Infinity">
+                <Paragraph TextAlignment="Center">
                     <Image Source="/Resources/ResotelAppIcon.png" Width="64" Height="64"></Image>
                     <Span BaselineAlignment="Center">Resotel</Span>
                     <Span BaselineAlignment="Center">SIRET
@@ -26,9 +26,9 @@
                         </InlineUIContainer>
                     </Span>
                 </Paragraph>
-                <Table>
+                <Table TextAlignment="Center">
                     <Table.Columns>
-                        <TableColumn Width="50"></TableColumn>
+                        <TableColumn Width="58"></TableColumn>
                         <TableColumn Width="50"></TableColumn>
                         <TableColumn Width="90"></TableColumn>
                         <TableColumn Width="50"></TableColumn>
@@ -39,13 +39,13 @@
                     <TableRowGroup>
                         <TableRow>
                             <TableCell>
-                                <Paragraph>Dates</Paragraph>
+                                <Paragraph FontWeight="Bold">Dates:</Paragraph>
                             </TableCell>
                             <TableCell ColumnSpan="2">
-                                <Paragraph>Du</Paragraph>
+                                <Paragraph FontWeight="Bold">Du</Paragraph>
                             </TableCell>
                             <TableCell ColumnSpan="2">
-                                <Paragraph>Au</Paragraph>
+                                <Paragraph FontWeight="Bold">Au</Paragraph>
                             </TableCell>
                             <TableCell></TableCell>
                             <TableCell></TableCell>
@@ -85,7 +85,7 @@
                         </TableRow>
                         <TableRow>
                             <TableCell>
-                                <Paragraph>Client</Paragraph>
+                                <Paragraph FontWeight="Bold">Client:</Paragraph>
                             </TableCell>
                             <TableCell>
                                 <Paragraph>
@@ -108,7 +108,7 @@
                         </TableRow>
                         <TableRow>
                             <TableCell></TableCell>
-                            <TableCell ColumnSpan="2">
+                            <TableCell ColumnSpan="3">
                                 <Paragraph>
                                     <Run Text="{Binding ClientEntity.Client.Address}"></Run>
                                 </Paragraph>
@@ -133,17 +133,14 @@
                 </Table>
                 <BlockUIContainer>
                     <BlockUIContainer.Resources>
-                        <ResourceDictionary Source="/Views/Resources/GridViews.xaml"></ResourceDictionary>
+                        <ResourceDictionary Source="/Views/Resources/SumUpGridViews.xaml"></ResourceDictionary>
                     </BlockUIContainer.Resources>
-                    <ListView ItemsSource="{Binding OptionChoiceEntities}" HorizontalContentAlignment="Center">
-                        <ListView.Resources>
-                            <Style x:Key="HeaderStyle" TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            </Style>
-                        </ListView.Resources>
+                    <ListView ItemsSource="{Binding OptionChoiceEntities}" HorizontalAlignment="Stretch">
                         <ListBox.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
                                 <Setter Property="Focusable" Value="False"></Setter>
+                                <Setter Property="Height" Value="34"></Setter>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
                             </Style>
                         </ListBox.ItemContainerStyle>
                         <ListView.View>
@@ -151,24 +148,21 @@
                         </ListView.View>
                     </ListView>
                 </BlockUIContainer>
-                <Paragraph LineHeight="16">
-                    <TextBlock Width="110">Total Options:</TextBlock>
-                    <TextBlock Width="50" Text="{Binding OptionsTotal}"></TextBlock>
+                <Paragraph LineHeight="16" TextAlignment="Center">
+                    <TextBlock Width="Auto">Total Options:</TextBlock>
+                    <TextBlock Width="Auto" Text="{Binding OptionsTotal, StringFormat=0.00€}"></TextBlock>
                 </Paragraph>
 
                 <BlockUIContainer>
                     <BlockUIContainer.Resources>
-                        <ResourceDictionary Source="/Views/Resources/GridViews.xaml"></ResourceDictionary>
+                        <ResourceDictionary Source="/Views/Resources/SumUpGridViews.xaml"></ResourceDictionary>
                     </BlockUIContainer.Resources>
-                    <ListView ItemsSource="{Binding AppliedPackEntities}" HorizontalContentAlignment="Center">
-                        <ListView.Resources>
-                            <Style x:Key="HeaderStyle" TargetType="ListViewItem">
-                                <Setter Property="HorizontalContentAlignment" Value="Center"/>
-                            </Style>
-                        </ListView.Resources>
+                    <ListView ItemsSource="{Binding AppliedPackEntities}" HorizontalAlignment="Stretch">
                         <ListView.ItemContainerStyle>
                             <Style TargetType="{x:Type ListBoxItem}">
                                 <Setter Property="Focusable" Value="False"></Setter>
+                                <Setter Property="Height" Value="34"></Setter>
+                                <Setter Property="HorizontalContentAlignment" Value="Center"></Setter>
                             </Style>
                         </ListView.ItemContainerStyle>
                         <ListView.View>
@@ -176,13 +170,17 @@
                         </ListView.View>
                     </ListView>
                 </BlockUIContainer>
-                <Paragraph>
-                    <TextBlock Width="110">Total Chambres:</TextBlock>
-                    <TextBlock Width="50" Text="{Binding RoomsTotal}"></TextBlock>
+                <Paragraph LineHeight="16" TextAlignment="Center">
+                    <TextBlock Width="Auto">Total Chambres:</TextBlock>
+                    <TextBlock Width="Auto" Text="{Binding RoomsTotal, StringFormat=0.00€}"></TextBlock>
                 </Paragraph>
-                <Paragraph>
-                    <TextBlock Width="110">Total:</TextBlock>
-                    <TextBlock Width="50" Text="{Binding Total}"></TextBlock>
+                <Paragraph LineHeight="16" TextAlignment="Center">
+                    <TextBlock Width="Auto">Total H.T:</TextBlock>
+                    <TextBlock Width="Auto" Text="{Binding TotalHT, StringFormat=0.00€}"></TextBlock>
+                </Paragraph>
+                <Paragraph LineHeight="16" TextAlignment="Center">
+                    <TextBlock Width="Auto">Total TTC: (TVA:<TextBlock Text="{Binding Tva, StringFormat=0.00}"></TextBlock> %)</TextBlock>
+                    <TextBlock Width="Auto" Text="{Binding Total, StringFormat=0.00€}"></TextBlock>
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentScrollViewer>
@@ -190,7 +188,7 @@
         <WrapPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,8,0,0">
             <Button Name="EditBtn"  Margin="0,0,4,0"
                     Command="{Binding EditBookingCommand}" CommandParameter="{Binding}">Editer</Button>
-            <Button Name="PrintBtn" Margin="4,0,0,0"
+            <Button Name="PrintBtn" Margin="4,0,4,0"
                     Command="{Binding PrintBookingCommand}">
                 <Button.CommandParameter>
                     <MultiBinding>
@@ -202,6 +200,9 @@
                     </MultiBinding>
                 </Button.CommandParameter>
                 Imprimer</Button>
+            <Button Margin="4,0,0,0"
+                    Command="{Binding ValidateBookingCommand}" CommandParameter="{Binding}"
+                    Visibility="{Binding NeedsValidation, Converter={StaticResource boolToVisibilityConverter}}">Valider</Button>
         </WrapPanel>
     </Grid>
 </UserControl>

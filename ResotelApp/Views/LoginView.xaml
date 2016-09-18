@@ -84,12 +84,12 @@
             Content="_Login" Name="LoginTbl" Target="{Binding ElementName=LoginTxt}"></Label>
         <TextBox Grid.Row="1" Grid.Column="2" VerticalAlignment="Center" VerticalContentAlignment="Top"
             Text="{Binding Login, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}" Name="LoginTxt" MaxLength="50" Width="70"
-            Style="{StaticResource validatedTemplate}"></TextBox>
+            Style="{StaticResource validationTemplate}"></TextBox>
         <Label Grid.Row="2" Grid.Column="1" VerticalAlignment="Center"
             Content="_Mot de passe" Name="PasswordTbl" Target="{Binding ElementName=PasswordPwdb}"></Label>
         <PasswordBox  Grid.Row="2" Grid.Column="2" VerticalAlignment="Center"
             Name="PasswordPwdb" MaxLength="50" Width="70"
-            Style="{StaticResource validatedTemplate}"
+            Style="{StaticResource validationTemplate}"
             Tag="{Binding SecurePassword, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}">
             <i:Interaction.Behaviors>
                 <bh:BindPasswordBehaviour BoundPassword="{Binding SecurePassword}"></bh:BindPasswordBehaviour>

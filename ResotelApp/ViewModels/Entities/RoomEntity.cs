@@ -11,13 +11,15 @@ namespace ResotelApp.ViewModels.Entities
         private Room _room;
         private ObservableCollection<OptionEntity> _optionEntities;
         private ICollectionView _optionEntitiesView;
+        private ICollectionViewSource _optionEntitiesSource;
 
         private ObservableCollection<BookingEntity> _bookingEntities;
         private ICollectionView _bookingEntitiesView;
+        private ICollectionViewSource _bookingEntitiesSource;
 
         private ObservableCollection<PackEntity> _availablePackEntities;
         private ICollectionView _availablePackEntitiesView;
-
+        private ICollectionViewSource _availablePackEntitiesSource;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -67,7 +69,8 @@ namespace ResotelApp.ViewModels.Entities
                         OptionEntity optEntity = new OptionEntity(opt);
                         _optionEntities.Add(optEntity);
                     }
-                    _optionEntitiesView = CollectionViewProvider.Provider(_optionEntities);
+                    _optionEntitiesSource = CollectionViewProvider.Provider(_optionEntities);
+                    _optionEntitiesView = _availablePackEntitiesSource.View;
                 }
                 return _optionEntities;
             }
@@ -82,7 +85,8 @@ namespace ResotelApp.ViewModels.Entities
                         _room.Options.Add(optEntity.Option);
                     }
                     _optionEntities = value;
-                    _optionEntitiesView = CollectionViewProvider.Provider(_optionEntities);
+                    _optionEntitiesSource = CollectionViewProvider.Provider(_optionEntities);
+                    _optionEntitiesView = _optionEntitiesSource.View;
                     _pcs.NotifyChange();
                 }
             }
@@ -104,7 +108,8 @@ namespace ResotelApp.ViewModels.Entities
                         BookingEntity bookingEntity = new BookingEntity(booking);
                         _bookingEntities.Add(bookingEntity);
                     }
-                    _bookingEntitiesView = CollectionViewProvider.Provider(_bookingEntities);
+                    _bookingEntitiesSource = CollectionViewProvider.Provider(_bookingEntities);
+                    _bookingEntitiesView = _bookingEntitiesSource.View;
                 }
                 return _bookingEntities;
             }
@@ -119,7 +124,8 @@ namespace ResotelApp.ViewModels.Entities
                         _room.Bookings.Add(bookingEntity.Booking);
                     }
                     _bookingEntities = value;
-                    _bookingEntitiesView = CollectionViewProvider.Provider(_bookingEntities);
+                    _bookingEntitiesSource = CollectionViewProvider.Provider(_bookingEntities);
+                    _bookingEntitiesView = _bookingEntitiesSource.View;
                     _pcs.NotifyChange();
                 }
 
@@ -142,7 +148,8 @@ namespace ResotelApp.ViewModels.Entities
                         PackEntity packEntity = new PackEntity(pack);
                         _availablePackEntities.Add(packEntity);
                     }
-                    _availablePackEntitiesView = CollectionViewProvider.Provider(_availablePackEntities);
+                    _availablePackEntitiesSource = CollectionViewProvider.Provider(_availablePackEntities);
+                    _availablePackEntitiesView = _availablePackEntitiesSource.View;
                 }
                 return _availablePackEntities;
             }
@@ -157,7 +164,8 @@ namespace ResotelApp.ViewModels.Entities
                         _room.AvailablePacks.Add(packEntity.Pack);
                     }
                     _availablePackEntities = value;
-                    _availablePackEntitiesView = CollectionViewProvider.Provider(_availablePackEntities);
+                    _availablePackEntitiesSource = CollectionViewProvider.Provider(_availablePackEntities);
+                    _availablePackEntitiesView = _availablePackEntitiesSource.View;
                     _pcs.NotifyChange();
                 }
             }

@@ -42,6 +42,16 @@
                     </Trigger>
                 </Style.Triggers>
             </Style>
+            <Style TargetType="DatePickerTextBox">
+                <Style.Triggers>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Foreground" Value="Transparent"></Setter>
+                    </Trigger>
+                    <DataTrigger Binding="{Binding HasActiveFixedDates}" Value="True">
+                        <Setter Property="Foreground" Value="Black"></Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
         </Grid.Resources>
         <Image 
                 Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
@@ -50,14 +60,14 @@
         <CheckBox Name="TakenChxBox" Grid.Row="1" Grid.Column="1" VerticalAlignment="Top" Margin="0 6 0 0" IsChecked="{Binding Taken}">Non Prise</CheckBox>
         <TextBlock Grid.Row="2" Grid.Column="0"       
             Text="Date de début"></TextBlock>
-        <DatePicker Grid.Row="2" Grid.Column="1" 
+        <DatePicker Grid.Row="2" Grid.Column="1"
             Name="StartDate" SelectedDate="{Binding TakenDates.Start}"
-            IsEnabled="{Binding ElementName=TakenChxBox, Path=IsChecked}"></DatePicker>
+            IsEnabled="{Binding DateChoiceEnabled}" Template="{StaticResource DatePickerControlTemplate}"></DatePicker>
         <TextBlock Grid.Row="3" Grid.Column="0"
             Text="Date de fin"></TextBlock>
         <DatePicker Grid.Row="3" Grid.Column="1"
             Name="EndDate" SelectedDate="{Binding TakenDates.End}"
-            IsEnabled="{Binding ElementName=TakenChxBox, Path=IsChecked}"></DatePicker>
+            IsEnabled="{Binding DateChoiceEnabled}" Template="{StaticResource DatePickerControlTemplate}"></DatePicker>
         <xctk:IntegerUpDown Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center"
             Margin="2,0,0,0"
             Name="PeopleCnt" Value="{Binding PeopleCount, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"

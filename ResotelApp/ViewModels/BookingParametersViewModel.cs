@@ -4,6 +4,7 @@ using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Text;
 using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
@@ -62,7 +63,6 @@ namespace ResotelApp.ViewModels
             get { return _validateCommand; }
         }
 
-
         public BookingParametersViewModel(Booking booking)
         {
             _pcs = new PropertyChangeSupport(this);
@@ -78,14 +78,38 @@ namespace ResotelApp.ViewModels
 
         public void ChangeValidateCanExecute()
         {
-            _validateCommand.ChangeCanExecute();
+            bool validatesDateRange = _validateDateRange() == null;
+            if (validatesDateRange)
+            {
+                _validateCommand.ChangeCanExecute();
+            }
         }
 
+        private string _validateDateRange()
+        {
+            string error = ((IDataErrorInfo)_dateRange).Error;
+            return error;
+        }
+        
         private void _dateRange_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
+            _unlockValidationIfNeeded();
             _pcs.NotifyChange(nameof(DateRangeEntity));
         }
 
+        private void _unlockValidationIfNeeded()
+        {
+            bool canValidate = _validateCommand.CanExecute(null);
+            bool validatesDateRange = _validateDateRange() == null;
+
+            if(
+                (!canValidate && validatesDateRange) ||
+                (canValidate && !validatesDateRange)
+            )
+            {
+                _validateCommand.ChangeCanExecute();
+            }
+        }
 
         private void _validate(object ignore)
         {

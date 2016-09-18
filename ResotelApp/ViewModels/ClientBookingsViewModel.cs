@@ -12,6 +12,7 @@ namespace ResotelApp.ViewModels
         private PropertyChangeSupport _pcs;
         private ClientEntity _clientEntity;
         private ICollectionView _clientBookingsView;
+        private ICollectionViewSource _clientBookingsSource;
         private DelegateCommand<object> _selectBookingCommand;
 
         public ICollectionView ClientBookingsView
@@ -48,7 +49,8 @@ namespace ResotelApp.ViewModels
         {
             _pcs = new PropertyChangeSupport(this);
             _clientEntity = clientEntity;
-            _clientBookingsView = CollectionViewProvider.Provider(clientEntity.Bookings);
+            _clientBookingsSource = CollectionViewProvider.Provider(clientEntity.Bookings);
+            _clientBookingsView = _clientBookingsSource.View;
             Booking booking = default(Booking);
             _clientBookingsView.SortDescriptions.Add(new SortDescription($"{nameof(booking.Dates)}.{nameof(booking.Dates.Start)}", ListSortDirection.Ascending));
             _clientBookingsView.CurrentChanged += _clientBookingsView_currentChanged;

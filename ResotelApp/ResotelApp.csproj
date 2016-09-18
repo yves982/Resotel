@@ -110,6 +110,7 @@
     </ApplicationDefinition>
     <Compile Include="Behaviours\BindPasswordBehaviour.cs" />
     <Compile Include="Behaviours\CloseBehaviour.cs" />
+    <Compile Include="CollectionViewSourceImpl.cs" />
     <Compile Include="Migrations\201607241326326_AddedUsers.cs" />
     <Compile Include="Migrations\201607241326326_AddedUsers.Designer.cs">
       <DependentUpon>201607241326326_AddedUsers.cs</DependentUpon>
@@ -149,6 +150,10 @@
     <Compile Include="Migrations\201609041137116_SeparatedDiscountsFromRoomPacks.cs" />
     <Compile Include="Migrations\201609041137116_SeparatedDiscountsFromRoomPacks.Designer.cs">
       <DependentUpon>201609041137116_SeparatedDiscountsFromRoomPacks.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609150953398_AddedHasChooseableDatesToOptions.cs" />
+    <Compile Include="Migrations\201609150953398_AddedHasChooseableDatesToOptions.Designer.cs">
+      <DependentUpon>201609150953398_AddedHasChooseableDatesToOptions.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\AppliedPack.cs" />
     <Compile Include="Models\BookingState.cs" />
@@ -230,9 +235,11 @@
     <Compile Include="ViewModels\Entities\MessageKind.cs" />
     <Compile Include="ViewModels\SearchClientsViewModel.cs" />
     <Compile Include="ViewModels\SumUpViewModel.cs" />
+    <Compile Include="ViewModels\Utils\ICollectionSource.cs" />
     <Compile Include="Views\ClientBookingsView.xaml.cs">
       <DependentUpon>ClientBookingsView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Converters\ActiveFixedDatesToColorConverter.cs" />
     <Compile Include="Views\Converters\FlowDocumentToXpsConverter.cs" />
     <Compile Include="Views\SearchClientsView.xaml.cs">
       <DependentUpon>SearchClientsView.xaml</DependentUpon>
@@ -376,7 +383,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Resources\GridViews.xaml">
+    <Page Include="Views\Resources\SumUpGridViews.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -549,6 +556,9 @@
     <EmbeddedResource Include="Migrations\201609041137116_SeparatedDiscountsFromRoomPacks.resx">
       <DependentUpon>201609041137116_SeparatedDiscountsFromRoomPacks.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609150953398_AddedHasChooseableDatesToOptions.resx">
+      <DependentUpon>201609150953398_AddedHasChooseableDatesToOptions.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.en-US.Designer.cs</LastGenOutput>
@@ -641,6 +651,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\displayLessIcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\searchUser.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

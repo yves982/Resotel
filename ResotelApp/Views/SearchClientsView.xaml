@@ -16,7 +16,8 @@
             Title="{Binding Title}"
             bh:CloseBehaviour.ShouldClose="{Binding ShouldClose}"
         >
-    <Grid>
+    <Grid
+        FocusManager.FocusedElement="{Binding ElementName=ClientSearch}">
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vm:SearchClientViewModel}">
                 <cts:SearchClientView></cts:SearchClientView>
@@ -44,9 +45,27 @@
                  ItemsSource="{Binding SearchClientVMsView}"
                  Margin="40,8" VerticalAlignment="Top" MinHeight="12"
                  IsSynchronizedWithCurrentItem="True">
+            <ListBox.Resources>
+                <ControlTemplate x:Key="ListBoxItemTemplate" TargetType="ListBoxItem">
+                    <Border Name="Bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Padding="{TemplateBinding Padding}" SnapsToDevicePixels="true">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsSelected" Value="False">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource BgBrush}"></Setter>
+                        </Trigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter TargetName="Bd" Property="Background" Value="{StaticResource NormalBrush}"></Setter>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+                <Style TargetType="Grid">
+                    <Setter Property="Background" Value="Transparent"></Setter>
+                </Style>
+            </ListBox.Resources>
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem">
-                    <Setter Property="Background" Value="DarkGray"></Setter>
+                    <Setter Property="Template" Value="{StaticResource ListBoxItemTemplate}"></Setter>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding NeedsCount}" Value="True">
                             <Setter Property="Focusable" Value="False"></Setter>

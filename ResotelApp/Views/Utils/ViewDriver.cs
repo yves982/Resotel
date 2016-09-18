@@ -17,6 +17,8 @@ namespace ResotelApp.Views.Utils
             {
                 ((Window)viewInstance).WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 ((Window)viewInstance).DataContext = viewModel;
+                ((Window)viewInstance).Topmost = true;
+                ((Window)viewInstance).Activate();
                 ((Window)viewInstance).ShowDialog();
             }
         }

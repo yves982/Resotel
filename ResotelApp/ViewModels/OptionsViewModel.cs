@@ -15,7 +15,10 @@ namespace ResotelApp.ViewModels
     {
         private PropertyChangeSupport _pcs;
         private ICollectionView _availableOptionChoiceEntitiesView;
+        private ICollectionViewSource _availableOptionsChoiceEntitiesSource;
         private ObservableCollection<OptionChoiceEntity> _availableOptionChoiceEntities;
+        private ICollectionView _choosenOptionsChoiceEntitiesView;
+        private ICollectionViewSource _choosenOptionsChoiceEntitiesSource;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -38,12 +41,25 @@ namespace ResotelApp.ViewModels
             }
         }
         
+        public ICollectionView ChoosenOptionChoiceEntitiesView
+        {
+            get { return _choosenOptionsChoiceEntitiesView; }
+            set
+            {
+                _choosenOptionsChoiceEntitiesView = value;
+                _pcs.NotifyChange();
+            }
+        }
 
         private OptionsViewModel()
         {
             _pcs = new PropertyChangeSupport(this);
             _availableOptionChoiceEntities = new ObservableCollection<OptionChoiceEntity>();
-            _availableOptionChoiceEntitiesView = CollectionViewProvider.Provider(_availableOptionChoiceEntities);
+            _availableOptionsChoiceEntitiesSource = CollectionViewProvider.Provider(_availableOptionChoiceEntities);
+            _availableOptionChoiceEntitiesView = _availableOptionsChoiceEntitiesSource.View;
+            _choosenOptionsChoiceEntitiesSource = CollectionViewProvider.Provider(_availableOptionChoiceEntities);
+            _choosenOptionsChoiceEntitiesView = _choosenOptionsChoiceEntitiesSource.View;
+            _choosenOptionsChoiceEntitiesView.Filter = _isChoosen;
         }
 
         ~ OptionsViewModel()

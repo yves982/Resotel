@@ -102,7 +102,19 @@ namespace ResotelApp.ViewModels.Entities
             {
                 _taken = value;
                 _pcs.NotifyChange();
+                _pcs.NotifyChange(nameof(DateChoiceEnabled));
+                _pcs.NotifyChange(nameof(HasActiveFixedDates));
             }
+        }
+
+        public bool DateChoiceEnabled
+        {
+            get { return _optionChoice.CanChangeDates && _taken; }
+        }
+
+        public bool HasActiveFixedDates
+        {
+            get { return !_optionChoice.CanChangeDates && _taken; }
         }
 
         public DateRange TakenDates

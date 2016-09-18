@@ -22,7 +22,7 @@ namespace ResotelApp.Models
         public DateTime CreationDate { get; set; }
         public List<Room> Rooms { get; set; }
         public DateRange Dates { get; set; }
-        public int AdultsCount { get;set; }
+        public int AdultsCount { get; set; }
         public int BabiesCount { get; set; }
         public BookingState State { get; set; }
 
@@ -30,7 +30,7 @@ namespace ResotelApp.Models
         {
             get
             {
-                if(_optionDiscount == null)
+                if (_optionDiscount == null)
                 {
                     _computeOptionDiscount();
                 }
@@ -42,7 +42,7 @@ namespace ResotelApp.Models
         {
             get
             {
-                if(_discountedOptionChoice == null)
+                if (_discountedOptionChoice == null)
                 {
                     _computeOptionDiscount();
                 }
@@ -54,23 +54,21 @@ namespace ResotelApp.Models
         {
             get
             {
-                if(_roomDiscounts.Count == 0)
+                _roomDiscounts.Clear();
+                foreach (Room room in Rooms)
                 {
-                    foreach(Room room in Rooms)
+                    List<Pack> orderedPacks = new List<Pack>(room.AvailablePacks);
+                    orderedPacks.Sort((firstDiscount, secondDiscount) =>
+                    secondDiscount.Quantity.CompareTo(firstDiscount.Quantity));
+                    int leftDays = Dates.Days;
+                    foreach (Pack pack in orderedPacks)
                     {
-                        List<Pack> orderedPacks = new List<Pack>(room.AvailablePacks);
-                        orderedPacks.Sort((firstDiscount, secondDiscount) =>
-                        secondDiscount.Quantity.CompareTo(firstDiscount.Quantity));
-                        int leftDays = Dates.Days;
-                        foreach(Pack pack in orderedPacks)
+                        int quantity = leftDays / pack.Quantity;
+                        leftDays = leftDays % pack.Quantity;
+                        if (quantity > 0)
                         {
-                            int quantity = leftDays / pack.Quantity;
-                            leftDays = leftDays % pack.Quantity;
-                            if(quantity > 0)
-                            {
-                                AppliedPack appliedDiscount = new AppliedPack { Count=quantity, RoomPack=pack, Room = room };
-                                _roomDiscounts.Add(appliedDiscount);
-                            }
+                            AppliedPack appliedDiscount = new AppliedPack { Count = quantity, RoomPack = pack, Room = room };
+                            _roomDiscounts.Add(appliedDiscount);
                         }
                     }
                 }
@@ -89,7 +87,7 @@ namespace ResotelApp.Models
                 string error = null;
                 StringBuilder stringBuilder = new StringBuilder();
 
-                foreach(KeyValuePair<string, Func<string>> propValidationFnKvp in _propertiesValidations)
+                foreach (KeyValuePair<string, Func<string>> propValidationFnKvp in _propertiesValidations)
                 {
                     string propError = propValidationFnKvp.Value();
                     if (propError != null)
@@ -97,7 +95,7 @@ namespace ResotelApp.Models
                         stringBuilder.Append(propError + ";");
                     }
                 }
-                
+
                 if (stringBuilder.Length > 0)
                 {
                     error = stringBuilder.ToString();
@@ -111,7 +109,7 @@ namespace ResotelApp.Models
             get
             {
                 string error = null;
-                if(_propertiesValidations.ContainsKey(columnName))
+                if (_propertiesValidations.ContainsKey(columnName))
                 {
                     error = _propertiesValidations[columnName]();
                 }
@@ -138,7 +136,8 @@ namespace ResotelApp.Models
             if (Client != null)
             {
                 error = ((IDataErrorInfo)Client).Error;
-            } else
+            }
+            else
             {
                 error = string.Format("le client de la réservation: {0} ne peut être null", Id);
             }
@@ -149,11 +148,11 @@ namespace ResotelApp.Models
         {
             List<OptionChoice> invalidOptions = new List<OptionChoice>(OptionChoices);
             invalidOptions.RemoveAll(opt => opt == null || string.IsNullOrEmpty(((IDataErrorInfo)opt).Error));
-            string errors = string.Join(";", 
-                invalidOptions.ConvertAll<string>( opt => ((IDataErrorInfo)opt).Error )
+            string errors = string.Join(";",
+                invalidOptions.ConvertAll<string>(opt => ((IDataErrorInfo)opt).Error)
             );
 
-            if(errors.Length == 0)
+            if (errors.Length == 0)
             {
                 errors = null;
             }
@@ -168,7 +167,7 @@ namespace ResotelApp.Models
                 invalidRooms.ConvertAll<string>(room => ((IDataErrorInfo)room).Error)
             );
 
-            if(errors.Length == 0)
+            if (errors.Length == 0)
             {
                 errors = null;
             }

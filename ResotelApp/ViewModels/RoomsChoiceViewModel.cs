@@ -15,6 +15,7 @@ namespace ResotelApp.ViewModels
         private PropertyChangeSupport _pcs;
         private ObservableCollection<RoomChoiceEntity> _availableRoomChoiceEntities;
         private ICollectionView _availableRoomChoiceEntitiesView;
+        private ICollectionViewSource _availableRoomChoiceEntitiesSource;
         private List<Room> _availableRooms;
         private List<Room> _filteredRooms;
         private Dictionary<RoomKind, int> _availableRoomCounts;
@@ -58,9 +59,10 @@ namespace ResotelApp.ViewModels
         {
             _pcs = new PropertyChangeSupport(this);
             _availableRoomChoiceEntities = new ObservableCollection<RoomChoiceEntity>();
-            _availableRoomChoiceEntitiesView = CollectionViewProvider.Provider(_availableRoomChoiceEntities);
+            _availableRoomChoiceEntitiesSource = CollectionViewProvider.Provider(_availableRoomChoiceEntities);
+            _availableRoomChoiceEntitiesView = _availableRoomChoiceEntitiesSource.View;
             _filteredRooms = new List<Room>();
-            _availableRoomCounts = new Dictionary<Models.RoomKind, int>();
+            _availableRoomCounts = new Dictionary<RoomKind, int>();
         }
 
         public static async Task<RoomsChoiceViewModel> CreateAsync(DateRange dates)

@@ -9,36 +9,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -70,36 +77,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -131,36 +145,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -192,36 +213,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -253,36 +281,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -314,36 +349,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -375,36 +417,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -436,36 +485,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -497,36 +553,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -558,36 +621,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -619,36 +689,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -680,36 +757,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -741,36 +825,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -802,36 +893,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -863,36 +961,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -924,36 +1029,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -985,36 +1097,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1046,36 +1165,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1107,36 +1233,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1168,36 +1301,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1229,36 +1369,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1290,36 +1437,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1351,36 +1505,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1412,36 +1573,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1473,36 +1641,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1534,36 +1709,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1595,36 +1777,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1656,36 +1845,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1717,36 +1913,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1778,36 +1981,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1839,16 +2049,19 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
         <Discounts>
           <Discount>
             <Id>1</Id>
@@ -1864,26 +2077,31 @@
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1915,16 +2133,19 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
         <Discounts>
           <Discount>
             <Id>1</Id>
@@ -1940,26 +2161,31 @@
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -1991,16 +2217,19 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
         <Discounts>
           <Discount>
             <Id>1</Id>
@@ -2016,26 +2245,31 @@
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2067,16 +2301,19 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
         <Discounts>
           <Discount>
             <Id>1</Id>
@@ -2092,26 +2329,31 @@
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2143,16 +2385,19 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
         <Discounts>
           <Discount>
             <Id>1</Id>
@@ -2168,26 +2413,31 @@
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2219,16 +2469,19 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
         <Discounts>
           <Discount>
             <Id>1</Id>
@@ -2244,26 +2497,31 @@
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2295,16 +2553,19 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
         <Discounts>
           <Discount>
             <Id>1</Id>
@@ -2320,26 +2581,31 @@
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2371,16 +2637,19 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>3</Id>
         <Label>Vue sur le CESI</Label>
         <BasePrice>89.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
         <Discounts>
           <Discount>
             <Id>1</Id>
@@ -2396,26 +2665,31 @@
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2447,36 +2721,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2508,36 +2789,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2569,36 +2857,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2630,36 +2925,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2691,36 +2993,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2752,36 +3061,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2813,36 +3129,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2874,36 +3197,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2935,36 +3265,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -2996,36 +3333,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -3057,36 +3401,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -3118,36 +3469,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -3179,36 +3537,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -3240,36 +3605,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -3301,36 +3673,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -3362,36 +3741,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -3423,36 +3809,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -3484,36 +3877,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>
@@ -3545,36 +3945,43 @@
         <Id>1</Id>
         <Label>Wi-Fi</Label>
         <BasePrice>20.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>2</Id>
         <Label>Télévision</Label>
         <BasePrice>10.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>4</Id>
         <Label>Balcon</Label>
         <BasePrice>0.00</BasePrice>
+        <HasChooseableDates>false</HasChooseableDates>
       </Option>
       <Option>
         <Id>5</Id>
         <Label>Tennis</Label>
         <BasePrice>25.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>6</Id>
         <Label>Jacuzzi/Hammam</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>7</Id>
         <Label>Cardio</Label>
         <BasePrice>15.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
       <Option>
         <Id>8</Id>
         <Label>Restauration</Label>
         <BasePrice>30.00</BasePrice>
+        <HasChooseableDates>true</HasChooseableDates>
       </Option>
     </Options>
     <IsCleaned></IsCleaned>

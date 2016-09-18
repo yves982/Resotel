@@ -105,24 +105,30 @@ namespace ResotelApp.ViewModels
             get { return _saveClientCommand; }
         }
 
-        public ClientViewModel(LinkedList<INavigableViewModel> navigation, ClientEntity clientEntity, BookingViewModel bookingVM = null)
+        public ClientViewModel(LinkedList<INavigableViewModel> navigation, ClientEntity clientEntity, LinkedListNode<INavigableViewModel> prevNode = null)
         {
             _pcs = new PropertyChangeSupport(this);
             _navigation = navigation;
             _clientEntity = clientEntity;
             _clientEntity.PropertyChanged += _clientChanged;
-            _clientMode = bookingVM == null;
+            _clientMode = prevNode == null;
             _bookingMode = !_clientMode;
             
             if (_bookingMode)
             {
-                _currentBookingVM = bookingVM;
+                _currentBookingVM = prevNode.Value as BookingViewModel;
             }
 
             _sumUpCommand = new DelegateCommandAsync<ClientViewModel>(_sumUp);
             _bookingCommand = new DelegateCommand<ClientViewModel>(_booking);
             _saveClientCommand = new DelegateCommandAsync<ClientViewModel>(_saveClient);
-            _navigation.AddLast(this);
+            if (!_bookingMode)
+            {
+                _navigation.AddLast(this);
+            }else
+            {
+                _navigation.AddAfter(prevNode, this);
+            }
         }
 
         ~ClientViewModel()
@@ -149,7 +155,8 @@ namespace ResotelApp.ViewModels
             Booking booking = clientVM.CurrentBookingVM.Booking;
             if (!(_navigation.Last.Value is SumUpViewModel))
             {
-                SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, booking);
+                LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(this);
+                SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, clientVM.CurrentBookingVM.Booking, prevNode);
             }
             NextCalled?.Invoke(null, clientVM);
         }
@@ -165,9 +172,14 @@ namespace ResotelApp.ViewModels
             {
                 throw new ArgumentException("L'argument ne peut être null et sa propriété ClientEntity non plus", nameof(clientVM));
             }
-            await ClientRepository.SaveNewClient(clientVM.ClientEntity.Client);
+            await ClientRepository.Save(clientVM.ClientEntity.Client);
+            string action = "créé";
+            if(clientVM.ClientEntity.Id != 0)
+            {
+                action = "mis à jour";
+            }
             PromptViewModel promptVM = new PromptViewModel("Action réussie", 
-                $"Le client {clientVM.ClientEntity.FirstName} {clientVM.ClientEntity.LastName}",
+                $"Le client {clientVM.ClientEntity.FirstName} {clientVM.ClientEntity.LastName} a été {action}.",
                 false
             );
             ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(promptVM);

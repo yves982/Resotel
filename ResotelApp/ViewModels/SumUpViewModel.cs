@@ -1,12 +1,16 @@
-﻿using ResotelApp.Models;
+﻿using ResotelApp.DAL;
+using ResotelApp.Models;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
+using System.Globalization;
 using System.Printing;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 using System.Windows.Xps.Packaging;
 
@@ -21,13 +25,14 @@ namespace ResotelApp.ViewModels
         private List<AppliedPackEntity> _appliedPackEntities;
         private List<OptionChoiceEntity> _optionChoiceEntities;
         private ClientEntity _clientEntity;
-        private XpsDocument _xpsDoc;
         private double _optionsTotal;
         private double _roomsTotal;
 
         private DelegateCommandAsync<SumUpViewModel> _editBookingCommand;
+        private DelegateCommandAsync<SumUpViewModel> _validateBookingCommand;
         private DelegateCommand<XpsDocument> _printBookingCommand;
         private Booking _booking;
+        private double _tva;
 
         public LinkedList<INavigableViewModel> Navigation
         {
@@ -86,9 +91,27 @@ namespace ResotelApp.ViewModels
             }
         }
 
-        public double Total
+        public double TotalHT
         {
             get { return _roomsTotal + _optionsTotal; }
+        }
+
+        public double Total
+        {
+            get { return (_roomsTotal + _optionsTotal) * (1d + _tva / 100d); }
+        }
+
+        public double Tva
+        {
+            get { return _tva; }
+        }
+
+        public bool NeedsValidation
+        {
+            get
+            {
+                return _booking.State == BookingState.Draft;
+            }
         }
 
         public string Siret
@@ -106,6 +129,11 @@ namespace ResotelApp.ViewModels
             get { return _editBookingCommand; }
         }
 
+        public ICommand ValidateBookingCommand
+        {
+            get { return _validateBookingCommand; }
+        }
+
         public event EventHandler<INavigableViewModel> NextCalled;
         public event EventHandler<INavigableViewModel> PreviousCalled;
         public event EventHandler<INavigableViewModel> Shutdown;
@@ -117,7 +145,7 @@ namespace ResotelApp.ViewModels
             remove { _pcs.Handler -= value; }
         }
 
-        public SumUpViewModel(LinkedList<INavigableViewModel> navigation, Booking booking)
+        public SumUpViewModel(LinkedList<INavigableViewModel> navigation, Booking booking, LinkedListNode<INavigableViewModel> prevNode = null)
         {
             _pcs = new PropertyChangeSupport(this);
             _navigation = navigation;
@@ -126,14 +154,16 @@ namespace ResotelApp.ViewModels
             _clientEntity = new ClientEntity(booking.Client);
             _appliedPackEntities = new List<AppliedPackEntity>();
             _optionChoiceEntities = new List<OptionChoiceEntity>(booking.OptionChoices.Count);
+
+            foreach(OptionChoice optChoiceEntity in booking.OptionChoices)
+            {
+                OptionChoiceEntity optCEntity = new Entities.OptionChoiceEntity(optChoiceEntity);
+                _optionChoiceEntities.Add(optCEntity);
+            }
             
             _title = $"Réservation de {_clientEntity.FirstName} {_clientEntity.LastName} du {booking.Dates.Start:dd/MM/yyyy}";
 
-            List<OptionChoiceEntity> optChoiceEntities = booking.OptionChoices.ConvertAll(
-                optChoice => new OptionChoiceEntity(optChoice)
-            );
-
-            _optionChoiceEntities.AddRange(optChoiceEntities);
+            _tva = double.Parse(ConfigurationManager.AppSettings["Tva"], CultureInfo.CreateSpecificCulture("en-US"));
 
             foreach (Room room in booking.Rooms)
             {
@@ -145,40 +175,62 @@ namespace ResotelApp.ViewModels
             }
 
             _editBookingCommand = new DelegateCommandAsync<SumUpViewModel>(_editBooking);
+            _validateBookingCommand = new DelegateCommandAsync<SumUpViewModel>(_validateBooking);
             _printBookingCommand = new DelegateCommand<XpsDocument>(_printBooking);
 
-            _navigation.AddLast(this);
-        }
-
-        private void _printBooking(XpsDocument xpsDoc)
-        {
-            
-                Thread printThread = new Thread(() =>
-                {
-                    try
-                    {
-                        PrintQueue defaultPrintQueue = LocalPrintServer.GetDefaultPrintQueue();
-                        string jobName = $"Facture - {_clientEntity.FirstName} {_clientEntity.LastName} - {_clientEntity.BirthDate:dd/MM/yyyy}";
-                        PrintSystemJobInfo xpsPrintJob = defaultPrintQueue.AddJob(jobName, "flowDocument.xps", false);
-                    }
-                    catch (PrintJobException e)
-                    {
-                        Console.WriteLine("\n\t{0} could not be added to the print queue.", xpsDoc.Uri.AbsoluteUri);
-                        if (e.InnerException.Message == "File contains corrupted data.")
-                        {
-                            Console.WriteLine("\tIt is not a valid XPS file. Use the isXPS Conformance Tool to debug it.");
-                        }
-                    }
-                });
-
-            printThread.SetApartmentState(ApartmentState.STA);
-            printThread.Start();
+            if (prevNode != null)
+            {
+                _navigation.AddAfter(prevNode, this);
+            }else
+            {
+                _navigation.AddLast(this);
+            }
         }
 
         private async Task _editBooking(SumUpViewModel sumUpVM)
         {
-            BookingViewModel bookingVM = await BookingViewModel.LoadAsync(_navigation, _booking);
+            LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(sumUpVM);
+            BookingViewModel bookingVM = await BookingViewModel.LoadAsync(_navigation, _booking, prevNode);
             NextCalled?.Invoke(this, sumUpVM);
+        }
+
+        private async Task _validateBooking(SumUpViewModel sumUpVM)
+        {
+            _booking.State = BookingState.Validated;
+            await BookingRepository.Save(sumUpVM._booking);
+            PromptViewModel successPromptVM = new PromptViewModel("Succés", "La commande a réussi", false);
+            ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+            _pcs.NotifyChange(nameof(NeedsValidation));
+        }
+
+        private void _printBooking(XpsDocument xpsDoc)
+        {
+
+            Thread printThread = new Thread(() =>
+            {
+                try
+                {
+                    PrintQueue defaultPrintQueue = LocalPrintServer.GetDefaultPrintQueue();
+                    string jobName = $"Facture - {_clientEntity.FirstName} {_clientEntity.LastName} - {_clientEntity.BirthDate:dd/MM/yyyy}";
+                    PrintSystemJobInfo xpsPrintJob = defaultPrintQueue.AddJob(jobName, "flowDocument.xps", false);
+                    object placeHolder = new object();
+                    PromptViewModel successPromptVM = new PromptViewModel("Succés", "L'impression a été effectuée.", false);
+                    ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+                }
+                catch (PrintJobException e)
+                {
+                    Console.WriteLine("\n\t{0} could not be added to the print queue.", xpsDoc.Uri.AbsoluteUri);
+                    if (e.InnerException.Message == "File contains corrupted data.")
+                    {
+                        Console.WriteLine("\tIt is not a valid XPS file. Use the isXPS Conformance Tool to debug it.");
+                    }
+                }
+            });
+
+            printThread.SetApartmentState(ApartmentState.STA);
+            printThread.Start();
+
+
         }
     }
 }

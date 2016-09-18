@@ -22,11 +22,13 @@
                     <Label Grid.Column="0" Grid.Row="0" Margin="0,0,0,4"
                         Target="startDatePicker">Date de début</Label>
                     <DatePicker Grid.Column="1" Grid.Row="0"  Margin="0,0,0,4"
-                        Name="startDatePicker" SelectedDate="{Binding DateRangeEntity.Start}"></DatePicker>
+                        Name="startDatePicker" SelectedDate="{Binding DateRangeEntity.Start, ValidatesOnDataErrors=True}"
+                                Style="{StaticResource validationDateTemplate}"></DatePicker>
                     <Label Grid.Column="0" Grid.Row="1"  Margin="0,0,0,4"
                         Target="endDatePicker">Date de fin</Label>
                     <DatePicker Grid.Column="1" Grid.Row="1"  Margin="0,0,0,4"
-                        Name="endDatePicker" SelectedDate="{Binding DateRangeEntity.End}"></DatePicker>
+                        Name="endDatePicker" SelectedDate="{Binding DateRangeEntity.End, ValidatesOnDataErrors=True}"
+                                Style="{StaticResource validationDateTemplate}"></DatePicker>
                 </Grid>
             </Expander>
             <Expander Header="Occupants" IsExpanded="True">

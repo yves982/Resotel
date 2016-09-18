@@ -4,6 +4,8 @@
     {
         Draft,
         Validated,
-        Terminated
+        Terminated,
+        Cancelled,
+        FullyCancelled
     }
 }
