@@ -22,11 +22,17 @@ namespace ResotelApp.DAL
                 List<Option> options = await _getOptionRequest(ctx)
                     .ToListAsync();
 
-                Client client = await _getClientRequest(ctx).FirstOrDefaultAsync();
+                Client client = await _getClientRequest(ctx).FirstOrDefaultAsync(
+                    cl => cl.Id == booking.Client.Id
+                );
 
                 _assignCtxRooms(booking, rooms);
                 _assignCtxOptions(booking, options);
-                booking.Client = client;
+
+                if (client != null)
+                {
+                    booking.Client = client;
+                }
 
                 if (booking.Id == 0)
                 {
@@ -36,72 +42,18 @@ namespace ResotelApp.DAL
                 else
                 {
                     Booking trackedBooking = await ctx.Bookings.FirstOrDefaultAsync(b => b.Id == booking.Id);
-                    ctx.Entry(trackedBooking).State = EntityState.Modified;
-                    ctx.Entry(trackedBooking).CurrentValues.SetValues(booking);
+                    
+                    _updateTrackedBooking(trackedBooking, booking, ctx);
+                    await _updateOptionChoices(trackedBooking.OptionChoices, booking.OptionChoices, ctx);
+                    await _updateBookingRooms(trackedBooking, booking.Rooms, ctx);
+                    await _updateRoomPacks(trackedBooking, trackedBooking.RoomPacks, booking.RoomPacks, ctx);
+                    _updateTrackedBookingState(trackedBooking, booking.State, ctx);
 
-                    for (int i = trackedBooking.OptionChoices.Count - 1; i >= 0; i--)
-                    {
-                        ctx.Entry(trackedBooking.OptionChoices[i]).State = EntityState.Deleted;
-                    }
-                    // the joy of using an ORM to manually update a recursive object graph ... priceless
-                    foreach (OptionChoice optChoice in booking.OptionChoices)
-                    {
-                        OptionChoice trackedOptChoice = await ctx.Set<OptionChoice>().FirstOrDefaultAsync(optC => optC.Id == optChoice.Id);
-                        if (trackedOptChoice == null)
-                        {
-                            trackedOptChoice = ctx.Set<OptionChoice>().Add(optChoice);
-
-                        }
-
-                        Option trackedOpt = await ctx.Options.FirstOrDefaultAsync(opt => opt.Id == optChoice.Id);
-
-
-                        DateRange trackedOptDates = await ctx.Set<DateRange>().FirstOrDefaultAsync(dr => dr.Id == optChoice.TakenDates.Id);
-                        if (trackedOptDates == null)
-                        {
-                            trackedOptDates = ctx.Set<DateRange>().Add(optChoice.TakenDates);
-                        }
-                        ctx.Entry(trackedOptDates).CurrentValues.SetValues(optChoice.TakenDates);
-
-                        ctx.Entry(trackedOptChoice).CurrentValues.SetValues(optChoice);
-                        trackedBooking.OptionChoices.Add(trackedOptChoice);
-                    }
-
-                    trackedBooking.Rooms.Clear();
-                    foreach (Room room in booking.Rooms)
-                    {
-                        Room trackedRoom = await ctx.Rooms.FirstOrDefaultAsync(r => r.Id == room.Id);
-                        ctx.Entry(trackedBooking).Collection(bking => bking.Rooms).EntityEntry.State = EntityState.Modified;
-                        trackedBooking.Rooms.Add(trackedRoom);
-                    }
-
-                    trackedBooking.RoomPacks.Clear();
-                    foreach (AppliedPack appliedPack in booking.RoomPacks)
-                    {
-                        AppliedPack trackedAppliedPack = await ctx.Set<AppliedPack>().FirstOrDefaultAsync(ap => ap.Id == appliedPack.Id);
-                        if (trackedAppliedPack == null)
-                        {
-                            trackedAppliedPack = ctx.Set<AppliedPack>().Add(appliedPack);
-                        }
-
-                        Room trackedRoom = await ctx.Rooms.FirstOrDefaultAsync(r => r.Id == appliedPack.Room.Id);
-
-                        Pack trackedPack = await ctx.Set<Pack>().FirstOrDefaultAsync(p => p.Id == appliedPack.RoomPack.Id);
-
-                        trackedAppliedPack.Room = trackedRoom;
-                        trackedAppliedPack.RoomPack = trackedPack;
-                    }
-
-                    ctx.Entry(trackedBooking).Property(b => b.State).EntityEntry.State = EntityState.Modified;
-                    ctx.Entry(trackedBooking).Property(b => b.State).EntityEntry.CurrentValues.SetValues(booking.State);
-
-                    DateRange trackedBookingDates = await ctx.Set<DateRange>().FirstOrDefaultAsync(dr => dr.Id == booking.Dates.Id);
-                    if (trackedBookingDates == null)
-                    {
-                        trackedBookingDates = ctx.Set<DateRange>().Attach(booking.Dates);
-                    }
+                    DateRange trackedBookingDates = await _getTrackedBookingDates(booking.Dates, ctx);
                     trackedBooking.Dates = trackedBookingDates;
                 }
+
+                
 
                 List<Room> unavailableRooms = new List<Room>();
 
@@ -143,15 +95,152 @@ namespace ResotelApp.DAL
             }
         }
 
+        private static async Task<DateRange> _getTrackedBookingDates(DateRange newBookingDates, ResotelContext ctx)
+        {
+            DateRange trackedBookingDates = await ctx.Set<DateRange>().FirstOrDefaultAsync(dr => dr.Id == newBookingDates.Id);
+            if (trackedBookingDates == null)
+            {
+                trackedBookingDates = ctx.Set<DateRange>().Attach(newBookingDates);
+            } else
+            {
+                // check
+                ctx.Entry(trackedBookingDates).CurrentValues.SetValues(newBookingDates);
+            }
+            return trackedBookingDates;
+        }
+
+        private static void _updateTrackedBookingState(Booking trackedBooking, BookingState newBookingState, ResotelContext ctx)
+        {
+            ctx.Entry(trackedBooking).Property( b => b.State).EntityEntry.State = EntityState.Modified;
+            ctx.Entry(trackedBooking).Property(b => b.State).EntityEntry.CurrentValues.SetValues(newBookingState);
+        }
+
+        private static async Task _updateRoomPacks(Booking trackedBooking, IList<AppliedPack> trackedRoomPacks, IList<AppliedPack> newRoomPacks, ResotelContext ctx)
+        {
+            trackedRoomPacks.Clear();
+            foreach (AppliedPack appliedPack in newRoomPacks)
+            {
+                AppliedPack trackedAppliedPack = await ctx.Set<AppliedPack>().FirstOrDefaultAsync(ap => ap.Id == appliedPack.Id);
+                if (trackedAppliedPack == null)
+                {
+                    trackedAppliedPack = ctx.Set<AppliedPack>().Add(appliedPack);
+                }
+
+                Room trackedRoom = await ctx.Rooms.FirstOrDefaultAsync(r => r.Id == appliedPack.Room.Id);
+                Pack trackedPack = await ctx.Set<Pack>().FirstOrDefaultAsync(p => p.Id == appliedPack.RoomPack.Id);
+
+                trackedAppliedPack.Room = trackedRoom;
+                trackedAppliedPack.RoomPack = trackedPack;
+                trackedAppliedPack.Booking = trackedBooking;
+            }
+        }
+
+        private static async Task _updateBookingRooms(Booking trackedBooking, IList<Room> newRooms, ResotelContext ctx)
+        {
+            ctx.Entry(trackedBooking).Collection(b => b.Rooms).EntityEntry.State = EntityState.Modified;
+            trackedBooking.Rooms.Clear();
+            foreach (Room room in newRooms)
+            {
+                Room trackedRoom = await ctx.Rooms.FirstOrDefaultAsync(r => r.Id == room.Id);
+                trackedBooking.Rooms.Add(trackedRoom);
+            }
+        }
+
+        private static async Task _updateOptionChoices(IList<OptionChoice> trackedOptionChoices, IList<OptionChoice> newOptionsChoices, ResotelContext ctx)
+        {
+            // Deletion ain't no small thing in EF, that thing holds memory dear,
+            // so once you delete something, all aggregated entities are set to null, fun, isn't it
+            // db do have transactions to test and try things before committing, but EF does not ..
+            // cancelling a deletion imply a new db request, how sweet
+            List<OptionChoice> optionChoicesToRemove = trackedOptionChoices.
+                Where(trackedOptC => !newOptionsChoices.Any(newOptC => newOptC.Id == trackedOptC.Id)).ToList();
+            _removeExistingOptionChoices(optionChoicesToRemove, ctx);
+
+            foreach (OptionChoice optChoice in newOptionsChoices)
+            {
+                OptionChoice trackedOptChoice = await _getTrackedOptionChoice(optChoice, ctx);
+                await _getTrackedOption(optChoice, ctx);
+                DateRange trackedOptDates = await _getTrackedOptionDates(optChoice, ctx);
+
+
+                _updateTrackedOptionDates(trackedOptDates, optChoice.TakenDates, ctx);
+                _updateTrackedOptionChoice(trackedOptChoice, optChoice, ctx);
+
+                trackedOptionChoices.Add(trackedOptChoice);
+            }
+        }
+
+        private static void _updateTrackedOptionChoice(OptionChoice trackedOptChoice, OptionChoice newOptChoice, ResotelContext ctx)
+        {
+
+            ctx.Entry(trackedOptChoice).CurrentValues.SetValues(newOptChoice);
+        }
+
+        private static void _updateTrackedOptionDates(DateRange trackedOptDates, DateRange newDateRange, ResotelContext ctx)
+        {
+            ctx.Entry(trackedOptDates).CurrentValues.SetValues(newDateRange);
+        }
+
+        private static void _updateTrackedBooking(Booking trackedBooking, Booking booking, ResotelContext ctx)
+        {
+            
+            ctx.Entry(trackedBooking).State = EntityState.Modified;
+            ctx.Entry(trackedBooking).CurrentValues.SetValues(booking);
+        }
+
+        private static void _removeExistingOptionChoices(IList<OptionChoice> trackedOptionChoices, ResotelContext ctx)
+        {
+            for (int i = trackedOptionChoices.Count - 1; i >= 0; i--)
+            {
+                OptionChoice trackedOptChoice = trackedOptionChoices[i];
+                ctx.Entry(trackedOptChoice).State = EntityState.Deleted;
+            }
+        }
+
+        private static async Task<OptionChoice> _getTrackedOptionChoice(OptionChoice optChoice, ResotelContext ctx)
+        {
+            OptionChoice trackedOptChoice = await ctx.Set<OptionChoice>()
+                .Include(optC => optC.Option)
+                .Include(optC => optC.Option.Discounts)
+                .Include(optC => optC.Option.Rooms)
+                .Include(optC => optC.TakenDates)
+                .FirstOrDefaultAsync(optC => optC.Id == optChoice.Id);
+            
+            if (trackedOptChoice == null)
+            {
+                trackedOptChoice = ctx.Set<OptionChoice>().Add(optChoice);
+            }
+
+            return trackedOptChoice;
+        }
+
+        private static async Task _getTrackedOption(OptionChoice optChoice, ResotelContext ctx)
+        {
+            Option trackedOpt = await ctx.Options.FirstOrDefaultAsync(opt => opt.Id == optChoice.Id);
+        }
+
+        private static async Task<DateRange> _getTrackedOptionDates(OptionChoice optChoice, ResotelContext ctx)
+        {
+            DateRange trackedOptDates = await ctx.Set<DateRange>().FirstOrDefaultAsync(dr => dr.Id == optChoice.TakenDates.Id);
+            if (trackedOptDates == null)
+            {
+                trackedOptDates = ctx.Set<DateRange>().Add(optChoice.TakenDates);
+            }
+
+            return trackedOptDates;
+        }
+
         private static IQueryable<Client> _getClientRequest(ResotelContext ctx)
         {
             IQueryable<Client> clientRequest = ctx.Clients
                                 .Include(cl => cl.Bookings)
                                 .Include(cl => cl.Bookings.Select(b => b.Rooms))
                                 .Include(cl => cl.Bookings.Select(b => b.Rooms.Select( r => r.Options )))
+                                .Include(cl => cl.Bookings.Select(b => b.RoomPacks.Select(appliedPack => appliedPack.Booking)))
                                 .Include(cl => cl.Bookings.Select(b => b.RoomPacks.Select(appliedPack => appliedPack.Room)))
                                 .Include(cl => cl.Bookings.Select(b => b.RoomPacks.Select(appliedPack => appliedPack.Room.Options)))
                                 .Include(cl => cl.Bookings.Select(b => b.RoomPacks.Select(appliedPack => appliedPack.RoomPack)))
+                                .Include(cl => cl.Bookings.Select(b => b.OptionChoices))
                                 .Include(cl => cl.Bookings.Select(b => b.OptionChoices.Select(optC => optC.Option)))
                                 .Include(cl => cl.Bookings.Select(b => b.OptionChoices.Select(optC => optC.Option.Rooms)))
                                 .Include(cl => cl.Bookings.Select(b => b.OptionChoices.Select(optC => optC.TakenDates)));

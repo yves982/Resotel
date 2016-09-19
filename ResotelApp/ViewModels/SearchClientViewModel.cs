@@ -16,6 +16,7 @@ namespace ResotelApp.ViewModels
         private int _foundClientsCount;
         private ObservableCollection<ClientEntity> _subClientEntities;
         private ICollectionView _subClientEntitiesView;
+        private ICollectionViewSource _subClientEntitiesSource;
         private bool _displayMoreToggled;
         private DelegateCommand<SearchClientViewModel> _displayMoreCommand;
 
@@ -93,7 +94,8 @@ namespace ResotelApp.ViewModels
             _displayMoreToggled = false;
             _clientEntity = clientEntity;
             _subClientEntities = new ObservableCollection<ClientEntity>();
-            _subClientEntitiesView = CollectionViewProvider.Provider(_subClientEntities);
+            _subClientEntitiesSource = CollectionViewProvider.Provider(_subClientEntities);
+            _subClientEntitiesView = _subClientEntitiesSource.View;
             _subClientEntitiesView.CurrentChanged += _subClientEntitiesView_CurrentChanged;
 
             foreach(ClientEntity clientE in clientEntities)

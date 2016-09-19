@@ -23,12 +23,14 @@ namespace ResotelApp.Models
 
         public List<Discount> Discounts { get; set; }
 
+        public bool HasChooseableDates { get; set; }
+
         [NotMapped]
         public Discount CurrentDiscount
         {
             get
             {
-                Discount currentDiscount = new Discount();
+                Discount currentDiscount = null;
                 if (Discounts != null)
                 {
                     foreach (Discount discount in Discounts)

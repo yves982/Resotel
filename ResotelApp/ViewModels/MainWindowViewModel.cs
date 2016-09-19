@@ -1,5 +1,6 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.Repositories;
+using ResotelApp.Utils;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
@@ -28,6 +29,7 @@ namespace ResotelApp.ViewModels
         private DelegateCommand<IEntity> _closeBookingCommand;
         private DelegateCommand<object> _addClientCommand;
         private DelegateCommandAsync<object> _searchBookingCommand;
+        private DelegateCommandAsync<object> _searchClientCommand;
         private DelegateCommand<BookingViewModel> _nextCommand;
         private DelegateCommand<BookingViewModel> _prevCommand;
 
@@ -55,6 +57,11 @@ namespace ResotelApp.ViewModels
         public ICommand SearchBookingCommand
         {
             get { return _searchBookingCommand; }
+        }
+
+        public ICommand SearchClientCommand
+        {
+            get { return _searchClientCommand; }
         }
 
         public ICommand NextCommand
@@ -125,6 +132,7 @@ namespace ResotelApp.ViewModels
 
         public MainWindowViewModel(UserEntity user)
         {
+            Logger.Log("=Initialisation Fenêtre principale (post login)=");
             _pcs = new PropertyChangeSupport(this);
             _user = user;
             _currentEntities = new ObservableCollection<INavigableViewModel>();
@@ -135,81 +143,183 @@ namespace ResotelApp.ViewModels
             _closeBookingCommand = new DelegateCommand<IEntity>(_closeBooking);
             _addClientCommand = new DelegateCommand<object>(_addClient);
             _searchBookingCommand = new DelegateCommandAsync<object>(_searchBooking);
+            _searchClientCommand = new Utils.DelegateCommandAsync<object>(_searchClient);
             _nextCommand = new DelegateCommand<BookingViewModel>(_next);
             _prevCommand = new DelegateCommand<BookingViewModel>(_prev);
+            Logger.Log("=fenêtre principale initialisée (post login)=");
         }
 
         private void _addBooking(object ignore)
         {
-            Booking booking = new Booking();
-            booking.CreationDate = DateTime.Now;
-            booking.Dates.Start = DateTime.Now;
-            booking.Dates.End = DateTime.Now.AddDays(1.0);
-            BookingViewModel bookingVM = new BookingViewModel(_navigation, booking);
-            _navigation = bookingVM.Navigation;
-            _currentEntities.Add(bookingVM);
-            _currentEntitiesView.MoveCurrentToPosition(_currentEntities.Count - 1);
-            bookingVM.NextCalled += _nextCalled;
-            bookingVM.PreviousCalled += _prevCalled;
-            bookingVM.MessageReceived += _messageReceived;
+            try
+            {
+                Logger.Log("=Ajout d'une réservation=");
+                Booking booking = new Booking();
+                booking.CreationDate = DateTime.Now;
+                booking.Dates.Start = DateTime.Now;
+                booking.Dates.End = DateTime.Now.AddDays(1.0);
+
+                Logger.Log("Ajout d'une réservation: chargement de la fiche de réservation");
+                BookingViewModel bookingVM = new BookingViewModel(_navigation, booking);
+                _navigation = bookingVM.Navigation;
+                _currentEntities.Add(bookingVM);
+                _currentEntitiesView.MoveCurrentToPosition(_currentEntities.Count - 1);
+                bookingVM.NextCalled += _nextCalled;
+                bookingVM.PreviousCalled += _prevCalled;
+                bookingVM.MessageReceived += _messageReceived;
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private void _addClient(object ignore)
         {
-            Client newClient = new Client();
-            ClientEntity newClientEntity = new ClientEntity(newClient);
-            ClientViewModel clientVM = new ClientViewModel(_navigation, newClientEntity);
-            _currentEntities.Add(clientVM);
-            _currentEntitiesView.MoveCurrentToLast();
+            try
+            {
+                Logger.Log("=Ajout d'un nouveau client=");
+                Client newClient = new Client();
+                ClientEntity newClientEntity = new ClientEntity(newClient);
+                Logger.Log("Ajout d'un nouveau client: Affichage de la fiche client");
+                ClientViewModel clientVM = new ClientViewModel(_navigation, newClientEntity);
+                _currentEntities.Add(clientVM);
+                _currentEntitiesView.MoveCurrentToLast();
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private async Task _searchBooking(object ignore)
         {
-            List<ClientEntity> clientEntities = (await ClientRepository.GetAllClients())
-                .ConvertAll(client => new ClientEntity(client));
-            SearchClientsViewModel searchClientsVM = new SearchClientsViewModel(clientEntities);
-            searchClientsVM.ClientSelected += _searchClients_clientSelected;
-            ViewDriverProvider.ViewDriver.ShowView<SearchClientsViewModel>(searchClientsVM);
+            try
+            {
+                Logger.Log("=Recherche de réservation=");
+                List<ClientEntity> clientEntities = (await ClientRepository.GetAllClients())
+                        .ConvertAll(client => new ClientEntity(client));
+                Logger.Log($"=Recherche de réservation: {clientEntities.Count} clients trouvés");
+                SearchClientsViewModel searchClientsVM = new SearchClientsViewModel(clientEntities, true);
+                searchClientsVM.ClientSelected += _searchBooking_clientSelected;
+                ViewDriverProvider.ViewDriver.ShowView<SearchClientsViewModel>(searchClientsVM);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
-        private void _searchClients_clientSelected(object sender, ClientEntity selectedClientEntity)
+        private void _searchBooking_clientSelected(object sender, ClientEntity selectedClientEntity)
         {
-            (sender as SearchClientsViewModel).ClientSelected -= _searchClients_clientSelected;
-            ClientBookingsViewModel clientBookingsVM = new ClientBookingsViewModel(selectedClientEntity);
-            clientBookingsVM.BookingSelected += _clientBookings_bookingSelected;
-            ViewDriverProvider.ViewDriver.ShowView<ClientBookingsViewModel>(clientBookingsVM);
+            try
+            {
+                Logger.Log("=Recherche de réservation=");
+                Logger.Log($"Recherche de réservation: client sélectionné: {selectedClientEntity.Id}");
+                (sender as SearchClientsViewModel).ClientSelected -= _searchBooking_clientSelected;
+                Logger.Log("Recherche de réservation: liste des réservations");
+                ClientBookingsViewModel clientBookingsVM = new ClientBookingsViewModel(selectedClientEntity);
+                clientBookingsVM.BookingSelected += _clientBookings_bookingSelected;
+                ViewDriverProvider.ViewDriver.ShowView<ClientBookingsViewModel>(clientBookingsVM);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
+        }
+
+        private async Task _searchClient(object ignore)
+        {
+            try
+            {
+                Logger.Log("=Recherche de client=");
+                List<ClientEntity> clientEntities = (await ClientRepository.GetAllClients())
+                        .ConvertAll(client => new ClientEntity(client));
+                Logger.Log($"Recherche de client: {clientEntities.Count} clients trouvés");
+                SearchClientsViewModel searchClientsVM = new SearchClientsViewModel(clientEntities);
+                searchClientsVM.ClientSelected += _searchClient_clientSelected;
+                ViewDriverProvider.ViewDriver.ShowView<SearchClientsViewModel>(searchClientsVM);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
+        }
+
+        private void _searchClient_clientSelected(object sender, ClientEntity selectedClientEntity)
+        {
+            try
+            {
+                Logger.Log("=Recherche de client=");
+                Logger.Log("Recherche de client: client sélectionné");
+                (sender as SearchClientsViewModel).ClientSelected -= _searchClient_clientSelected;
+                Logger.Log("Recherche de client: Affichage des infos client");
+                ClientViewModel clientVM = new ClientViewModel(_navigation, selectedClientEntity);
+                _currentEntities.Add(clientVM);
+                _currentEntitiesView.MoveCurrentToLast();
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private void _clientBookings_bookingSelected(object sender, BookingEntity selectedBookingEntity)
         {
-            (sender as ClientBookingsViewModel).BookingSelected -= _clientBookings_bookingSelected;
-            SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, selectedBookingEntity.Booking);
-            sumUpVM.NextCalled += _nextCalled;
-            sumUpVM.PreviousCalled += _prevCalled;
-            _currentEntities.Add(sumUpVM);
-            _currentEntitiesView.MoveCurrentToPosition(_currentEntities.Count - 1);
+            try
+            {
+                Logger.Log("=Recherche de réservation=");
+                Logger.Log("Recherche de réservation: réservation sélectionnée");
+                (sender as ClientBookingsViewModel).BookingSelected -= _clientBookings_bookingSelected;
+                Logger.Log("Recherche de réservation: démarrage récapitulatif de réservation");
+                SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, selectedBookingEntity.Booking);
+                sumUpVM.NextCalled += _nextCalled;
+                sumUpVM.PreviousCalled += _prevCalled;
+                _currentEntities.Add(sumUpVM);
+                _currentEntitiesView.MoveCurrentToPosition(_currentEntities.Count - 1);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private void _closeBooking(IEntity closedEntity)
         {
-            int entityIndex = -1;
-            int i = 0;
-            foreach(IEntity entity in _currentEntities)
+            try
             {
-                if(entity.Equals(closedEntity))
+                Logger.Log("=Fermeture de réservation (onglet)=");
+                int entityIndex = -1;
+                int i = 0;
+                foreach (IEntity entity in _currentEntities)
                 {
-                    entityIndex = i;
-                    break;
+                    if (entity.Equals(closedEntity))
+                    {
+                        entityIndex = i;
+                        break;
+                    }
+                    i++;
                 }
-                i++;
+                if (entityIndex != -1 && closedEntity is INavigableViewModel)
+                {
+                    INavigableViewModel bookingVM = closedEntity as INavigableViewModel;
+                    bookingVM.NextCalled -= _nextCalled;
+                    bookingVM.PreviousCalled -= _prevCalled;
+                    bookingVM.MessageReceived -= _messageReceived;
+                    _currentEntities.RemoveAt(entityIndex);
+                }
             }
-            if(entityIndex != -1 && closedEntity is INavigableViewModel)
+            catch (Exception ex)
             {
-                INavigableViewModel bookingVM = closedEntity as INavigableViewModel;
-                bookingVM.NextCalled -= _nextCalled;
-                bookingVM.PreviousCalled -= _prevCalled;
-                bookingVM.MessageReceived -= _messageReceived;
-                _currentEntities.RemoveAt(entityIndex);
+
+                Logger.Log(ex);
             }
         }
 
@@ -236,24 +346,40 @@ namespace ResotelApp.ViewModels
 
         private void _next(INavigableViewModel navigableVM)
         {
-            LinkedListNode<INavigableViewModel> currentNode = _navigation.Find(navigableVM);
-            if(currentNode.Next != null)
+            try
             {
-                currentNode = currentNode.Next;
-                _currentEntities[_currentEntitiesView.CurrentPosition] = currentNode.Value;
-                currentNode.Value.NextCalled += _nextCalled;
-                currentNode.Value.PreviousCalled += _prevCalled;
-                currentNode.Value.Shutdown += _nodeShutdown;
+                LinkedListNode<INavigableViewModel> currentNode = _navigation.Find(navigableVM);
+                if (currentNode.Next != null)
+                {
+                    currentNode = currentNode.Next;
+                    _currentEntities[_currentEntitiesView.CurrentPosition] = currentNode.Value;
+                    currentNode.Value.NextCalled += _nextCalled;
+                    currentNode.Value.PreviousCalled += _prevCalled;
+                    currentNode.Value.Shutdown += _nodeShutdown;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
             }
         }
 
         private void _prev(INavigableViewModel navigableVM)
         {
-            LinkedListNode<INavigableViewModel> currentNode = _navigation.Find(navigableVM);
-            if (currentNode.Previous != null)
+            try
             {
-                currentNode = currentNode.Previous;
-                _currentEntities[_currentEntitiesView.CurrentPosition] = currentNode.Value;
+                LinkedListNode<INavigableViewModel> currentNode = _navigation.Find(navigableVM);
+                if (currentNode.Previous != null)
+                {
+                    currentNode = currentNode.Previous;
+                    _currentEntities[_currentEntitiesView.CurrentPosition] = currentNode.Value;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
             }
         }
 

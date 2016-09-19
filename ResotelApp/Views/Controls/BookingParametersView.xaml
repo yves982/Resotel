@@ -22,11 +22,13 @@
                     <Label Grid.Column="0" Grid.Row="0" Margin="0,0,0,4"
                         Target="startDatePicker">Date de début</Label>
                     <DatePicker Grid.Column="1" Grid.Row="0"  Margin="0,0,0,4"
-                        Name="startDatePicker" SelectedDate="{Binding DateRangeEntity.Start}"></DatePicker>
+                        Name="startDatePicker" SelectedDate="{Binding Start, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                Style="{StaticResource validationDateTemplate}"></DatePicker>
                     <Label Grid.Column="0" Grid.Row="1"  Margin="0,0,0,4"
                         Target="endDatePicker">Date de fin</Label>
                     <DatePicker Grid.Column="1" Grid.Row="1"  Margin="0,0,0,4"
-                        Name="endDatePicker" SelectedDate="{Binding DateRangeEntity.End}"></DatePicker>
+                        Name="endDatePicker" SelectedDate="{Binding End, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
+                                Style="{StaticResource validationDateTemplate}"></DatePicker>
                 </Grid>
             </Expander>
             <Expander Header="Occupants" IsExpanded="True">
@@ -56,7 +58,7 @@
                     <xctk:IntegerUpDown
                         Grid.Column="1" Grid.Row="1"
                         Value="{Binding AdultsCount}"
-                        Minimum="0"
+                        Minimum="1"
                         ></xctk:IntegerUpDown>
                 </Grid>
             </Expander>

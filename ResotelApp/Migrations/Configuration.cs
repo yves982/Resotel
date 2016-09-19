@@ -147,6 +147,7 @@ namespace ResotelApp.Migrations
                 Id = int.Parse(e.Element("Id").Value),
                 BasePrice = double.Parse(e.Element("BasePrice").Value, new CultureInfo("en-US")),
                 Label = e.Element("Label").Value,
+                HasChooseableDates = e.Element("HasChooseableDates").Value == "" ? false : bool.Parse(e.Element("HasChooseableDates").Value),
                 Rooms = new List<Models.Room>()
             };
             return option;

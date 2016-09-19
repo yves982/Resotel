@@ -14,6 +14,7 @@ namespace ResotelApp.ViewModels
         private string _title;
         private ObservableCollection<SearchClientViewModel> _searchClientVMs;
         private ICollectionView _searchClientVMsView;
+        private ICollectionViewSource _searchClientVMsSource;
         private string _searchedClient;
         private DelegateCommand<SearchClientsViewModel> _selectClientCommand;
         private ClientEntity _subClientSelected;
@@ -63,13 +64,19 @@ namespace ResotelApp.ViewModels
        
         public event EventHandler<ClientEntity> ClientSelected;
 
-        public SearchClientsViewModel(List<ClientEntity> clientEntities)
+        public SearchClientsViewModel(List<ClientEntity> clientEntities, bool reservationMode = false)
         {
             _pcs = new PropertyChangeSupport(this);
             _title = "Resotel - Recherche de client";
 
+            if(reservationMode)
+            {
+                _title = "Resotel - Recherche de réservation";
+            }
+
             _searchClientVMs = new ObservableCollection<SearchClientViewModel>();
-            _searchClientVMsView = CollectionViewProvider.Provider(_searchClientVMs);
+            _searchClientVMsSource = CollectionViewProvider.Provider(_searchClientVMs);
+            _searchClientVMsView = _searchClientVMsSource.View;
             _searchClientVMsView.Filter = _filterClientNameOrFirstName;
             _searchClientVMsView.CurrentChanged += _client_selected;
 

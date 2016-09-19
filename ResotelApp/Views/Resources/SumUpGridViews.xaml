@@ -1,0 +1,48 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <GridView
+       x:Key="SumUpOptionView">
+        <GridViewColumn Header="Option" Width="55">
+            <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                    <Image HorizontalAlignment="Center" Source="{Binding ImageFullPath}" Width="32"></Image>
+                </DataTemplate>
+            </GridViewColumn.CellTemplate>
+        </GridViewColumn>
+        <GridViewColumn Width="50">
+            <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                    <Image Source="/Resources/calendarIcon.png"></Image>
+                </DataTemplate>
+            </GridViewColumn.CellTemplate>
+        </GridViewColumn>
+        <GridViewColumn Header="Du" Width="100" DisplayMemberBinding="{Binding TakenStart, StringFormat=dd/MM/yyyy}"></GridViewColumn>
+        <GridViewColumn Width="50">
+            <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                    <Image Source="/Resources/calendarIcon.png"></Image>
+                </DataTemplate>
+            </GridViewColumn.CellTemplate>
+        </GridViewColumn>
+        <GridViewColumn Header="Au" Width="100" DisplayMemberBinding="{Binding TakenEnd, StringFormat=dd/MM/yyyy}"></GridViewColumn>
+        <GridViewColumn Header="P.U" Width="60" DisplayMemberBinding="{Binding BasePrice, StringFormat=0.00}" ></GridViewColumn>
+        <GridViewColumn Header="Reduction" Width="100" DisplayMemberBinding="{Binding ReduceByPercent, StringFormat=0.00\%}"></GridViewColumn>
+        <GridViewColumn Header="Nb" Width="30" DisplayMemberBinding="{Binding PeopleCount, StringFormat=0}"></GridViewColumn>
+        <GridViewColumn Header="Prix" Width="200" DisplayMemberBinding="{Binding ActualPrice, StringFormat=0.00}"></GridViewColumn>
+    </GridView>
+
+    <GridView x:Key="AppliedPackView">
+        <GridViewColumn Header="Num. Chambre" Width="200" DisplayMemberBinding="{Binding Room.Id}"></GridViewColumn>
+        <GridViewColumn Header="Type" Width="50">
+            <GridViewColumn.CellTemplate>
+                <DataTemplate>
+                    <Image Source="{Binding Room.Kind, Converter={StaticResource roomKindToImagePathConverter}}"></Image>
+                </DataTemplate>
+            </GridViewColumn.CellTemplate>
+        </GridViewColumn>
+        <GridViewColumn Header="Libellé" Width="220" DisplayMemberBinding="{Binding Label}"></GridViewColumn>
+        <GridViewColumn Header="Quantité" Width="72" DisplayMemberBinding="{Binding Count}"></GridViewColumn>
+        <GridViewColumn Header="P.U" Width="200" DisplayMemberBinding="{Binding Price}"></GridViewColumn>
+    </GridView>
+</ResourceDictionary>

@@ -12,6 +12,7 @@ namespace ResotelApp.ViewModels.Entities
         private OptionChoice _optionChoice;
         private string _imageFullPath;
         private bool _taken;
+        private Booking _booking;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -60,7 +61,7 @@ namespace ResotelApp.ViewModels.Entities
             get
             {
                 double reduceByPertcent = 0d;
-                if(_optionChoice.Option.CurrentDiscount != null)
+                if (_optionChoice.Option.CurrentDiscount != null)
                 {
                     reduceByPertcent = _optionChoice.Option.CurrentDiscount.ReduceByPercent;
                 }
@@ -102,15 +103,37 @@ namespace ResotelApp.ViewModels.Entities
             {
                 _taken = value;
                 _pcs.NotifyChange();
+                _pcs.NotifyChange(nameof(DateChoiceEnabled));
+                _pcs.NotifyChange(nameof(HasActiveFixedDates));
             }
         }
 
-        public DateRange TakenDates
+        public bool DateChoiceEnabled
         {
-            get { return _optionChoice.TakenDates; }
+            get { return _optionChoice.CanChangeDates && _taken; }
+        }
+
+        public bool HasActiveFixedDates
+        {
+            get { return !_optionChoice.CanChangeDates && _taken; }
+        }
+
+        public DateTime TakenStart
+        {
+            get { return _optionChoice.TakenDates.Start; }
             set
             {
-                _optionChoice.TakenDates = value;
+                _optionChoice.TakenDates.Start = value;
+                _pcs.NotifyChange();
+            }
+        }
+
+        public DateTime TakenEnd
+        {
+            get { return _optionChoice.TakenDates.End; }
+            set
+            {
+                _optionChoice.TakenDates.End = value;
                 _pcs.NotifyChange();
             }
         }
@@ -120,7 +143,7 @@ namespace ResotelApp.ViewModels.Entities
             get
             {
                 DateRange discountedDates = null;
-                if(_optionChoice.Option.CurrentDiscount != null && _optionChoice.Option.CurrentDiscount.Validity != null)
+                if (_optionChoice.Option.CurrentDiscount != null && _optionChoice.Option.CurrentDiscount.Validity != null)
                 {
                     discountedDates = _optionChoice.Option.CurrentDiscount.Validity;
                 }
@@ -133,12 +156,12 @@ namespace ResotelApp.ViewModels.Entities
             get
             {
                 bool hasPartialDiscount = false;
-                if(_optionChoice.Option.CurrentDiscount != null)
+                if (_optionChoice.Option.CurrentDiscount != null)
                 {
                     Discount currentDiscount = _optionChoice.Option.CurrentDiscount;
                     DateTime takenStart = _optionChoice.TakenDates.Start;
-                    DateTime takenEnd = _optionChoice.TakenDates.End; 
-                    if(DiscountedDates != null && 
+                    DateTime takenEnd = _optionChoice.TakenDates.End;
+                    if (DiscountedDates != null &&
                         (!DiscountedDates.Start.Date.Equals(takenStart.Date)) || !DiscountedDates.End.Date.Equals(takenEnd.Date))
                     {
                         hasPartialDiscount = true;
@@ -152,7 +175,25 @@ namespace ResotelApp.ViewModels.Entities
         {
             get
             {
-                return ((IDataErrorInfo)_optionChoice).Error;
+                string error = ((IDataErrorInfo)_optionChoice).Error;
+                // Restauration
+                if (_optionChoice.Option.Id == 8
+                    && _optionChoice.TakenDates.Start.Subtract(DateTime.Now.Date).TotalDays < 1.0d
+                    && Taken
+                )
+                {
+                    error = error == null ? "Les repas doivent être commandés au moins 24H en avance" :
+                        error + ";Les repas doivent être commandés au moins 24H en avance";
+                }
+                else if (
+                    (_optionChoice.TakenDates.End.CompareTo(_booking.Dates.Start) < 0
+                   || _optionChoice.TakenDates.Start.CompareTo(_booking.Dates.End) > 0)
+                   )
+                {
+                    error = error == null ? "La date de début n'est pas comprise dans l'intervalle de temps de la réservation"
+                        : error + ";La date de début n'est pas comprise dans l'intervalle de temps de la réservation";
+                }
+                return error;
             }
         }
 
@@ -160,20 +201,48 @@ namespace ResotelApp.ViewModels.Entities
         {
             get
             {
-                return ((IDataErrorInfo)_optionChoice)[columnName];
+                string error = ((IDataErrorInfo)_optionChoice)[columnName];
+                if (_optionChoice.Option.Id == 8
+                    && _optionChoice.TakenDates.Start.Subtract(DateTime.Now.Date).TotalDays < 1.0d
+                    && (columnName == nameof(TakenStart)
+                    && Taken)
+                )
+                {
+                    error = "Les repas doivent être commandés au moins 24H en avance";
+                }
+                else if (
+                    (_optionChoice.TakenDates.Start.CompareTo(_booking.Dates.Start) < 0
+                   || _optionChoice.TakenDates.End.CompareTo(_booking.Dates.End) > 0)
+                   && ( columnName == nameof(TakenStart) || columnName == nameof(TakenEnd))
+                   )
+                {
+                    error = "Les dates de début et de fin l'option doivent être comprises dans l'intervalle de temps de la réservation";
+
+                }
+
+                
+                return error;
             }
         }
 
-        public OptionChoiceEntity(OptionChoice optionChoice)
+        public OptionChoiceEntity(Booking booking, OptionChoice optionChoice)
         {
             _pcs = new PropertyChangeSupport(this);
             _optionChoice = optionChoice;
+            _booking = booking;
             
+
             string cleanedLabel;
             if (optionChoice != null)
             {
                 cleanedLabel = _cleanLabel(optionChoice.Option.Label);
                 _imageFullPath = string.Format("/Resources/{0}.png", cleanedLabel);
+                
+                // restauration
+                if(optionChoice.PeopleCount == 0 && optionChoice.Option.Id == 8)
+                {
+                    PeopleCount = 1;
+                }
             }
             _taken = false;
         }
@@ -200,14 +269,6 @@ namespace ResotelApp.ViewModels.Entities
             }
             cleanedLabel = sb.ToString();
             return cleanedLabel;
-        }
-
-        private OptionChoiceEntity(string description, string imageFullName, OptionChoice option, bool taken = false)
-        {
-            _pcs = new PropertyChangeSupport(this);
-            _optionChoice = option;
-            _imageFullPath = imageFullName;
-            _taken = taken;
         }
     }
 }

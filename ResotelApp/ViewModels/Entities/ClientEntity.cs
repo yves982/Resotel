@@ -13,6 +13,7 @@ namespace ResotelApp.ViewModels.Entities
         private Client _client;
         private ObservableCollection<BookingEntity> _bookingEntities;
         private ICollectionView _bookingEntitiesView;
+        private ICollectionViewSource _bookingEntitiesSource;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -118,7 +119,8 @@ namespace ResotelApp.ViewModels.Entities
                         BookingEntity bookingEntity = new BookingEntity(booking);
                         _bookingEntities.Add(bookingEntity);
                     }
-                    _bookingEntitiesView = CollectionViewProvider.Provider(_bookingEntities);
+                    _bookingEntitiesSource = CollectionViewProvider.Provider(_bookingEntities);
+                    _bookingEntitiesView = _bookingEntitiesSource.View;
                 }
                 return _bookingEntities;
             }
@@ -134,7 +136,8 @@ namespace ResotelApp.ViewModels.Entities
                     }
                 }
                 _bookingEntities = value;
-                _bookingEntitiesView = CollectionViewProvider.Provider(_bookingEntities);
+                _bookingEntitiesSource = CollectionViewProvider.Provider(_bookingEntities);
+                _bookingEntitiesView = _bookingEntitiesSource.View;
                 _pcs.NotifyChange();
                 _pcs.NotifyChange(nameof(BookingsView));
             }

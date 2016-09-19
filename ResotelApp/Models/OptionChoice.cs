@@ -21,7 +21,17 @@ namespace ResotelApp.Models
         public DateRange TakenDates { get; set; }
 
         public int PeopleCount { get; set; }
-        
+
+        [NotMapped]
+        public bool CanChangeDates
+        {
+            get { return Option.HasChooseableDates; }
+            set
+            {
+                Option.HasChooseableDates = value;
+            }
+        }
+
         public double DiscountedAmmount
         {
             get
@@ -62,12 +72,12 @@ namespace ResotelApp.Models
                         peopleCount = PeopleCount;
                     }
 
-                    if (Option.CurrentDiscount.ReduceByPercent == 0)
+                    if (Option.CurrentDiscount == null)
                     {
                         _discountedAmmount = 0;
-                        _actualPrice = Option.BasePrice * TakenDates.Days;
+                        _actualPrice = Option.BasePrice * TakenDates.Days * peopleCount;
                     }
-                    else if (Option.CurrentDiscount.Validity != null && Option.CurrentDiscount.ReduceByPercent > 0)
+                    else if (Option.CurrentDiscount != null && Option.CurrentDiscount.Validity != null && Option.CurrentDiscount.ReduceByPercent > 0)
                     {
                         long minEndTicks = Math.Min(TakenDates.End.Ticks, Option.CurrentDiscount.Validity.End.Ticks);
                         long maxStartTicks = Math.Max(TakenDates.Start.Ticks, Option.CurrentDiscount.Validity.Start.Ticks);
@@ -77,7 +87,7 @@ namespace ResotelApp.Models
                         double discountedPrice = Option.BasePrice * (1d - (Option.CurrentDiscount.ReduceByPercent / 100d)) * discountedDays * peopleCount;
                         _actualPrice = Math.Floor(normalPrice + discountedPrice);
                     }
-                    else if (Option.CurrentDiscount.Validity == null)
+                    else if (Option.CurrentDiscount != null && Option.CurrentDiscount.Validity == null)
                     {
                         double reduceByPercent = 1;
                         if (Option.CurrentDiscount.ReduceByPercent > 0)

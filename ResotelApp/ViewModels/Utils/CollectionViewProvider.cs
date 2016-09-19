@@ -6,6 +6,6 @@ namespace ResotelApp.ViewModels.Utils
 {
     class CollectionViewProvider
     {
-        public static Func<IEnumerable, ICollectionView> Provider { get; set; }
+        public static Func<IEnumerable, ICollectionViewSource> Provider { get; set; }
     }
 }

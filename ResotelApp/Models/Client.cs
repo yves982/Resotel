@@ -82,12 +82,12 @@ namespace ResotelApp.Models
             string error = null;
             if (FirstName == null || FirstName.Length == 0)
             {
-                error = string.Format("FirstName doit être renseigné sur le client: {0}", Id);
+                error = "Le champ prénom doit être renseigné";
             }
 
             else if (FirstName.Length > 50)
             {
-                error = string.Format("FirstName ne doit pas dépasser 50 caractères pour le client: {0}", Id);
+                error = "Le champ prénom ne doit pas dépasser 50 caractères";
             }
 
             return error;
@@ -98,12 +98,12 @@ namespace ResotelApp.Models
             string error = null;
             if (LastName == null || LastName.Length == 0)
             {
-                error = string.Format("LastName doit être renseigné sur le client: {0}", Id);
+                error = "Le champ nom doit être renseigné";
             }
 
             else if (LastName.Length > 50)
             {
-                error = string.Format("LastName ne doit pas dépasser 50 caractères pour le client: {0}", Id);
+                error = "Le champ nom ne doit pas dépasser 50 caractères";
             }
 
             return error;
@@ -114,7 +114,7 @@ namespace ResotelApp.Models
             string error = null;
             if (City != null && City.Length > 50)
             {
-                error = string.Format("La ville ne doit pas dépasser 50 caractères pour le client: {0}", Id);
+                error = "La ville ne doit pas dépasser 50 caractères";
             }
             return error;
         }
@@ -124,11 +124,11 @@ namespace ResotelApp.Models
             string error = null;
             if (ZipCode < 0)
             {
-                error = string.Format("Le code postal doit être un entier positif ou null, pour le client {0}", Id);
+                error = "Le code postal doit être un entier positif ou null";
             }
             else if (!string.IsNullOrWhiteSpace(City) && ZipCode == 0)
             {
-                error = string.Format("Le code postal 0 du client {0} est invalide pour la ville {1}", Id, City);
+                error = string.Format("Le code postal doit être renseigné et différent de 0 pour la ville {0}", City);
             }
             return error;
         }
@@ -138,7 +138,7 @@ namespace ResotelApp.Models
             string error = null;
             if (Address != null && Address.Length > 200)
             {
-                error = string.Format("L'adresse du client {0} ne doit pas dépasser 200 caractères", Id);
+                error = "L'adresse ne doit pas dépasser 200 caractères";
             }
             return error;
         }
@@ -162,7 +162,7 @@ namespace ResotelApp.Models
 
             if (error != null)
             {
-                error = string.Format("L'adresse email {1} est invalide pour le client {0}", Id, Email);
+                error = "L'adresse email est invalide";
             }
             return error;
         }
@@ -178,11 +178,11 @@ namespace ResotelApp.Models
 
             if (!string.IsNullOrWhiteSpace(Phone) && hasInvalidPhoneChar)
             {
-                error = string.Format("Le numéro de téléphone {1} du client {0} ne peut contenir que des chiffres, sans espaces ou tirets.", Id, Phone);
+                error = "Le numéro de téléphone ne peut contenir que des chiffres, sans espaces ou tirets.";
             }
             else if (!string.IsNullOrWhiteSpace(Phone) && Phone.Length != 10)
             {
-                error = string.Format("Le numéro de téléphone {1} du client {0} doit contenir exactement 10 chiffres.", Id, Phone);
+                error = "Le numéro de téléphone doit contenir exactement 10 chiffres.";
             }
             return error;
         }

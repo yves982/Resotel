@@ -3,6 +3,7 @@ using System;
 using System.Globalization;
 using System.IO;
 using System.IO.Packaging;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Xps;
@@ -37,8 +38,6 @@ namespace ResotelApp.Views.Converters
                         XpsDocument xpsDoc = new XpsDocument(package, CompressionOption.Maximum);
                         XpsSerializationManager xpsSerializationManager = new XpsSerializationManager(new XpsPackagingPolicy(xpsDoc), false);
                         DocumentPaginator paginator = ((IDocumentPaginatorSource)flowDoc).DocumentPaginator;
-                        // A4 Paper Size in millimeters
-                        paginator.PageSize = new System.Windows.Size(630, 594);
                         xpsSerializationManager.SaveAsXaml(paginator);
                         xpsSerializationManager.Commit();
 

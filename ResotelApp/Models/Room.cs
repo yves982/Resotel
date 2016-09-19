@@ -74,7 +74,7 @@ namespace ResotelApp.Models
             {
                 if(_label == null)
                 {
-                    _label = _roomKindLabels[_kind.Value];
+                    _label = _roomKindLabels[Kind];
                 }
                 return _label;
             }
@@ -124,12 +124,18 @@ namespace ResotelApp.Models
 
         private static Expression<Func<Room, bool>> _bookingsStartedAfter(DateTime end)
         {
-            return room => !room.Bookings.Any(booking => SqlFunctions.DateDiff("day",booking.Dates.Start, end) > 0);
+            return room => !room.Bookings.AsQueryable()
+            .Where(Booking.IsNotFullyCancelled())
+            .Where(Booking.IsNotCancelled())
+            .Any(booking => SqlFunctions.DateDiff("day",booking.Dates.Start, end) > 0);
         } 
 
         private static Expression<Func<Room, bool>> _bookingsEndedBefore(DateTime start)
         {
-            return room => !room.Bookings.Any(booking => SqlFunctions.DateDiff("day", booking.Dates.End, start) < 0);
+            return room => !room.Bookings.AsQueryable()
+            .Where(Booking.IsNotFullyCancelled())
+            .Where(Booking.IsNotCancelled())
+            .Any(booking => SqlFunctions.DateDiff("day", booking.Dates.End, start) < 0);
         }
 
         public static Expression<Func<Room, bool>> NotCurrentlyBooked()
@@ -159,13 +165,13 @@ namespace ResotelApp.Models
 
         static Room()
         {
-            _roomKindLabels = new Dictionary<Models.RoomKind, string> {
-                { RoomKind.Simple, "Chambre individuelle" },
-                { RoomKind.Double, "Chambre Double" },
-                { RoomKind.DoubleWithBaby, "Chambre double avec lit bébé" },
-                { RoomKind.Three, "Chambre de 3 personnes" },
-                { RoomKind.Four, "Chambre de 4 personnes" },
-                { RoomKind.Six, "Chambre de 6 personnes" }
+            _roomKindLabels = new Dictionary<RoomKind, string> {
+                { RoomKind.Simple, "individuelle" },
+                { RoomKind.Double, "Double" },
+                { RoomKind.DoubleWithBaby, "double avec lit bébé" },
+                { RoomKind.Three, "3 personnes" },
+                { RoomKind.Four, "4 personnes" },
+                { RoomKind.Six, "6 personnes" }
             };
         }
 
