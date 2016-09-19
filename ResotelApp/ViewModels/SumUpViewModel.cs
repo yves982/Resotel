@@ -1,5 +1,7 @@
 ﻿using ResotelApp.DAL;
 using ResotelApp.Models;
+using ResotelApp.Repositories;
+using ResotelApp.Utils;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
@@ -7,11 +9,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Configuration;
-using System.Globalization;
 using System.Printing;
 using System.Threading;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Input;
 using System.Windows.Xps.Packaging;
 
@@ -28,8 +28,6 @@ namespace ResotelApp.ViewModels
         
         private ClientEntity _clientEntity;
         private PaymentEntity _paymentEntity;
-        private double _optionsTotal;
-        private double _roomsTotal;
         private bool _hasPayment;
 
         private ObservableCollection<string> _paymentModesCollection;
@@ -135,6 +133,11 @@ namespace ResotelApp.ViewModels
             get { return _wasInTempState; }
         }
 
+        public bool IsCancelled
+        {
+            get { return _booking.State == BookingState.Cancelled || _booking.State == BookingState.FullyCancelled; }
+        }
+
         public string LegalNotice
         {
             get
@@ -210,30 +213,51 @@ namespace ResotelApp.ViewModels
             _appliedPackEntities = new List<AppliedPackEntity>();
             _optionChoiceEntities = new List<OptionChoiceEntity>(booking.OptionChoices.Count);
 
-            foreach(OptionChoice optChoiceEntity in booking.OptionChoices)
-            {
-                OptionChoiceEntity optCEntity = new OptionChoiceEntity(booking, optChoiceEntity);
-                _optionChoiceEntities.Add(optCEntity);
-            }
-            
+            _updateOptionChoiceEntities(booking);
+
             _title = $"Réservation de {_clientEntity.FirstName} {_clientEntity.LastName} du {booking.Dates.Start:dd/MM/yyyy}";
 
-            foreach (Room room in booking.Rooms)
-            {
-                BookedRoomEntity bookedRoomEntity = new BookedRoomEntity(booking, room);
-                foreach(AppliedPackEntity appliedPackEntity in bookedRoomEntity.AppliedPackEntities)
-                {
-                    _appliedPackEntities.Add(appliedPackEntity);
-                }
-            }
+            _fillAppliedPacksEntities(booking);
+
 
             bool canSave = _booking.State == BookingState.Validated;
+            _defineCommands(canSave);
+            _definePaymentModes();
 
+            _unlockSaveIfNeeded();
+            _unlockEditIfNeeded();
+
+
+
+
+            if ((_booking.State != BookingState.Validated && canSave) ||
+                (_booking.State == BookingState.Validated && !canSave)
+            )
+            {
+                _saveBookingCommand.ChangeCanExecute();
+            }
+
+
+            if (prevNode != null)
+            {
+                _navigation.AddAfter(prevNode, this);
+            }
+            else
+            {
+                _navigation.AddLast(this);
+            }
+        }
+
+        private void _defineCommands(bool canSave)
+        {
             _editBookingCommand = new DelegateCommandAsync<SumUpViewModel>(_editBooking);
             _saveBookingCommand = new DelegateCommandAsync<SumUpViewModel>(_saveBooking, canSave);
             _printBookingCommand = new DelegateCommand<XpsDocument>(_printBooking);
+        }
 
-            Dictionary<PaymentMode, string>  paymentModes = new Dictionary<PaymentMode, string>
+        private void _definePaymentModes()
+        {
+            Dictionary<PaymentMode, string> paymentModes = new Dictionary<PaymentMode, string>
             {
                 { Models.PaymentMode.CreditCard, "Carte de crédit" },
                 { Models.PaymentMode.Cheque, "Chèque" },
@@ -254,27 +278,26 @@ namespace ResotelApp.ViewModels
             _paymentModesCollectionView.CurrentChanged += _paymentModesCollectionView_CurrentChanged;
 
             _paymentModesCollectionView.MoveCurrentTo(paymentModes[_paymentEntity.Mode]);
+        }
 
-            _unlockSaveIfNeeded();
-            _unlockEditIfNeeded();
-
-
-
-
-            if((_booking.State != BookingState.Validated && canSave) ||
-                (_booking.State == BookingState.Validated && !canSave)
-            )
+        private void _fillAppliedPacksEntities(Booking booking)
+        {
+            foreach (Room room in booking.Rooms)
             {
-                _saveBookingCommand.ChangeCanExecute();
+                BookedRoomEntity bookedRoomEntity = new BookedRoomEntity(booking, room);
+                foreach (AppliedPackEntity appliedPackEntity in bookedRoomEntity.AppliedPackEntities)
+                {
+                    _appliedPackEntities.Add(appliedPackEntity);
+                }
             }
+        }
 
-
-            if (prevNode != null)
+        private void _updateOptionChoiceEntities(Booking booking)
+        {
+            foreach (OptionChoice optChoiceEntity in booking.OptionChoices)
             {
-                _navigation.AddAfter(prevNode, this);
-            }else
-            {
-                _navigation.AddLast(this);
+                OptionChoiceEntity optCEntity = new OptionChoiceEntity(booking, optChoiceEntity);
+                _optionChoiceEntities.Add(optCEntity);
             }
         }
 
@@ -285,12 +308,20 @@ namespace ResotelApp.ViewModels
 
         private void _paymentModesCollectionView_CurrentChanged(object sender, EventArgs e)
         {
-            
-            if(_paymentModesCollectionView.CurrentPosition != -1)
+
+            try
             {
-                string mode = _paymentModesCollectionView.CurrentItem.ToString();
-                PaymentMode paymentMode = _paymentModes[mode];
-                _paymentEntity.Mode = paymentMode;
+                if (_paymentModesCollectionView.CurrentPosition != -1)
+                {
+                    string mode = _paymentModesCollectionView.CurrentItem.ToString();
+                    PaymentMode paymentMode = _paymentModes[mode];
+                    _paymentEntity.Mode = paymentMode;
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
             }
         }
 
@@ -333,35 +364,63 @@ namespace ResotelApp.ViewModels
 
         private async Task _editBooking(SumUpViewModel sumUpVM)
         {
-            LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(sumUpVM);
-            BookingViewModel bookingVM = await BookingViewModel.LoadAsync(_navigation, _booking, prevNode);
-            NextCalled?.Invoke(this, sumUpVM);
+            try
+            {
+                LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(sumUpVM);
+                BookingViewModel bookingVM = await BookingViewModel.LoadAsync(_navigation, _booking, prevNode);
+                NextCalled?.Invoke(this, sumUpVM);
+            } catch(Exception ex)
+            {
+                Logger.Log(ex);
+            }
         }
 
         private async Task _saveBooking(SumUpViewModel sumUpVM)
         {
-            bool paymentSet = false;
-            if(_hasPayment && !_hadPayment)
+            try
             {
-                sumUpVM._booking.Payment.Date = DateTime.Now;
-                paymentSet = true;
-            }
-            await BookingRepository.Save(sumUpVM._booking);
+                bool isNew = _booking.Id == 0;
+                Logger.Log($"Enregistrement de la {(isNew ? "nouvelle " : "")}réservation: {(isNew ? "" : _booking.Id.ToString())}");
+                bool paymentSet = false;
+                if (_hasPayment && !_hadPayment)
+                {
+                    sumUpVM._booking.Payment.Date = DateTime.Now;
+                    paymentSet = true;
+                }
+                await BookingRepository.Save(sumUpVM._booking);
+                Logger.Log("Enregistrement de réservation : réussi");
+                _unlockEditIfNeeded();
 
-            _unlockEditIfNeeded();
+                if (paymentSet)
+                {
+                    _saveBookingCommand.ChangeCanExecute();
+                }
 
-            if(paymentSet)
+                DateRange todayRange = new DateRange {
+                    Start = DateTime.Now.Date,
+                    End = DateTime.Now.Date.AddDays(1.0d)
+                };
+
+                Logger.Log("Enregistrement de réservation : Récupération des chambres disponibles");
+                List<Room> availableRoomsToday = await RoomRepository.GetAvailablesBetweenAsync(todayRange);
+
+                if(availableRoomsToday.Count < 5)
+                {
+                    Logger.Log("Enregistrement de réservation : Alerte -5 chambres disponibles");
+                    await Mailer.SendAsync("Il y a moins de 5 chambres disponibles");
+                }
+
+                PromptViewModel successPromptVM = new PromptViewModel("Succés", "La commande a réussi", false);
+                ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+            } catch(Exception ex)
             {
-                _saveBookingCommand.ChangeCanExecute();
+                Logger.Log(ex);
             }
-
-            PromptViewModel successPromptVM = new PromptViewModel("Succés", "La commande a réussi", false);
-            ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
         }
 
         private void _printBooking(XpsDocument xpsDoc)
         {
-
+            Logger.Log("Démarrage de l'impression");
             Thread printThread = new Thread(() =>
             {
                 try
@@ -369,17 +428,14 @@ namespace ResotelApp.ViewModels
                     PrintQueue defaultPrintQueue = LocalPrintServer.GetDefaultPrintQueue();
                     string jobName = $"Facture - {_clientEntity.FirstName} {_clientEntity.LastName} - {_clientEntity.BirthDate:dd/MM/yyyy}";
                     PrintSystemJobInfo xpsPrintJob = defaultPrintQueue.AddJob(jobName, "flowDocument.xps", false);
-                    object placeHolder = new object();
+
+                    Logger.Log("Impression terminée");
                     PromptViewModel successPromptVM = new PromptViewModel("Succés", "L'impression a été effectuée.", false);
                     ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
                 }
-                catch (PrintJobException e)
+                catch (PrintJobException pje)
                 {
-                    Console.WriteLine("\n\t{0} could not be added to the print queue.", xpsDoc.Uri.AbsoluteUri);
-                    if (e.InnerException.Message == "File contains corrupted data.")
-                    {
-                        Console.WriteLine("\tIt is not a valid XPS file. Use the isXPS Conformance Tool to debug it.");
-                    }
+                    Logger.Log(pje);
                 }
             });
 

@@ -1,5 +1,6 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.Repositories;
+using ResotelApp.Utils;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Events;
 using ResotelApp.ViewModels.Utils;
@@ -74,6 +75,17 @@ namespace ResotelApp.ViewModels
         {
             OptionsViewModel newInstance = new OptionsViewModel();
             List<Option> availableOptions = await OptionRepository.GetAvailablesBetweenAsync(dates);
+            _setAvailableOptionChoiceEntities(booking, dates, newInstance, availableOptions);
+
+            foreach (OptionChoiceEntity optChoiceEntity in newInstance._availableOptionChoiceEntities)
+            {
+                optChoiceEntity.PropertyChanged += newInstance._optionChanged;
+            }
+            return newInstance;
+        }
+
+        private static void _setAvailableOptionChoiceEntities(Booking booking, DateRange dates, OptionsViewModel newInstance, List<Option> availableOptions)
+        {
             foreach (Option opt in availableOptions)
             {
                 OptionChoice optChoice = new OptionChoice
@@ -83,7 +95,7 @@ namespace ResotelApp.ViewModels
                 };
                 optChoice.TakenDates.Start = optChoice.TakenDates.Start.Date;
 
-                if(optChoice.Option.Id == 8)
+                if (optChoice.Option.Id == 8)
                 {
                     optChoice.TakenDates.Start = optChoice.TakenDates.Start.AddDays(1.0d);
                 }
@@ -91,41 +103,43 @@ namespace ResotelApp.ViewModels
                 OptionChoiceEntity optChoiceEntity = new OptionChoiceEntity(booking, optChoice);
                 newInstance._availableOptionChoiceEntities.Add(optChoiceEntity);
             }
-
-            foreach (OptionChoiceEntity optChoiceEntity in newInstance._availableOptionChoiceEntities)
-            {
-                optChoiceEntity.PropertyChanged += newInstance._optionChanged;
-            }
-            return newInstance;
         }
 
         private void _optionChanged(object sender, PropertyChangedEventArgs pcea)
         {
-            if(!(sender is OptionChoiceEntity))
+            try
             {
-                throw new InvalidOperationException();
-            }
-            
-            OptionChoiceEntity optChoiceEntity = sender as OptionChoiceEntity;
-            OptionChangeKind kind = OptionChangeKind.Default;
+                if (!(sender is OptionChoiceEntity))
+                {
+                    throw new InvalidOperationException();
+                }
 
-            switch(pcea.PropertyName)
+                OptionChoiceEntity optChoiceEntity = sender as OptionChoiceEntity;
+                OptionChangeKind kind = OptionChangeKind.Default;
+
+                switch (pcea.PropertyName)
+                {
+                    case nameof(optChoiceEntity.Taken):
+                        kind = OptionChangeKind.Taken;
+                        break;
+                    case nameof(optChoiceEntity.TakenStart):
+                    case nameof(optChoiceEntity.TakenEnd):
+                        kind = OptionChangeKind.TakenDates;
+                        break;
+                    case nameof(optChoiceEntity.PeopleCount):
+                        kind = OptionChangeKind.PeopleCount;
+                        break;
+                }
+
+                OptionChoiceEntityChange optChange = new OptionChoiceEntityChange(kind, optChoiceEntity);
+
+                OptionChanged?.Invoke(null, optChange);
+            }
+            catch (Exception ex)
             {
-                case nameof(optChoiceEntity.Taken):
-                    kind = OptionChangeKind.Taken;
-                    break;
-                case nameof(optChoiceEntity.TakenStart):
-                case nameof(optChoiceEntity.TakenEnd):
-                    kind = OptionChangeKind.TakenDates;
-                    break;
-                case nameof(optChoiceEntity.PeopleCount):
-                    kind = OptionChangeKind.PeopleCount;
-                    break;
+
+                Logger.Log(ex);
             }
-
-            OptionChoiceEntityChange optChange = new OptionChoiceEntityChange(kind, optChoiceEntity);
-
-            OptionChanged?.Invoke(null, optChange);
         }
 
         private bool _isChoosen(object item)

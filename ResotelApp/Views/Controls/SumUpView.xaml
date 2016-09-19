@@ -26,6 +26,13 @@
                             <TextBlock Text="{Binding Siret, Mode=OneWay}"></TextBlock>
                         </InlineUIContainer>
                     </Span>
+                    <Span BaselineAlignment="Center">
+                        <InlineUIContainer>
+                            <Image Source="/Resources/delete.png"
+                                   Width="64" Height="64"
+                                   Visibility="{Binding IsCancelled, Converter={StaticResource boolToVisibilityConverter}}"></Image>
+                        </InlineUIContainer>
+                    </Span>
                 </Paragraph>
                 <Table TextAlignment="Center">
                     <Table.Columns>
@@ -191,16 +198,16 @@
                             Visibility="{Binding HasPayment, Converter={StaticResource boolToVisibilityConverter}}"
                             Text="{Binding PaymentMode, Mode=OneWay}"></TextBlock>
                         <TextBlock
+                            Margin="0,4,0,0"
                             Visibility="{Binding HasPayment, Converter={StaticResource boolToVisibilityConverter}}"
                             Width="Auto" HorizontalAlignment="Left" Text="{Binding PaymentEntity.Ammount, Mode=OneWay, StringFormat=0.00}"></TextBlock>
                     </StackPanel>
                 </BlockUIContainer>
                 <Paragraph>
-                    <Rectangle StrokeThickness="0,1,0,0" Stroke="Black" StrokeDashArray="4,4" HorizontalAlignment="Stretch">
-                    </Rectangle>
+                    <Border BorderThickness="0,1,0,0" BorderBrush="Black">
                     <TextBlock TextWrapping="Wrap" TextAlignment="Justify" Text="{Binding LegalNotice}"
                                HorizontalAlignment="Stretch" FontSize="11"></TextBlock>
-                    
+                    </Border>
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentScrollViewer>

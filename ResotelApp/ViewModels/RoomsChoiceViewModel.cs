@@ -1,5 +1,6 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.Repositories;
+using ResotelApp.Utils;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
@@ -167,20 +168,28 @@ namespace ResotelApp.ViewModels
 
         private async Task _assignRooms(Booking booking)
         {
-            List<Option> choosenOptions = booking.OptionChoices.ConvertAll(optChoice => optChoice.Option);
-            List<Room> matchingRooms = await RoomRepository.GetMatchingRoomsBetween(choosenOptions, booking.Dates);
-            booking.Rooms.Clear();
-            foreach(RoomChoiceEntity roomChoice in _availableRoomChoiceEntities)
+            try
             {
-                if(roomChoice.Count>0)
+                List<Option> choosenOptions = booking.OptionChoices.ConvertAll(optChoice => optChoice.Option);
+                List<Room> matchingRooms = await RoomRepository.GetMatchingRoomsBetween(choosenOptions, booking.Dates);
+                booking.Rooms.Clear();
+                foreach (RoomChoiceEntity roomChoice in _availableRoomChoiceEntities)
                 {
-                    IList<Room> rooms = _findRooms(matchingRooms, roomChoice.BedKind, roomChoice.Count);
-                    if (rooms.Count > 0)
+                    if (roomChoice.Count > 0)
                     {
-                        matchingRooms.RemoveAll(matchingRoom => booking.Rooms.FindIndex( room => room.Id == matchingRoom.Id ) != -1);
-                        booking.Rooms.AddRange(rooms);
+                        IList<Room> rooms = _findRooms(matchingRooms, roomChoice.BedKind, roomChoice.Count);
+                        if (rooms.Count > 0)
+                        {
+                            matchingRooms.RemoveAll(matchingRoom => booking.Rooms.FindIndex(room => room.Id == matchingRoom.Id) != -1);
+                            booking.Rooms.AddRange(rooms);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
             }
         }
 

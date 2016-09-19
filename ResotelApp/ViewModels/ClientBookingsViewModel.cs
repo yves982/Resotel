@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Windows.Input;
 using System.Threading.Tasks;
 using ResotelApp.DAL;
+using ResotelApp.Utils;
 
 namespace ResotelApp.ViewModels
 {
@@ -85,24 +86,39 @@ namespace ResotelApp.ViewModels
 
         private async Task _cancelBooking(object arg)
         {
-            int bookingPosition = _clientBookingsView.CurrentPosition;
-            if(bookingPosition != -1)
+            Logger.Log("Annulation de réservation");
+            try
             {
-                BookingEntity selectedBookingEntity = _clientBookingsView.CurrentItem as BookingEntity;
+                int bookingPosition = _clientBookingsView.CurrentPosition;
+                if (bookingPosition != -1)
+                {
+                    BookingEntity selectedBookingEntity = _clientBookingsView.CurrentItem as BookingEntity;
+                    Logger.Log($"Annulation de réservation: ({selectedBookingEntity.Booking.Id})");
 
-                selectedBookingEntity.TerminatedDate = DateTime.Now.Date;
-                await BookingRepository.Save(selectedBookingEntity.Booking);
-                bool refunded = selectedBookingEntity.State == BookingState.FullyCancelled;
-                if(refunded)
-                {
-                    PromptViewModel successPromptVM = new PromptViewModel("Succés", "La réservation a été annulée.", false);
-                    ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
-                } else
-                {
-                    string complement = selectedBookingEntity.Payment.Ammount > 0d ? "ne sera pas remboursée" : "reste due";
-                    PromptViewModel successPromptVM = new PromptViewModel("Succés", $"La réservation a été annulée, mais {complement}.", false);
-                    ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+                    selectedBookingEntity.TerminatedDate = DateTime.Now.Date;
+                    await BookingRepository.Save(selectedBookingEntity.Booking);
+                    Logger.Log($"Annulation de réservation: réussie ({selectedBookingEntity.Booking.Id})");
+
+                    bool refunded = selectedBookingEntity.State == BookingState.FullyCancelled;
+                    if (refunded)
+                    {
+                        Logger.Log($"Annulation de réservation: remboursement complet ({selectedBookingEntity.Booking.Id})");
+                        PromptViewModel successPromptVM = new PromptViewModel("Succés", "La réservation a été annulée.", false);
+                        ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+                    }
+                    else
+                    {
+                        Logger.Log($"Annulation de réservation: pas de remboursement ({selectedBookingEntity.Booking.Id})");
+                        string complement = selectedBookingEntity.Payment.Ammount > 0d ? "ne sera pas remboursée" : "reste due";
+                        PromptViewModel successPromptVM = new PromptViewModel("Succés", $"La réservation a été annulée, mais {complement}.", false);
+                        ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
             }
         }
 
@@ -124,12 +140,20 @@ namespace ResotelApp.ViewModels
 
         private void _selectBooking(object ignore)
         {
-            if (_clientBookingsView.CurrentPosition != -1)
+            try
             {
-                BookingEntity selectedBookingEntity = _clientBookingsView.CurrentItem as BookingEntity;
-                BookingSelected?.Invoke(this, selectedBookingEntity);
-                ShouldClose = true;
-                _pcs.NotifyChange(nameof(ShouldClose));
+                if (_clientBookingsView.CurrentPosition != -1)
+                {
+                    BookingEntity selectedBookingEntity = _clientBookingsView.CurrentItem as BookingEntity;
+                    BookingSelected?.Invoke(this, selectedBookingEntity);
+                    ShouldClose = true;
+                    _pcs.NotifyChange(nameof(ShouldClose));
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
             }
         }
     }

@@ -1,4 +1,5 @@
 ﻿using ResotelApp.Models;
+using ResotelApp.Utils;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
@@ -126,10 +127,18 @@ namespace ResotelApp.ViewModels
 
         public void ChangeValidateCanExecute()
         {
-            bool validatesDateRange = _validateDateRange() == null;
-            if (validatesDateRange)
+            try
             {
-                _validateCommand.ChangeCanExecute();
+                bool validatesDateRange = _validateDateRange() == null;
+                if (validatesDateRange)
+                {
+                    _validateCommand.ChangeCanExecute();
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
             }
         }
 
@@ -155,8 +164,16 @@ namespace ResotelApp.ViewModels
 
         private void _validate(object ignore)
         {
-            _validateCommand.ChangeCanExecute();
-            Defined?.Invoke(null, this);
+            try
+            {
+                _validateCommand.ChangeCanExecute();
+                Defined?.Invoke(null, this);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
     }
 }

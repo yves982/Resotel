@@ -1,5 +1,6 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.Repositories;
+using ResotelApp.Utils;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Events;
 using ResotelApp.ViewModels.Utils;
@@ -172,39 +173,63 @@ namespace ResotelApp.ViewModels
         }
 
         private void _sumUp(ClientViewModel clientVM)
-        {           
-            int bookingCnt = clientVM.ClientEntity.Bookings.Count;
-            Booking booking = clientVM.CurrentBookingVM.Booking;
-            if (!(_navigation.Last.Value is SumUpViewModel))
+        {
+            try
             {
-                LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(this);
-                SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, clientVM.CurrentBookingVM.Booking, prevNode);
+                int bookingCnt = clientVM.ClientEntity.Bookings.Count;
+                Booking booking = clientVM.CurrentBookingVM.Booking;
+                if (!(_navigation.Last.Value is SumUpViewModel))
+                {
+                    LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(this);
+                    SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, clientVM.CurrentBookingVM.Booking, prevNode);
+                }
+                NextCalled?.Invoke(null, clientVM);
             }
-            NextCalled?.Invoke(null, clientVM);
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private void _booking(ClientViewModel clientVM)
         {
-            PreviousCalled?.Invoke(null, clientVM);
+            try
+            {
+                PreviousCalled?.Invoke(null, clientVM);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private async Task _saveClient(ClientViewModel clientVM)
         {
-            if( clientVM == null || clientVM.ClientEntity == null)
+            try
             {
-                throw new ArgumentException("L'argument ne peut être null et sa propriété ClientEntity non plus", nameof(clientVM));
+                if (clientVM == null || clientVM.ClientEntity == null)
+                {
+                    throw new ArgumentException("L'argument ne peut être null et sa propriété ClientEntity non plus", nameof(clientVM));
+                }
+                await ClientRepository.Save(clientVM.ClientEntity.Client);
+                string action = "créé";
+                if (clientVM.ClientEntity.Id != 0)
+                {
+                    action = "mis à jour";
+                }
+                PromptViewModel promptVM = new PromptViewModel("Action réussie",
+                    $"Le client {clientVM.ClientEntity.FirstName} {clientVM.ClientEntity.LastName} a été {action}.",
+                    false
+                );
+                ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(promptVM);
             }
-            await ClientRepository.Save(clientVM.ClientEntity.Client);
-            string action = "créé";
-            if(clientVM.ClientEntity.Id != 0)
+            catch (Exception ex)
             {
-                action = "mis à jour";
+
+                Logger.Log(ex);
             }
-            PromptViewModel promptVM = new PromptViewModel("Action réussie", 
-                $"Le client {clientVM.ClientEntity.FirstName} {clientVM.ClientEntity.LastName} a été {action}.",
-                false
-            );
-            ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(promptVM);
         }
     }
 }

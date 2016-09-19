@@ -1,6 +1,7 @@
 ﻿using ResotelApp.DAL;
 using ResotelApp.Models;
 using ResotelApp.Repositories;
+using ResotelApp.Utils;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Events;
 using ResotelApp.ViewModels.Utils;
@@ -225,8 +226,16 @@ namespace ResotelApp.ViewModels
 
         public async Task AssignRooms()
         {
-            await _roomChoices.AssignRoomsCommand.ExecuteAsync(_booking);
-            _checkRoomCapacityWithBabies(this);
+            try
+            {
+                await _roomChoices.AssignRoomsCommand.ExecuteAsync(_booking);
+                _checkRoomCapacityWithBabies(this);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private void _unlockSearchClientAndNewClientIfNeeded()
@@ -257,37 +266,64 @@ namespace ResotelApp.ViewModels
 
         private async Task _validateParameters()
         {
-            _parametersValidated = true;
-            bool newClientCanExecute = _newClientCommand.CanExecute(null);
-            bool searchClientCanExecute = _searchClientCommand.CanExecute(null);
-            bool validateBookingCanExecute = _validateBookingCommand.CanExecute(null);
-
-            _parameters.ChangeValidateCanExecute();
-
-            if (!newClientCanExecute)
+            try
             {
-                _newClientCommand.ChangeCanExecute();
+                _parametersValidated = true;
+                bool newClientCanExecute = _newClientCommand.CanExecute(null);
+                bool searchClientCanExecute = _searchClientCommand.CanExecute(null);
+                bool validateBookingCanExecute = _validateBookingCommand.CanExecute(null);
+
+                _handleCommandStates(newClientCanExecute, searchClientCanExecute, validateBookingCanExecute);
+
+                DateRange dateRange = new DateRange
+                {
+                    Start = _parameters.Start,
+                    End = _parameters.End
+                };
+                Options = await OptionsViewModel.CreateAsync(_booking, dateRange);
+                RoomChoices = await RoomsChoiceViewModel.CreateAsync(dateRange);
+                RoomChoices.AvailableRoomChoiceEntitiesView.Filter = _mustShowRoomChoice;
+
+                _updateOptionChoicesEntities();
+
+                Dictionary<RoomKind, int> takenRoomKind = new Dictionary<RoomKind, int>();
+
+                _countTakenRooms(takenRoomKind);
+
+                _setRoomChoiceEntitiesCounts(takenRoomKind);
             }
-
-            if (!searchClientCanExecute)
+            catch (Exception ex)
             {
-                _searchClientCommand.ChangeCanExecute();
+
+                Logger.Log(ex);
             }
+        }
 
-            if(!validateBookingCanExecute)
+        private void _setRoomChoiceEntitiesCounts(Dictionary<RoomKind, int> takenRoomKind)
+        {
+            foreach (RoomChoiceEntity roomChoiceEntity in RoomChoices.AvailableRoomChoiceEntitiesView)
             {
-                _validateBookingCommand.ChangeCanExecute();
+                if (takenRoomKind.ContainsKey(roomChoiceEntity.RoomKind))
+                {
+                    roomChoiceEntity.Count = takenRoomKind[roomChoiceEntity.RoomKind];
+                }
             }
+        }
 
-            DateRange dateRange = new Models.DateRange
+        private void _countTakenRooms(Dictionary<RoomKind, int> takenRoomKind)
+        {
+            foreach (Room room in _booking.Rooms)
             {
-                Start = _parameters.Start,
-                End = _parameters.End
-            };
-            Options = await OptionsViewModel.CreateAsync(_booking, dateRange);
-            RoomChoices = await RoomsChoiceViewModel.CreateAsync(dateRange);
-            RoomChoices.AvailableRoomChoiceEntitiesView.Filter = _mustShowRoomChoice;
+                if (!takenRoomKind.ContainsKey(room.Kind))
+                {
+                    takenRoomKind.Add(room.Kind, 0);
+                }
+                takenRoomKind[room.Kind]++;
+            }
+        }
 
+        private void _updateOptionChoicesEntities()
+        {
             foreach (OptionChoiceEntity optChoiceEntity in Options.AvailableOptionChoiceEntitiesView)
             {
                 foreach (OptionChoice optChoice in _booking.OptionChoices)
@@ -302,43 +338,52 @@ namespace ResotelApp.ViewModels
                     }
                 }
             }
+        }
 
-            Dictionary<RoomKind, int> takenRoomKind = new Dictionary<RoomKind, int>();
+        private void _handleCommandStates(bool newClientCanExecute, bool searchClientCanExecute, bool validateBookingCanExecute)
+        {
+            _parameters.ChangeValidateCanExecute();
 
-            foreach (Room room in _booking.Rooms)
+            if (!newClientCanExecute)
             {
-                if (!takenRoomKind.ContainsKey(room.Kind))
-                {
-                    takenRoomKind.Add(room.Kind, 0);
-                }
-                takenRoomKind[room.Kind]++;
+                _newClientCommand.ChangeCanExecute();
             }
 
-            foreach (RoomChoiceEntity roomChoiceEntity in RoomChoices.AvailableRoomChoiceEntitiesView)
+            if (!searchClientCanExecute)
             {
-                if (takenRoomKind.ContainsKey(roomChoiceEntity.RoomKind))
-                {
-                    roomChoiceEntity.Count = takenRoomKind[roomChoiceEntity.RoomKind];
-                }
+                _searchClientCommand.ChangeCanExecute();
+            }
+
+            if (!validateBookingCanExecute)
+            {
+                _validateBookingCommand.ChangeCanExecute();
             }
         }
 
         private async void _parameters_defined(object sender, BookingParametersViewModel bookingParametersVM)
         {
-            ParametersValidated = true;
-            DateRange dateRange = new DateRange
+            try
             {
-                Start = _parameters.Start,
-                End = _parameters.End
-            };
+                ParametersValidated = true;
+                DateRange dateRange = new DateRange
+                {
+                    Start = _parameters.Start,
+                    End = _parameters.End
+                };
 
-            Options = await OptionsViewModel.CreateAsync(_booking, dateRange);
-            RoomChoices = await RoomsChoiceViewModel.CreateAsync(dateRange);
-            RoomChoices.AvailableRoomChoiceEntitiesView.Filter = _mustShowRoomChoice;
+                Options = await OptionsViewModel.CreateAsync(_booking, dateRange);
+                RoomChoices = await RoomsChoiceViewModel.CreateAsync(dateRange);
+                RoomChoices.AvailableRoomChoiceEntitiesView.Filter = _mustShowRoomChoice;
 
-            _newClientCommand.ChangeCanExecute();
-            _searchClientCommand.ChangeCanExecute();
-            _validateBookingCommand.ChangeCanExecute();
+                _newClientCommand.ChangeCanExecute();
+                _searchClientCommand.ChangeCanExecute();
+                _validateBookingCommand.ChangeCanExecute();
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private bool _mustShowRoomChoice(object item)
@@ -356,26 +401,32 @@ namespace ResotelApp.ViewModels
 
         private void _parametersChanged(object sender, PropertyChangedEventArgs e)
         {
-
-
-            _booking.AdultsCount = _parameters.AdultsCount;
-            _booking.BabiesCount = _parameters.BabiesCount;
-            _booking.Dates.Start = _parameters.Start;
-            _booking.Dates.End = _parameters.End;
-
-            ParametersValidated = false;
-
-            if (_newClientCommand.CanExecute(null))
+            try
             {
-                _newClientCommand.ChangeCanExecute();
-                _searchClientCommand.ChangeCanExecute();
-                _validateBookingCommand.ChangeCanExecute();
-                MessageReceived?.Invoke(null, null);
+                _booking.AdultsCount = _parameters.AdultsCount;
+                _booking.BabiesCount = _parameters.BabiesCount;
+                _booking.Dates.Start = _parameters.Start;
+                _booking.Dates.End = _parameters.End;
+
+                ParametersValidated = false;
+
+                if (_newClientCommand.CanExecute(null))
+                {
+                    _newClientCommand.ChangeCanExecute();
+                    _searchClientCommand.ChangeCanExecute();
+                    _validateBookingCommand.ChangeCanExecute();
+                    MessageReceived?.Invoke(null, null);
+                }
+
+                if (!_parameters.ValidateCommand.CanExecute(null))
+                {
+                    _parameters.ChangeValidateCanExecute();
+                }
             }
-
-            if (!_parameters.ValidateCommand.CanExecute(null))
+            catch (Exception ex)
             {
-                _parameters.ChangeValidateCanExecute();
+
+                Logger.Log(ex);
             }
         }
 
@@ -391,31 +442,48 @@ namespace ResotelApp.ViewModels
 
         private void _clientChanged(object sender, PropertyChangedEventArgs pcea)
         {
-            if (pcea.PropertyName != "FirstName" && pcea.PropertyName != "LastName")
+            try
             {
-                return;
+                if (pcea.PropertyName != "FirstName" && pcea.PropertyName != "LastName")
+                {
+                    return;
+                }
+                _computeTitle(_clientEntity);
+                _pcs.NotifyChange("Title");
             }
-            _computeTitle(_clientEntity);
-            _pcs.NotifyChange("Title");
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private void _optionsChanged(object sender, OptionChoiceEntityChange optChoiceEntityChange)
         {
-            OptionChoiceEntity optChoiceEntity = optChoiceEntityChange.OptionChoiceEntity;
-            int optChoiceIndex = _booking.OptionChoices.FindIndex(optC => optC.Option.Id == optChoiceEntity.OptionChoice.Option.Id);
-
-            if (optChoiceEntityChange.Kind == OptionChangeKind.Taken && optChoiceEntity.Taken)
+            try
             {
-                DateRange dateRange = (DateRange)((ICloneable)_booking.Dates).Clone();
-                optChoiceEntity.TakenStart = dateRange.Start;
-                optChoiceEntity.TakenEnd = dateRange.End;
+                OptionChoiceEntity optChoiceEntity = optChoiceEntityChange.OptionChoiceEntity;
+                int optChoiceIndex = _booking.OptionChoices.FindIndex(optC => optC.Option.Id == optChoiceEntity.OptionChoice.Option.Id);
 
-                if(optChoiceEntity.OptionChoice.Option.Id == 8)
-                {
-                    optChoiceEntity.TakenStart = dateRange.Start.Date.AddDays(1.0d);
-                }
+                _updateDates(optChoiceEntityChange, optChoiceEntity);
+
+                _updateOptionChoices(optChoiceEntityChange, optChoiceEntity, optChoiceIndex);
+
+                RoomChoices.Update(optChoiceEntity);
+
+                _unlockSearchClientAndNewClientIfNeeded();
+
+                _checkCapacityWithBabies(optChoiceEntity);
             }
+            catch (Exception ex)
+            {
 
+                Logger.Log(ex);
+            }
+        }
+
+        private void _updateOptionChoices(OptionChoiceEntityChange optChoiceEntityChange, OptionChoiceEntity optChoiceEntity, int optChoiceIndex)
+        {
             if (optChoiceEntity.Taken && optChoiceEntityChange.Kind == OptionChangeKind.Taken)
             {
                 if (optChoiceIndex != -1)
@@ -430,12 +498,21 @@ namespace ResotelApp.ViewModels
             {
                 _booking.OptionChoices.Remove(optChoiceEntity.OptionChoice);
             }
+        }
 
-            RoomChoices.Update(optChoiceEntity);
+        private void _updateDates(OptionChoiceEntityChange optChoiceEntityChange, OptionChoiceEntity optChoiceEntity)
+        {
+            if (optChoiceEntityChange.Kind == OptionChangeKind.Taken && optChoiceEntity.Taken)
+            {
+                DateRange dateRange = (DateRange)((ICloneable)_booking.Dates).Clone();
+                optChoiceEntity.TakenStart = dateRange.Start;
+                optChoiceEntity.TakenEnd = dateRange.End;
 
-            _unlockSearchClientAndNewClientIfNeeded();
-
-            _checkCapacityWithBabies(optChoiceEntity);
+                if (optChoiceEntity.OptionChoice.Option.Id == 8)
+                {
+                    optChoiceEntity.TakenStart = dateRange.Start.Date.AddDays(1.0d);
+                }
+            }
         }
 
         private void _checkCapacityWithBabies(OptionChoiceEntity optChoiceEntity)
@@ -480,14 +557,22 @@ namespace ResotelApp.ViewModels
 
         private async Task _newClient(BookingViewModel bookingVM)
         {
-            LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(bookingVM);
-            ClientViewModel clientVM = new ClientViewModel(_navigation, _clientEntity, prevNode);
-            await _roomChoices.AssignRoomsCommand.ExecuteAsync(_booking);
-
-            bool success = _checkRoomCapacityWithBabies(bookingVM);
-            if (success)
+            try
             {
-                NextCalled?.Invoke(null, bookingVM);
+                LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(bookingVM);
+                ClientViewModel clientVM = new ClientViewModel(_navigation, _clientEntity, prevNode);
+                await _roomChoices.AssignRoomsCommand.ExecuteAsync(_booking);
+
+                bool success = _checkRoomCapacityWithBabies(bookingVM);
+                if (success)
+                {
+                    NextCalled?.Invoke(null, bookingVM);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
             }
         }
 
@@ -532,36 +617,60 @@ namespace ResotelApp.ViewModels
 
         private async Task _searchClient(BookingViewModel bookingVM)
         {
-            List<Client> clients = await ClientRepository.GetAllClients();
-            List<ClientEntity> clientEntities = new List<ClientEntity>(clients.Count);
-            foreach (Client client in clients)
+            try
             {
-                ClientEntity clientEntity = new ClientEntity(client);
-                clientEntities.Add(clientEntity);
+                List<Client> clients = await ClientRepository.GetAllClients();
+                List<ClientEntity> clientEntities = new List<ClientEntity>(clients.Count);
+                foreach (Client client in clients)
+                {
+                    ClientEntity clientEntity = new ClientEntity(client);
+                    clientEntities.Add(clientEntity);
+                }
+                SearchClientsViewModel searchClientVM = new SearchClientsViewModel(clientEntities);
+                searchClientVM.ClientSelected += _searchClient_clientSelected;
+                ViewDriverProvider.ViewDriver.ShowView<SearchClientsViewModel>(searchClientVM);
             }
-            SearchClientsViewModel searchClientVM = new SearchClientsViewModel(clientEntities);
-            searchClientVM.ClientSelected += _searchClient_clientSelected;
-            ViewDriverProvider.ViewDriver.ShowView<SearchClientsViewModel>(searchClientVM);
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private async void _searchClient_clientSelected(object sender, ClientEntity selectedClientEntity)
         {
-            (sender as SearchClientsViewModel).ClientSelected -= _searchClient_clientSelected;
-            _booking.Client = selectedClientEntity.Client;
-            await _roomChoices.AssignRoomsCommand.ExecuteAsync(_booking);
+            try
+            {
+                (sender as SearchClientsViewModel).ClientSelected -= _searchClient_clientSelected;
+                _booking.Client = selectedClientEntity.Client;
+                await _roomChoices.AssignRoomsCommand.ExecuteAsync(_booking);
 
-            LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(this);
-            SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, _booking, prevNode);
-            NextCalled?.Invoke(null, this);
+                LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(this);
+                SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, _booking, prevNode);
+                NextCalled?.Invoke(null, this);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
 
         private async Task _validateBooking(BookingViewModel bookingVM)
         {
-            await _roomChoices.AssignRoomsCommand.ExecuteAsync(_booking);
+            try
+            {
+                await _roomChoices.AssignRoomsCommand.ExecuteAsync(_booking);
 
-            LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(this);
-            SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, _booking, prevNode);
-            NextCalled?.Invoke(null, this);
+                LinkedListNode<INavigableViewModel> prevNode = _navigation.Find(this);
+                SumUpViewModel sumUpVM = new SumUpViewModel(_navigation, _booking, prevNode);
+                NextCalled?.Invoke(null, this);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
         }
     }
 }

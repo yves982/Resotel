@@ -177,19 +177,35 @@ namespace ResotelApp.ViewModels
 
         private async Task _loginCmd(object ignore)
         {
-            User user = await UserRepository.FindByLoginAsync(_login);
-
-            if (user == null)
+            try
             {
-                LoginResult = "Utilisateur inconnu";
-                ResultReady = true;
-                return;
-            }
-            bool passwordMatch = user.Password.Equals(HashManager.SHA256(SecureStringUtil.Read(_securePassword)), StringComparison.InvariantCultureIgnoreCase);
+                Logger.Log($"Connexion de l'utilisateur {_login}");
+                User user = await UserRepository.FindByLoginAsync(_login);
 
-            bool hasRights = (user.Rights & UserRights.Booking) == UserRights.Booking;
+                if (user == null)
+                {
+                    Logger.Log($"Utilisateur {_login} inconnu");
+                    LoginResult = "Utilisateur inconnu";
+                    ResultReady = true;
+                    return;
+                }
+                bool passwordMatch = user.Password.Equals(HashManager.SHA256(SecureStringUtil.Read(_securePassword)), StringComparison.InvariantCultureIgnoreCase);
+
+                bool hasRights = (user.Rights & UserRights.Booking) == UserRights.Booking;
+                _logUserIfAppropriate(user, passwordMatch, hasRights);
+            }
+            catch (Exception ex)
+            {
+
+                Logger.Log(ex);
+            }
+        }
+
+        private void _logUserIfAppropriate(User user, bool passwordMatch, bool hasRights)
+        {
             if (passwordMatch && hasRights)
             {
+                Logger.Log("Utilisateur connecté");
                 _user = user;
                 LoginResult = "Succés, Chargement...";
                 ResultReady = true;
@@ -199,10 +215,13 @@ namespace ResotelApp.ViewModels
             }
             else if (!passwordMatch)
             {
+                Logger.Log($"Echec de la connexion de {_login} (mot de passe erroné)");
                 LoginResult = "Nom d'utilisateur ou mot de passe invalide";
                 ResultReady = true;
-            } else
+            }
+            else
             {
+                Logger.Log($"Echec de la connexion de {_login}");
                 LoginResult = "Utilisateur non autorisé";
                 ResultReady = true;
             }
@@ -210,6 +229,7 @@ namespace ResotelApp.ViewModels
 
         private void _showMainView(object sender, EventArgs e)
         {
+            Logger.Log("Lancement de la fenêtre principale (post login)");
             UserEntity userEntity = new UserEntity(_user);
             MainWindowViewModel mainViewModel = new MainWindowViewModel(userEntity);
             ViewDriverProvider.ViewDriver.CloseAndShowNewMainWindow<MainWindowViewModel>(mainViewModel);
