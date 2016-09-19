@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
+using System.Linq.Expressions;
+using System.Data.Entity.SqlServer;
 
 namespace ResotelApp.Models
 {
@@ -24,7 +25,33 @@ namespace ResotelApp.Models
         public DateRange Dates { get; set; }
         public int AdultsCount { get; set; }
         public int BabiesCount { get; set; }
-        public BookingState State { get; set; }
+        
+        public DateTime? TerminatedDate { get; set; }
+        public BookingState State
+        {
+            get
+            {
+                BookingState state = BookingState.Validated;
+                if(Payment != null && Payment.Ammount > 0.0d && TerminatedDate == null)
+                {
+                    state = BookingState.Paid;
+                }
+                else if (TerminatedDate.HasValue && Dates.Start.Subtract(TerminatedDate.Value).TotalDays >= 2d )
+                {
+                    state = BookingState.FullyCancelled;
+                } else if(TerminatedDate.HasValue)
+                {
+                    state = BookingState.Cancelled;
+                }
+                return state;
+            }
+        }
+        public Payment Payment { get; set; }
+
+        public static double Tva
+        {
+            get;set;
+        }
 
         public Discount OptionDiscount
         {
@@ -48,6 +75,43 @@ namespace ResotelApp.Models
                 }
                 return _discountedOptionChoice;
             }
+        }
+
+        public double OptionsTotal
+        {
+            get
+            {
+                double optionsTotal = 0;
+                foreach (OptionChoice optChoice in OptionChoices)
+                {
+                    optionsTotal += optChoice.ActualPrice;
+                }
+                return optionsTotal;
+            }
+        }
+
+        public double RoomsTotal
+        {
+
+            get
+            {
+                double roomsTotal = 0;
+                foreach (AppliedPack appliedPack in RoomPacks)
+                {
+                    roomsTotal += appliedPack.Price * appliedPack.Count;
+                }
+                return roomsTotal;
+            }
+        }
+
+        public double TotalHT
+        {
+            get { return RoomsTotal + OptionsTotal; }
+        }
+
+        public double Total
+        {
+            get { return (RoomsTotal + OptionsTotal) * (1d + Tva / 100d); }
         }
 
         public List<AppliedPack> RoomPacks
@@ -144,6 +208,16 @@ namespace ResotelApp.Models
             return error;
         }
 
+        private string _validatePayment()
+        {
+            string error = null;
+            if (Payment != null)
+            {
+                error = ((IDataErrorInfo)Payment).Error;
+            }
+            return error;
+        }
+
         private string _validateOptions()
         {
             List<OptionChoice> invalidOptions = new List<OptionChoice>(OptionChoices);
@@ -205,15 +279,42 @@ namespace ResotelApp.Models
             OptionChoices = new List<OptionChoice>();
             Rooms = new List<Room>();
             Dates = new DateRange();
+            Payment = new Payment();
             _roomDiscounts = new List<AppliedPack>();
             _propertiesValidations = new Dictionary<string, Func<string>> {
                 { nameof(Client), _validateClient },
+                { nameof(Payment), _validatePayment },
                 { nameof(OptionChoices), _validateOptions },
                 { nameof(Rooms), _validateRooms },
                 { nameof(Dates), _validateDates },
                 { nameof(AdultsCount), _validateAdultsCount },
                 { nameof(BabiesCount), _validateBabiesCount }
             };
+        }
+
+        public static Expression<Func<Booking, bool>> IsFullyCancelled()
+        {
+            return booking => booking.TerminatedDate.HasValue
+            && SqlFunctions.DateDiff("day", booking.TerminatedDate, booking.Dates.Start) >= 2d;
+        }
+
+        public static Expression<Func<Booking, bool>> IsNotFullyCancelled()
+        {
+            return booking => !booking.TerminatedDate.HasValue
+            || SqlFunctions.DateDiff("day", booking.TerminatedDate, booking.Dates.Start) < 2d;
+        }
+
+        public static Expression<Func<Booking, bool>> IsCancelled()
+        {
+            return booking => booking.TerminatedDate.HasValue
+            && SqlFunctions.DateDiff("day", booking.TerminatedDate, booking.Dates.Start) < 2d;
+        }
+
+
+        public static Expression<Func<Booking, bool>> IsNotCancelled()
+        {
+            return booking => !booking.TerminatedDate.HasValue
+            || SqlFunctions.DateDiff("day", booking.TerminatedDate, booking.Dates.Start) >= 2d;
         }
 
         public void AddClient(Client client)
@@ -228,14 +329,16 @@ namespace ResotelApp.Models
         public bool Validate()
         {
             bool clientValidates = _validateClient() == null;
+            bool paymentValidates = _validatePayment() == null;
             bool optionsValidates = _validateOptions() == null;
             bool roomValidates = _validateRooms() == null;
             bool datesValidates = _validateDates() == null;
             bool adultCountValidates = _validateAdultsCount() == null;
             bool babiesCountValidates = _validateBabiesCount() == null;
 
-            return clientValidates && optionsValidates && roomValidates
-                && datesValidates && adultCountValidates && babiesCountValidates;
+            return clientValidates && optionsValidates && paymentValidates
+                && roomValidates && datesValidates && adultCountValidates 
+                && babiesCountValidates;
         }
     }
 }

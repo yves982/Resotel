@@ -70,7 +70,7 @@ namespace ResotelApp.ViewModels
             }
         }
 
-        public static async Task<OptionsViewModel> CreateAsync(DateRange dates)
+        public static async Task<OptionsViewModel> CreateAsync(Booking booking, DateRange dates)
         {
             OptionsViewModel newInstance = new OptionsViewModel();
             List<Option> availableOptions = await OptionRepository.GetAvailablesBetweenAsync(dates);
@@ -82,7 +82,13 @@ namespace ResotelApp.ViewModels
                     TakenDates = (DateRange)((ICloneable)dates).Clone()
                 };
                 optChoice.TakenDates.Start = optChoice.TakenDates.Start.Date;
-                OptionChoiceEntity optChoiceEntity = new OptionChoiceEntity(optChoice);
+
+                if(optChoice.Option.Id == 8)
+                {
+                    optChoice.TakenDates.Start = optChoice.TakenDates.Start.AddDays(1.0d);
+                }
+
+                OptionChoiceEntity optChoiceEntity = new OptionChoiceEntity(booking, optChoice);
                 newInstance._availableOptionChoiceEntities.Add(optChoiceEntity);
             }
 
@@ -108,7 +114,8 @@ namespace ResotelApp.ViewModels
                 case nameof(optChoiceEntity.Taken):
                     kind = OptionChangeKind.Taken;
                     break;
-                case nameof(optChoiceEntity.TakenDates):
+                case nameof(optChoiceEntity.TakenStart):
+                case nameof(optChoiceEntity.TakenEnd):
                     kind = OptionChangeKind.TakenDates;
                     break;
                 case nameof(optChoiceEntity.PeopleCount):

@@ -22,17 +22,33 @@
         <ContentControl Content="{Binding Parameters}"></ContentControl>
         <ContentControl Content="{Binding Options}" IsEnabled="{Binding ParametersValidated}"></ContentControl>
         <ContentControl Content="{Binding RoomChoices}" IsEnabled="{Binding ParametersValidated}"></ContentControl>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,4,0,0">
-            <Button HorizontalAlignment="Center" Margin="0,0,4,0"
+        <Grid HorizontalAlignment="Center" Margin="0,4,0,0" Background="Transparent">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition></RowDefinition>
+            </Grid.RowDefinitions>
+            <Button Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" Margin="0,0,4,0"
                     Command="{Binding SearchClientCommand}" CommandParameter="{Binding}"
-                    Background="Transparent">
+                    Background="Transparent"
+                    Visibility="{Binding IsNewBooking, Converter={StaticResource boolToVisibilityConverter}}">
                 <Image Source="/Resources/SearchBtn.png" Width="32" Height="32"></Image>
             </Button>
-            <Button HorizontalAlignment="Center" Margin="4,0,0,0"
+            <Button Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" Margin="0,0,4,0"
                     Command="{Binding NewClientCommand}" CommandParameter="{Binding}"
-                    Background="Transparent">
+                    Background="Transparent"
+                    Visibility="{Binding IsNewBooking, Converter={StaticResource boolToVisibilityConverter}}">
                 <Image Source="/Resources/clientAdd.png" Width="32" Height="32"></Image>
             </Button>
-        </StackPanel>
+            <Button Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center" Margin="0,0,4,0"
+                    Command="{Binding ValidateBookingCommand}" CommandParameter="{Binding}"
+                    Background="Transparent"
+                    Visibility="{Binding IsEditing, Converter={StaticResource boolToVisibilityConverter}}">
+                <Image Source="/Resources/summaryIcon.png" Width="32"></Image>
+            </Button>
+        </Grid>
     </StackPanel>
 </UserControl>

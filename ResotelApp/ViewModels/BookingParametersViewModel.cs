@@ -2,14 +2,12 @@
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Text;
 using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
-    class BookingParametersViewModel : INotifyPropertyChanged
+    class BookingParametersViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;
         private DateRangeEntity _dateRange;
@@ -17,6 +15,7 @@ namespace ResotelApp.ViewModels
         private int _adultsCount;
 
         private DelegateCommand<object> _validateCommand;
+        private Booking _booking;
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -26,12 +25,26 @@ namespace ResotelApp.ViewModels
 
         public event EventHandler<BookingParametersViewModel> Defined;
 
-        public DateRangeEntity DateRangeEntity
+        public DateTime Start
         {
-            get { return _dateRange; }
+            get { return _dateRange.Start; }
             set
             {
-                _dateRange = value;
+                _dateRange.Start = value;
+                _booking.Dates.Start = _dateRange.Start.Date;
+                _unlockValidationIfNeeded();
+                _pcs.NotifyChange();
+            }
+        }
+
+        public DateTime End
+        {
+            get { return _dateRange.End; }
+            set
+            {
+                _dateRange.End = value;
+                _booking.Dates.End = _dateRange.End.Date;
+                _unlockValidationIfNeeded();
                 _pcs.NotifyChange();
             }
         }
@@ -63,17 +76,52 @@ namespace ResotelApp.ViewModels
             get { return _validateCommand; }
         }
 
+        string IDataErrorInfo.Error
+        {
+            get
+            {
+                string error = ((IDataErrorInfo)_dateRange).Error;
+                if(_booking.Id > 0 && Start.Date.Subtract(DateTime.Now.Date).TotalDays < 2.0d )
+                {
+                    error = error == null ? "La réservation ne peut être modifiée moins de 24H en avance" 
+                        : $"{error};La réservation ne peut être modifiée moins de 24H en avance";
+                }
+                return error;
+            }
+        }
+
+        string IDataErrorInfo.this[string columnName]
+        {
+            get
+            {
+                string error = ((IDataErrorInfo)_dateRange)[columnName];
+                if (_booking.Id > 0 && Start.Date.Subtract(DateTime.Now.Date).TotalDays < 2.0d
+                    && (columnName == nameof(Start))
+                )
+                {
+                    error = error == null ? "La réservation ne peut être modifiée moins de 24H en avance"
+                        : $"{error};La réservation ne peut être modifiée moins de 24H en avance";
+                }
+                return error;
+            }
+        }
+
         public BookingParametersViewModel(Booking booking)
         {
             _pcs = new PropertyChangeSupport(this);
-            
-            booking.Dates.Start = booking.Dates.Start.Date;
-            booking.Dates.End = booking.Dates.End.Date;
+
+            _booking = booking;
+            _booking.Dates.Start = booking.Dates.Start.Date;
+            _booking.Dates.End = booking.Dates.End.Date;
             _dateRange = new DateRangeEntity(booking.Dates);
-            _dateRange.PropertyChanged += _dateRange_PropertyChanged;
             _adultsCount = booking.AdultsCount;
             _babiesCount = booking.BabiesCount;
             _validateCommand = new DelegateCommand<object>(_validate);
+
+            if(_adultsCount == 0 && booking.Id == 0)
+            {
+                AdultsCount = 1;
+            }
         }
 
         public void ChangeValidateCanExecute()
@@ -89,12 +137,6 @@ namespace ResotelApp.ViewModels
         {
             string error = ((IDataErrorInfo)_dateRange).Error;
             return error;
-        }
-        
-        private void _dateRange_PropertyChanged(object sender, PropertyChangedEventArgs e)
-        {
-            _unlockValidationIfNeeded();
-            _pcs.NotifyChange(nameof(DateRangeEntity));
         }
 
         private void _unlockValidationIfNeeded()

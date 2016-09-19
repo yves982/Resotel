@@ -35,6 +35,7 @@ namespace ResotelApp.Repositories
                     .Include(client => client.Bookings)
                     .Include(client => client.Bookings.Select(booking => booking.Dates))
                     .Include(client => client.Bookings.Select(booking => booking.RoomPacks))
+                    .Include(client => client.Bookings.Select(booking => booking.RoomPacks.Select(appliedPack => appliedPack.Booking)))
                     .Include(client => client.Bookings.Select(booking => booking.RoomPacks.Select(appliedPack => appliedPack.Room)))
                     .Include(client => client.Bookings.Select(booking => booking.RoomPacks.Select(appliedPack => appliedPack.RoomPack)))
                     .Include(client => client.Bookings.Select(booking => booking.Rooms))

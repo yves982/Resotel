@@ -15,6 +15,7 @@ namespace ResotelApp.ViewModels.Entities
         private PropertyChangeSupport _pcs;
         private Booking _booking;
         private ClientEntity _clientEntity;
+        private PaymentEntity _paymentEntity;
 
         private ObservableCollection<OptionChoiceEntity> _optionChoicesEntities;
         private ICollectionView _optionChoicesEntitiesView;
@@ -30,7 +31,6 @@ namespace ResotelApp.ViewModels.Entities
         private DateRangeEntity _datesEntity;
         
         private OptionChoiceEntity _discountedOptionChoiceEntity;
-        
 
         public event PropertyChangedEventHandler PropertyChanged
         {
@@ -64,6 +64,28 @@ namespace ResotelApp.ViewModels.Entities
             }
         }
 
+        public DateTime? TerminatedDate
+        {
+            get { return _booking.TerminatedDate; }
+            set
+            {
+                _booking.TerminatedDate = value;
+                _pcs.NotifyChange();
+                _pcs.NotifyChange(nameof(State));
+            }
+        }
+
+        public PaymentEntity Payment
+        {
+            get { return _paymentEntity; }
+            set
+            {
+                _paymentEntity = value;
+                _pcs.NotifyChange();
+                _pcs.NotifyChange(nameof(State));
+            }
+        }
+
         public ObservableCollection<OptionChoiceEntity> OptionChoices
         {
             get
@@ -73,7 +95,7 @@ namespace ResotelApp.ViewModels.Entities
                     _optionChoicesEntities = new ObservableCollection<OptionChoiceEntity>();
                     foreach(OptionChoice optChoice in _booking.OptionChoices)
                     {
-                        OptionChoiceEntity optChoiceEntity = new OptionChoiceEntity(optChoice);
+                        OptionChoiceEntity optChoiceEntity = new OptionChoiceEntity(_booking, optChoice);
                         _optionChoicesEntities.Add(optChoiceEntity);
                     }
                     _optionChoicesEntitiesSource = CollectionViewProvider.Provider(_optionChoicesEntities);
@@ -231,11 +253,6 @@ namespace ResotelApp.ViewModels.Entities
         public BookingState State
         {
             get { return _booking.State; }
-            set
-            {
-                _booking.State = value;
-                _pcs.NotifyChange();
-            }
         }
 
         public DiscountEntity OptionDiscount
@@ -254,7 +271,23 @@ namespace ResotelApp.ViewModels.Entities
         {
             get { return _discountedOptionChoiceEntity; }
         }
-        
+
+        public double OptionsTotal
+        {
+            get { return _booking.OptionsTotal; }
+        }
+
+        public double RoomsTotal
+        {
+
+            get { return _booking.RoomsTotal; }
+        }
+
+        public static double TvaVal
+        {
+            get { return Tva.Value; }
+        }
+
 
         string IDataErrorInfo.Error
         {
@@ -271,8 +304,9 @@ namespace ResotelApp.ViewModels.Entities
             _pcs = new PropertyChangeSupport(this);
             _booking = booking;
             _clientEntity = new ClientEntity(_booking.Client);
+            _paymentEntity = new PaymentEntity(booking);
             _datesEntity = new DateRangeEntity(_booking.Dates);
-            _discountedOptionChoiceEntity = new OptionChoiceEntity(_booking.DiscountedOptionChoice);
+            _discountedOptionChoiceEntity = new OptionChoiceEntity(_booking, _booking.DiscountedOptionChoice);
             _optionDiscountEntity = new DiscountEntity(_booking.OptionDiscount);
         }
     }

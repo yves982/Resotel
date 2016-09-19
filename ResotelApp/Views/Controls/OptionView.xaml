@@ -61,19 +61,21 @@
         <TextBlock Grid.Row="2" Grid.Column="0"       
             Text="Date de début"></TextBlock>
         <DatePicker Grid.Row="2" Grid.Column="1"
-            Name="StartDate" SelectedDate="{Binding TakenDates.Start}"
+            Style="{StaticResource validationDateTemplate}"
+            Name="StartDate" SelectedDate="{Binding TakenStart, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
             IsEnabled="{Binding DateChoiceEnabled}" Template="{StaticResource DatePickerControlTemplate}"></DatePicker>
         <TextBlock Grid.Row="3" Grid.Column="0"
             Text="Date de fin"></TextBlock>
         <DatePicker Grid.Row="3" Grid.Column="1"
-            Name="EndDate" SelectedDate="{Binding TakenDates.End}"
+            Style="{StaticResource validationDateTemplate}"
+            Name="EndDate" SelectedDate="{Binding TakenEnd, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged}"
             IsEnabled="{Binding DateChoiceEnabled}" Template="{StaticResource DatePickerControlTemplate}"></DatePicker>
         <xctk:IntegerUpDown Grid.Row="2" Grid.Column="2" Grid.RowSpan="2" VerticalAlignment="Center"
             Margin="2,0,0,0"
             Name="PeopleCnt" Value="{Binding PeopleCount, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
             Visibility="{Binding IsPeopleRelated, Converter={StaticResource boolToVisibilityConverter}}"
             IsEnabled="{Binding ElementName=TakenChxBox, Path=IsChecked}"
-            Minimum="0"
+            Minimum="1"
             ></xctk:IntegerUpDown>
     </Grid>
 </UserControl>

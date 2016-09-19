@@ -6,10 +6,11 @@
              xmlns:local="clr-namespace:ResotelApp.Views.Controls"
              xmlns:vme="clr-namespace:ResotelApp.ViewModels.Entities"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="600">
+             d:DesignHeight="700" d:DesignWidth="600">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="550"></RowDefinition>
+            <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="45"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -179,17 +180,55 @@
                     <TextBlock Width="Auto" Text="{Binding TotalHT, StringFormat=0.00€}"></TextBlock>
                 </Paragraph>
                 <Paragraph LineHeight="16" TextAlignment="Center">
-                    <TextBlock Width="Auto">Total TTC: (TVA:<TextBlock Text="{Binding Tva, StringFormat=0.00}"></TextBlock> %)</TextBlock>
+                    <TextBlock Width="Auto">Total TTC: (TVA:<TextBlock Text="{Binding TvaVal, StringFormat=0.00}"></TextBlock> %)</TextBlock>
                     <TextBlock Width="Auto" Text="{Binding Total, StringFormat=0.00€}"></TextBlock>
+                </Paragraph>
+                <BlockUIContainer>
+                    <StackPanel Orientation="Vertical">
+                        <HeaderedContentControl 
+                            Header="Paiement:" FontWeight="Bold"></HeaderedContentControl>
+                        <TextBlock Width="Auto" HorizontalAlignment="Left"
+                            Visibility="{Binding HasPayment, Converter={StaticResource boolToVisibilityConverter}}"
+                            Text="{Binding PaymentMode, Mode=OneWay}"></TextBlock>
+                        <TextBlock
+                            Visibility="{Binding HasPayment, Converter={StaticResource boolToVisibilityConverter}}"
+                            Width="Auto" HorizontalAlignment="Left" Text="{Binding PaymentEntity.Ammount, Mode=OneWay, StringFormat=0.00}"></TextBlock>
+                    </StackPanel>
+                </BlockUIContainer>
+                <Paragraph>
+                    <Rectangle StrokeThickness="0,1,0,0" Stroke="Black" StrokeDashArray="4,4" HorizontalAlignment="Stretch">
+                    </Rectangle>
+                    <TextBlock TextWrapping="Wrap" TextAlignment="Justify" Text="{Binding LegalNotice}"
+                               HorizontalAlignment="Stretch" FontSize="11"></TextBlock>
+                    
                 </Paragraph>
             </FlowDocument>
         </FlowDocumentScrollViewer>
-
-        <WrapPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center" Margin="0,8,0,0">
+        <StackPanel Grid.Row="1" Grid.Column="0" HorizontalAlignment="Center">
+            <CheckBox Margin="0,0,0,4" Name="RequestImmediatePaymentChk"
+                      IsChecked="{Binding HasPayment}"
+                      IsEnabled="{Binding WasInTempState}"
+            >Paiement</CheckBox>
+            <ComboBox Width="Auto" HorizontalAlignment="Left"
+                ItemsSource="{Binding PaymentModesCollectionView}"
+                Visibility="{Binding HasPayment, Converter={StaticResource boolToVisibilityConverter}}"
+                IsEnabled="{Binding WasInTempState}"
+                IsSynchronizedWithCurrentItem="True"></ComboBox>
+            <TextBox Width="100" HorizontalAlignment="Center"
+                       Style="{StaticResource validationTemplate}"
+                       IsEnabled="{Binding WasInTempState}"
+                       Visibility="{Binding HasPayment, Converter={StaticResource boolToVisibilityConverter}}"
+                       Text="{Binding PaymentEntity.Ammount, ValidatesOnDataErrors=True, UpdateSourceTrigger=PropertyChanged, StringFormat=0.00€}"></TextBox>
+        </StackPanel>
+        <WrapPanel Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="0,8,0,0">
             <Button Name="EditBtn"  Margin="0,0,4,0"
-                    Command="{Binding EditBookingCommand}" CommandParameter="{Binding}">Editer</Button>
+                    Command="{Binding EditBookingCommand}" CommandParameter="{Binding}"
+                    ToolTip="Editer la réservation">
+                <Image Source="/Resources/bookingEdit.png"></Image>
+            </Button>
             <Button Name="PrintBtn" Margin="4,0,4,0"
-                    Command="{Binding PrintBookingCommand}">
+                    Command="{Binding PrintBookingCommand}"
+                    ToolTip="Imprimer la réservation">
                 <Button.CommandParameter>
                     <MultiBinding>
                         <Binding ElementName="doc" Mode="OneWay"></Binding>
@@ -199,10 +238,14 @@
                         </MultiBinding.Converter>
                     </MultiBinding>
                 </Button.CommandParameter>
-                Imprimer</Button>
+                <Image Source="/Resources/print.png"></Image>
+            </Button>
             <Button Margin="4,0,0,0"
-                    Command="{Binding ValidateBookingCommand}" CommandParameter="{Binding}"
-                    Visibility="{Binding NeedsValidation, Converter={StaticResource boolToVisibilityConverter}}">Valider</Button>
+                    Command="{Binding SaveBookingCommand}" CommandParameter="{Binding}"
+                    ToolTip="Sauvegarder la réservation"
+                    >
+                <Image Source="/Resources/save.png"></Image>
+            </Button>
         </WrapPanel>
     </Grid>
 </UserControl>

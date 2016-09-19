@@ -8,7 +8,8 @@
         xmlns:bh="clr-namespace:ResotelApp.Behaviours"
         mc:Ignorable="d"
         Title="{Binding Title}" Height="300" Width="400"
-        bh:CloseBehaviour.ShouldClose="{Binding ShouldClose}">
+        bh:CloseBehaviour.ShouldClose="{Binding ShouldClose}"
+        Name="thisWindow">
     <Grid>
         <Grid.Resources>
             <DataTemplate DataType="{x:Type vme:BookingEntity}">
@@ -19,6 +20,10 @@
                                Margin="0,0,8,0"></TextBlock>
                     <TextBlock Text="{Binding Dates.Start, StringFormat=dd/MM/yyyy}"
                                Margin="0,0,8,0"></TextBlock>
+                    <Button Command="{Binding DataContext.CancelBookingCommand, ElementName=thisWindow}"
+                            Margin="0,0,8,0">
+                        <Image Source="/Resources/delete.png" Width="24"></Image>
+                    </Button>
                 </StackPanel>
             </DataTemplate>
         </Grid.Resources>

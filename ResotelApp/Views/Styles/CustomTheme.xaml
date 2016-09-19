@@ -12,7 +12,7 @@
     <cnv:MessageKindToColorConverter x:Key="messageKindToColorConverter"></cnv:MessageKindToColorConverter>
     <cnv:HasInputToWidthConverter x:Key="hasInputToWidthConverter"></cnv:HasInputToWidthConverter>
     <cnv:FlowDocumentToXpsConverter x:Key="flowDocumentToXpsConverter"></cnv:FlowDocumentToXpsConverter>
-    <cnv:ActiveFixedDatesToColorConverter x:Key="activeFixedDatesToColorConverter"></cnv:ActiveFixedDatesToColorConverter>
+    <cnv:EnumToBoolConverter x:Key="enumToBoolConverter"></cnv:EnumToBoolConverter>
     
     <Style TargetType="Label">
         <Setter Property="FontSize" Value="{StaticResource fontSize}"></Setter>

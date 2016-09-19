@@ -4,6 +4,8 @@ using ResotelApp.ViewModels.Utils;
 using System;
 using System.ComponentModel;
 using System.Windows.Input;
+using System.Threading.Tasks;
+using ResotelApp.DAL;
 
 namespace ResotelApp.ViewModels
 {
@@ -14,6 +16,7 @@ namespace ResotelApp.ViewModels
         private ICollectionView _clientBookingsView;
         private ICollectionViewSource _clientBookingsSource;
         private DelegateCommand<object> _selectBookingCommand;
+        private DelegateCommandAsync<object> _cancelBookingCommand;
 
         public ICollectionView ClientBookingsView
         {
@@ -33,6 +36,11 @@ namespace ResotelApp.ViewModels
         public ICommand SelectBookingCommand
         {
             get { return _selectBookingCommand; }
+        }
+
+        public ICommand CancelBookingCommand
+        {
+            get { return _cancelBookingCommand; }
         }
 
         public bool? ShouldClose { get; set; }
@@ -56,6 +64,46 @@ namespace ResotelApp.ViewModels
             _clientBookingsView.CurrentChanged += _clientBookingsView_currentChanged;
 
             _selectBookingCommand = new DelegateCommand<object>(_selectBooking);
+            _cancelBookingCommand = new DelegateCommandAsync<object>(_cancelBooking);
+
+            _clientBookingsView.Filter = _mustShowBooking;
+        }
+
+        ~ClientBookingsViewModel()
+        {
+            if(_clientBookingsView != null)
+            {
+                _clientBookingsView.CurrentChanged -= _clientBookingsView_currentChanged;
+            }
+        }
+
+        private bool _mustShowBooking(object bookingEntity)
+        {
+            BookingEntity bookingE = bookingEntity as BookingEntity;
+            return bookingE.State == BookingState.Validated || bookingE.State == BookingState.Paid;
+        }
+
+        private async Task _cancelBooking(object arg)
+        {
+            int bookingPosition = _clientBookingsView.CurrentPosition;
+            if(bookingPosition != -1)
+            {
+                BookingEntity selectedBookingEntity = _clientBookingsView.CurrentItem as BookingEntity;
+
+                selectedBookingEntity.TerminatedDate = DateTime.Now.Date;
+                await BookingRepository.Save(selectedBookingEntity.Booking);
+                bool refunded = selectedBookingEntity.State == BookingState.FullyCancelled;
+                if(refunded)
+                {
+                    PromptViewModel successPromptVM = new PromptViewModel("Succés", "La réservation a été annulée.", false);
+                    ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+                } else
+                {
+                    string complement = selectedBookingEntity.Payment.Ammount > 0d ? "ne sera pas remboursée" : "reste due";
+                    PromptViewModel successPromptVM = new PromptViewModel("Succés", $"La réservation a été annulée, mais {complement}.", false);
+                    ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+                }
+            }
         }
 
         private void _clientBookingsView_currentChanged(object sender, EventArgs e)
@@ -70,10 +118,11 @@ namespace ResotelApp.ViewModels
             )
             {
                 _selectBookingCommand.ChangeCanExecute();
+                _cancelBookingCommand.ChangeCanExecute();
             }
         }
 
-        private void _selectBooking(object obj)
+        private void _selectBooking(object ignore)
         {
             if (_clientBookingsView.CurrentPosition != -1)
             {

@@ -2,6 +2,7 @@
 using ResotelApp.Views;
 using ResotelApp.Views.Utils;
 using System.Collections;
+using System.Configuration;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Data;
@@ -38,6 +39,8 @@ namespace ResotelApp
             //CollectionViewProvider.Provider = CollectionViewSource.GetDefaultView;
 
             CollectionViewProvider.Provider = _provider;
+
+            Tva.Value = double.Parse(ConfigurationManager.AppSettings["Tva"], CultureInfo.CreateSpecificCulture("en-US"));
 
             Window loginWindow = new LoginView();
             loginWindow.WindowStartupLocation = WindowStartupLocation.CenterScreen;

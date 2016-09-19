@@ -124,12 +124,18 @@ namespace ResotelApp.Models
 
         private static Expression<Func<Room, bool>> _bookingsStartedAfter(DateTime end)
         {
-            return room => !room.Bookings.Any(booking => SqlFunctions.DateDiff("day",booking.Dates.Start, end) > 0);
+            return room => !room.Bookings.AsQueryable()
+            .Where(Booking.IsNotFullyCancelled())
+            .Where(Booking.IsNotCancelled())
+            .Any(booking => SqlFunctions.DateDiff("day",booking.Dates.Start, end) > 0);
         } 
 
         private static Expression<Func<Room, bool>> _bookingsEndedBefore(DateTime start)
         {
-            return room => !room.Bookings.Any(booking => SqlFunctions.DateDiff("day", booking.Dates.End, start) < 0);
+            return room => !room.Bookings.AsQueryable()
+            .Where(Booking.IsNotFullyCancelled())
+            .Where(Booking.IsNotCancelled())
+            .Any(booking => SqlFunctions.DateDiff("day", booking.Dates.End, start) < 0);
         }
 
         public static Expression<Func<Room, bool>> NotCurrentlyBooked()

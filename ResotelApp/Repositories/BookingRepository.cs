@@ -46,7 +46,7 @@ namespace ResotelApp.DAL
                     _updateTrackedBooking(trackedBooking, booking, ctx);
                     await _updateOptionChoices(trackedBooking.OptionChoices, booking.OptionChoices, ctx);
                     await _updateBookingRooms(trackedBooking, booking.Rooms, ctx);
-                    await _updateRoomPacks(trackedBooking.RoomPacks, booking.RoomPacks, ctx);
+                    await _updateRoomPacks(trackedBooking, trackedBooking.RoomPacks, booking.RoomPacks, ctx);
                     _updateTrackedBookingState(trackedBooking, booking.State, ctx);
 
                     DateRange trackedBookingDates = await _getTrackedBookingDates(booking.Dates, ctx);
@@ -101,6 +101,10 @@ namespace ResotelApp.DAL
             if (trackedBookingDates == null)
             {
                 trackedBookingDates = ctx.Set<DateRange>().Attach(newBookingDates);
+            } else
+            {
+                // check
+                ctx.Entry(trackedBookingDates).CurrentValues.SetValues(newBookingDates);
             }
             return trackedBookingDates;
         }
@@ -111,7 +115,7 @@ namespace ResotelApp.DAL
             ctx.Entry(trackedBooking).Property(b => b.State).EntityEntry.CurrentValues.SetValues(newBookingState);
         }
 
-        private static async Task _updateRoomPacks(IList<AppliedPack> trackedRoomPacks, IList<AppliedPack> newRoomPacks, ResotelContext ctx)
+        private static async Task _updateRoomPacks(Booking trackedBooking, IList<AppliedPack> trackedRoomPacks, IList<AppliedPack> newRoomPacks, ResotelContext ctx)
         {
             trackedRoomPacks.Clear();
             foreach (AppliedPack appliedPack in newRoomPacks)
@@ -127,6 +131,7 @@ namespace ResotelApp.DAL
 
                 trackedAppliedPack.Room = trackedRoom;
                 trackedAppliedPack.RoomPack = trackedPack;
+                trackedAppliedPack.Booking = trackedBooking;
             }
         }
 
@@ -167,12 +172,6 @@ namespace ResotelApp.DAL
 
         private static void _updateTrackedOptionChoice(OptionChoice trackedOptChoice, OptionChoice newOptChoice, ResotelContext ctx)
         {
-            // some of the existing options may still be present in our updated optionchoices
-            // in such case we'll set their state to Modified as their TakenDates may have changed
-            //if (ctx.Entry(trackedOptChoice).State == EntityState.Deleted)
-            //{
-            //    ctx.Entry(trackedOptChoice).State = EntityState.Modified; 
-            //}
 
             ctx.Entry(trackedOptChoice).CurrentValues.SetValues(newOptChoice);
         }
@@ -237,6 +236,7 @@ namespace ResotelApp.DAL
                                 .Include(cl => cl.Bookings)
                                 .Include(cl => cl.Bookings.Select(b => b.Rooms))
                                 .Include(cl => cl.Bookings.Select(b => b.Rooms.Select( r => r.Options )))
+                                .Include(cl => cl.Bookings.Select(b => b.RoomPacks.Select(appliedPack => appliedPack.Booking)))
                                 .Include(cl => cl.Bookings.Select(b => b.RoomPacks.Select(appliedPack => appliedPack.Room)))
                                 .Include(cl => cl.Bookings.Select(b => b.RoomPacks.Select(appliedPack => appliedPack.Room.Options)))
                                 .Include(cl => cl.Bookings.Select(b => b.RoomPacks.Select(appliedPack => appliedPack.RoomPack)))

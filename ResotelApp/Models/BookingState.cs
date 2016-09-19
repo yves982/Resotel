@@ -2,9 +2,8 @@
 {
     public enum BookingState
     {
-        Draft,
         Validated,
-        Terminated,
+        Paid,
         Cancelled,
         FullyCancelled
     }

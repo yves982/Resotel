@@ -155,11 +155,25 @@
     <Compile Include="Migrations\201609150953398_AddedHasChooseableDatesToOptions.Designer.cs">
       <DependentUpon>201609150953398_AddedHasChooseableDatesToOptions.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609181308435_AddedPaymentToBooking.cs" />
+    <Compile Include="Migrations\201609181308435_AddedPaymentToBooking.Designer.cs">
+      <DependentUpon>201609181308435_AddedPaymentToBooking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609181313267_MadeTerminatedDateOptionnal.cs" />
+    <Compile Include="Migrations\201609181313267_MadeTerminatedDateOptionnal.Designer.cs">
+      <DependentUpon>201609181313267_MadeTerminatedDateOptionnal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609181316080_MadePaymentDateOptionnal.cs" />
+    <Compile Include="Migrations\201609181316080_MadePaymentDateOptionnal.Designer.cs">
+      <DependentUpon>201609181316080_MadePaymentDateOptionnal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\AppliedPack.cs" />
     <Compile Include="Models\BookingState.cs" />
     <Compile Include="Models\IValidable.cs" />
     <Compile Include="Models\OptionChoice.cs" />
     <Compile Include="Models\Pack.cs" />
+    <Compile Include="Models\Payment.cs" />
+    <Compile Include="Models\PaymentMode.cs" />
     <Compile Include="Models\RoomKind.cs" />
     <Compile Include="Models\RoomKindExtensions.cs" />
     <Compile Include="Models\User.cs" />
@@ -217,6 +231,7 @@
     <Compile Include="Repositories\RoomRepository.cs" />
     <Compile Include="Utils\IEnumerable.cs" />
     <Compile Include="Utils\Logger.cs" />
+    <Compile Include="Utils\Mailer.cs" />
     <Compile Include="Utils\PredicateExpressionExtensions.cs" />
     <Compile Include="Repositories\OptionRepository.cs" />
     <Compile Include="Repositories\UserRepository.cs" />
@@ -227,6 +242,7 @@
     <Compile Include="ViewModels\Entities\DiscountEntity.cs" />
     <Compile Include="ViewModels\Entities\OptionEntity.cs" />
     <Compile Include="ViewModels\Entities\PackEntity.cs" />
+    <Compile Include="ViewModels\Entities\PaymentEntity.cs" />
     <Compile Include="ViewModels\Entities\RoomEntity.cs" />
     <Compile Include="ViewModels\Events\OptionChangeKind.cs" />
     <Compile Include="ViewModels\Events\OptionChoiceEntityChange.cs" />
@@ -236,10 +252,11 @@
     <Compile Include="ViewModels\SearchClientsViewModel.cs" />
     <Compile Include="ViewModels\SumUpViewModel.cs" />
     <Compile Include="ViewModels\Utils\ICollectionSource.cs" />
+    <Compile Include="ViewModels\Utils\Tva.cs" />
     <Compile Include="Views\ClientBookingsView.xaml.cs">
       <DependentUpon>ClientBookingsView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Converters\ActiveFixedDatesToColorConverter.cs" />
+    <Compile Include="Views\Converters\EnumToBoolConverter.cs" />
     <Compile Include="Views\Converters\FlowDocumentToXpsConverter.cs" />
     <Compile Include="Views\SearchClientsView.xaml.cs">
       <DependentUpon>SearchClientsView.xaml</DependentUpon>
@@ -471,14 +488,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Styles\LightTheme.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Styles\Theme.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Booking.cs" />
@@ -558,6 +567,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609150953398_AddedHasChooseableDatesToOptions.resx">
       <DependentUpon>201609150953398_AddedHasChooseableDatesToOptions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609181308435_AddedPaymentToBooking.resx">
+      <DependentUpon>201609181308435_AddedPaymentToBooking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609181313267_MadeTerminatedDateOptionnal.resx">
+      <DependentUpon>201609181313267_MadeTerminatedDateOptionnal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609181316080_MadePaymentDateOptionnal.resx">
+      <DependentUpon>201609181316080_MadePaymentDateOptionnal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.en-US.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -654,6 +672,18 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\searchUser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\delete.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\bookingEdit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\print.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\save.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

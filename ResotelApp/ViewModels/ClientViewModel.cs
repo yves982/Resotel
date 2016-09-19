@@ -21,7 +21,7 @@ namespace ResotelApp.ViewModels
         private bool _bookingMode;
         private BookingViewModel _currentBookingVM;
 
-        private DelegateCommandAsync<ClientViewModel> _sumUpCommand;
+        private DelegateCommand<ClientViewModel> _sumUpCommand;
         private DelegateCommand<ClientViewModel> _bookingCommand;
         private DelegateCommandAsync<ClientViewModel> _saveClientCommand;
 
@@ -63,12 +63,16 @@ namespace ResotelApp.ViewModels
                 }
                 else if(_clientMode) 
                 {
-                    if (_clientEntity.FirstName == null && _clientEntity.LastName == null)
+                    if (_clientEntity.FirstName == null && _clientEntity.LastName == null 
+                        && _clientEntity.Id == 0)
                     {
                         _title = string.Format("Ajout Client: {0: HH mm ss}", DateTime.Now);
-                    } else
+                    } else if(_clientEntity.Id == 0)
                     {
                         _title = string.Format("Ajout Client: {0} {1}", _clientEntity.FirstName, _clientEntity.LastName);
+                    } else if(_clientEntity.Id > 0)
+                    {
+                        _title = string.Format("Edition Client: {0} {1}", _clientEntity.FirstName, _clientEntity.LastName);
                     }
                 }
                 return _title;
@@ -119,9 +123,12 @@ namespace ResotelApp.ViewModels
                 _currentBookingVM = prevNode.Value as BookingViewModel;
             }
 
-            _sumUpCommand = new DelegateCommandAsync<ClientViewModel>(_sumUp);
+            _sumUpCommand = new DelegateCommand<ClientViewModel>(_sumUp);
             _bookingCommand = new DelegateCommand<ClientViewModel>(_booking);
             _saveClientCommand = new DelegateCommandAsync<ClientViewModel>(_saveClient);
+
+            _unlockSaveAndSumUpIfNeeded();
+
             if (!_bookingMode)
             {
                 _navigation.AddLast(this);
@@ -139,18 +146,33 @@ namespace ResotelApp.ViewModels
 
         private void _clientChanged(object sender, PropertyChangedEventArgs pcea)
         {
+            _unlockSaveAndSumUpIfNeeded();
             _pcs.NotifyChange("Title");
         }
 
-        private async Task _sumUp(ClientViewModel clientVM)
+        private void _unlockSaveAndSumUpIfNeeded()
         {
-            if (!clientVM.CurrentBookingVM.IsSaved)
+            bool canSave = _saveClientCommand.CanExecute(null);
+            bool canSumUp = _sumUpCommand.CanExecute(null);
+            bool isValid = ((IDataErrorInfo)_clientEntity).Error == null;
+
+            if( (canSave && !isValid) ||
+                (!canSave && isValid)
+            )
             {
-                await clientVM.CurrentBookingVM.Save();
-                PromptViewModel successPromptVM = new PromptViewModel("Succés", "La commande a réussi", false);
-                ViewDriverProvider.ViewDriver.ShowView<PromptViewModel>(successPromptVM);
+                _saveClientCommand.ChangeCanExecute();
             }
-            
+
+            if((canSumUp && !isValid) ||
+                (!canSumUp && isValid)
+            )
+            {
+                _sumUpCommand.ChangeCanExecute();
+            }
+        }
+
+        private void _sumUp(ClientViewModel clientVM)
+        {           
             int bookingCnt = clientVM.ClientEntity.Bookings.Count;
             Booking booking = clientVM.CurrentBookingVM.Booking;
             if (!(_navigation.Last.Value is SumUpViewModel))
