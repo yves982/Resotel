@@ -428,9 +428,10 @@ namespace ResotelApp.ViewModels
             {
                 try
                 {
+                    string outDir = ConfigurationManager.AppSettings["XpsOutDir"];
                     PrintQueue defaultPrintQueue = LocalPrintServer.GetDefaultPrintQueue();
                     string jobName = $"Facture - {_clientEntity.FirstName} {_clientEntity.LastName} - {_clientEntity.BirthDate:dd/MM/yyyy}";
-                    PrintSystemJobInfo xpsPrintJob = defaultPrintQueue.AddJob(jobName, "flowDocument.xps", false);
+                    PrintSystemJobInfo xpsPrintJob = defaultPrintQueue.AddJob(jobName, $"{outDir}flowDocument.xps", false);
 
                     Logger.Log("Impression terminée");
                     PromptViewModel successPromptVM = new PromptViewModel("Succés", "L'impression a été effectuée.", false);

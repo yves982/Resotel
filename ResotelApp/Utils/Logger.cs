@@ -26,6 +26,7 @@ namespace ResotelApp.Utils
 
         static Logger()
         {
+            _createsLogDirIfNeeded();
             _fileName = $"{Path.Combine(_logDir, $"resotel_{DateTime.Now:ddMMyyyy}.log")}";
             _errorFileName = $"{Path.Combine(_logDir, $"resotel_{DateTime.Now:ddMMyyyy}.err.log")}";
             _createsLogDirIfNeeded();
