@@ -8,6 +8,7 @@ using System.Text;
 
 namespace ResotelApp.Models
 {
+    /// <summary>The association of an Option with a Booking</summary>
     public class OptionChoice : IValidable, IDataErrorInfo
     {
         private double _discountedAmmount;
@@ -56,6 +57,9 @@ namespace ResotelApp.Models
             }
         }
 
+        /// <summary>
+        /// Computes the total price without tax for a given OptionChoice
+        /// </summary>
         public double ActualPrice
         {
             get

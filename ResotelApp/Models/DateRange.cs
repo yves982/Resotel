@@ -4,6 +4,7 @@ using System.ComponentModel;
 
 namespace ResotelApp.Models
 {
+    /// <summary> A pair of Dates (both being at midnight). The thing is StartDate is before EndDate, by design.</summary>
     public class DateRange : IValidable, IDataErrorInfo, ICloneable
     {
         private Dictionary<string, Func<string>> _propertiesValidations;
@@ -76,6 +77,11 @@ namespace ResotelApp.Models
             return dateRange;
         }
 
+        /// <summary>
+        /// Indicated wether the requested date is on or within start/end bounds.
+        /// </summary>
+        /// <param name="date">requested date to check</param>
+        /// <returns>true if this date is on or within [Start;End], false otherwise.</returns>
         public bool Contains(DateTime date)
         {
             return Start.CompareTo(date) <= 0 && End.CompareTo(date) >= 0;

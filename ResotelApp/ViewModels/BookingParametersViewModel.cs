@@ -8,6 +8,10 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    ///  Handles Dates, AdultsCount, BabiesCount
+    /// </summary>
+    /// <remarks>Once parameters are validated with the command, we load availables OptionChoices and RoomChoice.</remarks>
     class BookingParametersViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;

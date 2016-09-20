@@ -1,8 +1,7 @@
 namespace ResotelApp.Migrations
 {
-    using System;
     using System.Data.Entity.Migrations;
-    
+
     public partial class MadeTerminatedDateOptionnal : DbMigration
     {
         public override void Up()

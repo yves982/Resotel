@@ -10,6 +10,7 @@ using System.Text;
 
 namespace ResotelApp.Models
 {
+    /// <summary>An option is a thing which may add something to a Booking's price. It's not mandatory to take any, and some are even free.</summary>
     public class Option : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;
@@ -122,6 +123,11 @@ namespace ResotelApp.Models
             return opt => opt.Rooms.AsQueryable().Any(Room.NotBookedDuring(dateRange));
         }
 
+        /// <summary>
+        /// Indicated wether some rooms are left with this Option, for the requested date
+        /// </summary>
+        /// <param name="dateRange">requested date</param>
+        /// <returns>true if some available rooms with this one are found</returns>
         public static Expression<Func<Option,bool>> IsAvailableBetween(DateRange dateRange)
         {
             Expression<Func<Option, bool>> noRooms = opt => opt.Rooms.Count == 0;

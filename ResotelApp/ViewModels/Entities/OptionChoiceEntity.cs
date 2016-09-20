@@ -6,6 +6,9 @@ using System.Text;
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// ViewModel pendant of OptionChoice with changes notifications
+    /// </summary>
     class OptionChoiceEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;
@@ -249,8 +252,8 @@ namespace ResotelApp.ViewModels.Entities
 
         private string _cleanLabel(string optionLabel)
         {
-            string[] sources = new string[3] { "é", "-", " " };
-            string[] replacements = new string[3] { "e", "_", "" };
+            string[] sources = new string[4] { "é", "-", " " , "/"};
+            string[] replacements = new string[4] { "e", "_", "", "_" };
 
             string cleanedLabel;
             StringBuilder sb = new StringBuilder(optionLabel.Length);

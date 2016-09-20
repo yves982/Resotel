@@ -1,6 +1,5 @@
-﻿using System;
+﻿using ResotelApp.ViewModels.Utils;
 using System.ComponentModel;
-using ResotelApp.ViewModels.Utils;
 using System.Windows.Data;
 
 namespace ResotelApp

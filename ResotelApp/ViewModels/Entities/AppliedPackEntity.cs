@@ -3,6 +3,9 @@ using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// ViewModel pendant of AppliedPack with changes notifications
+    /// </summary>
     class AppliedPackEntity : IEntity, IDataErrorInfo
     {
         private AppliedPack _appliedPack;

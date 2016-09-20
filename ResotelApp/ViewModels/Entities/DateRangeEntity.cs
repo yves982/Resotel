@@ -4,7 +4,9 @@ using System;
 using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
-{
+{    /// <summary>
+     /// ViewModel pendant of DateRange with changes notifications
+     /// </summary>
     class DateRangeEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;

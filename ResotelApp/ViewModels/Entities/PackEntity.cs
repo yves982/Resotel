@@ -2,6 +2,9 @@
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// ViewModel pendant of Pack with changes notifications
+    /// </summary>
     class PackEntity
     {
         private Pack pack;

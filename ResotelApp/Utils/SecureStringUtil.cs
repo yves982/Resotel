@@ -4,6 +4,9 @@ using System.Security;
 
 namespace ResotelApp.Utils
 {
+    /// <summary>
+    /// Used by BindPasswordBehaviour to handle a SecureString (encoded one) for a PasswordBox
+    /// </summary>
     class SecureStringUtil
     {
         public static string Read(SecureString secureString)

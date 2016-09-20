@@ -11,6 +11,9 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Handles login
+    /// </summary>
     class LoginViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;

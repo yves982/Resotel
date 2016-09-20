@@ -1,12 +1,11 @@
 ﻿using ResotelApp.ViewModels;
 using System;
+using System.Configuration;
 using System.Globalization;
 using System.IO;
 using System.IO.Packaging;
-using System.Windows;
 using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Xps;
 using System.Windows.Xps.Packaging;
 using System.Windows.Xps.Serialization;
 
@@ -30,8 +29,13 @@ namespace ResotelApp.Views.Converters
             {
                 FlowDocument flowDoc = ((FlowDocument)values[0]);
                 flowDoc.DataContext = values[1];
+                string xpsDir = ConfigurationManager.AppSettings["XpsOutDir"];
+                if (!Directory.Exists(xpsDir))
+                {
+                    Directory.CreateDirectory(xpsDir);
+                }
 
-                using (FileStream fs = File.Open("flowDocument.xps", FileMode.Create, FileAccess.ReadWrite, FileShare.Read))
+                using (FileStream fs = File.Open($"{xpsDir}flowDocument.xps", FileMode.Create, FileAccess.ReadWrite, FileShare.Read))
                 {
                     using (Package package = Package.Open(fs, FileMode.Create, FileAccess.ReadWrite))
                     {

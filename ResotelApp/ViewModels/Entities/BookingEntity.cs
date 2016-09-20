@@ -1,15 +1,14 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// ViewModel pendant of Booking with changes notifications
+    /// </summary>
     class BookingEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;

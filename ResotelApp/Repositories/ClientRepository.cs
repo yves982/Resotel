@@ -1,15 +1,20 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.Models.Context;
-using System.Threading.Tasks;
-using ResotelApp.ViewModels.Entities;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ResotelApp.Repositories
 {
+    ///<summary>Repository to persist(CRUD operations) Clients</summary>
     class ClientRepository
     {
+        /// <summary>
+        /// Save or Update a Client
+        /// </summary>
+        /// <param name="client">requested client</param>
+        /// <returns>The saved Client with its new id, if a new Client is passed</returns>
         public async static Task<Client> Save(Client client)
         {
             Client savedClient = null;
@@ -26,7 +31,10 @@ namespace ResotelApp.Repositories
             }
             return savedClient;
         }
-
+        /// <summary>
+        /// Gets all clients and their entities (booking, optionchoices, appliedpacks, rooms, ...)
+        /// </summary>
+        /// <returns>a fully loaded Client</returns>
         public async static Task<List<Client>> GetAllClients()
         {
             using (ResotelContext ctx = new ResotelContext())

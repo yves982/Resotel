@@ -7,9 +7,14 @@ using System.Threading.Tasks;
 
 namespace ResotelApp.Repositories
 {
+    ///<summary>Repository to persist(CRUD operations) Options</summary>
     class OptionRepository
     {
-
+        /// <summary>
+        /// Gets Available Options within requested DateRange.
+        /// </summary>
+        /// <param name="dateRange"></param>
+        /// <returns></returns>
         public static async Task<List<Option>> GetAvailablesBetweenAsync(DateRange dateRange)
         {
             using (ResotelContext ctx = new ResotelContext())

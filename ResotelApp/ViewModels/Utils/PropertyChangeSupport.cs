@@ -3,6 +3,10 @@ using System.Runtime.CompilerServices;
 
 namespace ResotelApp.ViewModels.Utils
 {
+    /// <summary>
+    /// Helper class to handle INotfyPropertyChange
+    /// used with event delegation on Handler
+    /// </summary>
     class PropertyChangeSupport
     {
         private object _sender;

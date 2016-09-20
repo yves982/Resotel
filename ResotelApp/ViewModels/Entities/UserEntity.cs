@@ -4,6 +4,9 @@ using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// ViewModel pendant of User with changes notifications
+    /// </summary>
     class UserEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private User _user;

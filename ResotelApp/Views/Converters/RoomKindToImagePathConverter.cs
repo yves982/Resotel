@@ -1,7 +1,7 @@
 ﻿using ResotelApp.Models;
-using System.Windows.Data;
 using System;
 using System.Globalization;
+using System.Windows.Data;
 
 namespace ResotelApp.Views.Converters
 {

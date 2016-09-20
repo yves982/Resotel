@@ -3,6 +3,9 @@ using System.Collections.Generic;
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// A Collection of AppliedPackEntities with same Room.
+    /// </summary>
     class BookedRoomEntity : IEntity
     {
         private Room _room;

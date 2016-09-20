@@ -1,16 +1,21 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.Models.Context;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Threading.Tasks;
 using System.Linq;
-using System;
+using System.Threading.Tasks;
 
 namespace ResotelApp.DAL
 {
+    /// <summary>Repository to persist (CRUD operations) Bookings</summary>
     class BookingRepository
     {
-
+        /// <summary>
+        /// SaveOrUpdate given Booking
+        /// </summary>
+        /// <param name="booking"></param>
+        /// <returns>The saved booking, with its new id, if a new booking (which was never saved) is passed</returns>
         public async static Task<Booking> Save(Booking booking)
         {
             using (ResotelContext ctx = new ResotelContext())

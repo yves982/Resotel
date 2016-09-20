@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Net.Mail;
 using System.Text;
 
 namespace ResotelApp.Models
 {
+    /// <summary>Client Infos</summary>
     public class Client : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;

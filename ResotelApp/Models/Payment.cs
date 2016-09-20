@@ -5,6 +5,7 @@ using System.Text;
 
 namespace ResotelApp.Models
 {
+    /// <summary> A Payment with a mode, a date and an ammount of money </summary>
     public class Payment : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;

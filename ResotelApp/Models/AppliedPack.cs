@@ -6,6 +6,7 @@ using System.Text;
 
 namespace ResotelApp.Models
 {
+    /// <summary> A Pack is a set of nights for a RoomKind. An AppliedPack is a Pack, applied to a Room and a Booking. That's the way we bill nights within a Booking.</summary>
     public class AppliedPack : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;
