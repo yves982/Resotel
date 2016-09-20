@@ -8,8 +8,15 @@ using System.Threading.Tasks;
 
 namespace ResotelApp.Repositories
 {
+    ///<summary>Repository to persist(CRUD operations) Rooms</summary>
     class RoomRepository
     {
+        /// <summary>
+        /// Gets all available Rooms wihin requested dateRange
+        /// A Room is available for a given dateRange if it has no booking including those dates save the last which may be on a booking's startDate
+        /// </summary>
+        /// <param name="dateRange"></param>
+        /// <returns></returns>
         public static async Task<List<Room>> GetAvailablesBetweenAsync(DateRange dateRange)
         {
             using (ResotelContext ctx = new ResotelContext())
@@ -23,6 +30,12 @@ namespace ResotelApp.Repositories
             }
         }
 
+        /// <summary>
+        /// Gets all Room with given Options available within requested dateRange
+        /// </summary>
+        /// <param name="options"></param>
+        /// <param name="dateRange"></param>
+        /// <returns></returns>
         public static async Task<List<Room>> GetMatchingRoomsBetween(IEnumerable<Option> options, DateRange dateRange)
         {
             using (ResotelContext ctx = new ResotelContext())

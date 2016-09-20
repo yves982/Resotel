@@ -4,6 +4,9 @@ using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// ViewModel pendant of RoomChoice with changes notifications
+    /// </summary>
     class RoomChoiceEntity : IEntity, INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;

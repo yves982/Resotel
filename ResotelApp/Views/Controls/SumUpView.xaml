@@ -37,7 +37,7 @@
                 <Table TextAlignment="Center">
                     <Table.Columns>
                         <TableColumn Width="58"></TableColumn>
-                        <TableColumn Width="50"></TableColumn>
+                        <TableColumn Width="70"></TableColumn>
                         <TableColumn Width="90"></TableColumn>
                         <TableColumn Width="50"></TableColumn>
                         <TableColumn Width="90"></TableColumn>
@@ -62,7 +62,7 @@
                             <TableCell></TableCell>
                             <TableCell>
                                 <Paragraph>
-                                    <Image Source="/Resources/calendarIcon.png" Width="16"></Image>
+                                    <Image Source="/Resources/calendarIcon.png" Width="32"></Image>
                                 </Paragraph>
                             </TableCell>
                             <TableCell>
@@ -72,7 +72,7 @@
                             </TableCell>
                             <TableCell>
                                 <Paragraph>
-                                    <Image Source="/Resources/calendarIcon.png" Width="16"></Image>
+                                    <Image Source="/Resources/calendarIcon.png" Width="32"></Image>
                                 </Paragraph>
                             </TableCell>
                             <TableCell>

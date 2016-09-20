@@ -8,6 +8,10 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Used within searchClients && searchBookings actions from MainWindowViewModels.
+    /// Handles booking Selection
+    /// </summary>
     class SearchClientsViewModel : INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;

@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.Text;
-using System.Linq.Expressions;
 using System.Data.Entity.SqlServer;
+using System.Linq.Expressions;
+using System.Text;
 
 namespace ResotelApp.Models
 {
+    /// <summary> A booking is a client request for a set of Rooms and Options.</summary>
     public class Booking : IValidable, IDataErrorInfo
     {
         private Discount _optionDiscount;
@@ -26,6 +27,8 @@ namespace ResotelApp.Models
         public int AdultsCount { get; set; }
         public int BabiesCount { get; set; }
         
+        /// <summary> Used when a Booking is ended unexpectedly either in case of cancellation or unexpected exit. </summary>
+        /// <remarks>When this field is set, AssignedRooms will be freed upon save.</remarks>
         public DateTime? TerminatedDate { get; set; }
         public BookingState State
         {
@@ -46,6 +49,8 @@ namespace ResotelApp.Models
                 return state;
             }
         }
+
+        /// <summary>Set when a Booking is paid, which prevents further edits since paid is a final state</summary>
         public Payment Payment { get; set; }
 
         public static double Tva
@@ -53,6 +58,7 @@ namespace ResotelApp.Models
             get;set;
         }
 
+        ///<summary> Among all options's discounts : gets the most interesting one in terms of saved money.</summary>
         public Discount OptionDiscount
         {
             get
@@ -65,6 +71,7 @@ namespace ResotelApp.Models
             }
         }
 
+        /// <summary> Gets the OptionChoice associated with OptionDiscount </summary>
         public OptionChoice DiscountedOptionChoice
         {
             get

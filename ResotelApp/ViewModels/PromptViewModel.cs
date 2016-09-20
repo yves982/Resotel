@@ -4,6 +4,9 @@ using System.ComponentModel;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Used to display various messages to the MainWindow StatusBar
+    /// </summary>
     class PromptViewModel : INotifyPropertyChanged
     {
         private DelegateCommand<object> _okCommand;

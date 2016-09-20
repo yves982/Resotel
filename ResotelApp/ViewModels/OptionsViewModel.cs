@@ -12,6 +12,9 @@ using System.Threading.Tasks;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Handles OptionChoicesEntities used in BookingViewModel, once parameters have been validated.
+    /// </summary>
     class OptionsViewModel : INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;
@@ -71,6 +74,12 @@ namespace ResotelApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Charge une liste d'options à partir d'options existantes d'une réservation.
+        /// </summary>
+        /// <param name="booking">réservation existante pour mémoire</param>
+        /// <param name="dates">plage de date de la réservation</param>
+        /// <returns></returns>
         public static async Task<OptionsViewModel> CreateAsync(Booking booking, DateRange dates)
         {
             OptionsViewModel newInstance = new OptionsViewModel();

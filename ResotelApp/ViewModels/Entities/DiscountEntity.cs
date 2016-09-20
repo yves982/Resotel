@@ -1,10 +1,12 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
 using System.ComponentModel;
-using System;
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// ViewModel pendant of Discount with changes notifications
+    /// </summary>
     class DiscountEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;

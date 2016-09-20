@@ -11,6 +11,8 @@ using System.Text;
 
 namespace ResotelApp.Models
 {
+    /// <summary>A physical room with a kind of bed, a capacity for a certain number of people,
+    /// a collection of options and a collection of bookings and a set of available Packs.</summary>
     public class Room : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;

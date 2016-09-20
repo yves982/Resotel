@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace ResotelApp.Utils
 {
+    /// <summary>
+    /// Handles Mailing for alert (less than 5 rooms available on any single day)
+    /// </summary>
     class Mailer
     {
         private static SmtpClient _smtpClient;

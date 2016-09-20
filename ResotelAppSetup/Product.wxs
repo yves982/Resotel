@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi">
+  <Product Id="*" Name="ResotelAppSetup" Language="1033" Version="1.0.0.0" Manufacturer="Yves Lalanne" UpgradeCode="f5e9c451-6338-4a5e-94bf-840a964c315b">
+    <Package InstallerVersion="200" Compressed="yes" InstallScope="perMachine" />
+
+    <MajorUpgrade DowngradeErrorMessage="A newer version of [ProductName] is already installed." />
+    <MediaTemplate />
+
+    <Feature Id="ResotelApp" Title="ResotelApp" Level="1">
+      <ComponentGroupRef Id="ProductComponents" />
+      <ComponentRef Id="ApplicationShortcuts"/>
+    </Feature>
+  </Product>
+
+  <Fragment>
+    <Directory Id="TARGETDIR" Name="SourceDir">
+      <Directory Id="ProgramFilesFolder">
+        <Directory Id="INSTALLFOLDER" Name="ResotelApp" />
+      </Directory>
+
+      <Directory Id="ProgramMenuFolder">
+        <Directory Id="ProgramMenuSubfolder" Name="Resotel">
+          <Component Id="ApplicationShortcuts" Guid="12345876-1234-1234-1234-222222222222">
+            <Shortcut Id="ResotelShortcut" Name="Resotel" Description="ResotelApp"
+                      Target="[INSTALLFOLDER]ResotelApp.exe" WorkingDirectory="INSTALLFOLDER"/>
+            <RegistryValue Root="HKCU" Key="Software\Resotel\Resotel"
+                      Name="installed" Type="integer" Value="1" KeyPath="yes"/>
+            <RemoveFolder Id="ProgramMenuSubfolder" On="uninstall"/>
+          </Component>
+        </Directory>
+      </Directory>
+    </Directory>
+  </Fragment>
+
+  <Fragment>
+    <ComponentGroup Id="ProductComponents" Directory="INSTALLFOLDER">
+      <!-- TODO: Remove the comments around this Component element and the ComponentRef below in order to add resources to this installer. -->
+      <Component Id="MainApp" Guid="12345678-1234-1234-1234-222222222222">
+        <File Source="$(var.ResotelApp.TargetPath)" />
+        <File Source="$(var.ResotelApp.TargetDir)\EntityFramework.dll" />
+        <File Source="$(var.ResotelApp.TargetDir)\EntityFramework.SqlServer.dll" />
+        <File Source="$(var.ResotelApp.TargetDir)\ResotelApp.pdb" />
+        <File Source="$(var.ResotelApp.TargetDir)\System.Windows.Interactivity.dll" />
+        <File Source="$(var.ResotelApp.TargetDir)\XCeed.WPF.AvalonDock.dll" />
+        <File Source="$(var.ResotelApp.TargetDir)\XCeed.WPF.AvalonDock.Themes.Aero.dll" />
+        <File Source="$(var.ResotelApp.TargetDir)\XCeed.WPF.AvalonDock.Themes.Metro.dll" />
+        <File Source="$(var.ResotelApp.TargetDir)\XCeed.WPF.AvalonDock.Themes.VS2010.dll" />
+        <File Source="$(var.ResotelApp.TargetDir)\XCeed.WPF.DataGrid.dll" />
+        <File Source="$(var.ResotelApp.TargetDir)\XCeed.WPF.Toolkit.dll" />
+      </Component>
+      <Component Id="AppConfig">
+        <File Source="$(var.ResotelApp.TargetDir)\$(var.ResotelApp.TargetName).exe.config" />
+      </Component>
+    </ComponentGroup>
+  </Fragment>
+</Wix>

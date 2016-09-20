@@ -3,6 +3,9 @@ using System.Linq.Expressions;
 
 namespace ResotelApp.Utils
 {
+    /// <summary>
+    /// Allows to combine with "and" and "or" Linq Expressions for use within models
+    /// </summary>
     static class PredicateExpressionExtensions
     {
         public static Expression<Func<T, bool>> And<T>(this Expression<Func<T,bool>> left, Expression<Func<T,bool>> right)

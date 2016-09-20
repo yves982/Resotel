@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ResotelApp.Models
 {
+    /// <summary>A Pack is the billing side of an AppliedPack, 
+    /// it does not bear any information on the RoomKind or Room it'll be applied to, only financial datas</summary>
     public class Pack : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;

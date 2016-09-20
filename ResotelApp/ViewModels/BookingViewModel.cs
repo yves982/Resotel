@@ -13,6 +13,12 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Handles a booking and related entities (options, RoomsChoices, BookingParameters) through their respective ViewModels.
+    /// </summary>
+    /// <remarks>Once a booking is loaded/created we could set this client's Booking as a new or an existing one.
+    /// We can also validate these choices, assign rooms and load a SumpUpViewModel.
+    /// </remarks>
     class BookingViewModel : INavigableViewModel, INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;
@@ -161,6 +167,13 @@ namespace ResotelApp.ViewModels
             get { return _validateBookingCommand; }
         }
 
+        /// <summary>
+        /// Loads a BookingViewModel from an existing Booking
+        /// </summary>
+        /// <param name="navigation">Navigation object used in MainViewWindow to change tab's content</param>
+        /// <param name="booking">the existing booking loaded from db</param>
+        /// <param name="prevNode">the reviously loaded INavigableViewModel, for use within navigation</param>
+        /// <returns></returns>
         public static async Task<BookingViewModel> LoadAsync(LinkedList<INavigableViewModel> navigation, Booking booking, LinkedListNode<INavigableViewModel> prevNode)
         {
             BookingViewModel bookingVM = new BookingViewModel(navigation, booking, prevNode);
@@ -198,6 +211,9 @@ namespace ResotelApp.ViewModels
             }
         }
 
+        /// <summary>
+        /// Frees a Booking resources, noticably event handlers
+        /// </summary>
         ~BookingViewModel()
         {
             if (_parameters != null)
@@ -219,11 +235,19 @@ namespace ResotelApp.ViewModels
             Shutdown?.Invoke(null, this);
         }
 
+        /// <summary>
+        /// Saves current booking in db
+        /// </summary>
+        /// <returns>none</returns>
         public async Task Save()
         {
             await BookingRepository.Save(_booking);
         }
 
+        /// <summary>
+        /// Assigns Room to this Booking according to choosen OptionChoices
+        /// </summary>
+        /// <returns>none</returns>
         public async Task AssignRooms()
         {
             try

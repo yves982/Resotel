@@ -4,6 +4,9 @@ using static System.Text.Encoding;
 
 namespace ResotelApp.Utils
 {
+    /// <summary>
+    /// Handles Hashes functions
+    /// </summary>
     class HashManager
     {
         public static string SHA256(string entry)

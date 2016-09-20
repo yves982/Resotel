@@ -1,15 +1,18 @@
-﻿using ResotelApp.Models;
+﻿using ResotelApp.DAL;
+using ResotelApp.Models;
+using ResotelApp.Utils;
 using ResotelApp.ViewModels.Entities;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.ComponentModel;
-using System.Windows.Input;
 using System.Threading.Tasks;
-using ResotelApp.DAL;
-using ResotelApp.Utils;
+using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Used when searching a booking. Handles Booking selection.
+    /// </summary>
     class ClientBookingsViewModel : INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;
@@ -70,6 +73,9 @@ namespace ResotelApp.ViewModels
             _clientBookingsView.Filter = _mustShowBooking;
         }
 
+        /// <summary>
+        /// Frees a ClientBookingViewModel's resources
+        /// </summary>
         ~ClientBookingsViewModel()
         {
             if(_clientBookingsView != null)

@@ -1,10 +1,13 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
-using System.ComponentModel;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// ViewModel pendant of Room with changes notifications
+    /// </summary>
     class RoomEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;

@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Handles RoomChoices
+    /// </summary>
     class RoomsChoiceViewModel : INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;

@@ -4,6 +4,11 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels.Utils
 {
+    /// <summary>
+    /// Asynchronous ICommand implementations.
+    /// Used for any ViewModel maniûlating the data from a Repository.
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     class DelegateCommandAsync<T> : ICommand where T : class
     {
         private Func<T, Task> _executeAsync;

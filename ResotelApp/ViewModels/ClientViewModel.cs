@@ -2,7 +2,6 @@
 using ResotelApp.Repositories;
 using ResotelApp.Utils;
 using ResotelApp.ViewModels.Entities;
-using ResotelApp.ViewModels.Events;
 using ResotelApp.ViewModels.Utils;
 using System;
 using System.Collections.Generic;
@@ -12,6 +11,10 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Client's infos : handles loading SumUpViewModel, BookingViewModel (previous)
+    /// and saving current Client.
+    /// </summary>
     class ClientViewModel : INavigableViewModel, INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;

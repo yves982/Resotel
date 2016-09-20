@@ -3,6 +3,10 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels.Utils
 {
+    /// <summary>
+    /// ICommand implementation
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     class DelegateCommand<T> : ICommand where T : class
     {
         private Action<T> _execute;

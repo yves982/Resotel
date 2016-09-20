@@ -143,6 +143,13 @@
                         Command="{Binding AddClientCommand}">
                         <Image Source="/Resources/clientAdd.png"></Image>
                     </Button>
+                    <Button
+                        Height="28" Width="52"
+                        Margin="-2,2,0,0"
+                        ToolTip="Déconnexion"
+                        Command="{Binding LogoutCommand}">
+                        <Image Source="/Resources/logOut.png"></Image>
+                    </Button>
                 </StackPanel>
                 <TabControl
                         Name="slideTabControl"

@@ -1,12 +1,14 @@
 ﻿using ResotelApp.Models;
 using ResotelApp.ViewModels.Utils;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 
 namespace ResotelApp.ViewModels.Entities
 {
+    /// <summary>
+    /// ViewModel pendant of Client with changes notifications
+    /// </summary>
     class ClientEntity : IEntity, INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;

@@ -17,6 +17,9 @@ using System.Windows.Xps.Packaging;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Summary View displaying prices and allowing us to save a Booking and/or to pay it (immediately or later on).
+    /// </summary>
     class SumUpViewModel : INavigableViewModel, INotifyPropertyChanged
     {
         private PropertyChangeSupport _pcs;

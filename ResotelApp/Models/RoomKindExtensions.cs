@@ -2,6 +2,11 @@
 {
     public static class RoomKindExtensions
     {
+        /// <summary>
+        /// Extracts the BedKind out of a RoomKind
+        /// </summary>
+        /// <param name="kind">the source RoomKind</param>
+        /// <returns>the associated BedKind</returns>
         public static BedKind ToBedKind(this RoomKind kind)
         {
             BedKind bedKind = BedKind.Simple;

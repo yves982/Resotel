@@ -6,6 +6,7 @@ using System.Windows.Interactivity;
 
 namespace ResotelApp.Behaviours
 {
+    /// <summary> Class used to Bind Password to a PasswordBox through attached DependencyProperty </summary>
     class BindPasswordBehaviour : Behavior<PasswordBox>
     {
         public static readonly DependencyProperty BoundPasswordProperty =

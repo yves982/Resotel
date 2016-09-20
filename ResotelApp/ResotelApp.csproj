@@ -234,7 +234,6 @@
     </Compile>
     <Compile Include="Repositories\ClientRepository.cs" />
     <Compile Include="Repositories\RoomRepository.cs" />
-    <Compile Include="Utils\IEnumerable.cs" />
     <Compile Include="Utils\Logger.cs" />
     <Compile Include="Utils\Mailer.cs" />
     <Compile Include="Utils\PredicateExpressionExtensions.cs" />
@@ -297,8 +296,6 @@
     <Compile Include="ViewModels\Utils\DelegateCommand.cs" />
     <Compile Include="ViewModels\Utils\DelegateCommandAsync.cs" />
     <Compile Include="ViewModels\Utils\EMessage.cs" />
-    <Compile Include="ViewModels\Utils\Message.cs" />
-    <Compile Include="ViewModels\Utils\Messaging.cs" />
     <Compile Include="ViewModels\Utils\PropertyChangeSupport.cs" />
     <Compile Include="ViewModels\Utils\ViewDriverProvider.cs" />
     <Compile Include="ViewModels\Events\PromptClosedEventArgs.cs" />
@@ -690,6 +687,34 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\calendarIcon.png" />
+    <Resource Include="Resources\cardio.png" />
+    <Resource Include="Resources\Jacuzzi_Hammam.png" />
+    <Resource Include="Resources\room_double.png" />
+    <Resource Include="Resources\room_doubleWithBaby.png" />
+    <Resource Include="Resources\room_simple.png" />
+    <Resource Include="Resources\television.png" />
+    <Resource Include="Resources\wi_fi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\room_four.png" />
+    <Resource Include="Resources\room_six.png" />
+    <Resource Include="Resources\room_three.png" />
+    <Resource Include="Resources\vuesurlecesi.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\tennis.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\balcon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\restauration.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\logOut.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

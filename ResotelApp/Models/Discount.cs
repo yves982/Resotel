@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
 namespace ResotelApp.Models
 {
-    /// <summary> 
-    ///     This class is intended to hold discount and pack informations.
-    ///     Packs only have PackPrice and PackQuantity while Discounts have reduceByPercent and optionally Validity
-    /// </summary>
+    /// <summary> Option's discount : can theoretically be valid for a given period of time.</summary>
     public class Discount : IValidable, IDataErrorInfo
     {
         private Dictionary<string, Func<string>> _propertiesValidations;

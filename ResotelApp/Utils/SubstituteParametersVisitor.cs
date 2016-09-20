@@ -3,6 +3,9 @@ using System.Linq.Expressions;
 
 namespace ResotelApp.Utils
 {
+    /// <summary>
+    /// Visitor for Linq Expressions : used by PreducateExpressionExtensions
+    /// </summary>
     class SubstituteParametersVisitor : ExpressionVisitor
     {
         public Dictionary<Expression, Expression> Substitutions

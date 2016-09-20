@@ -1,13 +1,16 @@
-﻿using ResotelApp.ViewModels.Utils;
+﻿using ResotelApp.ViewModels.Entities;
+using ResotelApp.ViewModels.Utils;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System;
-using ResotelApp.ViewModels.Entities;
 using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Handles search for existing clients
+    /// </summary>
     class SearchClientViewModel : INotifyPropertyChanged, IDataErrorInfo
     {
         private PropertyChangeSupport _pcs;

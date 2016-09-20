@@ -2,6 +2,7 @@
 
 namespace ResotelApp.Behaviours
 {
+    /// <summary> Declare an Attached Property ShoudClose of type bool? use to close a Control from ViewModel </summary>
     static class CloseBehaviour
     {
         public static readonly DependencyProperty ShouldCloseProperty =

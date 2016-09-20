@@ -13,6 +13,10 @@ using System.Windows.Input;
 
 namespace ResotelApp.ViewModels
 {
+    /// <summary>
+    /// Handles navigation through a LinkedList and events from INavigableViewModels to request next (or previous) entity to be loaded.
+    /// </summary>
+    /// <remarks>Also handles a set of base operations (addBooking, closeBooking, addClient, searchBooking, searchClient)</remarks>
     class MainWindowViewModel : INotifyPropertyChanged
     {
         private ICollectionView _currentEntitiesView;
@@ -30,6 +34,7 @@ namespace ResotelApp.ViewModels
         private DelegateCommand<object> _addClientCommand;
         private DelegateCommandAsync<object> _searchBookingCommand;
         private DelegateCommandAsync<object> _searchClientCommand;
+        private DelegateCommand<object> _logoutCommand;
         private DelegateCommand<BookingViewModel> _nextCommand;
         private DelegateCommand<BookingViewModel> _prevCommand;
 
@@ -62,6 +67,11 @@ namespace ResotelApp.ViewModels
         public ICommand SearchClientCommand
         {
             get { return _searchClientCommand; }
+        }
+
+        public ICommand LogoutCommand
+        {
+            get { return _logoutCommand; }
         }
 
         public ICommand NextCommand
@@ -143,7 +153,8 @@ namespace ResotelApp.ViewModels
             _closeBookingCommand = new DelegateCommand<IEntity>(_closeBooking);
             _addClientCommand = new DelegateCommand<object>(_addClient);
             _searchBookingCommand = new DelegateCommandAsync<object>(_searchBooking);
-            _searchClientCommand = new Utils.DelegateCommandAsync<object>(_searchClient);
+            _searchClientCommand = new DelegateCommandAsync<object>(_searchClient);
+            _logoutCommand = new DelegateCommand<object>(_logOut);
             _nextCommand = new DelegateCommand<BookingViewModel>(_next);
             _prevCommand = new DelegateCommand<BookingViewModel>(_prev);
             Logger.Log("=fenêtre principale initialisée (post login)=");
@@ -289,6 +300,13 @@ namespace ResotelApp.ViewModels
 
                 Logger.Log(ex);
             }
+        }
+
+        private void _logOut(object ignore)
+        {
+            LoginViewModel loginVM = new LoginViewModel();
+            loginVM.Login = _user.Login;
+            ViewDriverProvider.ViewDriver.CloseAndShowNewMainWindow<LoginViewModel>(loginVM);
         }
 
         private void _closeBooking(IEntity closedEntity)
